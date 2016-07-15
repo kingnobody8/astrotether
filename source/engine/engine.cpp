@@ -29,7 +29,6 @@ namespace engine
 
 	Engine::Engine()
 		: m_quit(true)
-		, m_pRenderPlugin(null)
 	{
 	}
 	Engine::~Engine()
@@ -43,13 +42,13 @@ namespace engine
 		assert(pFirstState);
 
 		//Init the rendering system
-		m_pRenderPlugin = new render::RenderPlugin();
-		IPlugin::AddPlugin(m_pRenderPlugin);
+		//m_pRenderPlugin = new render::RenderPlugin();
+		//IPlugin::AddPlugin(m_pRenderPlugin);
 
 		//Init the input system
-		InputPlugin* pInputPlugin = new InputPlugin();
-		pInputPlugin->SetSdlWin(m_pRenderPlugin->GetSdlWindow());
-		IPlugin::AddPlugin(pInputPlugin);
+		//InputPlugin* pInputPlugin = new InputPlugin();
+		//pInputPlugin->SetSdlWin(m_pRenderPlugin->GetSdlWindow());
+		//IPlugin::AddPlugin(pInputPlugin);
 
 		//Init the component system
 		component::ComponentPlugin* pComponentPlugin = new component::ComponentPlugin();
@@ -78,7 +77,6 @@ namespace engine
 	void Engine::Exit(void)
 	{
 		IPlugin::DestroyPlugins();
-		SDL_Quit();
 		DeleteInstance();
 	}
 

@@ -3,14 +3,14 @@
 #include "utility/math/math.h"
 #include "utility/event/publisher.h"
 #include "utility/event/publisher.inl"
-#include "SDL.h"
+#include <SFML/Window.hpp>
 
 namespace engine
 {
 	struct IEvent
 	{
-		SDL_Event m_event;
-		IEvent(const SDL_Event& event)
+		sf::Event m_event;
+		IEvent(const sf::Event& event)
 			: m_event(event)
 		{
 		}
@@ -25,11 +25,11 @@ namespace engine
 	{
 		struct KeyAction : public IEvent
 		{
-			SDL_Keycode		m_code;
+			sf::Keyboard::Key	m_code;
 			bool			m_repeat;
 
-			KeyAction(const SDL_Event& event, const SDL_Keycode& code, const bool repeat)
-				: IEvent(event), m_code(code), m_repeat(repeat)
+			KeyAction(const sf::Event& event, const sf::Keyboard::Key& code)
+				: IEvent(event), m_code(code), m_repeat(false)
 			{
 			}
 		};
@@ -46,7 +46,7 @@ namespace engine
 			vec2	m_delta;
 			__todo() // we may eventually want velocity in here delta_pixels / time_since last motion
 
-				MotionAction(const SDL_Event& event, const vec2& pixel, const vec2& delta)
+				MotionAction(const  sf::Event& event, const vec2& pixel, const vec2& delta)
 				: IEvent(event), m_pixel(pixel), m_delta(delta)
 			{
 			}
@@ -58,7 +58,7 @@ namespace engine
 			uchar	m_button; //this is SDL_BUTTON_LEFT, SDL_BUTTON_MIDDLE, or SDL_BUTTON_RIGHT
 			uchar	m_clicks;
 
-			ButtonAction(const SDL_Event& event, const vec2& pixel, const uchar& button, const uchar& clicks)
+			ButtonAction(const  sf::Event& event, const vec2& pixel, const uchar& button, const uchar& clicks)
 				: IEvent(event), m_pixel(pixel), m_button(button), m_clicks(clicks)
 			{
 			}
@@ -68,7 +68,7 @@ namespace engine
 		{
 			vec2	m_scroll;
 
-			WheelAction(const SDL_Event& event, const vec2 scroll)
+			WheelAction(const  sf::Event& event, const vec2 scroll)
 				: IEvent(event), m_scroll(scroll)
 			{
 			}
@@ -88,7 +88,7 @@ namespace engine
 			vec2	m_delta;
 			int64	m_fingerId;
 			
-			MotionAction(const SDL_Event& event, const vec2& pixel, const vec2& delta, const int64& fingerId)
+			MotionAction(const  sf::Event& event, const vec2& pixel, const vec2& delta, const int64& fingerId)
 				: IEvent(event), m_pixel(pixel), m_delta(delta), m_fingerId(fingerId)
 			{
 			}
@@ -99,7 +99,7 @@ namespace engine
 			vec2 m_pixel;
 			int64 m_fingerId;
 
-			TouchAction(const SDL_Event& event, const vec2& pixel, const int64& fingerId)
+			TouchAction(const  sf::Event& event, const vec2& pixel, const int64& fingerId)
 				: IEvent(event), m_pixel(pixel), m_fingerId(fingerId)
 			{
 			}

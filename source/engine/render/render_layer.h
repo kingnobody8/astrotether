@@ -1,5 +1,4 @@
 #pragma once
-#include "sdl/include/SDL.h"
 #include <list>
 #include "utility/helper/macro.h"
 #include <string>

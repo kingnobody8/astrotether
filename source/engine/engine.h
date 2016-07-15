@@ -1,6 +1,5 @@
 #pragma once
 #include "utility/time/tick.h"
-#include "render/render_plugin.h"
 
 namespace engine
 {
@@ -11,7 +10,6 @@ namespace engine
 	{
 	private:
 		util::Tick				m_timer;
-		render::RenderPlugin*	m_pRenderPlugin;
 		bool					m_quit;
 
 		static Engine* s_pInstance;

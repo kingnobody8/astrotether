@@ -1,14 +1,8 @@
 #include "physics_plugin.h"
 #include "utility/helper/func.h"
-#include "../render/render_core.h"
-#include "../render/render_plugin.h"
-#include "../asset/resource_path.h"
-#include "../asset/loader.h"
 #include "b2djson/b2dJsonImage.h"
 #include "callbacks/raycast_callback.h"
 #include "callbacks/aabb_callback.h"
-#include "../render/node/rect_node.h"
-#include "../render/shader/shader_default.h"
 
 namespace engine
 {

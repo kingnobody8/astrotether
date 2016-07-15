@@ -1,7 +1,8 @@
 #pragma once
 #include "plugin.h"
 #include "math/math.h"
-#include "SDL.h"
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 
 namespace engine
@@ -12,7 +13,7 @@ namespace engine
 		DECLARE_PLUGIN_TYPE_INFO(InputPlugin);
 
 	private:
-		SDL_Window* m_pSdlWin;
+		sf::RenderWindow* m_pRenWin;
 
 	private:
 		const vec2 ConvertPixelToCartesian(int x, int y);
@@ -26,6 +27,6 @@ namespace engine
 		virtual void Exit();
 		virtual bool Update(const util::Time& dt);
 
-		void SetSdlWin(SDL_Window* pSdlWin) { m_pSdlWin = pSdlWin; }
+		void SetSFMLWin(sf::RenderWindow* pRenWin) { m_pRenWin = pRenWin; }
 	};
 }
