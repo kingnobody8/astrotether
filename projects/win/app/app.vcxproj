@@ -68,29 +68,29 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>../../../libs/sfml-2.3.2/include/;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(SolutionDir)../../libs/sfml-2.3.2/lib/x86/;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)..\..\build\win\output\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\build\win\intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>../../../libs/sfml-2.3.2/include/;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(SolutionDir)../../libs/sfml-2.3.2/lib/x86/;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)..\..\build\win\output\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\build\win\intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>../../../libs/sfml-2.3.2/include/;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(SolutionDir)../../libs/sfml-2.3.2/lib/x86/;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)..\..\build\win\output\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\build\win\intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>../../../libs/sfml-2.3.2/include/;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(SolutionDir)../../libs/sfml-2.3.2/lib/x86/;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)..\..\build\win\output\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\build\win\intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -101,12 +101,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;SFML_STATIC;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../source/app/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/;../../../source/sfml/include/;../../../source/sfml/src/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../source/app/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/;../../../libs/sfml-2.3.2/include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>utility.lib;box2d.lib;sfml.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>utility.lib;box2d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;sfml-graphics-s-d.lib;sfml-audio-s-d.lib;freetype.lib;jpeg.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
@@ -121,12 +121,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;SFML_STATIC;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../source/app/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/;../../../source/sfml/include/;../../../source/sfml/src/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../source/app/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/;../../../libs/sfml-2.3.2/include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>utility.lib;box2d.lib;sfml.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>utility.lib;box2d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;sfml-graphics-s-d.lib;sfml-audio-s-d.lib;freetype.lib;jpeg.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
@@ -143,7 +143,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;SFML_STATIC;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../source/app/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/;../../../source/sfml/include/;../../../source/sfml/src/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../source/app/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/;../../../libs/sfml-2.3.2/include/</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -151,7 +151,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>utility.lib;box2d.lib;sfml.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>utility.lib;box2d.lib;sfml-window-s.lib;sfml-system-s.lib;sfml-graphics-s.lib;sfml-audio-s.lib;freetype.lib;jpeg.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
@@ -171,14 +171,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;SFML_STATIC;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../source/app/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/;../../../source/sfml/include/;../../../source/sfml/src/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../source/app/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/;../../../libs/sfml-2.3.2/include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>utility.lib;box2d.lib;sfml.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>utility.lib;box2d.lib;sfml-window-s.lib;sfml-system-s.lib;sfml-graphics-s.lib;sfml-audio-s.lib;freetype.lib;jpeg.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
