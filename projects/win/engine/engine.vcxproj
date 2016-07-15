@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\bridge\win\bridge-gl-win.cc" />
+    <ClCompile Include="..\..\..\source\engine\asset\loader.cpp" />
+    <ClCompile Include="..\..\..\source\engine\b2djson\b2dJson.cpp" />
+    <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage.cpp" />
+    <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.cpp" />
+    <ClCompile Include="..\..\..\source\engine\b2djson\jsoncpp.cpp" />
+    <ClCompile Include="..\..\..\source\engine\component\component.cpp" />
+    <ClCompile Include="..\..\..\source\engine\component\component_plugin.cpp" />
+    <ClCompile Include="..\..\..\source\engine\component\object.cpp" />
+    <ClCompile Include="..\..\..\source\engine\component\part.cpp" />
+    <ClCompile Include="..\..\..\source\engine\engine.cpp" />
+    <ClCompile Include="..\..\..\source\engine\input\input_event.cpp" />
+    <ClCompile Include="..\..\..\source\engine\input\input_plugin.cpp" />
+    <ClCompile Include="..\..\..\source\engine\physics\debug_draw.cpp" />
+    <ClCompile Include="..\..\..\source\engine\physics\lark_controller.cpp" />
+    <ClCompile Include="..\..\..\source\engine\physics\physics_plugin.cpp" />
+    <ClCompile Include="..\..\..\source\engine\plugin.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\camera.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\node\circle_node.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\node\line_node.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\node\rect_node.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\node\render_node.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\node\polygon_node.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\render_layer.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\render_plugin.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\shader\shader.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\shader\shader_color_polygon.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\shader\shader_default.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\shader\shader_program.cpp" />
+    <ClCompile Include="..\..\..\source\engine\script\box\box2d_part.cpp" />
+    <ClCompile Include="..\..\..\source\engine\script\box\fixture_part.cpp" />
+    <ClCompile Include="..\..\..\source\engine\script\renderable\render_part.cpp" />
+    <ClCompile Include="..\..\..\source\engine\script\script.cpp" />
+    <ClCompile Include="..\..\..\source\engine\script\ui\button_part.cpp" />
+    <ClCompile Include="..\..\..\source\engine\script\ui\ui_part.cpp" />
+    <ClCompile Include="..\..\..\source\engine\state\state_plugin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\bridge\win\bridge-gl-win.h" />
+    <ClInclude Include="..\..\..\source\bridge\win\GL\glext.h" />
+    <ClInclude Include="..\..\..\source\engine\asset\loader.h" />
+    <ClInclude Include="..\..\..\source\engine\asset\resource_path.h" />
+    <ClInclude Include="..\..\..\source\engine\b2djson\b2dJson.h" />
+    <ClInclude Include="..\..\..\source\engine\b2djson\b2dJsonImage.h" />
+    <ClInclude Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.h" />
+    <ClInclude Include="..\..\..\source\engine\b2djson\bitmap.h" />
+    <ClInclude Include="..\..\..\source\engine\b2djson\json\json-forwards.h" />
+    <ClInclude Include="..\..\..\source\engine\b2djson\json\json.h" />
+    <ClInclude Include="..\..\..\source\engine\component\component.h" />
+    <ClInclude Include="..\..\..\source\engine\component\component_plugin.h" />
+    <ClInclude Include="..\..\..\source\engine\component\object.h" />
+    <ClInclude Include="..\..\..\source\engine\component\part.h" />
+    <ClInclude Include="..\..\..\source\engine\engine.h" />
+    <ClInclude Include="..\..\..\source\engine\input\input_event.h" />
+    <ClInclude Include="..\..\..\source\engine\input\input_plugin.h" />
+    <ClInclude Include="..\..\..\source\engine\physics\callbacks\aabb_callback.h" />
+    <ClInclude Include="..\..\..\source\engine\physics\callbacks\raycast_callback.h" />
+    <ClInclude Include="..\..\..\source\engine\physics\debug_draw.h" />
+    <ClInclude Include="..\..\..\source\engine\physics\lark_controller.h" />
+    <ClInclude Include="..\..\..\source\engine\physics\physics_plugin.h" />
+    <ClInclude Include="..\..\..\source\engine\plugin.h" />
+    <ClInclude Include="..\..\..\source\engine\render\camera.h" />
+    <ClInclude Include="..\..\..\source\engine\render\node\circle_node.h" />
+    <ClInclude Include="..\..\..\source\engine\render\node\line_node.h" />
+    <ClInclude Include="..\..\..\source\engine\render\node\rect_node.h" />
+    <ClInclude Include="..\..\..\source\engine\render\node\render_node.h" />
+    <ClInclude Include="..\..\..\source\engine\render\node\polygon_node.h" />
+    <ClInclude Include="..\..\..\source\engine\render\render_core.h" />
+    <ClInclude Include="..\..\..\source\engine\render\render_layer.h" />
+    <ClInclude Include="..\..\..\source\engine\render\render_plugin.h" />
+    <ClInclude Include="..\..\..\source\engine\render\shader\shader.h" />
+    <ClInclude Include="..\..\..\source\engine\render\shader\shader_color_polygon.h" />
+    <ClInclude Include="..\..\..\source\engine\render\shader\shader_default.h" />
+    <ClInclude Include="..\..\..\source\engine\render\shader\shader_program.h" />
+    <ClInclude Include="..\..\..\source\engine\script\box\box2d_part.h" />
+    <ClInclude Include="..\..\..\source\engine\script\box\fixture_part.h" />
+    <ClInclude Include="..\..\..\source\engine\script\renderable\render_part.h" />
+    <ClInclude Include="..\..\..\source\engine\script\script.h" />
+    <ClInclude Include="..\..\..\source\engine\script\ui\button_part.h" />
+    <ClInclude Include="..\..\..\source\engine\script\ui\ui_part.h" />
+    <ClInclude Include="..\..\..\source\engine\state\base_state.h" />
+    <ClInclude Include="..\..\..\source\engine\state\state_plugin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\source\bridge\win\bridge-gl-win.inl" />
+    <None Include="..\..\..\source\engine\component\object.inl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F664200C-B715-4896-87D1-564ADDD14758}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>engine</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..\..\build\win\output\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\build\win\intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..\..\build\win\output\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\build\win\intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\..\build\win\output\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\build\win\intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)..\..\build\win\output\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\build\win\intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\..\build\lib_output\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../source/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/sdl/include/</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(OutDir)*.lib" "$(ProjectDir)"..\..\..\"build\lib_output\$(Platform)\$(Configuration)\"</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>utility.lib;sdl.lib;box2d.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../source/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/sdl/include/</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(OutDir)*.lib" "$(ProjectDir)"..\..\..\"build\lib_output\$(Platform)\$(Configuration)\"</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>utility.lib;sdl.lib;box2d.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../source/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/sdl/include/</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(OutDir)*.lib" "$(ProjectDir)"..\..\..\"build\lib_output\$(Platform)\$(Configuration)\"</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>utility.lib;sdl.lib;box2d.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../source/;../../../source/engine/;../../../source/utility/;../../../source/box2d/;../../../source/sdl/include/</AdditionalIncludeDirectories>
+      <BrowseInformation>true</BrowseInformation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(OutDir)*.lib" "$(ProjectDir)"..\..\..\"build\lib_output\$(Platform)\$(Configuration)\"</Command>
+    </PostBuildEvent>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
+    <Lib>
+      <AdditionalDependencies>utility.lib;sdl.lib;box2d.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

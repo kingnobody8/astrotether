@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\app\state\setup_state.h">
+      <Filter>state</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\app\main.cpp" />
+    <ClCompile Include="..\..\..\source\app\state\setup_state.cpp">
+      <Filter>state</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\sdl\main\android\SDL_android_main.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="state">
+      <UniqueIdentifier>{8dee0d2d-8e25-42eb-83ac-b69a36576c3f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="component">
+      <UniqueIdentifier>{bddb2f25-9e01-4bea-a97d-64b5ee3c6def}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{65de5180-01ec-4ae4-82e8-6f8874afe9cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="asset">
+      <UniqueIdentifier>{4c5c8a50-259b-4b2e-9b61-2ced1072ac76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{1236dd37-8bb2-484e-9515-4da5c862cec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\renderable">
+      <UniqueIdentifier>{8d37b3d5-15fc-45a0-8877-9471e415240c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="input">
+      <UniqueIdentifier>{2fb19712-f251-478b-9b15-8e97e934d6d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\ui">
+      <UniqueIdentifier>{261b71f2-f34a-4806-9a56-2cafa638813a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\box">
+      <UniqueIdentifier>{0f2e197e-7a4a-491b-b9fd-4334a37db5ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\node">
+      <UniqueIdentifier>{146a1116-6007-403c-8cd6-116ab8e792b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\shader">
+      <UniqueIdentifier>{0d0f22d4-2108-4d62-81e7-3435c027ad80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="state">
+      <UniqueIdentifier>{d6b12ce2-768e-4773-843f-ccd27a7946f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="physics">
+      <UniqueIdentifier>{8dd32be1-2843-4fb5-bb89-63d7b797821c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="b2djson">
+      <UniqueIdentifier>{168bdd4a-63fe-4d1d-9bb4-7c70cec25a28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="b2djson\json">
+      <UniqueIdentifier>{37a6e867-57ad-4536-86ee-3058de480422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="physics\callbacks">
+      <UniqueIdentifier>{c5520f2e-ea54-4751-a4b8-56a5b09bbe14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bridge">
+      <UniqueIdentifier>{aff64e7b-a4dc-47ec-a285-f65fc1be88c7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\engine\engine.cpp" />
+    <ClCompile Include="..\..\..\source\engine\component\object.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\component\part.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\component\component.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\asset\loader.cpp">
+      <Filter>asset</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\script\renderable\render_part.cpp">
+      <Filter>script\renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\render_layer.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\camera.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\script\script.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\script\ui\ui_part.cpp">
+      <Filter>script\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\script\ui\button_part.cpp">
+      <Filter>script\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\script\box\box2d_part.cpp">
+      <Filter>script\box</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\script\box\fixture_part.cpp">
+      <Filter>script\box</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\node\render_node.cpp">
+      <Filter>render\node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\node\polygon_node.cpp">
+      <Filter>render\node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\shader\shader_default.cpp">
+      <Filter>render\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\shader\shader_program.cpp">
+      <Filter>render\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\shader\shader.cpp">
+      <Filter>render\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\shader\shader_color_polygon.cpp">
+      <Filter>render\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\node\rect_node.cpp">
+      <Filter>render\node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\node\circle_node.cpp">
+      <Filter>render\node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\plugin.cpp" />
+    <ClCompile Include="..\..\..\source\engine\state\state_plugin.cpp">
+      <Filter>state</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\input\input_plugin.cpp">
+      <Filter>input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\input\input_event.cpp">
+      <Filter>input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\render_plugin.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\component\component_plugin.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\node\line_node.cpp">
+      <Filter>render\node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\physics\physics_plugin.cpp">
+      <Filter>physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\physics\debug_draw.cpp">
+      <Filter>physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.cpp">
+      <Filter>b2djson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\b2djson\jsoncpp.cpp">
+      <Filter>b2djson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\b2djson\b2dJson.cpp">
+      <Filter>b2djson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage.cpp">
+      <Filter>b2djson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\bridge\win\bridge-gl-win.cc">
+      <Filter>bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\physics\lark_controller.cpp">
+      <Filter>physics</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\engine\engine.h" />
+    <ClInclude Include="..\..\..\source\engine\component\component.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\component\object.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\component\part.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\asset\loader.h">
+      <Filter>asset</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\asset\resource_path.h">
+      <Filter>asset</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\script\renderable\render_part.h">
+      <Filter>script\renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\render_layer.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\camera.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\script\script.h">
+      <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\script\ui\ui_part.h">
+      <Filter>script\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\script\ui\button_part.h">
+      <Filter>script\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\script\box\box2d_part.h">
+      <Filter>script\box</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\script\box\fixture_part.h">
+      <Filter>script\box</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\node\render_node.h">
+      <Filter>render\node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\node\polygon_node.h">
+      <Filter>render\node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\state\base_state.h">
+      <Filter>state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\shader\shader_default.h">
+      <Filter>render\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\shader\shader_program.h">
+      <Filter>render\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\shader\shader.h">
+      <Filter>render\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\shader\shader_color_polygon.h">
+      <Filter>render\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\node\rect_node.h">
+      <Filter>render\node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\node\circle_node.h">
+      <Filter>render\node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\plugin.h" />
+    <ClInclude Include="..\..\..\source\engine\state\state_plugin.h">
+      <Filter>state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\input\input_plugin.h">
+      <Filter>input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\input\input_event.h">
+      <Filter>input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\render_plugin.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\component\component_plugin.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\node\line_node.h">
+      <Filter>render\node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\physics\physics_plugin.h">
+      <Filter>physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\physics\debug_draw.h">
+      <Filter>physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.h">
+      <Filter>b2djson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\b2djson\bitmap.h">
+      <Filter>b2djson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\b2djson\b2dJson.h">
+      <Filter>b2djson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\b2djson\b2dJsonImage.h">
+      <Filter>b2djson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\b2djson\json\json.h">
+      <Filter>b2djson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\b2djson\json\json-forwards.h">
+      <Filter>b2djson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\physics\callbacks\raycast_callback.h">
+      <Filter>physics\callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\physics\callbacks\aabb_callback.h">
+      <Filter>physics\callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\render_core.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\bridge\win\GL\glext.h">
+      <Filter>bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\bridge\win\bridge-gl-win.h">
+      <Filter>bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\physics\lark_controller.h">
+      <Filter>physics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\source\engine\component\object.inl">
+      <Filter>component</Filter>
+    </None>
+    <None Include="..\..\..\source\bridge\win\bridge-gl-win.inl">
+      <Filter>bridge</Filter>
+    </None>
+  </ItemGroup>
+</Project>

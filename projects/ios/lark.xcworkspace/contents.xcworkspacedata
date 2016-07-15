@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:engine/../app/app.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:utility/../engine/engine.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:utility/utility.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:box2d/box2d.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:sdl/sdl.xcodeproj">
+   </FileRef>
+</Workspace>
