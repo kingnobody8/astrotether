@@ -4,14 +4,7 @@
 #include "plugin.h"
 #include "state/state_plugin.h"
 #include "input/input_plugin.h"
-#include "component/component_plugin.h"
 #include "physics/physics_plugin.h"
-
-__todo() //why in God's name does this have to be not a class function. why won't SDL_SetIphoneANimation take a binded function like normal AHHHHHH!
-void IosCallback(void* params)
-{
-	engine::Engine::Get()->RunFrame(params);
-}
 
 namespace engine
 {
@@ -50,10 +43,6 @@ namespace engine
 		//pInputPlugin->SetSdlWin(m_pRenderPlugin->GetSdlWindow());
 		//IPlugin::AddPlugin(pInputPlugin);
 
-		//Init the component system
-		component::ComponentPlugin* pComponentPlugin = new component::ComponentPlugin();
-		IPlugin::AddPlugin(pComponentPlugin);
-
 		//Init state plugin
 		state::StatePlugin* pStatePlugin = new state::StatePlugin();
 		pStatePlugin->TransitionState(pFirstState);
@@ -68,10 +57,6 @@ namespace engine
 
 		//Don't quit
 		m_quit = false;
-
-#ifdef IS_IOS //Set frame callback
-		SDL_iPhoneSetAnimationCallback(m_pRenderPlugin->GetSdlWindow(), 1, IosCallback, nullptr);
-#endif
 	}
 
 	void Engine::Exit(void)

@@ -24,16 +24,13 @@
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage.cpp" />
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.cpp" />
     <ClCompile Include="..\..\..\source\engine\b2djson\jsoncpp.cpp" />
-    <ClCompile Include="..\..\..\source\engine\component\component.cpp" />
-    <ClCompile Include="..\..\..\source\engine\component\component_plugin.cpp" />
-    <ClCompile Include="..\..\..\source\engine\component\object.cpp" />
-    <ClCompile Include="..\..\..\source\engine\component\part.cpp" />
     <ClCompile Include="..\..\..\source\engine\engine.cpp" />
     <ClCompile Include="..\..\..\source\engine\input\input_event.cpp" />
     <ClCompile Include="..\..\..\source\engine\input\input_plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\physics\debug_draw.cpp" />
     <ClCompile Include="..\..\..\source\engine\physics\physics_plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\plugin.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\render_plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\state\state_plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -45,10 +42,6 @@
     <ClInclude Include="..\..\..\source\engine\b2djson\bitmap.h" />
     <ClInclude Include="..\..\..\source\engine\b2djson\json\json-forwards.h" />
     <ClInclude Include="..\..\..\source\engine\b2djson\json\json.h" />
-    <ClInclude Include="..\..\..\source\engine\component\component.h" />
-    <ClInclude Include="..\..\..\source\engine\component\component_plugin.h" />
-    <ClInclude Include="..\..\..\source\engine\component\object.h" />
-    <ClInclude Include="..\..\..\source\engine\component\part.h" />
     <ClInclude Include="..\..\..\source\engine\engine.h" />
     <ClInclude Include="..\..\..\source\engine\input\input_event.h" />
     <ClInclude Include="..\..\..\source\engine\input\input_plugin.h" />
@@ -57,11 +50,9 @@
     <ClInclude Include="..\..\..\source\engine\physics\debug_draw.h" />
     <ClInclude Include="..\..\..\source\engine\physics\physics_plugin.h" />
     <ClInclude Include="..\..\..\source\engine\plugin.h" />
+    <ClInclude Include="..\..\..\source\engine\render\render_plugin.h" />
     <ClInclude Include="..\..\..\source\engine\state\base_state.h" />
     <ClInclude Include="..\..\..\source\engine\state\state_plugin.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\source\engine\component\object.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F664200C-B715-4896-87D1-564ADDD14758}</ProjectGuid>

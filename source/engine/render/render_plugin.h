@@ -1,6 +1,6 @@
 #pragma once
 #include "plugin.h"
-#include "sdl.h"
+#include <SFML/Graphics.hpp>
 
 namespace engine
 {
@@ -12,8 +12,7 @@ namespace engine
 			DECLARE_PLUGIN_TYPE_INFO(RenderPlugin);
 
 		private:
-			SDL_GLContext m_pGLContext;
-			SDL_Window* m_pSdlWin;
+			sf::RenderWindow m_renWin;
 
 		public:
 			RenderPlugin();
@@ -24,9 +23,7 @@ namespace engine
 
 			void DoRender() const;
 
-			inline SDL_GLContext GetGLContext() { return m_pGLContext; }
-			inline SDL_Window* GetSdlWindow() { return m_pSdlWin; }
-
+			inline sf::RenderWindow* GetRenderWindow() { return &m_renWin; }
 		};
 	}
 }

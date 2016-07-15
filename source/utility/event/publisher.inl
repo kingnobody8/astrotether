@@ -11,7 +11,7 @@ namespace util
 
 		if (!m_pending.empty())
 		{
-			for (int i = 0; i < m_pending.size(); ++i)
+			for (size_t i = 0; i < m_pending.size(); ++i)
 			{
 				m_subscriptions.push_back(m_pending[i]);
 			}
@@ -44,7 +44,7 @@ namespace util
 	template<typename TYPE>
 	VIRTUAL void Publisher<TYPE>::Unsubscribe(Subscriber* subscriber)
 	{
-		for (int i = 0; i < m_pending.size(); ++i)
+		for (size_t i = 0; i < m_pending.size(); ++i)
 		{
 			if (m_pending[i].m_subscriber == subscriber)
 			{
@@ -81,7 +81,7 @@ namespace util
 	template<typename TYPE>
 	VIRTUAL void Publisher<TYPE>::UnsubscribeAll()
 	{
-		for (int i = 0; i < m_pending.size(); ++i)
+		for (size_t i = 0; i < m_pending.size(); ++i)
 		{
 			m_pending[i].m_subscriber->RemPublisher(this);
 			m_pending.erase(m_pending.begin() + i);

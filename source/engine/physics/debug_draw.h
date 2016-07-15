@@ -1,56 +1,35 @@
 #pragma once
 #include "Box2D/Box2D.h"
-#include "../render/render_core.h"
+#include <SFML/Graphics.hpp>
 
 namespace engine
 {
-	namespace physics
+	struct RenderVerts
 	{
-		struct GLRenderPoints;
-		struct GLRenderLines;
-		struct GLRenderTriangles
+		void Vertex(sf::Vector2f v, const sf::Color& c)
 		{
-			void Create();
-			void Destroy();
-			void Vertex(const b2Vec2& v, const b2Color& c);
-			void Flush();
+			if (m_count == e_maxVertices)
+				Flush();
 
-			enum { e_maxVertices = 3 * 512 };
-			b2Vec2 m_vertices[e_maxVertices];
-			b2Color m_colors[e_maxVertices];
+			v.y *= -1;
 
-			int32 m_count;
+			m_vertArray[m_count].position = v;
+			m_vertArray[m_count].color = c;
+			++m_count;
+		}
 
-			//			GLuint m_vaoId;
-			GLuint m_vboIds[2];
-			GLuint m_programId;
-			GLint m_projectionUniform;
-			GLint m_vertexAttribute;
-			GLint m_colorAttribute;
-			bool useCamera;
-		};
-
-		struct Camera
+		void Flush()
 		{
-			Camera()
-			{
-				m_center.Set(0.0f, 20.0f);
-				m_extent = 25.0f;
-				m_zoom = 1.0f;
-				m_width = 1096;//1280;
-				m_height = 640;//720;
-			}
+			m_pRenWin->draw(m_vertArray, m_count, m_type);
+			m_count = 0;
+		}
 
-			b2Vec2 ConvertScreenToWorld(const b2Vec2& screenPoint);
-			b2Vec2 ConvertWorldToScreen(const b2Vec2& worldPoint);
-			void BuildProjectionMatrix(float32* m, float32 zBias);
-
-			b2Vec2 m_center;
-			float32 m_extent;
-			float32 m_zoom;
-			int32 m_width;
-			int32 m_height;
-		};
+		enum { e_maxVertices = 3 * 512 };
+		sf::Vertex m_vertArray[e_maxVertices];
+		int32 m_count = 0;
+		sf::PrimitiveType m_type = sf::PrimitiveType::Lines;
+		sf::RenderWindow* m_pRenWin = nullptr;
+	};
 
 		// This class implements debug drawing callbacks that are invoked inside b2World::Step.
 		class DebugDraw : public b2Draw
@@ -82,14 +61,13 @@ namespace engine
 
 			void Flush();
 
-		private:
-			GLRenderPoints* m_points;
-			GLRenderLines* m_lines;
-			GLRenderTriangles* m_triangles;
-		};
+			void SetRenderWindow(sf::RenderWindow* pRenWin);
 
-		extern Camera g_camera;
-	}
+		private:
+			RenderVerts m_points;
+			RenderVerts m_lines;
+			RenderVerts m_triangles;
+		};
 }
 
 

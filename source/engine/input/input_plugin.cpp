@@ -1,6 +1,5 @@
 #include "input_plugin.h"
 #include "input_event.h"
-#include "script/ui/ui_part.h"
 
 namespace engine
 {

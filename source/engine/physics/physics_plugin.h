@@ -4,7 +4,6 @@
 #include "debug_draw.h"
 #include "../input/input_event.h"
 #include "../b2djson/b2dJson.h"
-#include "../render/render_core.h"
 #include "lark_controller.h"
 
 namespace engine
@@ -22,7 +21,7 @@ namespace engine
 		private:
 			b2dJson m_json;
 			b2World* m_pWorld;
-			DebugDraw m_debugDraw;
+			//DebugDraw m_debugDraw;
 			util::Subscriber m_sub;
 			b2MouseJoint* m_pMouseJoint;
 			b2Body* m_pGroundBody;
@@ -35,22 +34,6 @@ namespace engine
 			b2PolygonShape m_pParticleEmitterShape;
 			b2Vec2 m_pParticleEmitterPosition;
 			float angle;
-
-			void OnMouseDownTestbed(const mouse_events::ButtonAction& action);
-			void OnMouseUpTestbed(const mouse_events::ButtonAction& action);
-			void OnMouseMotionTestbed(const mouse_events::MotionAction& action);
-
-			void OnMouseDownLark(const mouse_events::ButtonAction& action);
-			void OnMouseUpLark(const mouse_events::ButtonAction& action);
-			void OnMouseMotionLark(const mouse_events::MotionAction& action);
-
-			void OnMouseDown(const mouse_events::ButtonAction& action);
-			void OnMouseUp(const mouse_events::ButtonAction& action);
-			void OnMouseMotion(const mouse_events::MotionAction& action);
-			void OnMouseWheel(const mouse_events::WheelAction& action);
-
-			void OnKeyDown(const key_events::KeyAction& action);
-
 			void MakeParticles(int count, int lifetime, b2Vec2 dir);
 
 		public:
@@ -60,9 +43,6 @@ namespace engine
 			virtual void Init();
 			virtual void Exit();
 			virtual bool Update(const util::Time& dt);
-
-			void Reload();
-			bool rel;
 		};
 	}
 }

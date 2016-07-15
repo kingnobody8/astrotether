@@ -141,56 +141,20 @@
         ],
         "id" : 3,
         "linearVelocity" : 0,
+        "massData-I" : 1028467.250,
+        "massData-center" : 
+        {
+          "x" : 6.935778401384596e-006,
+          "y" : -2.483526939656144e-009
+        },
+        "massData-mass" : 231.0935668945313,
         "name" : "body0",
         "position" : 
         {
           "x" : -1.748508810997009,
           "y" : -1.535092115402222
         },
-        "type" : "static"
-      },
-      
-      {
-        "angle" : 1.586725831031799,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 3,
-            "name" : "fixture1",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : 
-              [
-                115.5467910766602,
-                -115.5467758178711,
-                -115.5467758178711,
-                115.5467910766602
-              ],
-              "y" : [ 0.5, 0.5, -0.5, -0.5 ]
-            }
-          }
-        ],
-        "id" : 4,
-        "linearVelocity" : 0,
-        "name" : "body0",
-        "position" : 
-        {
-          "x" : 2.003730297088623,
-          "y" : 14.76034832000732
-        },
-        "type" : "static"
+        "type" : "dynamic"
       }
     ],
     "positionIterations" : 3,

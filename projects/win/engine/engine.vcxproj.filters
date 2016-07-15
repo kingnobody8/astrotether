@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="component">
-      <UniqueIdentifier>{bddb2f25-9e01-4bea-a97d-64b5ee3c6def}</UniqueIdentifier>
-    </Filter>
     <Filter Include="asset">
       <UniqueIdentifier>{4c5c8a50-259b-4b2e-9b61-2ced1072ac76}</UniqueIdentifier>
     </Filter>
@@ -25,18 +22,12 @@
     <Filter Include="physics\callbacks">
       <UniqueIdentifier>{ee862a1c-170e-4740-818d-489ca5588f7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{25e6a6c8-6b8a-44d3-b3ec-5785b85122ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\engine\engine.cpp" />
-    <ClCompile Include="..\..\..\source\engine\component\object.cpp">
-      <Filter>component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\engine\component\part.cpp">
-      <Filter>component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\engine\component\component.cpp">
-      <Filter>component</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\engine\asset\loader.cpp">
       <Filter>asset</Filter>
     </ClCompile>
@@ -49,9 +40,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\input\input_event.cpp">
       <Filter>input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\engine\component\component_plugin.cpp">
-      <Filter>component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.cpp">
       <Filter>b2djson</Filter>
@@ -71,18 +59,12 @@
     <ClCompile Include="..\..\..\source\engine\physics\debug_draw.cpp">
       <Filter>physics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\render_plugin.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\engine\engine.h" />
-    <ClInclude Include="..\..\..\source\engine\component\component.h">
-      <Filter>component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\engine\component\object.h">
-      <Filter>component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\engine\component\part.h">
-      <Filter>component</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\engine\asset\loader.h">
       <Filter>asset</Filter>
     </ClInclude>
@@ -101,9 +83,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\input\input_event.h">
       <Filter>input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\engine\component\component_plugin.h">
-      <Filter>component</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.h">
       <Filter>b2djson</Filter>
@@ -135,10 +114,8 @@
     <ClInclude Include="..\..\..\source\engine\physics\callbacks\raycast_callback.h">
       <Filter>physics\callbacks</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\source\engine\component\object.inl">
-      <Filter>component</Filter>
-    </None>
+    <ClInclude Include="..\..\..\source\engine\render\render_plugin.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

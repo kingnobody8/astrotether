@@ -33,6 +33,7 @@ namespace engine
 
 		virtual void Init();
 		virtual void Exit();
+		virtual void Reload() { Exit(); Init(); }
 		virtual bool Update(const util::Time& dt);
 
 #define DECLARE_PLUGIN_TYPE_INFO(CLASS)									\
