@@ -20,14 +20,10 @@ public:
 	void Split();
 	void Destroy();
 
-	void SetB2Body(b2Body* pBody) { m_pBody = pBody; m_pBody->SetUserData(this); }
-	b2Body* GetB2Body() const { return m_pBody; }
-
 	void SetSize(const EAstroSize& eSize) { m_nSize = eSize; }
 	const EAstroSize& GetSize() const { return (EAstroSize)m_nSize; }
 
 protected:
-	b2Body* m_pBody;
 	engine::RenderVerts verts;
 	int m_nSize;
 	bool m_bDestroy;

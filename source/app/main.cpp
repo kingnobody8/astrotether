@@ -25,6 +25,9 @@ std::vector<Actor*> vActors;
 
 int main()
 {
+	engine::RenderVerts v;
+	v.m_type = sf::PrimitiveType::LinesStrip;
+
 	srand(unsigned int(util::Time::GetTimeSinceEpoch().Milli()));
 
 	b2dJson m_json;
@@ -69,6 +72,7 @@ int main()
 
 	engine::DebugDraw m_debugDraw;
 	m_debugDraw.SetRenderWindow(&window);
+	v.m_pRenWin = &window;
 
 	sf::View uiView = window.getDefaultView();
 	// Create the camera, origin at center
@@ -135,8 +139,7 @@ int main()
 				//glViewport(0, 0, event.size.width, event.size.height);
 		}
 
-	
-
+		
 		for (size_t i = 0; i < vActors.size(); ++i)
 		{
 			vActors[i]->Update(secs);
@@ -154,6 +157,13 @@ int main()
 		m_pWorld->DrawDebugData();
 		m_debugDraw.Flush();
 
+
+		v.Vertex(sf::Vector2f(-64, 64), sf::Color::Blue);
+		v.Vertex(sf::Vector2f(64, 64), sf::Color::Blue);
+		v.Vertex(sf::Vector2f(64, -64), sf::Color::Blue);
+		v.Vertex(sf::Vector2f(-64, -64), sf::Color::Blue);
+		v.Vertex(sf::Vector2f(-64, 64), sf::Color::Blue);
+		v.Flush();
 
 		// Finally, display the rendered frame on screen
 		window.display();

@@ -1,8 +1,7 @@
 #include "ship_actor.h"
 
 ShipActor::ShipActor()
-	: m_pBody(nullptr)
-	, m_bDead(false)
+	: m_bDead(false)
 {
 	m_szType = "ShipActor";
 	m_pController = new ShipController(this);
@@ -13,6 +12,8 @@ ShipActor::~ShipActor()
 
 void ShipActor::Update(float dt)
 {
+	EntityActor::Update(dt);
+
 	if (!m_bDead)
 	{
 		m_pController->Update(dt);

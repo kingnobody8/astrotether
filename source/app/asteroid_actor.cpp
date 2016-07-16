@@ -9,8 +9,7 @@ const float SPLIT_SPEED_MIN = 10.0f;
 const float SPLIT_SPEED_MAX = 25.0f;
 
 AsteroidActor::AsteroidActor()
-	: m_pBody(nullptr)
-	, m_nSize(EAS_INVALID)
+	: m_nSize(EAS_INVALID)
 	, m_bDestroy(false)
 	, m_bSplit(false)
 	, m_bShipHitThisFrame(false)
@@ -65,6 +64,8 @@ void AsteroidActor::Create(b2World* pWorld, b2Vec2 pos, b2Vec2 dir, EAstroSize s
 
 void AsteroidActor::Update(float dt)
 {
+	EntityActor::Update(dt);
+
 	m_bShipHitThisFrame = false;
 
 	if (m_bDestroy)

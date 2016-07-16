@@ -71,7 +71,7 @@
         [
           
           {
-            "density" : 3.333333253860474,
+            "density" : 10,
             "friction" : 0.2,
             "id" : 1,
             "name" : "fixture0",
@@ -91,188 +91,16 @@
         ],
         "id" : 1,
         "linearVelocity" : 0,
-        "massData-I" : 1.8750,
+        "massData-I" : 5.6250,
         "massData-center" : 
         {
-          "x" : 2.980232283178452e-009,
+          "x" : -4.967053879312289e-009,
           "y" : -0.1666666716337204
         },
-        "massData-mass" : 5,
+        "massData-mass" : 15.0,
         "name" : "ship",
         "position" : 0,
         "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 4,
-            "name" : "fixture1",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : 
-              [
-                115.5467910766602,
-                -115.5467758178711,
-                -115.5467758178711,
-                115.5467910766602
-              ],
-              "y" : [ 0.5, 0.5, -0.5, -0.5 ]
-            }
-          }
-        ],
-        "id" : 2,
-        "linearVelocity" : 0,
-        "name" : "body0",
-        "position" : 
-        {
-          "x" : -6.179500102996826,
-          "y" : 36.0
-        },
-        "type" : "static"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 2,
-            "name" : "fixture1",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : 
-              [
-                115.5467910766602,
-                -115.5467758178711,
-                -115.5467758178711,
-                115.5467910766602
-              ],
-              "y" : [ 0.5, 0.5, -0.5, -0.5 ]
-            }
-          }
-        ],
-        "id" : 3,
-        "linearVelocity" : 0,
-        "name" : "body0",
-        "position" : 
-        {
-          "x" : -5.862999916076660,
-          "y" : -36.0
-        },
-        "type" : "static"
-      },
-      
-      {
-        "angle" : 1.570796370506287,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 3,
-            "name" : "fixture1",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : 
-              [
-                115.5467910766602,
-                -115.5467758178711,
-                -115.5467758178711,
-                115.5467910766602
-              ],
-              "y" : [ 0.5, 0.5, -0.5, -0.5 ]
-            }
-          }
-        ],
-        "id" : 4,
-        "linearVelocity" : 0,
-        "name" : "body0",
-        "position" : 
-        {
-          "x" : 64.0,
-          "y" : 24.88829994201660
-        },
-        "type" : "static"
-      },
-      
-      {
-        "angle" : 1.570796370506287,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 5,
-            "name" : "fixture1",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : 
-              [
-                115.5467910766602,
-                -115.5467758178711,
-                -115.5467758178711,
-                115.5467910766602
-              ],
-              "y" : [ 0.5, 0.5, -0.5, -0.5 ]
-            }
-          }
-        ],
-        "id" : 5,
-        "linearVelocity" : 0,
-        "name" : "body0",
-        "position" : 
-        {
-          "x" : -64.0,
-          "y" : 23.93880081176758
-        },
-        "type" : "static"
       }
     ],
     "positionIterations" : 3,
