@@ -273,6 +273,55 @@
           "y" : 23.93880081176758
         },
         "type" : "static"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 8,
+            "name" : "fixture2",
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 6.427475452423096,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 9.536743164062500e-007 ],
+              "y" : [ -3.814697265625000e-006 ]
+            }
+          }
+        ],
+        "id" : 8,
+        "linearVelocity" : 
+        {
+          "x" : 10,
+          "y" : -20.0
+        },
+        "massData-I" : 2680.906005859375,
+        "massData-center" : 
+        {
+          "x" : 9.536743164062500e-007,
+          "y" : -3.814697265625000e-006
+        },
+        "massData-mass" : 129.7868652343750,
+        "name" : "asteroid_big",
+        "position" : 
+        {
+          "x" : 9.892676353454590,
+          "y" : 17.19301414489746
+        },
+        "type" : "dynamic"
       }
     ],
     "positionIterations" : 3,

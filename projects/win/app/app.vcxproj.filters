@@ -5,6 +5,7 @@
     <ClCompile Include="..\..\..\source\app\ship_actor.cpp" />
     <ClCompile Include="..\..\..\source\app\ship_controller.cpp" />
     <ClCompile Include="..\..\..\source\app\ghost_actor.cpp" />
+    <ClCompile Include="..\..\..\source\app\asteroid_actor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\app\actor.h" />
@@ -13,5 +14,7 @@
     <ClInclude Include="..\..\..\source\app\actor_controller.h" />
     <ClInclude Include="..\..\..\source\app\entity_actor.h" />
     <ClInclude Include="..\..\..\source\app\ghost_actor.h" />
+    <ClInclude Include="..\..\..\source\app\asteroid_actor.h" />
+    <ClInclude Include="..\..\..\source\app\contact_callback.h" />
   </ItemGroup>
 </Project>

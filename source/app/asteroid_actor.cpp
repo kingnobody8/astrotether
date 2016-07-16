@@ -1,28 +1,20 @@
-#include "ship_actor.h"
+#include "asteroid_actor.h"
 
-ShipActor::ShipActor()
+AsteroidActor::AsteroidActor()
 	: m_pBody(nullptr)
-	, m_bDead(false)
 {
-	m_szType = "ShipActor";
-	m_pController = new ShipController(this);
+	m_szType = "AsteroidActor";
 }
 
-ShipActor::~ShipActor()
+AsteroidActor::~AsteroidActor()
 {}
 
-void ShipActor::Update(float dt)
+void AsteroidActor::Update(float dt)
 {
-	if (!m_bDead)
-	{
-		m_pController->Update(dt);
-	}
 }
 
-void ShipActor::Draw(sf::RenderWindow& window)
+void AsteroidActor::Draw(sf::RenderWindow& window)
 {
-	if (m_pBody == nullptr)
-		return;
 	//Get ship's direction
 	float angle = m_pBody->GetAngle();
 	angle += 3.14159f / 2.0f;
@@ -35,10 +27,10 @@ void ShipActor::Draw(sf::RenderWindow& window)
 	verts.Flush();
 }
 
-void ShipActor::OnCollision(EntityActor* pOther)
+void AsteroidActor::OnCollision(EntityActor* pOther)
 {
-	if (pOther->GetType() == "AsteroidActor")
+	if (pOther->GetType() == "ShipActor")
 	{
-		m_bDead = true;
+		m_pBody->ApplyAngularImpulse(500, true);
 	}
 }

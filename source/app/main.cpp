@@ -8,6 +8,8 @@
 
 #include "actor.h"
 #include "ship_actor.h"
+#include "asteroid_actor.h"
+#include "contact_callback.h"
 
 const int VELOCITY_ITERATIONS = 8;
 const int POSITION_ITERATIONS = 3;
@@ -23,11 +25,14 @@ int main()
 {
 	b2dJson m_json;
 
+	ContactCallback listener;
+
 	b2World* m_pWorld = new b2World(GRAVITY);
 	m_pWorld->SetAllowSleeping(true);
 	m_pWorld->SetWarmStarting(true);
 	m_pWorld->SetContinuousPhysics(true);
 	m_pWorld->SetSubStepping(false);
+	m_pWorld->SetContactListener(&listener);
 
 	std::string errorMsg;
 	m_json.readFromFile((std::string("assets/ship.json")).c_str(), errorMsg, m_pWorld);
@@ -36,6 +41,11 @@ int main()
 	ShipActor* pShipActor = new ShipActor();
 	pShipActor->SetB2Body(pShip);
 	vActors.push_back(pShipActor);
+
+	b2Body* pAstro = m_json.getBodyByName("asteroid_big");
+	AsteroidActor* pAstroActor = new AsteroidActor();
+	pAstroActor->SetB2Body(pAstro);
+	vActors.push_back(pAstroActor);
 
 	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE.x, SCREEN_SIZE.y), APP_NAME.c_str(), sf::Style::Default);
