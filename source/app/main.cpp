@@ -10,6 +10,7 @@
 #include "ship_actor.h"
 #include "asteroid_actor.h"
 #include "contact_callback.h"
+#include "time/util_time.h"
 
 const int VELOCITY_ITERATIONS = 8;
 const int POSITION_ITERATIONS = 3;
@@ -23,6 +24,8 @@ std::vector<Actor*> vActors;
 
 int main()
 {
+	srand(unsigned int(util::Time::GetTimeSinceEpoch().Milli()));
+
 	b2dJson m_json;
 
 	ContactCallback listener;
@@ -39,13 +42,26 @@ int main()
 
 	b2Body* pShip = m_json.getBodyByName("ship");
 	ShipActor* pShipActor = new ShipActor();
+	pShipActor->SetActorList(&vActors);
 	pShipActor->SetB2Body(pShip);
 	vActors.push_back(pShipActor);
 
-	b2Body* pAstro = m_json.getBodyByName("asteroid_big");
-	AsteroidActor* pAstroActor = new AsteroidActor();
-	pAstroActor->SetB2Body(pAstro);
-	vActors.push_back(pAstroActor);
+	//b2Body* pAstro = m_json.getBodyByName("asteroid_big");
+	//AsteroidActor* pAstroActor = new AsteroidActor();
+	//pAstroActor->SetActorList(&vActors);
+	//pAstroActor->SetSize(AsteroidActor::EAstroSize::EAS_BIG);
+	//pAstroActor->SetB2Body(pAstro);
+	//vActors.push_back(pAstroActor);
+
+	int count = rand() % 5 + 5;
+	for (int i = 0; i < count; ++i)
+	{
+		AsteroidActor* pAstroActor = new AsteroidActor();
+		pAstroActor->Create(m_pWorld, b2Vec2(rand() % 100 - 50, rand() % 60 - 30), b2Vec2(rand() % 50, rand() % 50), AsteroidActor::EAstroSize(rand() % (int)AsteroidActor::EAstroSize::EAS_COUNT), &vActors);
+		vActors.push_back(pAstroActor);
+	}
+
+	
 
 	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE.x, SCREEN_SIZE.y), APP_NAME.c_str(), sf::Style::Default);
@@ -71,6 +87,7 @@ int main()
 
 	// Make it the active window for OpenGL calls
 	window.setActive();
+
 
 	// Create a clock for measuring the time elapsed
 	sf::Clock clock;

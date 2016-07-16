@@ -6,49 +6,6 @@
 	[
 		
 		{
-			"angle" : 0,
-			"angularVelocity" : 0,
-			"awake" : true,
-			"fixture" : 
-			[
-				
-				{
-					"circle" : 
-					{
-						"center" : 
-						{
-							"x" : 9.536743164062500e-007,
-							"y" : -3.814697265625000e-006
-						},
-						"radius" : 6.427475452423096
-					},
-					"density" : 0.07704939693212509,
-					"friction" : 0.2,
-					"name" : "fixture2"
-				}
-			],
-			"linearVelocity" : 
-			{
-				"x" : 10,
-				"y" : -20.0
-			},
-			"massData-I" : 206.5621948242188,
-			"massData-center" : 
-			{
-				"x" : 9.536743164062500e-007,
-				"y" : -3.814697265625000e-006
-			},
-			"massData-mass" : 10,
-			"name" : "asteroid_big",
-			"position" : 
-			{
-				"x" : 9.892676353454590,
-				"y" : 17.19301414489746
-			},
-			"type" : 2
-		},
-		
-		{
 			"angle" : 1.570796370506287,
 			"angularVelocity" : 0,
 			"awake" : true,

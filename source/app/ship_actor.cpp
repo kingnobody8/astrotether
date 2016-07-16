@@ -39,6 +39,6 @@ void ShipActor::OnCollision(EntityActor* pOther)
 {
 	if (pOther->GetType() == "AsteroidActor")
 	{
-		m_bDead = true;
+		//m_bDead = true;
 	}
 }
