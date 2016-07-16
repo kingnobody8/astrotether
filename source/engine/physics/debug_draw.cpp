@@ -73,7 +73,7 @@ namespace engine
 		float32 cosInc = cosf(k_increment);
 		b2Vec2 r1(1.0f, 0.0f);
 		b2Vec2 v1 = center + radius * r1;
-		sf::Color clr(color.r, color.g, color.b, color.a);
+		sf::Color clr = B2ColorConvert(color);
 		for (int32 i = 0; i < k_segments; ++i)
 		{
 			// Perform rotation to avoid additional trigonometry.
@@ -97,8 +97,9 @@ namespace engine
 		b2Vec2 v0 = center;
 		b2Vec2 r1(cosInc, sinInc);
 		b2Vec2 v1 = center + radius * r1;
-		sf::Color clr(color.r, color.g, color.b, color.a);
-		sf::Color fillColor(0.5f * color.r, 0.5f * color.g, 0.5f * color.b, 0.5f);
+		sf::Color clr = B2ColorConvert(color);
+		b2Color tmpFillColor(0.5f * color.r, 0.5f * color.g, 0.5f * color.b, 0.5f);
+		sf::Color fillColor = B2ColorConvert(tmpFillColor);
 		for (int32 i = 0; i < k_segments; ++i)
 		{
 			// Perform rotation to avoid additional trigonometry.

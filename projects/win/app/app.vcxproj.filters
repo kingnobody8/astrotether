@@ -2,5 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\..\source\app\main.cpp" />
+    <ClCompile Include="..\..\..\source\app\ship_actor.cpp" />
+    <ClCompile Include="..\..\..\source\app\ship_controller.cpp" />
+    <ClCompile Include="..\..\..\source\app\ghost_actor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\app\actor.h" />
+    <ClInclude Include="..\..\..\source\app\ship_actor.h" />
+    <ClInclude Include="..\..\..\source\app\ship_controller.h" />
+    <ClInclude Include="..\..\..\source\app\actor_controller.h" />
+    <ClInclude Include="..\..\..\source\app\entity_actor.h" />
+    <ClInclude Include="..\..\..\source\app\ghost_actor.h" />
   </ItemGroup>
 </Project>

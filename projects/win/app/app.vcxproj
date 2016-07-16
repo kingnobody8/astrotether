@@ -187,7 +187,18 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\source\app\ghost_actor.cpp" />
     <ClCompile Include="..\..\..\source\app\main.cpp" />
+    <ClCompile Include="..\..\..\source\app\ship_actor.cpp" />
+    <ClCompile Include="..\..\..\source\app\ship_controller.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\app\actor.h" />
+    <ClInclude Include="..\..\..\source\app\actor_controller.h" />
+    <ClInclude Include="..\..\..\source\app\entity_actor.h" />
+    <ClInclude Include="..\..\..\source\app\ghost_actor.h" />
+    <ClInclude Include="..\..\..\source\app\ship_actor.h" />
+    <ClInclude Include="..\..\..\source\app\ship_controller.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
