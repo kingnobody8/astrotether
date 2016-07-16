@@ -11,6 +11,7 @@
 #include "asteroid_actor.h"
 #include "contact_callback.h"
 #include "time/util_time.h"
+#include "input/input_event.h"
 
 const int VELOCITY_ITERATIONS = 8;
 const int POSITION_ITERATIONS = 3;
@@ -121,6 +122,12 @@ int main()
 			{
 				float zoom = 1.0f - event.mouseWheelScroll.delta * 0.11f;
 				view.zoom(zoom);
+			}
+
+			if (event.type == sf::Event::MouseButtonReleased)
+			{
+				sf::Vector2f& vec = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y), view);
+				engine::mouse_events::s_InputMouseButtonUp.Publish(engine::mouse_events::ButtonAction::ButtonAction(event, util::vec2(vec.x, -vec.y), event.mouseButton.button, 1));
 			}
 
 			// Resize event: adjust the viewport

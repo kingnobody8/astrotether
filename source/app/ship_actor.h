@@ -14,6 +14,7 @@ public:
 	virtual void Draw(sf::RenderWindow& window);
 
 	virtual void OnCollision(EntityActor* pOther);
+	void KillTheRope();
 
 	void SetB2Body(b2Body* pBody) { m_pBody = pBody; m_pBody->SetUserData(this); }
 	b2Body* GetB2Body() const { return m_pBody; }

@@ -1,4 +1,5 @@
 #include "asteroid_actor.h"
+#include "ship_actor.h"
 
 const int BIG_RADIUS = 7.0f;
 const int MED_RADIUS = 5.0f;
@@ -54,7 +55,7 @@ void AsteroidActor::Create(b2World* pWorld, b2Vec2 pos, b2Vec2 dir, EAstroSize s
 	case EAS_SMALL: shapec.m_radius = SMALL_RADIUS; break;
 	}
 	b2FixtureDef fdef;
-	fdef.density = 10.0f;
+	fdef.density = 1.0f;
 	fdef.shape = &shapec;
 	fdef.restitution = 0.5f;
 	m_pBody->CreateFixture(&fdef);
@@ -181,6 +182,22 @@ void AsteroidActor::Split()
 void AsteroidActor::Destroy()
 {
 	m_bDestroy = false;
+	
+	b2JointEdge* pJedge = m_pBody->GetJointList();
+	while (pJedge)
+	{
+		if (pJedge->joint->GetBodyA()->GetUserData() != NULL && pJedge->joint->GetBodyA()->GetUserData() != this)
+		{
+			static_cast<ShipActor*>(pJedge->joint->GetBodyA()->GetUserData())->KillTheRope();
+		}
+		if (pJedge->joint->GetBodyB()->GetUserData() != NULL && pJedge->joint->GetBodyB()->GetUserData() != this)
+		{
+			static_cast<ShipActor*>(pJedge->joint->GetBodyB()->GetUserData())->KillTheRope();
+		}
+		
+		pJedge = pJedge->next;
+	}
+
 	m_pBody->GetWorld()->DestroyBody(m_pBody);
 	m_pBody = nullptr;
 

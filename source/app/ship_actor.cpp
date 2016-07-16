@@ -17,6 +17,7 @@ void ShipActor::Update(float dt)
 	{
 		m_pController->Update(dt);
 	}
+//	m_pBody->SetAngularVelocity(0);
 }
 
 void ShipActor::Draw(sf::RenderWindow& window)
@@ -41,4 +42,9 @@ void ShipActor::OnCollision(EntityActor* pOther)
 	{
 		//m_bDead = true;
 	}
+}
+
+void ShipActor::KillTheRope()
+{
+	m_pController->KillTheRope();
 }

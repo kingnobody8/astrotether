@@ -161,7 +161,7 @@
 			[
 				
 				{
-					"density" : 3.333333253860474,
+					"density" : 10,
 					"friction" : 0.2,
 					"name" : "fixture0",
 					"polygon" : 
@@ -175,7 +175,7 @@
 				},
 				
 				{
-					"density" : 3.333333253860474,
+					"density" : 10,
 					"friction" : 0.2,
 					"name" : "fixture0",
 					"polygon" : 
@@ -189,13 +189,13 @@
 				}
 			],
 			"linearVelocity" : 0,
-			"massData-I" : 1.8750,
+			"massData-I" : 5.6250,
 			"massData-center" : 
 			{
-				"x" : 2.980232283178452e-009,
+				"x" : -4.967053879312289e-009,
 				"y" : -0.1666666716337204
 			},
-			"massData-mass" : 5,
+			"massData-mass" : 15.0,
 			"name" : "ship",
 			"position" : 0,
 			"type" : 2

@@ -136,7 +136,7 @@ namespace engine
 
 	void DebugDraw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
 	{
-		sf::Color clr(color.r, color.g, color.b, color.a);
+		sf::Color clr = B2ColorConvert(color);
 		m_lines.Vertex(sf::Vector2f(p1.x, p1.y), clr);
 		m_lines.Vertex(sf::Vector2f(p2.x, p2.y), clr);
 	}
