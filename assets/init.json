@@ -1,0 +1,13 @@
+{
+    "title": "astro---tether",
+    "view_ratio": 0.1,
+    "size": {
+        "x": 1280,
+        "y": 720
+    },
+    "background_color": {
+        "r": 11,
+        "g": 31,
+        "b": 31
+    }
+}
