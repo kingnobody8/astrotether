@@ -13,6 +13,10 @@ namespace baka
 		private:
 			IBaseState* m_pTransitionState;
 			util::Subscriber sub;
+			sf::Texture m_texture;
+			sf::Sprite m_sprite;
+
+			sf::CircleShape m_shape;
 
 		public:
 			SetupState();
@@ -21,11 +25,11 @@ namespace baka
 			virtual void Init();
 			virtual void Exit();
 
-			virtual const std::string DebugRender(const sf::RenderWindow* pRenWin);
+			virtual const std::string DebugRender(sf::RenderWindow* pRenWin);
 
 			void SetTransitionState(IBaseState* const pTransitionState) { m_pTransitionState = pTransitionState; }
 
-			void OnScroll( const mouse_events::WheelAction& action);
+			void OnMove( const mouse_events::MotionAction& action);
 		};
 	}
 }

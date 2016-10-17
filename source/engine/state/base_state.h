@@ -19,7 +19,7 @@ namespace baka
 			virtual void Init(){}
 			virtual void Exit(){}
 			virtual void Update(const sf::Time& dt){}
-			virtual const std::string DebugRender(const sf::RenderWindow* pRenWin) { return ""; }
+			virtual const std::string DebugRender(sf::RenderWindow* pRenWin) { return ""; }
 
 			virtual void Transition(IBaseState* const pNextState){}
 
