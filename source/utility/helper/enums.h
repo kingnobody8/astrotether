@@ -30,16 +30,19 @@ namespace util
 
 	enum ELateral
 	{
+		INVALID_LATERAL = -1,
 		L_LEFT, L_MID, L_RIGHT
 	};
 
 	enum EVertical
 	{
+		INVALID_VERTICAL = -1,
 		V_TOP, V_MID, V_BOT
 	};
 
 	enum ECoordinateSystem
 	{
+		INVALID_COORDINATE = -1,
 		CARTESIAN, INVERTED,
 		COORDINATE_SYSTEM_COUNT
 	};

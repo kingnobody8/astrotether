@@ -31,6 +31,7 @@
     <ClCompile Include="..\..\..\source\engine\physics\physics_plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\render\render_plugin.cpp" />
+    <ClCompile Include="..\..\..\source\engine\state\setup_state.cpp" />
     <ClCompile Include="..\..\..\source\engine\state\state_plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +53,7 @@
     <ClInclude Include="..\..\..\source\engine\plugin.h" />
     <ClInclude Include="..\..\..\source\engine\render\render_plugin.h" />
     <ClInclude Include="..\..\..\source\engine\state\base_state.h" />
+    <ClInclude Include="..\..\..\source\engine\state\setup_state.h" />
     <ClInclude Include="..\..\..\source\engine\state\state_plugin.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

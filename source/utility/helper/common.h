@@ -9,9 +9,9 @@
 #include <math.h>
 #include <string.h>
 
-#if WIN
+#if IS_WIN
 #include <ctime>
-#elif IOS
+#elif IS_IOS
 #include <sys/time.h>
 #endif
 

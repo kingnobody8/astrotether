@@ -1,5 +1,5 @@
 #pragma once
-#include "utility/time/tick.h"
+#include "SFML/system/clock.hpp"
 
 namespace baka
 {
@@ -9,14 +9,12 @@ namespace baka
 	class Engine
 	{
 	private:
-		util::Tick				m_timer;
+		sf::Clock				m_timer;
 		bool					m_quit;
 
 		static Engine* s_pInstance;
 		Engine();
 		~Engine();
-
-		void Update();
 
 	public:
 		static Engine* Get(void);
@@ -27,23 +25,4 @@ namespace baka
 		void Exit(void);
 		void RunFrame(void* params);
 	};
-
-	/*static Engine* Get()
-	{
-		return Engine::Get();
-	}*/
 }
-
-
-/*HABIG BEGIN*/
-//#include <string>
-//#include <assert.h>
-//static void CheckSdlError(const char* ignore_error = nullptr)
-//{
-//	const char* err = SDL_GetError();
-//	if (*err != 0)
-//		SDL_Log("SDL Error: %s", err);
-//	assert(*err == 0 || std::strcmp(err, ignore_error) == 0);
-//	SDL_ClearError();
-//}
-/*HABIG END*/

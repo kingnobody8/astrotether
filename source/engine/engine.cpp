@@ -1,10 +1,8 @@
 #include "engine.h"
 #include "state/base_state.h"
-
-#include "plugin.h"
 #include "state/state_plugin.h"
-#include "input/input_plugin.h"
-#include "physics/physics_plugin.h"
+#include "helper/func.h"
+#include <assert.h>
 
 namespace baka
 {
@@ -34,28 +32,15 @@ namespace baka
 
 		assert(pFirstState);
 
-		//Init the rendering system
-		//m_pRenderPlugin = new render::RenderPlugin();
-		//IPlugin::AddPlugin(m_pRenderPlugin);
-
-		//Init the input system
-		//InputPlugin* pInputPlugin = new InputPlugin();
-		//pInputPlugin->SetSdlWin(m_pRenderPlugin->GetSdlWindow());
-		//IPlugin::AddPlugin(pInputPlugin);
-
 		//Init state plugin
-		state::StatePlugin* pStatePlugin = new state::StatePlugin();
+		state::StatePlugin* pStatePlugin = new state::StatePlugin(pFirstState);
 		pStatePlugin->TransitionState(pFirstState);
 		IPlugin::AddPlugin(pStatePlugin);
 
-		//Init the physics plugin
-		physics::PhysicsPlugin* pPhysicsPlugin = new physics::PhysicsPlugin();
-		IPlugin::AddPlugin(pPhysicsPlugin);
+		//clear the timer
+		this->m_timer.restart();
 
-		//Start timer
-		this->m_timer.Restart();
-
-		//Don't quit
+		//Don't Give Up Yet!
 		m_quit = false;
 	}
 
@@ -67,25 +52,17 @@ namespace baka
 
 	void Engine::RunFrame(void* params)
 	{
-		Update();
-		//m_pRenderPlugin->DoRender();
-	}
-
-	void Engine::Update(void)
-	{
 		if (m_quit)
 			return;
 
 		//Update the timer
-		this->m_timer.Signal();
-		util::Time delta = Min(this->m_timer.Delta(), 16);
+		sf::Time delta = this->m_timer.restart();
 
 		//Update the plugins
 		if (!IPlugin::UpdatePlugins(delta))
 		{
 			m_quit = true;
 		}
-
 	}
 
 }

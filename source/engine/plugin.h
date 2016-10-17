@@ -2,9 +2,22 @@
 #include "utility/time/util_time.h"
 #include <list>
 #include <assert.h>
+#include "helper/macro.h"
+#include "sfml/system/clock.hpp"
 
 namespace baka
 {
+	__todo() //probably need to move this somewhere else?
+	enum EPluginOrder
+	{
+		EPO_INVALID = -1,
+		EPO_INPUT,
+		EPO_PHYSICS,
+		EPO_COMPONENT,
+		EPO_STATE,
+		EPO_RENDER = 9999
+	};
+
 	class IPlugin
 	{
 	public:
@@ -19,11 +32,12 @@ namespace baka
 	public:
 		static void AddPlugin(IPlugin* const plugin);
 		static IPlugin* FindPlugin(const int& type);
-		static bool UpdatePlugins(const util::Time& dt);
+		static bool UpdatePlugins(const sf::Time& dt);
 		static void DestroyPlugins();
 
 		static const int Type = 0;
 		virtual int GetType() const { return Type; }
+		virtual const EPluginOrder GetPriority() const { return EPO_INVALID; }
 
 		//------------------------------------------------------------------------------
 
@@ -34,7 +48,7 @@ namespace baka
 		virtual void Init();
 		virtual void Exit();
 		virtual void Reload() { Exit(); Init(); }
-		virtual bool Update(const util::Time& dt);
+		virtual bool Update(const sf::Time& dt);
 
 #define DECLARE_PLUGIN_TYPE_INFO(CLASS)									\
 			typedef CLASS class_t;										\

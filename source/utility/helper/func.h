@@ -25,7 +25,7 @@ Purpose:	These are commonly used utility functions and macros
 #define Clamp(val, floor, ceiling)	(Max(floor, Min(val, ceiling)))				//Clamps a value to be between the floor and ceiling
 #endif
 #ifndef Damp
-#define Damp(val, delta)			((val > delta) (val -= delta) : (val = 0))	//Pushes a value towards 0 by the delta specified, stops when it reaches 0
+#define Damp(val, delta)			((val > delta) ? (val -= delta) : (val = 0))	//Pushes a value towards 0 by the delta specified, stops when it reaches 0
 #endif
 #ifndef Lerp
 #define Lerp(alpha, omega, lerp)	(alpha + (omega - alpha) * lerp)			//performs a linear interpolation

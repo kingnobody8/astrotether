@@ -22,10 +22,11 @@ namespace baka
 	public:
 		InputPlugin();
 		virtual ~InputPlugin();
+		virtual const EPluginOrder GetPriority() const { return EPO_INPUT; }
 
 		virtual void Init();
 		virtual void Exit();
-		virtual bool Update(const util::Time& dt);
+		virtual bool Update(const sf::Time& dt);
 
 		void SetSFMLWin(sf::RenderWindow* pRenWin) { m_pRenWin = pRenWin; }
 	};

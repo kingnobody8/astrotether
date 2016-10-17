@@ -6,7 +6,7 @@
 #define __stringify(X) __internal_stringify(X)
 
 // Reminds you what you need to do
-#if WIN
+#if IS_WIN
 #	define __todo() __pragma(message("TODO: " __FILE__ ":(" __stringify(__LINE__) ")"))
 #else
 #	define __todo()

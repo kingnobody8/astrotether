@@ -1,10 +1,12 @@
 #include "state_plugin.h"
+#include "base_state.h"
 #include "utility/helper/func.h"
 
 namespace baka
 {
 	namespace state
 	{
+
 		DEFINE_PLUGIN_TYPE_INFO(StatePlugin);
 
 		StatePlugin::StatePlugin()
@@ -13,10 +15,16 @@ namespace baka
 		{
 		}
 
+		StatePlugin::StatePlugin(IBaseState* const pFirstState)
+			: m_pCurrState(null)
+			, m_pNextState(pFirstState)
+		{
+		}
+
 		VIRTUAL StatePlugin::~StatePlugin()
 		{
 		}
-		
+
 		VIRTUAL void StatePlugin::Init()
 		{
 		}
@@ -29,8 +37,8 @@ namespace baka
 			SafeDelete(m_pCurrState);
 			SafeDelete(m_pNextState);
 		}
-		
-		VIRTUAL bool StatePlugin::Update(const util::Time& dt)
+
+		VIRTUAL bool StatePlugin::Update(const sf::Time& dt)
 		{
 			if (m_pNextState)
 			{

@@ -12,6 +12,11 @@ namespace baka
 		assert(!FindPlugin(plugin->GetType()));
 		plugin->Init();
 		s_pluginList.push_back(plugin);
+
+		s_pluginList.sort([](IPlugin* lhs, IPlugin* rhs)
+		{
+			return lhs->GetPriority() < rhs->GetPriority(); //lowest value goes first
+		});
 	}
 
 	STATIC IPlugin* IPlugin::FindPlugin(const int& type)
@@ -26,7 +31,7 @@ namespace baka
 		return null;
 	}
 
-	STATIC bool IPlugin::UpdatePlugins(const util::Time& dt)
+	STATIC bool IPlugin::UpdatePlugins(const sf::Time& dt)
 	{
 		for (auto iter = s_pluginList.begin(); iter != s_pluginList.end(); ++iter)
 		{
@@ -60,7 +65,7 @@ namespace baka
 	{
 	}
 	
-	VIRTUAL bool IPlugin::Update(const util::Time& dt)
+	VIRTUAL bool IPlugin::Update(const sf::Time& dt)
 	{
 		return true;
 	}

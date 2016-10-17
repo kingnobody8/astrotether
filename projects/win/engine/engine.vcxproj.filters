@@ -62,6 +62,9 @@
     <ClCompile Include="..\..\..\source\engine\render\render_plugin.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\state\setup_state.cpp">
+      <Filter>state</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\engine\engine.h" />
@@ -75,9 +78,6 @@
       <Filter>state</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\plugin.h" />
-    <ClInclude Include="..\..\..\source\engine\state\state_plugin.h">
-      <Filter>state</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\engine\input\input_plugin.h">
       <Filter>input</Filter>
     </ClInclude>
@@ -116,6 +116,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\render\render_plugin.h">
       <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\state\state_plugin.h">
+      <Filter>state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\state\setup_state.h">
+      <Filter>state</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

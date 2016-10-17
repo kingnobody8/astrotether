@@ -23,7 +23,7 @@ namespace baka
 	{
 	}
 
-	VIRTUAL bool InputPlugin::Update(const util::Time& dt)
+	VIRTUAL bool InputPlugin::Update(const sf::Time& dt)
 	{
 		sf::Event tEvent;
 		while (m_pRenWin->pollEvent(tEvent))
