@@ -1,7 +1,7 @@
 #include "loader.h"
 #include <fstream>
 
-namespace engine
+namespace baka
 {
 	namespace asset
 	{

@@ -1,7 +1,7 @@
 #include "part.h"
 #include "object.h"
 
-namespace engine
+namespace baka
 {
 	namespace component
 	{

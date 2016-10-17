@@ -1,7 +1,7 @@
 #include "input_plugin.h"
 #include "input_event.h"
 
-namespace engine
+namespace baka
 {
 	DEFINE_PLUGIN_TYPE_INFO(InputPlugin);
 

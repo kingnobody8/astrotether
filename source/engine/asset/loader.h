@@ -2,7 +2,7 @@
 #include "utility/types/types.h"
 #include "utility/resource/json.h"
 
-namespace engine
+namespace baka
 {
 	namespace asset
 	{

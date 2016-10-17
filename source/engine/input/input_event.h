@@ -5,7 +5,7 @@
 #include "utility/event/publisher.inl"
 #include <SFML/Window.hpp>
 
-namespace engine
+namespace baka
 {
 	struct IEvent
 	{

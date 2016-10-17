@@ -2,7 +2,7 @@
 #include "component/component.h"
 #include "event/subscriber.h"
 
-namespace engine
+namespace baka
 {
 	namespace component
 	{

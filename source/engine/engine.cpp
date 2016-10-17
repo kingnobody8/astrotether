@@ -6,7 +6,7 @@
 #include "input/input_plugin.h"
 #include "physics/physics_plugin.h"
 
-namespace engine
+namespace baka
 {
 	Engine* Engine::s_pInstance = nullptr;
 	Engine* Engine::Get(void)

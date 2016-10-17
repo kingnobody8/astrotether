@@ -3,7 +3,7 @@
 #include "part.h"
 #include "../script/script.h"
 
-namespace engine
+namespace baka
 {
 	namespace component
 	{

@@ -1,7 +1,7 @@
 #include "state_plugin.h"
 #include "utility/helper/func.h"
 
-namespace engine
+namespace baka
 {
 	namespace state
 	{

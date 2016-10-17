@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 
-namespace engine
+namespace baka
 {
 	class InputPlugin : public IPlugin
 	{

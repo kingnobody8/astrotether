@@ -1,6 +1,6 @@
 #include "component.h"
 
-namespace engine
+namespace baka
 {
 	namespace component
 	{

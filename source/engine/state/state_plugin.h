@@ -2,7 +2,7 @@
 #include "plugin.h"
 #include "base_state.h"
 
-namespace engine
+namespace baka
 {
 	namespace state
 	{

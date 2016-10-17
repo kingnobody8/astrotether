@@ -2,7 +2,7 @@
 #include "plugin.h"
 #include <SFML/Graphics.hpp>
 
-namespace engine
+namespace baka
 {
 	namespace render
 	{

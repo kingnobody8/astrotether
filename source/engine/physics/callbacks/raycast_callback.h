@@ -2,7 +2,7 @@
 #include "box2d/box2d.h"
 #include "utility/types/types.h"
 
-namespace engine
+namespace baka
 {
 	namespace physics
 	{

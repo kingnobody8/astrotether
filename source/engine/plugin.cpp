@@ -1,7 +1,7 @@
 #include "plugin.h"
 #include <assert.h>
 
-namespace engine
+namespace baka
 {
 	STATIC std::list<IPlugin*> IPlugin::s_pluginList;
 

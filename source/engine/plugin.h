@@ -3,7 +3,7 @@
 #include <list>
 #include <assert.h>
 
-namespace engine
+namespace baka
 {
 	class IPlugin
 	{

@@ -4,7 +4,7 @@
 #include <string>
 #include "utility/math/math.h"
 
-namespace engine
+namespace baka
 {
 	namespace render
 	{

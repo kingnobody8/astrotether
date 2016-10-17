@@ -3,7 +3,7 @@
 #include "camera.h"
 #include <algorithm>
 
-namespace engine
+namespace baka
 {
 	namespace render
 	{
