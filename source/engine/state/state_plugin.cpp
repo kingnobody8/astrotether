@@ -6,7 +6,6 @@ namespace baka
 {
 	namespace state
 	{
-
 		DEFINE_PLUGIN_TYPE_INFO(StatePlugin);
 
 		StatePlugin::StatePlugin()

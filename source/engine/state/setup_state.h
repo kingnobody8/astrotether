@@ -1,6 +1,9 @@
 #pragma once
 #include "base_state.h"
 
+#include "utility/event/subscriber.h"
+#include "input/input_event.h"
+
 namespace baka
 {
 	namespace state
@@ -9,6 +12,7 @@ namespace baka
 		{
 		private:
 			IBaseState* m_pTransitionState;
+			util::Subscriber sub;
 
 		public:
 			SetupState();
@@ -18,6 +22,8 @@ namespace baka
 			virtual void Exit();
 
 			void SetTransitionState(IBaseState* const pTransitionState) { m_pTransitionState = pTransitionState; }
+
+			void OnScroll( const mouse_events::WheelAction& action);
 		};
 	}
 }

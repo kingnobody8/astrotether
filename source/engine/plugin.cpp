@@ -1,5 +1,6 @@
 #include "plugin.h"
 #include <assert.h>
+#include "utility/helper/macro.h"
 
 namespace baka
 {
@@ -43,6 +44,7 @@ namespace baka
 
 	STATIC void IPlugin::DestroyPlugins()
 	{
+		__todo() //maybe a problem with ordering here due to resorting the list
 		s_pluginList.reverse(); //we want to remove them in reverse order
 		for (auto iter = s_pluginList.begin(); iter != s_pluginList.end(); ++iter)
 		{

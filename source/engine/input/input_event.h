@@ -43,11 +43,11 @@ namespace baka
 		struct MotionAction : public IEvent
 		{
 			vec2	m_pixel;
-			vec2	m_delta;
+			//vec2	m_delta;
 			__todo() // we may eventually want velocity in here delta_pixels / time_since last motion
 
-				MotionAction(const  sf::Event& event, const vec2& pixel, const vec2& delta)
-				: IEvent(event), m_pixel(pixel), m_delta(delta)
+				MotionAction(const  sf::Event& event, const vec2& pixel/*, const vec2& delta*/)
+				: IEvent(event), m_pixel(pixel)/*, m_delta(delta)*/
 			{
 			}
 		};
@@ -55,21 +55,22 @@ namespace baka
 		struct ButtonAction : public IEvent
 		{
 			vec2	m_pixel;
-			uchar	m_button; //this is SDL_BUTTON_LEFT, SDL_BUTTON_MIDDLE, or SDL_BUTTON_RIGHT
-			uchar	m_clicks;
+			uchar	m_button;
+			//uchar	m_clicks;
 
-			ButtonAction(const  sf::Event& event, const vec2& pixel, const uchar& button, const uchar& clicks)
-				: IEvent(event), m_pixel(pixel), m_button(button), m_clicks(clicks)
+			ButtonAction(const  sf::Event& event, const vec2& pixel, const uchar& button/*, const uchar& clicks*/)
+				: IEvent(event), m_pixel(pixel), m_button(button)//, m_clicks(clicks)
 			{
 			}
 		};
 
 		struct WheelAction : public IEvent
 		{
-			vec2	m_scroll;
+			//vec2	m_scroll;
+			int m_delta;
 
-			WheelAction(const  sf::Event& event, const vec2 scroll)
-				: IEvent(event), m_scroll(scroll)
+			WheelAction(const  sf::Event& event, const int delta)
+				: IEvent(event), m_delta(delta)
 			{
 			}
 		};
