@@ -21,6 +21,8 @@ namespace baka
 			virtual void Init();
 			virtual void Exit();
 
+			virtual const std::string DebugRender(const sf::RenderWindow* pRenWin);
+
 			void SetTransitionState(IBaseState* const pTransitionState) { m_pTransitionState = pTransitionState; }
 
 			void OnScroll( const mouse_events::WheelAction& action);

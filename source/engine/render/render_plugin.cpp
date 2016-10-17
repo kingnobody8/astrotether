@@ -31,12 +31,24 @@ namespace baka
 			util::JSON initJson(d);
 			std::string asdf = initJson.Read();
 
-			std::string appName = initJson["title"].GetString();
-			util::vec2 screenSize(initJson["size"]["x"].GetDouble(), initJson["size"]["y"].GetDouble());
-			double viewRatio = initJson["view_ratio"].GetDouble();
+			const std::string appName = initJson["title"].GetString();
+			const util::vec2 screenSize(initJson["size"]["x"].GetDouble(), initJson["size"]["y"].GetDouble());
+			const double viewRatio = initJson["view_ratio"].GetDouble();
+			const std::string debugFontPath = initJson["debug_font_path"].GetString();
 			m_backgroundColor.r = initJson["background_color"]["r"].GetInt();
 			m_backgroundColor.g = initJson["background_color"]["g"].GetInt();
 			m_backgroundColor.b = initJson["background_color"]["b"].GetInt();
+
+			//load the font
+			if (!m_debugFont.loadFromFile(debugFontPath))
+			{
+				assert(false);
+			}
+			m_debugText.setFont(m_debugFont);
+			m_debugText.setString("hello \n woot");
+
+			m_debugText.setCharacterSize(32); // in pixels, not points!
+			m_debugText.setColor(sf::Color::White);
 
 			// Create the main window
 			m_pRenWin = new sf::RenderWindow(sf::VideoMode(screenSize.x, screenSize.y), appName.c_str(), sf::Style::Default);
@@ -70,8 +82,7 @@ namespace baka
 			return false;
 		}
 
-
-		void RenderPlugin::DoRender() const
+		void RenderPlugin::DoRender()
 		{
 			m_pRenWin->setView(m_view);
 			m_pRenWin->clear(m_backgroundColor);
@@ -84,6 +95,19 @@ namespace baka
 
 			//m_pWorld->DrawDebugData();
 			//m_debugDraw.Flush();
+
+			//draw debug text
+			{
+				m_pRenWin->setView(m_pRenWin->getDefaultView());
+				const std::list<std::string> listDebugText = IPlugin::DebugDrawPlugins(m_pRenWin);
+				std::string temp;
+				for (auto iter = listDebugText.begin(); iter != listDebugText.end(); ++iter)
+				{
+					temp += (*iter) + std::string("\n");
+				}
+				m_debugText.setString(temp);
+				m_pRenWin->draw(m_debugText);
+			}
 
 			// Finally, display the rendered frame on screen
 			m_pRenWin->display();

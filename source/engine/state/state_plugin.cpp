@@ -18,6 +18,7 @@ namespace baka
 			: m_pCurrState(null)
 			, m_pNextState(pFirstState)
 		{
+			m_bDebugDraw = true;
 		}
 
 		VIRTUAL StatePlugin::~StatePlugin()
@@ -45,6 +46,14 @@ namespace baka
 			}
 			m_pCurrState->Update(dt);
 			return true;
+		}
+
+		VIRTUAL const std::string StatePlugin::DebugRender(sf::RenderWindow* pRenWin)
+		{
+			std::string temp = "----State----\n";
+			if (m_pCurrState)
+				temp += m_pCurrState->DebugRender(pRenWin);
+			return temp;
 		}
 
 		void StatePlugin::FlushState()

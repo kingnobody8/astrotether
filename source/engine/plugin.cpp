@@ -42,6 +42,23 @@ namespace baka
 		return true;
 	}
 
+	STATIC const std::list<std::string> IPlugin::DebugDrawPlugins(sf::RenderWindow* pRenWin)
+	{
+		std::list<std::string> ret;
+		for (auto iter = s_pluginList.begin(); iter != s_pluginList.end(); ++iter)
+		{
+			if (!(*iter)->GetDebugDraw())
+				continue;
+
+			std::string temp = (*iter)->DebugRender(pRenWin);
+			if (!temp.empty())
+			{
+				ret.push_back(temp);
+			}
+		}
+		return ret;
+	}
+
 	STATIC void IPlugin::DestroyPlugins()
 	{
 		__todo() //maybe a problem with ordering here due to resorting the list
@@ -56,6 +73,7 @@ namespace baka
 	//------------------------------------------------------------------------------
 
 	IPlugin::IPlugin()
+		: m_bDebugDraw(false)
 	{
 	}
 

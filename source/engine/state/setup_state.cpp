@@ -49,6 +49,11 @@ namespace baka
 			mouse_events::s_InputMouseScrollWheel.Subscribe(&sub, BIND1(this, &SetupState::OnScroll));
 		}
 
+		VIRTUAL const std::string SetupState::DebugRender(const sf::RenderWindow* pRenWin)
+		{
+			return "Hello There from the setup state";
+		}
+
 		void SetupState::OnScroll(const mouse_events::WheelAction& action)
 		{
 		}

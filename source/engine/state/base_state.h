@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/System/Clock.hpp>
+#include <SFML/Graphics.hpp>
 #include <string>
 
 namespace baka
@@ -18,6 +19,7 @@ namespace baka
 			virtual void Init(){}
 			virtual void Exit(){}
 			virtual void Update(const sf::Time& dt){}
+			virtual const std::string DebugRender(const sf::RenderWindow* pRenWin) { return ""; }
 
 			virtual void Transition(IBaseState* const pNextState){}
 

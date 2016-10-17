@@ -1,6 +1,12 @@
 {
     "title": "astro---tether",
     "view_ratio": 0.1,
+    "debug_font_path": "assets/fonts/m5x7.ttf",
+    "debug_font_size": 48,
+    "debug_font_scale": {
+        "x": 1,
+        "y": 1
+    },
     "size": {
         "x": 1280,
         "y": 720

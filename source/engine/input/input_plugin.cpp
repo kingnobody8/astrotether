@@ -8,6 +8,7 @@ namespace baka
 	InputPlugin::InputPlugin()
 		: m_pRenWin(null)
 	{
+		m_bDebugDraw = true;
 	}
 
 	VIRTUAL InputPlugin::~InputPlugin()
@@ -67,6 +68,15 @@ namespace baka
 		}
 		return true;
 	}
+
+	VIRTUAL const std::string InputPlugin::DebugRender(sf::RenderWindow* pRenWin)
+	{
+		std::string ret = "----Input----\n";
+		ret += std::string("MousePos: ") + std::to_string(sf::Mouse::getPosition(*pRenWin).x) + std::string("x") + std::to_string(sf::Mouse::getPosition(*pRenWin).y);
+
+		return ret;
+	}
+
 /*
 	const vec2 InputPlugin::ConvertPixelToCartesian(int x, int y)
 	{

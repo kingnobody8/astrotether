@@ -15,6 +15,9 @@ namespace baka
 			sf::RenderWindow* m_pRenWin;
 			sf::View m_view;
 			sf::Color m_backgroundColor;
+			sf::Font m_debugFont;
+			sf::Text m_debugText;
+
 
 		public:
 			RenderPlugin();
@@ -25,7 +28,7 @@ namespace baka
 			virtual void Exit();
 
 			virtual bool Update(const sf::Time& dt);
-			void DoRender() const;
+			void DoRender();
 
 			inline sf::RenderWindow* GetRenderWindow() { return m_pRenWin; }
 		};

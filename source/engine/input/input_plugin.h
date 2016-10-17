@@ -27,6 +27,8 @@ namespace baka
 		virtual void Init();
 		virtual void Exit();
 		virtual bool Update(const sf::Time& dt);
+		virtual const std::string DebugRender(sf::RenderWindow* pRenWin);
+
 
 		void SetSFMLWin(sf::RenderWindow* pRenWin) { m_pRenWin = pRenWin; }
 	};
