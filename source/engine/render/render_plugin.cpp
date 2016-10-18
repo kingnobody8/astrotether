@@ -64,6 +64,9 @@ namespace baka
 
 			// Make it the active window for OpenGL calls
 			m_pRenWin->setActive();
+
+			// do an initial render, so we don't get a white screen
+			DoRender(); __todo() //although now we just a a screen with the background color and nothing else for a frame. need a better solution
 		}
 
 		VIRTUAL void RenderPlugin::Exit()
