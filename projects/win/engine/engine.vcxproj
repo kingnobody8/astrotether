@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\source\engine\asset\loader.cpp" />
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJson.cpp" />
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage.cpp" />
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.cpp" />
@@ -58,7 +57,6 @@
     <ClCompile Include="..\..\..\source\engine\state\state_plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\source\engine\asset\loader.h" />
     <ClInclude Include="..\..\..\source\engine\asset\resource_path.h" />
     <ClInclude Include="..\..\..\source\engine\b2djson\b2dJson.h" />
     <ClInclude Include="..\..\..\source\engine\b2djson\b2dJsonImage.h" />

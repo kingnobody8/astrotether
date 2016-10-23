@@ -263,8 +263,6 @@ namespace baka
 			}
 */
 
-			m_LarkController.Update(dt);
-
 			if (!m_bIsTestbed)
 			{
 				//g_camera.m_center = m_LarkController.GetLarkBody()->GetPosition();

@@ -10,12 +10,6 @@
     <Filter Include="state">
       <UniqueIdentifier>{d6b12ce2-768e-4773-843f-ccd27a7946f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="b2djson">
-      <UniqueIdentifier>{168bdd4a-63fe-4d1d-9bb4-7c70cec25a28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="b2djson\json">
-      <UniqueIdentifier>{37a6e867-57ad-4536-86ee-3058de480422}</UniqueIdentifier>
-    </Filter>
     <Filter Include="physics">
       <UniqueIdentifier>{a96c3a57-73ad-470e-a856-039d92abbf21}</UniqueIdentifier>
     </Filter>
@@ -25,36 +19,42 @@
     <Filter Include="render">
       <UniqueIdentifier>{25e6a6c8-6b8a-44d3-b3ec-5785b85122ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="spine">
+    <Filter Include="third_party">
+      <UniqueIdentifier>{a2b7ffa8-908b-45b3-be9e-4747ce1b622a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\b2djson">
+      <UniqueIdentifier>{168bdd4a-63fe-4d1d-9bb4-7c70cec25a28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\b2djson\json">
+      <UniqueIdentifier>{37a6e867-57ad-4536-86ee-3058de480422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\spine">
       <UniqueIdentifier>{3293fe23-b748-43df-bd66-33cd8b3b5ed1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="spine\include">
+    <Filter Include="third_party\spine\include">
       <UniqueIdentifier>{149e4d30-203a-4f10-ae50-844ac03fc92e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="spine\src">
+    <Filter Include="third_party\spine\include\spinecpp">
+      <UniqueIdentifier>{41ccee81-69bb-4638-beef-319284978490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\spine\src">
       <UniqueIdentifier>{d38b36d7-deab-4cb2-9896-0198804b0ac4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="spine\third_party">
-      <UniqueIdentifier>{759bf736-69a3-4395-b6de-e382109fba88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="spine\third_party\chobo">
-      <UniqueIdentifier>{d56fb5c5-0c64-47bd-8f16-d262e9413bdc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="spine\third_party\sajson">
-      <UniqueIdentifier>{f24990bd-f1c3-48e1-86cd-b922177f3a11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="spine\src\spinecpp">
+    <Filter Include="third_party\spine\src\spinecpp">
       <UniqueIdentifier>{3a91ded7-150c-4847-b898-8e670aa66011}</UniqueIdentifier>
     </Filter>
-    <Filter Include="spine\include\spinecpp">
-      <UniqueIdentifier>{41ccee81-69bb-4638-beef-319284978490}</UniqueIdentifier>
+    <Filter Include="third_party\spine\third_party">
+      <UniqueIdentifier>{759bf736-69a3-4395-b6de-e382109fba88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\spine\third_party\chobo">
+      <UniqueIdentifier>{d56fb5c5-0c64-47bd-8f16-d262e9413bdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\spine\third_party\sajson">
+      <UniqueIdentifier>{f24990bd-f1c3-48e1-86cd-b922177f3a11}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\engine\engine.cpp" />
-    <ClCompile Include="..\..\..\source\engine\asset\loader.cpp">
-      <Filter>asset</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\engine\plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\state\state_plugin.cpp">
       <Filter>state</Filter>
@@ -66,16 +66,16 @@
       <Filter>input</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.cpp">
-      <Filter>b2djson</Filter>
+      <Filter>third_party\b2djson</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\b2djson\jsoncpp.cpp">
-      <Filter>b2djson</Filter>
+      <Filter>third_party\b2djson</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJson.cpp">
-      <Filter>b2djson</Filter>
+      <Filter>third_party\b2djson</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage.cpp">
-      <Filter>b2djson</Filter>
+      <Filter>third_party\b2djson</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\physics\physics_plugin.cpp">
       <Filter>physics</Filter>
@@ -90,67 +90,67 @@
       <Filter>state</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\AnimationStateData.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Atlas.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\AtlasAttachmentLoader.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\AttachmentLoader.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Bone.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\IkConstraint.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\MeshAttachment.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\PathConstraint.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\PoolTrackEntryFactory.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\RegionAttachment.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Skeleton.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\SkeletonBounds.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\SkeletonData.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\SkeletonJson.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Skin.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Slot.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Timelines.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\TransformConstraint.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\VertexAttachment.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Animation.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\AnimationState.cpp">
-      <Filter>spine\src\spinecpp</Filter>
+      <Filter>third_party\spine\src\spinecpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\render\spine_ext.cpp">
       <Filter>render</Filter>
@@ -161,9 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\engine\engine.h" />
-    <ClInclude Include="..\..\..\source\engine\asset\loader.h">
-      <Filter>asset</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\engine\asset\resource_path.h">
       <Filter>asset</Filter>
     </ClInclude>
@@ -178,22 +175,22 @@
       <Filter>input</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.h">
-      <Filter>b2djson</Filter>
+      <Filter>third_party\b2djson</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\b2djson\bitmap.h">
-      <Filter>b2djson</Filter>
+      <Filter>third_party\b2djson</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\b2djson\b2dJson.h">
-      <Filter>b2djson</Filter>
+      <Filter>third_party\b2djson</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\b2djson\b2dJsonImage.h">
-      <Filter>b2djson</Filter>
+      <Filter>third_party\b2djson</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\b2djson\json\json.h">
-      <Filter>b2djson\json</Filter>
+      <Filter>third_party\b2djson\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\b2djson\json\json-forwards.h">
-      <Filter>b2djson\json</Filter>
+      <Filter>third_party\b2djson\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\physics\physics_plugin.h">
       <Filter>physics</Filter>
@@ -217,121 +214,121 @@
       <Filter>state</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\third_party\chobo\vector_ptr.hpp">
-      <Filter>spine\third_party\chobo</Filter>
+      <Filter>third_party\spine\third_party\chobo</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\third_party\sajson\sajson.h">
-      <Filter>spine\third_party\sajson</Filter>
+      <Filter>third_party\spine\third_party\sajson</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\AttachmentLoader.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Bone.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\BoneData.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\BoundingBoxAttachment.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Color.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Event.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\EventData.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\extension.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\IkConstraint.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\IkConstraintData.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\MeshAttachment.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\PathAttachment.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\PathConstraint.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\PathConstraintData.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\PoolTrackEntryFactory.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\RegionAttachment.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Skeleton.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\SkeletonBounds.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\SkeletonData.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\SkeletonJson.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Skin.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Slot.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\SlotData.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\spinecpp.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Timeline.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Timelines.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\TrackEntryFactory.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\TransformConstraint.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\TransformConstraintData.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Vector.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\VertexAttachment.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Animation.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\AnimationState.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\AnimationStateData.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Atlas.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\AtlasAttachmentLoader.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Attachment.h">
-      <Filter>spine\include\spinecpp</Filter>
+      <Filter>third_party\spine\include\spinecpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\render\spine-sfml.h">
       <Filter>render</Filter>

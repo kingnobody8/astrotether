@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\source\utility\event\publisher.cpp" />
     <ClCompile Include="..\..\..\source\utility\event\subscriber.cpp" />
-    <ClCompile Include="..\..\..\source\utility\helper\func.cpp" />
     <ClCompile Include="..\..\..\source\utility\math\angle.cpp" />
     <ClCompile Include="..\..\..\source\utility\math\matrix.cpp" />
     <ClCompile Include="..\..\..\source\utility\math\transform.cpp" />
@@ -34,7 +33,6 @@
     <ClInclude Include="..\..\..\source\utility\event\publisher.h" />
     <ClInclude Include="..\..\..\source\utility\event\subscriber.h" />
     <ClInclude Include="..\..\..\source\utility\helper\common.h" />
-    <ClInclude Include="..\..\..\source\utility\helper\enums.h" />
     <ClInclude Include="..\..\..\source\utility\helper\func.h" />
     <ClInclude Include="..\..\..\source\utility\helper\hierarchy.h" />
     <ClInclude Include="..\..\..\source\utility\helper\macro.h" />

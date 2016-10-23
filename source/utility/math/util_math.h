@@ -20,7 +20,7 @@ namespace util
 	const float DEGREE_360 = 360.0f;
 	const float DEGREE_180 = 180.0f;
 	const float DEGREE_90 = 90.0f;
-	const float kPI = 3.14159f;			// Pie is not round, pie r squared
+	const float kPI = 3.14159f;					// Pie is not round, pie r squared
 	const float kTWO_PI = 2.0f * kPI;
 	const float EPSILON = 0.0001f;				// Roundoff error to be ignored in floating point number comparisons
 

@@ -45,26 +45,22 @@ Purpose:	These are commonly used utility functions and macros
 
 namespace util
 {
-	//static slong RandomSlong(slong min, slong max)
-	//{
-	//	return rand() % ulong(max - min + 1) + min;
-	//}
-	//static float RandomFloat(float min, float max)
-	//{
-	//	return (max - min) * (float(rand()) / float(RAND_MAX)) + min;
-	//}
-
-	bool BigEndianCheck(void);
-	//void TypeCheck(void);
-
-	//Functor CNewType - returns a new instance of the defined type
-	template<typename type>
-	class CNewType
+	static slong RandomSlong(slong min, slong max)
 	{
-	public:
-		type* operator () (void)
+		return rand() % ulong(max - min + 1) + min;
+	}
+	static float RandomFloat(float min, float max)
+	{
+		return (max - min) * (float(rand()) / float(RAND_MAX)) + min;
+	}
+
+	static bool BigEndianCheck(void)
+	{
+		union
 		{
-			return new type();
-		}
-	};
+			u32 i;
+			uchar c[4];
+		} bint = { 0x01020304 };
+		return bint.c[0] == 1;
+	}
 }

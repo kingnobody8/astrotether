@@ -14,4 +14,3 @@
 
 // Flag a function as not implemented
 #define __not_implemented(ROUTINE) __todo(); 
-//SDL_LogCritical(SDL_LOG_CATEGORY_ERROR, "NOT IMPLEMENTED "#ROUTINE)

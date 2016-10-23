@@ -27,6 +27,7 @@ namespace app
 
 		VIRTUAL void SplashState::Init()
 		{
+
 			atlas = spine::Atlas::createFromFile("../spine_examples/spineboy/export/spineboy.atlas", this);
 			spine::SkeletonJson json(*atlas);
 			data = json.readSkeletonDataFile("../spine_examples/spineboy/export/spineboy.json");

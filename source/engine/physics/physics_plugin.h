@@ -4,7 +4,6 @@
 #include "debug_draw.h"
 #include "../input/input_event.h"
 #include "../b2djson/b2dJson.h"
-#include "lark_controller.h"
 
 namespace baka
 {
@@ -29,7 +28,6 @@ namespace baka
 			bool m_bRightMouseBtn;
 			b2Vec2 lastp;
 			b2ParticleSystem* m_pParticleSystem;
-			LarkController m_LarkController;
 			bool m_bIsTestbed;
 			b2PolygonShape m_pParticleEmitterShape;
 			b2Vec2 m_pParticleEmitterPosition;

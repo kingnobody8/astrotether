@@ -39,9 +39,6 @@
     <ClCompile Include="..\..\..\source\utility\resource\json.cpp">
       <Filter>resource</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\utility\helper\func.cpp">
-      <Filter>helper</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\utility\event\subscriber.cpp">
       <Filter>event</Filter>
     </ClCompile>
@@ -100,9 +97,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\utility\event\subscriber.h">
       <Filter>event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\utility\helper\enums.h">
-      <Filter>helper</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\utility\helper\hierarchy.h">
       <Filter>helper</Filter>
