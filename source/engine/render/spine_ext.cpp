@@ -31,6 +31,7 @@ namespace spine
 	
 		std::string ret;
 		ret.assign((char*)buff.buffer, buff.size);
+		buff.clear();
 		return ret;
 	}
 }

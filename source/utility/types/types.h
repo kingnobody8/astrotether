@@ -86,4 +86,14 @@ struct TBuffer
 		stream.close();
 		return true;
 	}
+
+	void clear()
+	{
+		if (buffer)
+		{
+			delete []buffer;
+			buffer = null;
+			size = 0;
+		}
+	}
 };

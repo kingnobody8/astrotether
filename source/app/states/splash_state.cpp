@@ -27,15 +27,15 @@ namespace app
 
 		VIRTUAL void SplashState::Init()
 		{
-			spine::Atlas* atlas = spine::Atlas::createFromFile("../spine_examples/spineboy/export/spineboy.atlas", this);
+			atlas = spine::Atlas::createFromFile("../spine_examples/spineboy/export/spineboy.atlas", this);
 			spine::SkeletonJson json(*atlas);
-			spine::SkeletonData* data = json.readSkeletonDataFile("../spine_examples/spineboy/export/spineboy.json");
+			data = json.readSkeletonDataFile("../spine_examples/spineboy/export/spineboy.json");
 			skel = new spine::Skeleton(*data);
 			stateData = new spine::AnimationStateData(*data);
 			draw = new spine::SkeletonDrawable(data, stateData);
-			draw->state->setAnimationByName(0, "run", true);
+			draw->state->setAnimationByName(0, "walk", true);
 //			draw->state->timeScale = 0.25f;
-			draw->timeScale = 0.25f;
+			//draw->timeScale = 0.25f;
 			__todo() //use the resource loader when it is finished
 			//Initial loading
 
@@ -49,6 +49,12 @@ namespace app
 
 		VIRTUAL void SplashState::Exit()
 		{
+			draw->state->clearTracks();
+			delete atlas;
+			delete skel;
+			delete stateData;
+			delete draw;
+			delete data;
 		}
 
 		VIRTUAL const std::string SplashState::DebugRender(sf::RenderWindow* pRenWin)

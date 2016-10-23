@@ -93,8 +93,8 @@ namespace spine {
 		delete vertexArray;
 		delete []worldVertices;
 		//if (ownsAnimationStateData) AnimationStateData_dispose(state->data);
-		//AnimationState_dispose(state);
-		//Skeleton_dispose(skeleton);
+		delete state;
+		delete skeleton;
 	}
 
 	void SkeletonDrawable::update(float deltaTime) {

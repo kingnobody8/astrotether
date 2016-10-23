@@ -19,9 +19,11 @@ namespace app
 			sf::Sprite m_sprite;
 
 			sf::CircleShape m_shape;
+			spine::Atlas* atlas;
 			spine::Skeleton* skel;
 			spine::AnimationStateData* stateData;
 			spine::SkeletonDrawable* draw;
+			spine::SkeletonData* data;
 
 		public:
 			SplashState();
