@@ -5,6 +5,7 @@
 #include "input/input_event.h"
 
 #include "spinecpp/spinecpp.h"
+#include "render/spine-sfml.h"
 
 namespace app
 {
@@ -18,6 +19,9 @@ namespace app
 			sf::Sprite m_sprite;
 
 			sf::CircleShape m_shape;
+			spine::Skeleton* skel;
+			spine::AnimationStateData* stateData;
+			spine::SkeletonDrawable* draw;
 
 		public:
 			SplashState();

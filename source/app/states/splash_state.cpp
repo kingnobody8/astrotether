@@ -30,8 +30,12 @@ namespace app
 			spine::Atlas* atlas = spine::Atlas::createFromFile("../spine_examples/spineboy/export/spineboy.atlas", this);
 			spine::SkeletonJson json(*atlas);
 			spine::SkeletonData* data = json.readSkeletonDataFile("../spine_examples/spineboy/export/spineboy.json");
-			spine::Skeleton skel(*data);
-
+			skel = new spine::Skeleton(*data);
+			stateData = new spine::AnimationStateData(*data);
+			draw = new spine::SkeletonDrawable(data, stateData);
+			draw->state->setAnimationByName(0, "run", true);
+//			draw->state->timeScale = 0.25f;
+			draw->timeScale = 0.25f;
 			__todo() //use the resource loader when it is finished
 			//Initial loading
 
@@ -53,7 +57,9 @@ namespace app
 			//m_sprite.setPosition(pRenWin->getSize().x * 0.5f - m_sprite.getGlobalBounds().width * 0.5f,
 			//	pRenWin->getSize().y * 0.5f - m_sprite.getGlobalBounds().height * 0.5f);
 
-			pRenWin->draw(m_sprite);
+			//pRenWin->draw(m_sprite);
+			pRenWin->draw(*draw);
+
 		//	pRenWin->draw(m_shape);
 
 			std::string ret;
@@ -67,14 +73,17 @@ namespace app
 
 		VIRTUAL void SplashState::Update(const sf::Time& dt)
 		{
-			float temp = 10.0f;
-			m_sprite.setRotation(m_sprite.getRotation() + temp * dt.asSeconds());
+			//float temp = 10.0f;
+			//m_sprite.setRotation(m_sprite.getRotation() + temp * dt.asSeconds());
+
+			draw->update(dt.asSeconds());
 		}
 
 		void SplashState::OnMove(const baka::mouse_events::MotionAction& action)
 		{
 			//m_sprite.setPosition(action.m_pixel.x, action.m_pixel.y);
-			m_shape.setScale( 1.0f, m_sprite.getScale().y + 0.01f);
+			//m_shape.setScale( 1.0f, m_sprite.getScale().y + 0.01f);
+
 		}
 
 		

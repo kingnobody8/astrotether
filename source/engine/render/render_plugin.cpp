@@ -57,10 +57,8 @@ namespace baka
 			const float vw = screenSize.x * viewRatio;
 			const float vh = screenSize.y * viewRatio;
 			m_view = sf::View(sf::FloatRect(-vw / 2.0f, -vh / 2.0f, vw, vh));
+			m_view.setSize(m_view.getSize().x, -m_view.getSize().y);
 			m_pRenWin->setView(m_view);
-
-			// Make it the active window for OpenGL calls
-			m_pRenWin->setActive();
 
 			// Make it the active window for OpenGL calls
 			m_pRenWin->setActive();
@@ -77,6 +75,8 @@ namespace baka
 
 		VIRTUAL bool RenderPlugin::Update(const sf::Time& dt)
 		{
+			//m_view.setCenter(m_view.getCenter().x - 100.0f * dt.asSeconds(), m_view.getCenter().y);
+
 			if (m_pRenWin->isOpen())
 			{
 				DoRender();
@@ -101,7 +101,7 @@ namespace baka
 
 			//draw debug text
 			{
-				m_pRenWin->setView(m_pRenWin->getDefaultView());
+				//m_pRenWin->setView(m_pRenWin->getDefaultView());
 				const std::list<std::string> listDebugText = IPlugin::DebugDrawPlugins(m_pRenWin);
 				std::string temp;
 				for (auto iter = listDebugText.begin(); iter != listDebugText.end(); ++iter)
@@ -111,6 +111,22 @@ namespace baka
 				m_debugText.setString(temp);
 				m_pRenWin->draw(m_debugText);
 			}
+
+			//Draw axis
+			const sf::Vertex x_axis[] =
+			{
+				sf::Vertex(sf::Vector2f(0, 0)),
+				sf::Vertex(sf::Vector2f(100, 0), sf::Color::Red)
+			};
+			const sf::Vertex y_axis[] =
+			{
+				sf::Vertex(sf::Vector2f(0, 0)),
+				sf::Vertex(sf::Vector2f(0, 100), sf::Color::Green)
+			};
+
+			m_pRenWin->draw(x_axis, 2, sf::Lines);
+			m_pRenWin->draw(y_axis, 2, sf::Lines);
+
 
 			// Finally, display the rendered frame on screen
 			m_pRenWin->display();

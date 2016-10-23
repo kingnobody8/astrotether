@@ -6,17 +6,21 @@ namespace spine
 {
 	void AtlasPage_disposeTexture(spine::Atlas::Page& page)
 	{
-		sf::RenderWindow* pRenWin = static_cast<sf::RenderWindow*>(page.rendererObject);
-		int x = 0;
-		x++;
+		delete (sf::Texture*)page.rendererObject;
 	}
 
 	void AtlasPage_createTexture(spine::Atlas::Page& page, const char* path)
 	{
-		sf::Texture* pTexture = new sf::Texture();
-		pTexture->loadFromFile(path);
+		sf::Texture* texture = new sf::Texture();
+		if (!texture->loadFromFile(path)) return;
 
-		page.rendererObject = pTexture;
+		if (page.magFilter == spine::Atlas::Filter::Linear) texture->setSmooth(true);
+		if (page.uWrap == spine::Atlas::Wrap::Repeat && page.vWrap == spine::Atlas::Wrap::Repeat) texture->setRepeated(true);
+
+		page.rendererObject = texture;
+		sf::Vector2u size = texture->getSize();
+		page.width = size.x;
+		page.height = size.y;
 	}
 
 	

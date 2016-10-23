@@ -31,6 +31,7 @@
     <ClCompile Include="..\..\..\source\engine\physics\physics_plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\render\render_plugin.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\spine-sfml.cpp" />
     <ClCompile Include="..\..\..\source\engine\render\spine_ext.cpp" />
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Animation.cpp" />
     <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\AnimationState.cpp" />
@@ -74,6 +75,7 @@
     <ClInclude Include="..\..\..\source\engine\physics\physics_plugin.h" />
     <ClInclude Include="..\..\..\source\engine\plugin.h" />
     <ClInclude Include="..\..\..\source\engine\render\render_plugin.h" />
+    <ClInclude Include="..\..\..\source\engine\render\spine-sfml.h" />
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Animation.h" />
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\AnimationState.h" />
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\AnimationStateData.h" />

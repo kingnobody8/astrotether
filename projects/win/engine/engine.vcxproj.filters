@@ -155,6 +155,9 @@
     <ClCompile Include="..\..\..\source\engine\render\spine_ext.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\spine-sfml.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\engine\engine.h" />
@@ -329,6 +332,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Attachment.h">
       <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\render\spine-sfml.h">
+      <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
