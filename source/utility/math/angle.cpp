@@ -41,16 +41,16 @@ namespace util
 	STATIC float Angle::WrapRadians(float radians)
 	{
 		// bring into a range of -2PI,2PI
-		radians = fmod(radians, TWO_PI);
+		radians = fmod(radians, kTWO_PI);
 
 		// bring into a range of -PI,PI
-		if (radians > PI)
+		if (radians > kPI)
 		{
-			radians -= TWO_PI;
+			radians -= kTWO_PI;
 		}
-		else if (radians < -PI)
+		else if (radians < -kPI)
 		{
-			radians += TWO_PI;
+			radians += kTWO_PI;
 		}
 
 		return radians;
@@ -62,18 +62,18 @@ namespace util
 	}
 	STATIC float Angle::Normalize360(float rads)
 	{
-		if (rads >= TWO_PI || rads < 0.0f)
+		if (rads >= kTWO_PI || rads < 0.0f)
 		{
-			rads -= floor(rads / TWO_PI) * TWO_PI;
+			rads -= floor(rads / kTWO_PI) * kTWO_PI;
 		}
 		return rads;
 	}
 	STATIC float Angle::Normalize180(float rads)
 	{
 		rads = Normalize360(rads);
-		if (rads > PI)
+		if (rads > kPI)
 		{
-			rads -= TWO_PI;
+			rads -= kTWO_PI;
 		}
 		return rads;
 	}

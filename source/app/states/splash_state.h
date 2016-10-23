@@ -4,6 +4,8 @@
 #include "utility/event/subscriber.h"
 #include "input/input_event.h"
 
+#include "spinecpp/spinecpp.h"
+
 namespace app
 {
 	namespace state

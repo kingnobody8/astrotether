@@ -27,6 +27,11 @@ namespace app
 
 		VIRTUAL void SplashState::Init()
 		{
+			spine::Atlas* atlas = spine::Atlas::createFromFile("../spine_examples/spineboy/export/spineboy.atlas", this);
+			spine::SkeletonJson json(*atlas);
+			spine::SkeletonData* data = json.readSkeletonDataFile("../spine_examples/spineboy/export/spineboy.json");
+			spine::Skeleton skel(*data);
+
 			__todo() //use the resource loader when it is finished
 			//Initial loading
 
@@ -36,6 +41,10 @@ namespace app
 			//m_sprite.setPosition(m_sprite.getScale().x * m_sprite.getLocalBounds().width * -0.5f, m_sprite.getScale().y * m_sprite.getLocalBounds().height * -0.5f);
 
 			baka::mouse_events::s_InputMouseMotion.Subscribe(&sub, BIND1(this, &SplashState::OnMove));
+		}
+
+		VIRTUAL void SplashState::Exit()
+		{
 		}
 
 		VIRTUAL const std::string SplashState::DebugRender(sf::RenderWindow* pRenWin)
@@ -68,8 +77,6 @@ namespace app
 			m_shape.setScale( 1.0f, m_sprite.getScale().y + 0.01f);
 		}
 
-		VIRTUAL void SplashState::Exit()
-		{
-		}
+		
 	}
 }

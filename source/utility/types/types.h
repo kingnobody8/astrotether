@@ -1,6 +1,9 @@
 #pragma once
 #include "helper/platform.h"
 #include "helper/macro.h"
+#include <fstream>
+#include <assert.h>
+
 
 #ifndef NULL
 #define NULL 0
@@ -63,4 +66,24 @@ struct TBuffer
 	ulonglong size;
 	TBuffer() : buffer(null), size(0) {}
 	TBuffer(void* const b, const slong& s) : buffer(b), size(s) {}
+
+	bool LoadFromFile(const std::string szFilePath)
+	{
+		std::fstream stream;
+
+		stream.open(szFilePath, std::ios_base::in | std::ios_base::binary | std::ios_base::ate);
+
+		assert(stream.is_open());
+		if (!stream.is_open())
+			return false;
+
+		size = stream.tellg();
+		buffer = new uchar[size + 1];
+		stream.seekg(0, stream.beg);
+		stream.read(reinterpret_cast<char*>(buffer), size);
+		reinterpret_cast<char*>(buffer)[size] = null;
+
+		stream.close();
+		return true;
+	}
 };

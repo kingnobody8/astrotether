@@ -25,6 +25,30 @@
     <Filter Include="render">
       <UniqueIdentifier>{25e6a6c8-6b8a-44d3-b3ec-5785b85122ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="spine">
+      <UniqueIdentifier>{3293fe23-b748-43df-bd66-33cd8b3b5ed1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="spine\include">
+      <UniqueIdentifier>{149e4d30-203a-4f10-ae50-844ac03fc92e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="spine\src">
+      <UniqueIdentifier>{d38b36d7-deab-4cb2-9896-0198804b0ac4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="spine\third_party">
+      <UniqueIdentifier>{759bf736-69a3-4395-b6de-e382109fba88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="spine\third_party\chobo">
+      <UniqueIdentifier>{d56fb5c5-0c64-47bd-8f16-d262e9413bdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="spine\third_party\sajson">
+      <UniqueIdentifier>{f24990bd-f1c3-48e1-86cd-b922177f3a11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="spine\src\spinecpp">
+      <UniqueIdentifier>{3a91ded7-150c-4847-b898-8e670aa66011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="spine\include\spinecpp">
+      <UniqueIdentifier>{41ccee81-69bb-4638-beef-319284978490}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\engine\engine.cpp" />
@@ -64,6 +88,72 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\state\setup_state.cpp">
       <Filter>state</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\AnimationStateData.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Atlas.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\AtlasAttachmentLoader.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\AttachmentLoader.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Bone.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\IkConstraint.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\MeshAttachment.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\PathConstraint.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\PoolTrackEntryFactory.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\RegionAttachment.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Skeleton.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\SkeletonBounds.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\SkeletonData.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\SkeletonJson.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Skin.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Slot.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Timelines.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\TransformConstraint.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\VertexAttachment.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\Animation.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\spine\src\spinecpp\AnimationState.cpp">
+      <Filter>spine\src\spinecpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\render\spine_ext.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +212,123 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\state\setup_state.h">
       <Filter>state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\third_party\chobo\vector_ptr.hpp">
+      <Filter>spine\third_party\chobo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\third_party\sajson\sajson.h">
+      <Filter>spine\third_party\sajson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\AttachmentLoader.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Bone.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\BoneData.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\BoundingBoxAttachment.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Color.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Event.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\EventData.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\extension.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\IkConstraint.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\IkConstraintData.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\MeshAttachment.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\PathAttachment.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\PathConstraint.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\PathConstraintData.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\PoolTrackEntryFactory.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\RegionAttachment.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Skeleton.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\SkeletonBounds.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\SkeletonData.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\SkeletonJson.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Skin.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Slot.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\SlotData.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\spinecpp.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Timeline.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Timelines.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\TrackEntryFactory.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\TransformConstraint.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\TransformConstraintData.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Vector.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\VertexAttachment.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Animation.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\AnimationState.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\AnimationStateData.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Atlas.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\AtlasAttachmentLoader.h">
+      <Filter>spine\include\spinecpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Attachment.h">
+      <Filter>spine\include\spinecpp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
