@@ -2,5 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\..\source\app\main.cpp" />
+    <ClCompile Include="..\..\..\source\app\states\splash_state.cpp">
+      <Filter>splash</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="splash">
+      <UniqueIdentifier>{3a3ec9d7-5f91-420b-9fef-02659f44974e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\app\states\splash_state.h">
+      <Filter>splash</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

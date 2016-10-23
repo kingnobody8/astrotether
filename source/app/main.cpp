@@ -1,12 +1,14 @@
 #include "engine/engine.h"
 #include "engine/state/setup_state.h"
 #include "utility/types/types.h"
+#include "states/splash_state.h"
 #include <vld.h>
 
 
 int main()
 {
 	baka::state::SetupState* pSetupState = new baka::state::SetupState();
+	pSetupState->SetTransitionState(new app::state::SplashState());
 
 	baka::Engine* pEngine = baka::Engine::Get();
 
