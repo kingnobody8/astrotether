@@ -17,6 +17,8 @@ namespace spine
 		if (page.magFilter == spine::Atlas::Filter::Linear) texture->setSmooth(true);
 		if (page.uWrap == spine::Atlas::Wrap::Repeat && page.vWrap == spine::Atlas::Wrap::Repeat) texture->setRepeated(true);
 
+		texture->setSmooth(false);
+
 		page.rendererObject = texture;
 		sf::Vector2u size = texture->getSize();
 		page.width = size.x;

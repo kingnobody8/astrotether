@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.cpp" />
     <ClCompile Include="..\..\..\source\engine\b2djson\jsoncpp.cpp" />
     <ClCompile Include="..\..\..\source\engine\engine.cpp" />
+    <ClCompile Include="..\..\..\source\engine\entity\entity_plugin..cpp" />
     <ClCompile Include="..\..\..\source\engine\input\input_event.cpp" />
     <ClCompile Include="..\..\..\source\engine\input\input_plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\physics\debug_draw.cpp" />
@@ -65,6 +66,8 @@
     <ClInclude Include="..\..\..\source\engine\b2djson\json\json-forwards.h" />
     <ClInclude Include="..\..\..\source\engine\b2djson\json\json.h" />
     <ClInclude Include="..\..\..\source\engine\engine.h" />
+    <ClInclude Include="..\..\..\source\engine\entity\entity.h" />
+    <ClInclude Include="..\..\..\source\engine\entity\entity_plugin.h" />
     <ClInclude Include="..\..\..\source\engine\input\input_event.h" />
     <ClInclude Include="..\..\..\source\engine\input\input_plugin.h" />
     <ClInclude Include="..\..\..\source\engine\physics\callbacks\aabb_callback.h" />

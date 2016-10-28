@@ -14,8 +14,8 @@ namespace baka
 		EPO_INVALID = -1,
 		EPO_INPUT,
 		EPO_PHYSICS,
-		EPO_COMPONENT,
 		EPO_STATE,
+		EPO_ENTITY,
 		EPO_RENDER = 9999
 	};
 

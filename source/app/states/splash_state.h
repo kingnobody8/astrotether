@@ -35,7 +35,7 @@ namespace app
 
 			virtual const std::string DebugRender(sf::RenderWindow* pRenWin);
 
-			void OnMove( const baka::mouse_events::MotionAction& action);
+			void OnKeyUp(const baka::key_events::KeyAction& action);
 		};
 	}
 }

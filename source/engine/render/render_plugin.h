@@ -17,7 +17,7 @@ namespace baka
 			sf::Color m_backgroundColor;
 			sf::Font m_debugFont;
 			sf::Text m_debugText;
-
+			bool m_bDebugDraw;
 
 		public:
 			RenderPlugin();

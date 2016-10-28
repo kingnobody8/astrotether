@@ -12,6 +12,7 @@ namespace baka
 
 		RenderPlugin::RenderPlugin()
 			: m_pRenWin(null)
+			, m_bDebugDraw(false)
 		{
 		}
 
@@ -38,6 +39,7 @@ namespace baka
 			m_backgroundColor.r = initJson["background_color"]["r"].GetInt();
 			m_backgroundColor.g = initJson["background_color"]["g"].GetInt();
 			m_backgroundColor.b = initJson["background_color"]["b"].GetInt();
+			m_bDebugDraw = initJson["debug_draw"].GetBool();
 
 			//load the font
 			if (!m_debugFont.loadFromFile(debugFontPath))
@@ -51,7 +53,9 @@ namespace baka
 			m_debugText.setColor(sf::Color::White);
 
 			// Create the main window
-			m_pRenWin = new sf::RenderWindow(sf::VideoMode(screenSize.x, screenSize.y), appName.c_str(), sf::Style::Default);
+			sf::ContextSettings settings;
+			m_pRenWin = new sf::RenderWindow(sf::VideoMode(screenSize.x, screenSize.y), appName.c_str(), sf::Style::Default, settings);
+
 
 			// Create the camera, origin at center
 			const float vw = screenSize.x * viewRatio;
@@ -95,13 +99,13 @@ namespace baka
 			//	vActors[i]->Draw(window);
 			//}
 
+			
 
-			//m_pWorld->DrawDebugData();
-			//m_debugDraw.Flush();
-
-			//draw debug text
+			//draw debug information
+			if (m_bDebugDraw)
 			{
-				//m_pRenWin->setView(m_pRenWin->getDefaultView());
+				
+			//	m_pRenWin->setView(m_pRenWin->getDefaultView());
 				const std::list<std::string> listDebugText = IPlugin::DebugDrawPlugins(m_pRenWin);
 				std::string temp;
 				for (auto iter = listDebugText.begin(); iter != listDebugText.end(); ++iter)
@@ -110,24 +114,24 @@ namespace baka
 				}
 				m_debugText.setString(temp);
 				m_pRenWin->draw(m_debugText);
+
+				//Draw axis
+				//m_pRenWin->setView(m_pRenWin->getDefaultView());
+				const sf::Vertex x_axis[] =
+				{
+					sf::Vertex(sf::Vector2f(0, 0)),
+					sf::Vertex(sf::Vector2f(100, 0), sf::Color::Red)
+				};
+				const sf::Vertex y_axis[] =
+				{
+					sf::Vertex(sf::Vector2f(0, 0)),
+					sf::Vertex(sf::Vector2f(0, 100), sf::Color::Green)
+				};
+				m_pRenWin->draw(x_axis, 2, sf::Lines);
+				m_pRenWin->draw(y_axis, 2, sf::Lines);
 			}
 
-			//Draw axis
-			const sf::Vertex x_axis[] =
-			{
-				sf::Vertex(sf::Vector2f(0, 0)),
-				sf::Vertex(sf::Vector2f(100, 0), sf::Color::Red)
-			};
-			const sf::Vertex y_axis[] =
-			{
-				sf::Vertex(sf::Vector2f(0, 0)),
-				sf::Vertex(sf::Vector2f(0, 100), sf::Color::Green)
-			};
-
-			m_pRenWin->draw(x_axis, 2, sf::Lines);
-			m_pRenWin->draw(y_axis, 2, sf::Lines);
-
-
+			
 			// Finally, display the rendered frame on screen
 			m_pRenWin->display();
 		}

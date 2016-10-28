@@ -28,9 +28,6 @@ namespace baka
 
 		VIRTUAL void SetupState::Init()
 		{
-			__todo() //use the resource loader when it is finished
-			//Initial loading
-
 			srand(unsigned int(util::Time::GetTimeSinceEpoch().Milli()));
 
 			//Setup the window

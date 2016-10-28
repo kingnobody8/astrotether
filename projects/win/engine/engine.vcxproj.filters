@@ -52,6 +52,9 @@
     <Filter Include="third_party\spine\third_party\sajson">
       <UniqueIdentifier>{f24990bd-f1c3-48e1-86cd-b922177f3a11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="entity">
+      <UniqueIdentifier>{1508ac44-bf04-4d98-a6c0-44325f23257c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\engine\engine.cpp" />
@@ -157,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\engine\render\spine-sfml.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\entity\entity_plugin..cpp">
+      <Filter>entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +338,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\render\spine-sfml.h">
       <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\entity\entity_plugin.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\entity\entity.h">
+      <Filter>entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

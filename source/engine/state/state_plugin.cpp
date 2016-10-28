@@ -52,7 +52,11 @@ namespace baka
 		{
 			std::string temp = "----State----\n";
 			if (m_pCurrState)
+			{
+				temp += m_pCurrState->GetName();
+				temp += std::string("\n");
 				temp += m_pCurrState->DebugRender(pRenWin);
+			}
 			return temp;
 		}
 

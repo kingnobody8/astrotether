@@ -27,16 +27,19 @@ namespace app
 
 		VIRTUAL void SplashState::Init()
 		{
-
-			atlas = spine::Atlas::createFromFile("../spine_examples/spineboy/export/spineboy.atlas", this);
+			//std::string path = "../spine_examples/spineboy/export/spineboy";
+			std::string path = "assets/animations/logo/export/logo";
+			atlas = spine::Atlas::createFromFile((path + std::string(".atlas")).c_str(), null);
+			//atlas = new spine::Atlas();
+			//spine::AttachmentLoader* loader = new spine::AtlasAttachmentLoader(*atlas);
 			spine::SkeletonJson json(*atlas);
-			data = json.readSkeletonDataFile("../spine_examples/spineboy/export/spineboy.json");
+			data = json.readSkeletonDataFile((path + std::string(".json")).c_str());
 			skel = new spine::Skeleton(*data);
 			stateData = new spine::AnimationStateData(*data);
 			draw = new spine::SkeletonDrawable(data, stateData);
-			draw->state->setAnimationByName(0, "walk", true);
-//			draw->state->timeScale = 0.25f;
-			//draw->timeScale = 0.25f;
+		//	draw->timeScale = 0.25f;
+
+
 			__todo() //use the resource loader when it is finished
 			//Initial loading
 
@@ -45,7 +48,7 @@ namespace app
 			m_sprite.setScale(2.0f, 2.0f);
 			//m_sprite.setPosition(m_sprite.getScale().x * m_sprite.getLocalBounds().width * -0.5f, m_sprite.getScale().y * m_sprite.getLocalBounds().height * -0.5f);
 
-			baka::mouse_events::s_InputMouseMotion.Subscribe(&sub, BIND1(this, &SplashState::OnMove));
+			baka::key_events::s_InputKeyUp.Subscribe(&sub, BIND1(this, &SplashState::OnKeyUp));
 		}
 
 		VIRTUAL void SplashState::Exit()
@@ -86,10 +89,16 @@ namespace app
 			draw->update(dt.asSeconds());
 		}
 
-		void SplashState::OnMove(const baka::mouse_events::MotionAction& action)
+		void SplashState::OnKeyUp(const baka::key_events::KeyAction& action)
 		{
 			//m_sprite.setPosition(action.m_pixel.x, action.m_pixel.y);
 			//m_shape.setScale( 1.0f, m_sprite.getScale().y + 0.01f);
+
+			if (action.m_code == sf::Keyboard::Space)
+			{
+				draw->skeleton->setBonesToSetupPose();
+				draw->state->setAnimationByName(0, "animation", false);
+			}
 
 		}
 
