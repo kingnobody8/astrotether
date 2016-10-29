@@ -26,6 +26,7 @@ namespace app
 			sf::Time m_counter;
 			void AnimationListenerCallback(spine::AnimationState& state, int trackIndex, spine::EventType type, const spine::Event* event, int loopCount);
 			void OnKeyUp(const baka::key_events::KeyAction& action);
+			void OnMouseMove(const baka::mouse_events::MotionAction& action);
 
 		public:
 			SplashState();

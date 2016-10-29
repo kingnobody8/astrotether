@@ -11,6 +11,7 @@
 #include "resource/json.h"
 
 #include "input/input_event.h"
+#include "testbed_state.h"
 
 namespace app
 {
@@ -31,8 +32,6 @@ namespace app
 			//std::string path = "../spine_examples/spineboy/export/spineboy";
 			std::string path = "assets/animations/logo/export/logo";
 			atlas = spine::Atlas::createFromFile((path + std::string(".atlas")).c_str(), null);
-			//atlas = new spine::Atlas();
-			//spine::AttachmentLoader* loader = new spine::AtlasAttachmentLoader(*atlas);
 			spine::SkeletonJson json(*atlas);
 			data = json.readSkeletonDataFile((path + std::string(".json")).c_str());
 			skel = new spine::Skeleton(*data);
@@ -42,11 +41,17 @@ namespace app
 			draw->state->listener = BIND5(this, &SplashState::AnimationListenerCallback);
 			draw->setPosition(-256, 0);
 
+			baka::render::RenderPlugin* renderer = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
+			renderer->AddDrawable(draw);
+
 			baka::key_events::s_InputKeyUp.Subscribe(&sub, BIND1(this, &SplashState::OnKeyUp));
+			baka::mouse_events::s_InputMouseMotion.Subscribe(&sub, BIND1(this, &SplashState::OnMouseMove));
 		}
 
 		VIRTUAL void SplashState::Exit()
 		{
+			baka::render::RenderPlugin* renderer = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
+			renderer->RemDrawable(draw);
 			draw->state->clearTracks();
 			delete atlas;
 			delete skel;
@@ -57,8 +62,6 @@ namespace app
 
 		VIRTUAL const std::string SplashState::DebugRender(sf::RenderWindow* pRenWin)
 		{
-
-			pRenWin->draw(*draw);
 
 			std::string ret;
 			auto curr = draw->state->getCurrent(0);
@@ -86,9 +89,22 @@ namespace app
 
 		}
 
+		void SplashState::OnMouseMove(const baka::mouse_events::MotionAction& action)
+		{
+			sf::Vector2i pixel(action.m_pixel.x, action.m_pixel.y);
+			baka::render::RenderPlugin* renderer = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
+			sf::Vector2f pos = renderer->GetRenderWindow()->mapPixelToCoords(pixel);
+			draw->setPosition(pos);
+		}
+
 		
 		void SplashState::AnimationListenerCallback(spine::AnimationState& state, int trackIndex, spine::EventType type, const spine::Event* event, int loopCount)
 		{
+			if (type == spine::EventType::Anim_End)
+			{
+				baka::state::StatePlugin* statePlug = static_cast<baka::state::StatePlugin*>(baka::IPlugin::FindPlugin(baka::state::StatePlugin::Type));
+				statePlug->TransitionState(new TestbedState());
+			}
 		}
 
 	}

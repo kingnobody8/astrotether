@@ -19,6 +19,8 @@ namespace baka
 			sf::Text m_debugText;
 			bool m_bDebugDraw;
 
+			std::vector<sf::Drawable*> m_vDrawables;
+
 		public:
 			RenderPlugin();
 			virtual ~RenderPlugin();
@@ -31,6 +33,9 @@ namespace baka
 			void DoRender();
 
 			inline sf::RenderWindow* GetRenderWindow() { return m_pRenWin; }
+
+			void AddDrawable(sf::Drawable* pDrawable) { m_vDrawables.push_back(pDrawable); }
+			void RemDrawable(sf::Drawable* pDrawable);
 		};
 	}
 }

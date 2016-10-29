@@ -3,17 +3,23 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\source\app\main.cpp" />
     <ClCompile Include="..\..\..\source\app\states\splash_state.cpp">
-      <Filter>splash</Filter>
+      <Filter>states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\app\states\testbed_state.cpp">
+      <Filter>states</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="splash">
+    <Filter Include="states">
       <UniqueIdentifier>{3a3ec9d7-5f91-420b-9fef-02659f44974e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\app\states\splash_state.h">
-      <Filter>splash</Filter>
+      <Filter>states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\app\states\testbed_state.h">
+      <Filter>states</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -94,18 +94,18 @@ namespace baka
 			m_pRenWin->setView(m_view);
 			m_pRenWin->clear(m_backgroundColor);
 
-			//for (size_t i = 0; i < vActors.size(); ++i)
-			//{
-			//	vActors[i]->Draw(window);
-			//}
+			//draw each drawable
+			for (size_t i = 0; i < m_vDrawables.size(); ++i)
+			{
+				m_pRenWin->draw(*m_vDrawables[i]);
+			}
 
-			
 
 			//draw debug information
 			if (m_bDebugDraw)
 			{
 				
-			//	m_pRenWin->setView(m_pRenWin->getDefaultView());
+				m_pRenWin->setView(m_pRenWin->getDefaultView());
 				const std::list<std::string> listDebugText = IPlugin::DebugDrawPlugins(m_pRenWin);
 				std::string temp;
 				for (auto iter = listDebugText.begin(); iter != listDebugText.end(); ++iter)
@@ -116,7 +116,7 @@ namespace baka
 				m_pRenWin->draw(m_debugText);
 
 				//Draw axis
-				//m_pRenWin->setView(m_pRenWin->getDefaultView());
+				m_pRenWin->setView(m_view);
 				const sf::Vertex x_axis[] =
 				{
 					sf::Vertex(sf::Vector2f(0, 0)),
@@ -134,6 +134,18 @@ namespace baka
 			
 			// Finally, display the rendered frame on screen
 			m_pRenWin->display();
+		}
+
+		void RenderPlugin::RemDrawable(sf::Drawable* pDrawable)
+		{
+			for (size_t i = 0; i < m_vDrawables.size(); ++i)
+			{
+				if (m_vDrawables[i] == pDrawable)
+				{
+					m_vDrawables.erase(m_vDrawables.begin() + i);
+					break;
+				}
+			}
 		}
 
 	}
