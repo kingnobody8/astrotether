@@ -107,6 +107,8 @@ namespace spine {
 	void SkeletonDrawable::draw(RenderTarget& target, RenderStates states) const {
 		vertexArray->clear();
 
+		states.transform *= getTransform();
+
 		sf::Vertex vertices[4];
 		sf::Vertex vertex;
 		for (int i = 0; i < skeleton->slots.size(); ++i) {

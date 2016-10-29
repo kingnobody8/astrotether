@@ -39,15 +39,17 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/Transformable.hpp>
 
 namespace spine {
 
-	class SkeletonDrawable : public sf::Drawable {
+	class SkeletonDrawable : public sf::Drawable, public sf::Transformable {
 	public:
 		Skeleton* skeleton;
 		AnimationState* state;
 		float timeScale;
 		sf::VertexArray* vertexArray;
+		//__todo() change this to work like the sprite with position, rotation, and scale
 
 		SkeletonDrawable(SkeletonData* skeleton, AnimationStateData* stateData = 0);
 		~SkeletonDrawable();

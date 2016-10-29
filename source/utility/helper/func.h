@@ -14,6 +14,8 @@ Purpose:	These are commonly used utility functions and macros
 #define BIND2(that, func) (std::bind(func, that, std::placeholders::_1, std::placeholders::_2))
 #define BIND3(that, func) (std::bind(func, that, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3))
 #define BIND4(that, func) (std::bind(func, that, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4))
+#define BIND5(that, func) (std::bind(func, that, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5))
+
 
 #ifndef Max
 #define Max(a,b)					(((a) > (b)) ? (a) : (b))					//Returns the maximum between 2 numbers

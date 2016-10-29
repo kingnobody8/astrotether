@@ -15,15 +15,17 @@ namespace app
 		{
 		private:
 			util::Subscriber sub;
-			sf::Texture m_texture;
-			sf::Sprite m_sprite;
 
-			sf::CircleShape m_shape;
 			spine::Atlas* atlas;
 			spine::Skeleton* skel;
 			spine::AnimationStateData* stateData;
 			spine::SkeletonDrawable* draw;
 			spine::SkeletonData* data;
+
+			bool m_bAnimOver;
+			sf::Time m_counter;
+			void AnimationListenerCallback(spine::AnimationState& state, int trackIndex, spine::EventType type, const spine::Event* event, int loopCount);
+			void OnKeyUp(const baka::key_events::KeyAction& action);
 
 		public:
 			SplashState();
@@ -34,8 +36,6 @@ namespace app
 			virtual void Update(const sf::Time& dt);
 
 			virtual const std::string DebugRender(sf::RenderWindow* pRenWin);
-
-			void OnKeyUp(const baka::key_events::KeyAction& action);
 		};
 	}
 }

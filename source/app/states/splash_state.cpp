@@ -17,6 +17,7 @@ namespace app
 	namespace state
 	{
 		SplashState::SplashState()
+			: m_bAnimOver(false)
 		{
 			this->m_name = "SplashState";
 		}
@@ -37,16 +38,9 @@ namespace app
 			skel = new spine::Skeleton(*data);
 			stateData = new spine::AnimationStateData(*data);
 			draw = new spine::SkeletonDrawable(data, stateData);
-		//	draw->timeScale = 0.25f;
 
-
-			__todo() //use the resource loader when it is finished
-			//Initial loading
-
-			m_texture.loadFromFile("assets/textures/logo_128.png");
-			m_sprite.setTexture(m_texture);
-			m_sprite.setScale(2.0f, 2.0f);
-			//m_sprite.setPosition(m_sprite.getScale().x * m_sprite.getLocalBounds().width * -0.5f, m_sprite.getScale().y * m_sprite.getLocalBounds().height * -0.5f);
+			draw->state->listener = BIND5(this, &SplashState::AnimationListenerCallback);
+			draw->setPosition(-256, 0);
 
 			baka::key_events::s_InputKeyUp.Subscribe(&sub, BIND1(this, &SplashState::OnKeyUp));
 		}
@@ -64,35 +58,25 @@ namespace app
 		VIRTUAL const std::string SplashState::DebugRender(sf::RenderWindow* pRenWin)
 		{
 
-			//m_sprite.setPosition(pRenWin->getSize().x * 0.5f - m_sprite.getGlobalBounds().width * 0.5f,
-			//	pRenWin->getSize().y * 0.5f - m_sprite.getGlobalBounds().height * 0.5f);
-
-			//pRenWin->draw(m_sprite);
 			pRenWin->draw(*draw);
 
-		//	pRenWin->draw(m_shape);
-
 			std::string ret;
-			ret += std::string("Left: ") + std::to_string(m_sprite.getGlobalBounds().left) + std::string("\n")
-				+ std::string("top: ") + std::to_string(m_sprite.getGlobalBounds().top) + std::string("\n")
-				+ std::string("Width: ") + std::to_string(m_sprite.getGlobalBounds().width) + std::string("\n")
-				+ std::string("Height: ") + std::to_string(m_sprite.getGlobalBounds().height) + std::string("\n");
+			auto curr = draw->state->getCurrent(0);
+			if (curr)
+			{
+				ret += std::to_string(curr->time);
+			}
 
 			return ret;
 		}
 
 		VIRTUAL void SplashState::Update(const sf::Time& dt)
 		{
-			//float temp = 10.0f;
-			//m_sprite.setRotation(m_sprite.getRotation() + temp * dt.asSeconds());
-
 			draw->update(dt.asSeconds());
 		}
 
 		void SplashState::OnKeyUp(const baka::key_events::KeyAction& action)
 		{
-			//m_sprite.setPosition(action.m_pixel.x, action.m_pixel.y);
-			//m_shape.setScale( 1.0f, m_sprite.getScale().y + 0.01f);
 
 			if (action.m_code == sf::Keyboard::Space)
 			{
@@ -103,5 +87,9 @@ namespace app
 		}
 
 		
+		void SplashState::AnimationListenerCallback(spine::AnimationState& state, int trackIndex, spine::EventType type, const spine::Event* event, int loopCount)
+		{
+		}
+
 	}
 }
