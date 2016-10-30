@@ -58,6 +58,12 @@ namespace baka
 		//Update the timer
 		sf::Time delta = this->m_timer.restart();
 
+		if (delta.asSeconds() > 0.125f)
+		{
+			__todo() //the very first frame is getting a very long dt
+			delta = sf::seconds(0.125f); 
+		}
+
 		//Update the plugins
 		if (!IPlugin::UpdatePlugins(delta))
 		{

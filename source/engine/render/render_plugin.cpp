@@ -110,7 +110,6 @@ namespace baka
 			//draw debug information
 			if (m_bDebugDraw)
 			{
-				
 				m_pRenWin->setView(m_pRenWin->getDefaultView());
 				const std::list<std::string> listDebugText = IPlugin::DebugDrawPlugins(m_pRenWin);
 				std::string temp;

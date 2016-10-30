@@ -66,6 +66,10 @@ struct TBuffer
 	ulonglong size;
 	TBuffer() : buffer(null), size(0) {}
 	TBuffer(void* const b, const slong& s) : buffer(b), size(s) {}
+	~TBuffer()
+	{
+		clear();
+	}
 
 	bool LoadFromFile(const std::string szFilePath)
 	{

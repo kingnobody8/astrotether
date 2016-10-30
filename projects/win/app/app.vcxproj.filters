@@ -8,10 +8,16 @@
     <ClCompile Include="..\..\..\source\app\states\testbed_state.cpp">
       <Filter>states</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\app\entities\logo_ent.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="states">
       <UniqueIdentifier>{3a3ec9d7-5f91-420b-9fef-02659f44974e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="entities">
+      <UniqueIdentifier>{66838997-f95c-4604-b607-42b1cde3a7c7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -20,6 +26,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\app\states\testbed_state.h">
       <Filter>states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\app\entities\logo_ent.h">
+      <Filter>entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

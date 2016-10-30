@@ -1,12 +1,12 @@
 #pragma once
 #include "SFML/Graphics.hpp"
-
+#include "utility/event/subscriber.h"
 
 namespace baka
 {
 	namespace entity
 	{
-		class IEntity
+		class IEntity : public util::Subscriber
 		{
 		private:
 			bool m_bMarkedForDelete;
@@ -16,7 +16,7 @@ namespace baka
 				: m_bMarkedForDelete(false)
 			{
 			}
-			virtual ~IEntity() = 0;
+			virtual ~IEntity() {};
 
 			virtual void Init() {}
 			virtual void Exit() {}

@@ -6,6 +6,7 @@
 
 #include "spinecpp/spinecpp.h"
 #include "render/spine-sfml.h"
+#include "app/entities/logo_ent.h"
 
 namespace app
 {
@@ -14,17 +15,7 @@ namespace app
 		class SplashState : public baka::state::IBaseState
 		{
 		private:
-			util::Subscriber sub;
-
-			spine::Atlas* atlas;
-			spine::SkeletonDrawable* draw;
-			spine::SkeletonData* data;
-
-			bool m_bAnimOver;
-			sf::Time m_counter;
-			void AnimationListenerCallback(spine::AnimationState& state, int trackIndex, spine::EventType type, const spine::Event* event, int loopCount);
-			void OnKeyUp(const baka::key_events::KeyAction& action);
-			void OnMouseMove(const baka::mouse_events::MotionAction& action);
+			entity::LogoEnt m_logoEnt;
 
 		public:
 			SplashState();
