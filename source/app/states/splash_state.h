@@ -17,8 +17,6 @@ namespace app
 			util::Subscriber sub;
 
 			spine::Atlas* atlas;
-			spine::Skeleton* skel;
-			spine::AnimationStateData* stateData;
 			spine::SkeletonDrawable* draw;
 			spine::SkeletonData* data;
 

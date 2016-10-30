@@ -92,7 +92,7 @@ namespace spine {
 	SkeletonDrawable::~SkeletonDrawable() {
 		delete vertexArray;
 		delete []worldVertices;
-		//if (ownsAnimationStateData) AnimationStateData_dispose(state->data);
+		if (ownsAnimationStateData) delete (&state->data);
 		delete state;
 		delete skeleton;
 	}

@@ -34,12 +34,10 @@ namespace app
 			atlas = spine::Atlas::createFromFile((path + std::string(".atlas")).c_str(), null);
 			spine::SkeletonJson json(*atlas);
 			data = json.readSkeletonDataFile((path + std::string(".json")).c_str());
-			skel = new spine::Skeleton(*data);
-			stateData = new spine::AnimationStateData(*data);
-			draw = new spine::SkeletonDrawable(data, stateData);
+			draw = new spine::SkeletonDrawable(data);
+
 
 			draw->state->listener = BIND5(this, &SplashState::AnimationListenerCallback);
-			draw->setPosition(-256, 0);
 
 			baka::render::RenderPlugin* renderer = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
 			renderer->AddDrawable(draw);
@@ -51,13 +49,16 @@ namespace app
 		VIRTUAL void SplashState::Exit()
 		{
 			baka::render::RenderPlugin* renderer = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
-			renderer->RemDrawable(draw);
-			draw->state->clearTracks();
+			if (renderer != null)
+			{
+				renderer->RemDrawable(draw);
+				draw->state->clearTracks();
+				delete draw;
+			}
+
 			delete atlas;
-			delete skel;
-			delete stateData;
-			delete draw;
 			delete data;
+
 		}
 
 		VIRTUAL const std::string SplashState::DebugRender(sf::RenderWindow* pRenWin)
@@ -76,6 +77,16 @@ namespace app
 		VIRTUAL void SplashState::Update(const sf::Time& dt)
 		{
 			draw->update(dt.asSeconds());
+
+			if (m_bAnimOver)
+			{
+				m_counter += dt;
+				if (m_counter.asSeconds() > 2.0f)
+				{
+					baka::state::StatePlugin* statePlug = static_cast<baka::state::StatePlugin*>(baka::IPlugin::FindPlugin(baka::state::StatePlugin::Type));
+					statePlug->TransitionState(new TestbedState());
+				}
+			}
 		}
 
 		void SplashState::OnKeyUp(const baka::key_events::KeyAction& action)
@@ -102,8 +113,9 @@ namespace app
 		{
 			if (type == spine::EventType::Anim_End)
 			{
-				baka::state::StatePlugin* statePlug = static_cast<baka::state::StatePlugin*>(baka::IPlugin::FindPlugin(baka::state::StatePlugin::Type));
-				statePlug->TransitionState(new TestbedState());
+				m_bAnimOver = true;
+
+				
 			}
 		}
 

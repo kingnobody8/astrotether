@@ -63,10 +63,12 @@ namespace baka
 	{
 		__todo() //maybe a problem with ordering here due to resorting the list
 		s_pluginList.reverse(); //we want to remove them in reverse order
-		for (auto iter = s_pluginList.begin(); iter != s_pluginList.end(); ++iter)
+		while (!s_pluginList.empty())
 		{
-			(*iter)->Exit();
-			delete(*iter);
+			IPlugin* plug = (*s_pluginList.begin());
+			plug->Exit();
+			delete plug;
+			s_pluginList.erase(s_pluginList.begin());
 		}
 	}
 

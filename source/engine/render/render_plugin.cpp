@@ -73,6 +73,12 @@ namespace baka
 
 		VIRTUAL void RenderPlugin::Exit()
 		{
+			for (size_t i = 0; i < m_vDrawables.size(); ++i)
+			{
+				delete m_vDrawables[i];
+			}
+			m_vDrawables.clear();
+
 			m_pRenWin->close();
 			SafeDelete(m_pRenWin);
 		}
