@@ -4,6 +4,8 @@
 #include "helper/func.h"
 #include <assert.h>
 
+const float timeScale = 1.0f;
+
 namespace baka
 {
 	Engine* Engine::s_pInstance = nullptr;
@@ -57,6 +59,15 @@ namespace baka
 
 		//Update the timer
 		sf::Time delta = this->m_timer.restart();
+
+		__todo() // add timescale for debuging
+		/*static sf::Time t;
+		t += delta;
+		if (t.asSeconds() < 0.01f)
+		{
+			return;
+		}
+		t = sf::seconds(0);*/
 
 		if (delta.asSeconds() > 0.125f)
 		{

@@ -16,11 +16,11 @@ namespace baka
 	{
 	}
 
-	void DebugDraw::Create()
+	void DebugDraw::Init()
 	{
 	}
 
-	void DebugDraw::Destroy()
+	void DebugDraw::Exit()
 	{
 	}
 

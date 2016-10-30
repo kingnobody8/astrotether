@@ -1,0 +1,9 @@
+{
+    "velocity_iterations": 8,
+    "position_iterations": 3,
+    "gravity": {
+        "x": 0,
+        "y": -10
+    },
+    "debug_draw": true
+}

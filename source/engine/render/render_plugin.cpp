@@ -68,7 +68,7 @@ namespace baka
 			m_pRenWin->setActive();
 
 			// do an initial render, so we don't get a white screen
-			DoRender(); __todo() //although now we just a a screen with the background color and nothing else for a frame. need a better solution
+			DoRender(sf::seconds(0)); __todo() //although now we just a a screen with the background color and nothing else for a frame. need a better solution
 		}
 
 		VIRTUAL void RenderPlugin::Exit()
@@ -89,13 +89,13 @@ namespace baka
 
 			if (m_pRenWin->isOpen())
 			{
-				DoRender();
+				DoRender(dt);
 				return true;
 			}
 			return false;
 		}
 
-		void RenderPlugin::DoRender()
+		void RenderPlugin::DoRender(const sf::Time& dt)
 		{
 			m_pRenWin->setView(m_view);
 			m_pRenWin->clear(m_backgroundColor);
@@ -110,14 +110,19 @@ namespace baka
 			//draw debug information
 			if (m_bDebugDraw)
 			{
+				static int frameCount = 0;
+				frameCount++;
 				m_pRenWin->setView(m_pRenWin->getDefaultView());
 				const std::list<std::string> listDebugText = IPlugin::DebugDrawPlugins(m_pRenWin);
-				std::string temp;
+				std::string temp = std::string("FPS: ") + std::to_string(int(1.0f / dt.asSeconds())) + std::string("\n");
+				temp += std::string("Frame: ") + std::to_string(frameCount) + std::string("\n");
+
 				for (auto iter = listDebugText.begin(); iter != listDebugText.end(); ++iter)
 				{
 					temp += (*iter) + std::string("\n");
 				}
 				m_debugText.setString(temp);
+				m_pRenWin->setView(m_pRenWin->getDefaultView());
 				m_pRenWin->draw(m_debugText);
 
 				//Draw axis

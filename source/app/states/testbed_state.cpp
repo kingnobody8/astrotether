@@ -11,6 +11,7 @@
 #include "resource/json.h"
 
 #include "input/input_event.h"
+#include "physics/physics_plugin.h"
 
 namespace app
 {
@@ -27,6 +28,11 @@ namespace app
 
 		VIRTUAL void TestbedState::Init()
 		{
+			//Setup physics
+			baka::physics::PhysicsPlugin* pPhysicsPlugin = new baka::physics::PhysicsPlugin();
+			baka::IPlugin::AddPlugin(pPhysicsPlugin);
+
+			pPhysicsPlugin->LoadWorld("assets/worlds/testbed.json");
 		}
 
 		VIRTUAL void TestbedState::Exit()

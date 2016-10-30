@@ -38,8 +38,8 @@ namespace baka
 			DebugDraw();
 			~DebugDraw();
 
-			void Create();
-			void Destroy();
+			void Init();
+			void Exit();
 
 			void DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color);
 

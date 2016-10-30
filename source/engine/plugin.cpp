@@ -50,6 +50,7 @@ namespace baka
 			if (!(*iter)->GetDebugDraw())
 				continue;
 
+			pRenWin->setView(pRenWin->getDefaultView());
 			std::string temp = (*iter)->DebugRender(pRenWin);
 			if (!temp.empty())
 			{

@@ -9,6 +9,7 @@ namespace baka
 
 		EntityPlugin::EntityPlugin()
 		{
+			m_bDebugDraw = false;
 		}
 
 		VIRTUAL EntityPlugin::~EntityPlugin()

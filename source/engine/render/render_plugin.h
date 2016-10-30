@@ -30,7 +30,7 @@ namespace baka
 			virtual void Exit();
 
 			virtual bool Update(const sf::Time& dt);
-			void DoRender();
+			void DoRender(const sf::Time& dt);
 
 			inline sf::RenderWindow* GetRenderWindow() { return m_pRenWin; }
 
