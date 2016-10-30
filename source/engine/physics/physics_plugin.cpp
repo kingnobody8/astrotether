@@ -99,6 +99,10 @@ namespace baka
 			std::string errorMsg;
 			m_json.readFromFile(filepath.c_str(), errorMsg, m_pWorld);
 
+			__todo() //figure out how to parse the world settings from the json and set them here
+				//although it seems odd to me that the read from file doesn't just set them already
+			m_pWorld->SetGravity(b2Vec2(0, -10));
+
 			return this->m_json;
 		}
 
