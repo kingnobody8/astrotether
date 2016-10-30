@@ -16,6 +16,7 @@ namespace app
 		const std::string file = "logo";
 		const float time_delay = 2.0f;
 
+
 		LogoEnt::LogoEnt()
 			: m_pAtlas(null)
 			, m_pSkelData(null)
@@ -92,7 +93,7 @@ namespace app
 
 		void LogoEnt::SnapToEnd()
 		{
-
+			GotoNextState();
 		}
 
 		void LogoEnt::AnimationListenerCallback(spine::AnimationState& state, int trackIndex, spine::EventType type, const spine::Event* event, int loopCount)
