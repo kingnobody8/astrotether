@@ -2,6 +2,7 @@
 #include "utility/helper/func.h"
 #include "render/render_plugin.h"
 #include "input/input_event.h"
+#include "callbacks/aabb_callback.h"
 
 namespace baka
 {
@@ -18,6 +19,7 @@ namespace baka
 		PhysicsPlugin::PhysicsPlugin()
 			: m_pWorld(null)
 			, m_pRenWin(null)
+			, m_pMouseJoint(null)
 			, steps(0)
 			, m_bIsLeftMouseDown(false)
 			, m_bIsRightMouseDown(false)
@@ -72,6 +74,7 @@ namespace baka
 		{
 			m_debugDraw.Exit();
 			SafeDelete(m_pWorld);
+			m_pMouseJoint = null;
 			m_json = b2dJson();
 		}
 
@@ -93,7 +96,22 @@ namespace baka
 		{
 			pRenWin->setView(m_view);
 			m_pWorld->DrawDebugData();
+			if (m_pMouseJoint)
+			{
+				b2Vec2 p1 = m_pMouseJoint->GetAnchorB();
+				b2Vec2 p2 = m_pMouseJoint->GetTarget();
+
+				b2Color c;
+				c.Set(0.0f, 1.0f, 0.0f);
+				m_debugDraw.DrawPoint(p1, 4.0f, c);
+				m_debugDraw.DrawPoint(p2, 4.0f, c);
+
+				c.Set(0.8f, 0.8f, 0.8f);
+				m_debugDraw.DrawSegment(p1, p2, c);
+			}
 			m_debugDraw.Flush();
+
+			
 
 			const sf::Vertex x_axis[] =
 			{
@@ -138,22 +156,61 @@ namespace baka
 		void PhysicsPlugin::OnMouseDown(const baka::mouse_events::ButtonAction& action)
 		{
 			sf::Vector2f worldCoords = m_pRenWin->mapPixelToCoords(action.m_pixel, this->m_view);
+			worldCoords.y *= -1;
 			if (action.m_button == sf::Mouse::Left)
 			{
 				m_bIsLeftMouseDown = true;
+				if (m_pMouseJoint != NULL)
+				{
+					return;
+				}
+
+				b2Vec2 pw(worldCoords.x, worldCoords.y);
+
+				// Make a small box.
+				b2AABB aabb;
+				b2Vec2 d;
+				d.Set(0.001f, 0.001f);
+				aabb.lowerBound = pw - d;
+				aabb.upperBound = pw + d;
+
+				// Query the world for overlapping shapes.
+				callbacks::AabbCallback callback(pw);
+				m_pWorld->QueryAABB(&callback, aabb);
+
+				if (callback.m_pFixture)
+				{
+					b2Body* body = callback.m_pFixture->GetBody();
+					b2MouseJointDef md;
+					md.bodyA = body;//m_pGroundBody;
+					md.bodyB = body;
+					md.target = pw;
+					md.maxForce = 1000.0f * body->GetMass();
+					m_pMouseJoint = (b2MouseJoint*)m_pWorld->CreateJoint(&md);
+					body->SetAwake(true);
+				}
+
 			}
 			else if (action.m_button == sf::Mouse::Right)
 			{
 				m_bIsRightMouseDown = true;
+				m_prevMouseCoords = worldCoords;
 			}
 		}
 
 		void PhysicsPlugin::OnMouseUp(const baka::mouse_events::ButtonAction& action)
 		{
 			sf::Vector2f worldCoords = m_pRenWin->mapPixelToCoords(action.m_pixel, this->m_view);
+			worldCoords.y *= -1;
 			if (action.m_button == sf::Mouse::Left)
 			{
 				m_bIsLeftMouseDown = false;
+
+				if (m_pMouseJoint)
+				{
+					m_pWorld->DestroyJoint(m_pMouseJoint);
+					m_pMouseJoint = NULL;
+				}
 			}
 			else if (action.m_button == sf::Mouse::Right)
 			{
@@ -164,22 +221,27 @@ namespace baka
 		void PhysicsPlugin::OnMouseMove(const baka::mouse_events::MotionAction& action)
 		{
 			sf::Vector2f worldCoords = m_pRenWin->mapPixelToCoords(action.m_pixel, this->m_view);
-			static bool b = true;
-			if (b)
-			{
-				m_prevMouseCoords = worldCoords;
-				b = false;
-			}
+			worldCoords.y *= -1;
 
-			if (m_bIsRightMouseDown)
+			if (m_bIsLeftMouseDown)
 			{
+				if (m_pMouseJoint)
+				{
+					b2Vec2 pw(worldCoords.x, worldCoords.y);
+					m_pMouseJoint->SetTarget(pw);
+				}
+			}
+			else if (m_bIsRightMouseDown)
+			{
+				//sf::Vector2f delta = m_pRenWin->mapPixelToCoords(action.m_pixel - m_prevMouseCoords);
 				sf::Vector2f delta = worldCoords - m_prevMouseCoords;
-				m_view.move(-delta);
-				//m_view.setCenter(worldCoords);
+				sf::Vector2f center = m_view.getCenter();
+				delta.y = 0;
+				center += delta;
+				//m_view.move(sf::Vector2f(-delta));
+				m_view.setCenter(center);
+				m_prevMouseCoords = worldCoords;
 			}
-
-
-			m_prevMouseCoords = worldCoords;
 		}
 
 		void PhysicsPlugin::OnMouseWheel(const baka::mouse_events::WheelAction action)

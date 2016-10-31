@@ -18,6 +18,7 @@ namespace baka
 			sf::RenderWindow* m_pRenWin;
 			b2dJson m_json;
 			b2World* m_pWorld;
+			b2MouseJoint* m_pMouseJoint;
 			DebugDraw m_debugDraw;
 			sf::View m_view;
 			int steps;
