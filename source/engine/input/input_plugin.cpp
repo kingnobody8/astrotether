@@ -45,11 +45,11 @@ namespace baka
 			case sf::Event::MouseWheelScrolled:
 				mouse_events::s_InputMouseScrollWheel.Publish(mouse_events::WheelAction(tEvent, tEvent.mouseWheelScroll.delta)); break;
 			case sf::Event::MouseButtonPressed:
-				mouse_events::s_InputMouseButtonDown.Publish(mouse_events::ButtonAction(tEvent, vec2(tEvent.mouseButton.x, tEvent.mouseButton.y), tEvent.mouseButton.button)); break;
+				mouse_events::s_InputMouseButtonDown.Publish(mouse_events::ButtonAction(tEvent, sf::Vector2i(tEvent.mouseButton.x, tEvent.mouseButton.y), tEvent.mouseButton.button)); break;
 			case sf::Event::MouseButtonReleased:
-				mouse_events::s_InputMouseButtonUp.Publish(mouse_events::ButtonAction(tEvent, vec2(tEvent.mouseButton.x, tEvent.mouseButton.y), tEvent.mouseButton.button)); break;
+				mouse_events::s_InputMouseButtonUp.Publish(mouse_events::ButtonAction(tEvent, sf::Vector2i(tEvent.mouseButton.x, tEvent.mouseButton.y), tEvent.mouseButton.button)); break;
 			case sf::Event::MouseMoved:
-				mouse_events::s_InputMouseMotion.Publish(mouse_events::MotionAction(tEvent, vec2(tEvent.mouseMove.x, tEvent.mouseMove.y))); break;
+				mouse_events::s_InputMouseMotion.Publish(mouse_events::MotionAction(tEvent, sf::Vector2i(tEvent.mouseMove.x, tEvent.mouseMove.y))); break;
 			case sf::Event::MouseEntered: break;
 			case sf::Event::MouseLeft: break;
 			case sf::Event::JoystickButtonPressed: break;

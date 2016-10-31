@@ -30,6 +30,8 @@ namespace app
 		{
 			//Setup physics
 			baka::physics::PhysicsPlugin* pPhysicsPlugin = new baka::physics::PhysicsPlugin();
+			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
+			pPhysicsPlugin->SetRenderWinow(pRenderPlug->GetRenderWindow());
 			baka::IPlugin::AddPlugin(pPhysicsPlugin);
 
 			pPhysicsPlugin->LoadWorld("assets/worlds/testbed.json");

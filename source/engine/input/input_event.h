@@ -42,11 +42,11 @@ namespace baka
 	{
 		struct MotionAction : public IEvent
 		{
-			vec2	m_pixel;
+			sf::Vector2i	m_pixel;
 			//vec2	m_delta;
 			__todo() // we may eventually want velocity in here delta_pixels / time_since last motion
 
-				MotionAction(const  sf::Event& event, const vec2& pixel/*, const vec2& delta*/)
+				MotionAction(const  sf::Event& event, const sf::Vector2i& pixel/*, const vec2& delta*/)
 				: IEvent(event), m_pixel(pixel)/*, m_delta(delta)*/
 			{
 			}
@@ -54,11 +54,11 @@ namespace baka
 
 		struct ButtonAction : public IEvent
 		{
-			vec2	m_pixel;
+			sf::Vector2i	m_pixel;
 			uchar	m_button;
 			//uchar	m_clicks;
 
-			ButtonAction(const  sf::Event& event, const vec2& pixel, const uchar& button/*, const uchar& clicks*/)
+			ButtonAction(const  sf::Event& event, const sf::Vector2i& pixel, const uchar& button/*, const uchar& clicks*/)
 				: IEvent(event), m_pixel(pixel), m_button(button)//, m_clicks(clicks)
 			{
 			}
