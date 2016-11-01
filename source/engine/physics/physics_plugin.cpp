@@ -14,6 +14,9 @@ namespace baka
 		const int PARTICLES_PER_SEC = 24;
 		const float SEXY_FPS = 1 / 60.0f;
 
+		float dx;
+		float dy;
+
 		DEFINE_PLUGIN_TYPE_INFO(PhysicsPlugin);
 
 		PhysicsPlugin::PhysicsPlugin()
@@ -134,7 +137,8 @@ namespace baka
 				std::string(" Y: ") + std::to_string(m_view.getCenter().y) + std::string("\n");
 			ret += std::string("W: ") + std::to_string(m_view.getSize().x) + std::string("\n") +
 				std::string("H: ") + std::to_string(m_view.getSize().y) + std::string("\n");
-
+			ret += std::string("dx: ") + std::to_string(dx) + std::string("\n") +
+				std::string("dy: ") + std::to_string(dy) + std::string("\n");
 
 
 			return ret;
@@ -233,14 +237,17 @@ namespace baka
 			}
 			else if (m_bIsRightMouseDown)
 			{
-				//sf::Vector2f delta = m_pRenWin->mapPixelToCoords(action.m_pixel - m_prevMouseCoords);
 				sf::Vector2f delta = worldCoords - m_prevMouseCoords;
 				sf::Vector2f center = m_view.getCenter();
-				delta.y = 0;
-				center += delta;
+				dx = delta.x;
+				dy = delta.y;
+				delta.y *= -1; __todo()//i need to adjust how sfml does the map pixel to coords, i suspect it isn't using the transform (since i invert the y axis to make it cartesian i need to account for that)
+
+				center -= delta;
 				//m_view.move(sf::Vector2f(-delta));
 				m_view.setCenter(center);
-				m_prevMouseCoords = worldCoords;
+				m_prevMouseCoords = m_pRenWin->mapPixelToCoords(action.m_pixel, this->m_view);
+				m_prevMouseCoords.y *= -1;
 			}
 		}
 
