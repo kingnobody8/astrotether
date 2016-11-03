@@ -43,8 +43,9 @@ namespace baka
 			virtual bool Update(const sf::Time& dt);
 			virtual const std::string DebugRender(sf::RenderWindow* pRenWin);
 
-			const b2dJson& LoadWorld(const std::string filepath);
+			b2dJson LoadWorld(const std::string filepath);
 			void SetRenderWinow(sf::RenderWindow* pRenWin) { this->m_pRenWin = pRenWin; }
+			const sf::View& GetView() const { return m_view; }
 		};
 	}
 }

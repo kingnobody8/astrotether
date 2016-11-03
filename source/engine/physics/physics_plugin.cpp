@@ -145,7 +145,7 @@ namespace baka
 		}
 
 
-		const b2dJson& PhysicsPlugin::LoadWorld(const std::string filepath)
+		b2dJson PhysicsPlugin::LoadWorld(const std::string filepath)
 		{
 			std::string errorMsg;
 			m_json.readFromFile(filepath.c_str(), errorMsg, m_pWorld);

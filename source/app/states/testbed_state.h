@@ -7,6 +7,10 @@
 #include "spinecpp/spinecpp.h"
 #include "render/spine-sfml.h"
 
+#include "entities/physics_image_ent.h"
+#include "physics/physics_plugin.h"
+
+
 namespace app
 {
 	namespace state
@@ -15,6 +19,9 @@ namespace app
 		{
 		private:
 			util::Subscriber sub;
+			baka::physics::PhysicsPlugin* m_pPhysicsPlugin;
+			entity::PhysicsImageEnt* pPEnt;
+
 
 		public:
 			TestbedState();

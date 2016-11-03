@@ -445,8 +445,8 @@
         "name" : "body2",
         "position" : 
         {
-          "x" : -0.001263856887817383,
-          "y" : 3.175202131271362
+          "x" : 0,
+          "y" : 3
         },
         "type" : "dynamic"
       },
@@ -605,6 +605,22 @@
           "y" : 24.0
         },
         "type" : "static"
+      }
+    ],
+    "metaimage" : 
+    [
+      
+      {
+        "aspectScale" : 1,
+        "body" : 10,
+        "center" : 0,
+        "file" : "../textures/logo_128.png",
+        "filter" : 1,
+        "flip" : false,
+        "id" : 1,
+        "name" : "image0",
+        "opacity" : 0.5,
+        "scale" : 1
       }
     ],
     "positionIterations" : 3,

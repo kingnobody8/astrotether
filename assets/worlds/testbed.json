@@ -156,8 +156,8 @@
 			"name" : "body2",
 			"position" : 
 			{
-				"x" : -0.001263856887817383,
-				"y" : 3.175202131271362
+				"x" : 0,
+				"y" : 3
 			},
 			"type" : 2
 		},
@@ -485,6 +485,28 @@
 		"x" : 0,
 		"y" : -10
 	},
+	"image" : 
+	[
+		
+		{
+			"aspectScale" : 1,
+			"body" : 4,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "../textures/logo_128.png",
+			"filter" : 1,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image0",
+			"opacity" : 0.5,
+			"scale" : 1
+		}
+	],
 	"positionIterations" : 3,
 	"stepsPerSecond" : 60.0,
 	"subStepping" : false,

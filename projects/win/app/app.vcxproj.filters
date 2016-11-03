@@ -11,6 +11,9 @@
     <ClCompile Include="..\..\..\source\app\entities\logo_ent.cpp">
       <Filter>entities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\app\entities\physics_image_ent.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="states">
@@ -28,6 +31,9 @@
       <Filter>states</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\app\entities\logo_ent.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\app\entities\physics_image_ent.h">
       <Filter>entities</Filter>
     </ClInclude>
   </ItemGroup>
