@@ -28,6 +28,13 @@ namespace app
 
 		VIRTUAL void TestbedState::Init()
 		{
+			sf::Texture* pTexture = new sf::Texture();
+			pTexture->loadFromFile("assets/textures/logo_128.png");
+
+			m_pSprite = new sf::Sprite(*pTexture);
+
+
+
 			//Setup physics
 			m_pPhysicsPlugin = new baka::physics::PhysicsPlugin();
 			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
@@ -59,6 +66,10 @@ namespace app
 
 		VIRTUAL const std::string TestbedState::DebugRender(sf::RenderWindow* pRenWin)
 		{
+			pRenWin->setView(pRenWin->getDefaultView());
+			pRenWin->draw(*m_pSprite);
+
+
 			pRenWin->setView(m_pPhysicsPlugin->GetView());
 
 			//for (int i = 0; i < m_vSprites.size(); ++i)

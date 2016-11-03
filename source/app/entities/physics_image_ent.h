@@ -12,11 +12,14 @@ namespace app
 		class PhysicsImageEnt : public baka::entity::IEntity
 		{
 		private:
+			sf::Transform offset;
 			b2Body* m_pBody;
 			sf::Sprite* m_pSprite;
 			std::string m_filepath;
 			b2dJsonImage* m_pb2Image;
 			sf::Vector2f imgSize;
+			float angleOffset;
+			b2Vec2 posOffset;
 		public:
 			PhysicsImageEnt(const std::string& filepath, b2dJsonImage* pb2Image);
 			virtual ~PhysicsImageEnt();

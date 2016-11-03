@@ -22,6 +22,8 @@ namespace app
 			baka::physics::PhysicsPlugin* m_pPhysicsPlugin;
 			entity::PhysicsImageEnt* pPEnt;
 
+			sf::Sprite* m_pSprite;
+
 
 		public:
 			TestbedState();
