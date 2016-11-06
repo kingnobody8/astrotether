@@ -14,8 +14,6 @@
 #include "engine/b2djson/b2dJsonImage.h"
 #include "render/box2d-sfml.h"
 
-baka::render::PhysicsDrawable* pPhysDraw;
-
 namespace app
 {
 	namespace state
@@ -40,41 +38,15 @@ namespace app
 			std::string path = "assets/worlds/";
 			std::string file = "testbed.json";
 
-			b2dJson& json = m_pPhysicsPlugin->LoadWorld(path + file);
-			std::vector<b2dJsonImage*> m_vImages;
-			int result = json.getAllImages(m_vImages);
-
-			for (int i = 0; i < m_vImages.size(); ++i)
-			{
-				b2dJsonImage* pImage = m_vImages[i];
-
-				pPhysDraw = new baka::render::PhysicsDrawable(pImage, path);
-				//pRenderPlug->AddDrawable(m_pPhysDraw);
-			}
-
+			b2dJson& json = m_pPhysicsPlugin->LoadWorld(path, file);
 		}
 
 		VIRTUAL void TestbedState::Exit()
 		{
-			delete pPhysDraw;
 		}
 
 		VIRTUAL const std::string TestbedState::DebugRender(sf::RenderWindow* pRenWin)
 		{
-			pRenWin->setView(pRenWin->getDefaultView());
-			//pRenWin->draw(*m_pSprite);
-
-
-			pRenWin->setView(m_pPhysicsPlugin->GetView());
-
-			//for (int i = 0; i < m_vSprites.size(); ++i)
-			//{
-			//	pRenWin->draw(*m_vSprites[i]);
-			//}
-			//
-
-			pRenWin->draw(*pPhysDraw);
-
 			std::string ret;
 
 			return ret;

@@ -146,16 +146,41 @@ namespace baka
 		}
 
 
-		b2dJson PhysicsPlugin::LoadWorld(const std::string filepath)
+		b2dJson PhysicsPlugin::LoadWorld(const std::string path, const std::string file)
 		{
+			DeleteDrawables();
+
 			std::string errorMsg;
+			std::string filepath = path + file;
 			m_json.readFromFile(filepath.c_str(), errorMsg, m_pWorld);
 
 			__todo() //figure out how to parse the world settings from the json and set them here
 				//although it seems odd to me that the read from file doesn't just set them already
 				m_pWorld->SetGravity(b2Vec2(0, -10));
 
+			std::vector<b2dJsonImage*> m_vImages;
+			int result = m_json.getAllImages(m_vImages);
+			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
+			for (int i = 0; i < m_vImages.size(); ++i)
+			{
+				b2dJsonImage* pImage = m_vImages[i];
+				render::PhysicsDrawable* pDrawable = new render::PhysicsDrawable(pImage, path);
+				m_vDrawables.push_back(pDrawable);
+				pRenderPlug->AddDrawable(pDrawable, "physics");
+			}
+
 			return this->m_json;
+		}
+
+		void PhysicsPlugin::DeleteDrawables()
+		{
+			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
+			for (int i = 0; i < m_vDrawables.size(); ++i)
+			{
+				pRenderPlug->RemDrawable(m_vDrawables[i]);
+				delete m_vDrawables[i];
+			}
+			m_vDrawables.clear();
 		}
 
 		void PhysicsPlugin::OnMouseDown(const baka::mouse_events::ButtonAction& action)

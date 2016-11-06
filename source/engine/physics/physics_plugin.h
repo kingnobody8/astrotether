@@ -2,6 +2,7 @@
 #include "plugin.h"
 #include "box2d/Box2D.h"
 #include "debug_draw.h"
+#include "render/box2d-sfml.h"
 #include "../input/input_event.h"
 #include "../b2djson/b2dJson.h"
 
@@ -26,6 +27,7 @@ namespace baka
 			sf::Vector2f m_prevMouseCoords;
 			bool m_bIsLeftMouseDown;
 			bool m_bIsRightMouseDown;
+			std::vector<render::PhysicsDrawable*> m_vDrawables;
 
 			void OnMouseDown(const baka::mouse_events::ButtonAction& action);
 			void OnMouseUp(const baka::mouse_events::ButtonAction& action);
@@ -37,15 +39,16 @@ namespace baka
 			virtual ~PhysicsPlugin();
 			virtual const EPluginOrder GetPriority() const { return EPO_PHYSICS; }
 
-
 			virtual void Init();
 			virtual void Exit();
 			virtual bool Update(const sf::Time& dt);
 			virtual const std::string DebugRender(sf::RenderWindow* pRenWin);
 
-			b2dJson LoadWorld(const std::string filepath);
+			b2dJson LoadWorld(const std::string path, const std::string file);
 			void SetRenderWinow(sf::RenderWindow* pRenWin) { this->m_pRenWin = pRenWin; }
 			const sf::View& GetView() const { return m_view; }
+			const std::vector<render::PhysicsDrawable*> GetDrawables() const { return m_vDrawables; }
+			void DeleteDrawables();
 		};
 	}
 }
