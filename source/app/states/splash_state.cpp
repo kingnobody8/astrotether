@@ -28,6 +28,12 @@ namespace app
 
 		VIRTUAL void SplashState::Init()
 		{
+			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
+			sf::View* view = new sf::View(pRenderPlug->GetRenderWindow()->getDefaultView());
+			view->setCenter(sf::Vector2f());
+			view->setSize(view->getSize().x, -view->getSize().y);
+			pRenderPlug->AddLayer("main", view, true);
+
 			__todo() //change how we load the logo entity, it should be set from some sort of world file
 			m_logoEnt.Init();
 		}

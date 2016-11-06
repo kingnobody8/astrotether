@@ -6,6 +6,38 @@ namespace baka
 {
 	namespace render
 	{
+		struct RenderLayer
+		{
+			std::string m_name;
+			sf::View* m_pView;
+			std::vector<sf::Drawable*> m_vDrawables;
+			bool m_ownsView = false;
+
+			~RenderLayer()
+			{
+				if (m_ownsView)
+				{
+					delete m_pView;
+				}
+
+				for (int i = 0; i < m_vDrawables.size(); ++i)
+				{
+					delete m_vDrawables[i];
+				}
+				m_vDrawables.clear();
+			}
+
+			void draw(sf::RenderWindow* pRenWin)
+			{
+				pRenWin->setView(*m_pView);
+				for (int i = 0; i < m_vDrawables.size(); ++i)
+				{
+					pRenWin->draw(*m_vDrawables[i]);
+				}
+			}
+
+		};
+
 		class RenderPlugin : public IPlugin
 		{
 		public:
@@ -13,13 +45,12 @@ namespace baka
 
 		private:
 			sf::RenderWindow* m_pRenWin;
-			sf::View m_view;
 			sf::Color m_backgroundColor;
 			sf::Font m_debugFont;
 			sf::Text m_debugText;
 			bool m_bDebugDraw;
 
-			std::vector<sf::Drawable*> m_vDrawables;
+			std::list<RenderLayer> m_vLayers;
 
 		public:
 			RenderPlugin();
@@ -34,7 +65,8 @@ namespace baka
 
 			inline sf::RenderWindow* GetRenderWindow() { return m_pRenWin; }
 
-			void AddDrawable(sf::Drawable* pDrawable) { m_vDrawables.push_back(pDrawable); }
+			void AddLayer(const std::string& szLayerName, sf::View* pView, const bool ownsView = false);
+			void AddDrawable(sf::Drawable* pDrawable, std::string szLayerName);
 			void RemDrawable(sf::Drawable* pDrawable);
 		};
 	}

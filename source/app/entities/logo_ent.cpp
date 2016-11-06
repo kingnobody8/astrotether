@@ -40,7 +40,7 @@ namespace app
 			m_pDrawable->state->listener = BIND5(this, &LogoEnt::AnimationListenerCallback);
 
 			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
-			pRenderPlug->AddDrawable(m_pDrawable);
+			pRenderPlug->AddDrawable(m_pDrawable, "main");
 
 			baka::key_events::s_InputKeyDown.Subscribe(this, BIND1(this, &LogoEnt::OnKeyDown));
 			baka::mouse_events::s_InputMouseButtonDown.Subscribe(this, BIND1(this, &LogoEnt::OnMouseDown));

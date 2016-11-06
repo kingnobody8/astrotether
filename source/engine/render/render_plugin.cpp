@@ -58,11 +58,11 @@ namespace baka
 
 
 			// Create the camera, origin at center
-			const float vw = screenSize.x * viewRatio;
+			/*const float vw = screenSize.x * viewRatio;
 			const float vh = screenSize.y * viewRatio;
 			m_view = sf::View(sf::FloatRect(-vw / 2.0f, -vh / 2.0f, vw, vh));
 			m_view.setSize(m_view.getSize().x, -m_view.getSize().y);
-			m_pRenWin->setView(m_view);
+			m_pRenWin->setView(m_view);*/
 
 			// Make it the active window for OpenGL calls
 			m_pRenWin->setActive();
@@ -73,20 +73,12 @@ namespace baka
 
 		VIRTUAL void RenderPlugin::Exit()
 		{
-			for (size_t i = 0; i < m_vDrawables.size(); ++i)
-			{
-				delete m_vDrawables[i];
-			}
-			m_vDrawables.clear();
-
 			m_pRenWin->close();
 			SafeDelete(m_pRenWin);
 		}
 
 		VIRTUAL bool RenderPlugin::Update(const sf::Time& dt)
 		{
-			//m_view.setCenter(m_view.getCenter().x - 100.0f * dt.asSeconds(), m_view.getCenter().y);
-
 			if (m_pRenWin->isOpen())
 			{
 				DoRender(dt);
@@ -97,15 +89,14 @@ namespace baka
 
 		void RenderPlugin::DoRender(const sf::Time& dt)
 		{
-			m_pRenWin->setView(m_view);
+			m_pRenWin->setView(m_pRenWin->getDefaultView());
 			m_pRenWin->clear(m_backgroundColor);
 
-			//draw each drawable
-			for (size_t i = 0; i < m_vDrawables.size(); ++i)
+			//draw each layer
+			for (auto iter = m_vLayers.begin(); iter != m_vLayers.end(); ++iter)
 			{
-				m_pRenWin->draw(*m_vDrawables[i]);
+				(*iter).draw(m_pRenWin);
 			}
-
 
 			//draw debug information
 			if (m_bDebugDraw)
@@ -126,7 +117,7 @@ namespace baka
 				m_pRenWin->draw(m_debugText);
 
 				//Draw axis
-				m_pRenWin->setView(m_view);
+				/*m_pRenWin->setView(m_pRenWin->getDefaultView());
 				const sf::Vertex x_axis[] =
 				{
 					sf::Vertex(sf::Vector2f(0, 0)),
@@ -138,7 +129,7 @@ namespace baka
 					sf::Vertex(sf::Vector2f(0, 100), sf::Color::Green)
 				};
 				m_pRenWin->draw(x_axis, 2, sf::Lines);
-				m_pRenWin->draw(y_axis, 2, sf::Lines);
+				m_pRenWin->draw(y_axis, 2, sf::Lines);*/
 			}
 
 			
@@ -146,14 +137,37 @@ namespace baka
 			m_pRenWin->display();
 		}
 
+		void RenderPlugin::AddLayer(const std::string& szLayerName, sf::View* pView, const bool ownsView)
+		{
+			RenderLayer layer;
+			m_vLayers.push_back(layer);
+			m_vLayers.back().m_name = szLayerName;
+			m_vLayers.back().m_pView = pView;
+			m_vLayers.back().m_ownsView = ownsView;
+
+		}
+
+		void RenderPlugin::AddDrawable(sf::Drawable* pDrawable, std::string szLayerName)
+		{
+			for (auto iter = m_vLayers.begin(); iter != m_vLayers.end(); ++iter)
+			{
+				if ((*iter).m_name != szLayerName)
+					continue;
+
+				(*iter).m_vDrawables.push_back(pDrawable);
+				return;
+			}
+		}
+
 		void RenderPlugin::RemDrawable(sf::Drawable* pDrawable)
 		{
-			for (size_t i = 0; i < m_vDrawables.size(); ++i)
+			for (auto iter = m_vLayers.begin(); iter != m_vLayers.end(); ++iter)
 			{
-				if (m_vDrawables[i] == pDrawable)
+				RenderLayer& rlay = (*iter);
+				for (size_t i = 0; i < rlay.m_vDrawables.size(); ++i)
 				{
-					m_vDrawables.erase(m_vDrawables.begin() + i);
-					break;
+					rlay.m_vDrawables.erase(rlay.m_vDrawables.begin() + i);
+					return;
 				}
 			}
 		}

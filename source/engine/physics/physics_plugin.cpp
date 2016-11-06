@@ -36,12 +36,13 @@ namespace baka
 
 		VIRTUAL void PhysicsPlugin::Init()
 		{
-			vec2 screenSize(1280, -720);
+			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
+			
 			float viewRatio = 0.05f;
-			const float vw = screenSize.x * viewRatio;
-			const float vh = screenSize.y * viewRatio;
-			m_view = sf::View(sf::FloatRect(-vw / 2.0f, -vh / 2.0f, vw, vh));
-			m_view.setSize(m_view.getSize().x, -m_view.getSize().y);
+			m_view = pRenderPlug->GetRenderWindow()->getDefaultView();
+			m_view.setCenter(sf::Vector2f());
+			m_view.setSize(m_view.getSize().x * viewRatio, m_view.getSize().y * viewRatio);
+			pRenderPlug->AddLayer("physics", &m_view);
 
 			m_pWorld = new b2World(b2Vec2());
 
@@ -61,7 +62,6 @@ namespace baka
 			flags += true * b2Draw::e_particleBit;
 			m_debugDraw.SetFlags(flags);
 
-			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
 			auto pRenWin = pRenderPlug->GetRenderWindow();
 			m_debugDraw.SetRenderWindow(pRenWin);
 
@@ -99,6 +99,7 @@ namespace baka
 		{
 			pRenWin->setView(m_view);
 			m_pWorld->DrawDebugData();
+
 			if (m_pMouseJoint)
 			{
 				b2Vec2 p1 = m_pMouseJoint->GetAnchorB();
