@@ -8,6 +8,7 @@
 #include "render/spine-sfml.h"
 
 #include "physics/physics_plugin.h"
+#include "entities/player_ent.h"
 
 
 namespace app
@@ -19,6 +20,7 @@ namespace app
 		private:
 			util::Subscriber sub;
 			baka::physics::PhysicsPlugin* m_pPhysicsPlugin;
+			entity::PlayerEnt* m_pPlayer;
 
 		public:
 			TestbedState();

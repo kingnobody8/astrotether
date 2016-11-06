@@ -156,7 +156,7 @@ namespace baka
 
 			__todo() //figure out how to parse the world settings from the json and set them here
 				//although it seems odd to me that the read from file doesn't just set them already
-				m_pWorld->SetGravity(b2Vec2(0, -10));
+				m_pWorld->SetGravity(b2Vec2(0, -20));
 
 			std::vector<b2dJsonImage*> m_vImages;
 			int result = m_json.getAllImages(m_vImages);

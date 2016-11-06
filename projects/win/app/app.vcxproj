@@ -188,12 +188,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\app\entities\logo_ent.cpp" />
+    <ClCompile Include="..\..\..\source\app\entities\player_ent.cpp" />
     <ClCompile Include="..\..\..\source\app\main.cpp" />
     <ClCompile Include="..\..\..\source\app\states\splash_state.cpp" />
     <ClCompile Include="..\..\..\source\app\states\testbed_state.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\app\entities\logo_ent.h" />
+    <ClInclude Include="..\..\..\source\app\entities\player_ent.h" />
     <ClInclude Include="..\..\..\source\app\states\splash_state.h" />
     <ClInclude Include="..\..\..\source\app\states\testbed_state.h" />
   </ItemGroup>

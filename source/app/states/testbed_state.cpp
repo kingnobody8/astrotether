@@ -19,6 +19,7 @@ namespace app
 	namespace state
 	{
 		TestbedState::TestbedState()
+			: m_pPlayer(null)
 		{
 			this->m_name = "Testbed";
 		}
@@ -39,10 +40,15 @@ namespace app
 			std::string file = "testbed.json";
 
 			b2dJson& json = m_pPhysicsPlugin->LoadWorld(path, file);
+
+			b2Body* pPlayerBody = json.getBodyByName("player");
+			m_pPlayer = new entity::PlayerEnt(pPlayerBody);
+			m_pPlayer->Init();
 		}
 
 		VIRTUAL void TestbedState::Exit()
 		{
+			delete m_pPlayer;
 		}
 
 		VIRTUAL const std::string TestbedState::DebugRender(sf::RenderWindow* pRenWin)
@@ -54,6 +60,7 @@ namespace app
 
 		VIRTUAL void TestbedState::Update(const sf::Time& dt)
 		{
+			m_pPlayer->Update(dt);
 		}
 	}
 }
