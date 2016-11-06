@@ -46,7 +46,7 @@ namespace baka
 
 			b2dJson LoadWorld(const std::string path, const std::string file);
 			void SetRenderWinow(sf::RenderWindow* pRenWin) { this->m_pRenWin = pRenWin; }
-			const sf::View& GetView() const { return m_view; }
+			sf::View& GetView() { return m_view; }
 			const std::vector<render::PhysicsDrawable*> GetDrawables() const { return m_vDrawables; }
 			void DeleteDrawables();
 		};

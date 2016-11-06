@@ -17,6 +17,10 @@ namespace app
 			b2Body* m_pBody;
 			bool m_vDirections[EDirection::ED_COUNT];
 
+			spine::Atlas* m_pAtlas;
+			spine::SkeletonData* m_pSkelData;
+			spine::SkeletonDrawable* m_pDrawable;
+
 		private:
 			void OnKeyDown(const baka::key_events::KeyAction& action);
 			void OnKeyUp(const baka::key_events::KeyAction& action);
@@ -31,6 +35,8 @@ namespace app
 			virtual void Init();
 			virtual void Exit();
 			virtual void Update(const sf::Time& dt);
+
+			sf::Vector2f GetPosition() const { return sf::Vector2f(m_pBody->GetPosition().x, m_pBody->GetPosition().y); }
 
 		};
 	}

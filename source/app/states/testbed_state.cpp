@@ -48,6 +48,7 @@ namespace app
 
 		VIRTUAL void TestbedState::Exit()
 		{
+			m_pPlayer->Exit();
 			delete m_pPlayer;
 		}
 
@@ -61,6 +62,11 @@ namespace app
 		VIRTUAL void TestbedState::Update(const sf::Time& dt)
 		{
 			m_pPlayer->Update(dt);
+
+			sf::View& view = m_pPhysicsPlugin->GetView();
+			sf::Vector2f pos = m_pPlayer->GetPosition();
+			pos.y *= -1;
+			view.setCenter(pos);
 		}
 	}
 }
