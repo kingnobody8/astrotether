@@ -49,7 +49,6 @@ namespace spine {
 		AnimationState* state;
 		float timeScale;
 		sf::VertexArray* vertexArray;
-		//__todo() change this to work like the sprite with position, rotation, and scale
 
 		SkeletonDrawable(SkeletonData* skeleton, AnimationStateData* stateData = 0);
 		~SkeletonDrawable();

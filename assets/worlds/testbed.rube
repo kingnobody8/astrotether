@@ -614,7 +614,11 @@
         "angle" : 0.7853981852531433,
         "aspectScale" : 1,
         "body" : 10,
-        "center" : 0,
+        "center" : 
+        {
+          "x" : 0.8044859766960144,
+          "y" : 0.9130666255950928
+        },
         "file" : "../textures/logo_128.png",
         "filter" : 1,
         "flip" : false,

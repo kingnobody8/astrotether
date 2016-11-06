@@ -30,6 +30,7 @@
     <ClCompile Include="..\..\..\source\engine\physics\debug_draw.cpp" />
     <ClCompile Include="..\..\..\source\engine\physics\physics_plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\plugin.cpp" />
+    <ClCompile Include="..\..\..\source\engine\render\box2d-sfml.cpp" />
     <ClCompile Include="..\..\..\source\engine\render\render_plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\render\spine-sfml.cpp" />
     <ClCompile Include="..\..\..\source\engine\render\spine_ext.cpp" />
@@ -75,6 +76,7 @@
     <ClInclude Include="..\..\..\source\engine\physics\debug_draw.h" />
     <ClInclude Include="..\..\..\source\engine\physics\physics_plugin.h" />
     <ClInclude Include="..\..\..\source\engine\plugin.h" />
+    <ClInclude Include="..\..\..\source\engine\render\box2d-sfml.h" />
     <ClInclude Include="..\..\..\source\engine\render\render_plugin.h" />
     <ClInclude Include="..\..\..\source\engine\render\spine-sfml.h" />
     <ClInclude Include="..\..\..\source\engine\spine\include\spinecpp\Animation.h" />

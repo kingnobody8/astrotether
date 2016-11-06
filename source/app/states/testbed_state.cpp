@@ -12,6 +12,9 @@
 
 #include "input/input_event.h"
 #include "engine/b2djson/b2dJsonImage.h"
+#include "render/box2d-sfml.h"
+
+baka::render::PhysicsDrawable* pPhysDraw;
 
 namespace app
 {
@@ -28,13 +31,6 @@ namespace app
 
 		VIRTUAL void TestbedState::Init()
 		{
-			sf::Texture* pTexture = new sf::Texture();
-			pTexture->loadFromFile("assets/textures/logo_128.png");
-
-			m_pSprite = new sf::Sprite(*pTexture);
-
-
-
 			//Setup physics
 			m_pPhysicsPlugin = new baka::physics::PhysicsPlugin();
 			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
@@ -52,22 +48,21 @@ namespace app
 			{
 				b2dJsonImage* pImage = m_vImages[i];
 
-				std::string imageFile = path + pImage->file;
-
-				pPEnt = new entity::PhysicsImageEnt(imageFile, pImage);
-				pPEnt->Init();
+				pPhysDraw = new baka::render::PhysicsDrawable(pImage, path);
+				//pRenderPlug->AddDrawable(m_pPhysDraw);
 			}
 
 		}
 
 		VIRTUAL void TestbedState::Exit()
 		{
+			delete pPhysDraw;
 		}
 
 		VIRTUAL const std::string TestbedState::DebugRender(sf::RenderWindow* pRenWin)
 		{
 			pRenWin->setView(pRenWin->getDefaultView());
-			pRenWin->draw(*m_pSprite);
+			//pRenWin->draw(*m_pSprite);
 
 
 			pRenWin->setView(m_pPhysicsPlugin->GetView());
@@ -78,7 +73,7 @@ namespace app
 			//}
 			//
 
-			pRenWin->draw(*pPEnt->GetSprite());
+			pRenWin->draw(*pPhysDraw);
 
 			std::string ret;
 
@@ -87,7 +82,6 @@ namespace app
 
 		VIRTUAL void TestbedState::Update(const sf::Time& dt)
 		{
-			pPEnt->Update(dt);
 		}
 	}
 }

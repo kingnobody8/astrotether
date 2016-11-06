@@ -49,29 +49,6 @@
 
 using namespace sf;
 
-//void _AtlasPage_createTexture(AtlasPage* self, const char* path){
-//	Texture* texture = new Texture();
-//	if (!texture->loadFromFile(path)) return;
-//
-//	if (self->magFilter == SP_ATLAS_LINEAR) texture->setSmooth(true);
-//	if (self->uWrap == SP_ATLAS_REPEAT && self->vWrap == SP_ATLAS_REPEAT) texture->setRepeated(true);
-//
-//	self->rendererObject = texture;
-//	Vector2u size = texture->getSize();
-//	self->width = size.x;
-//	self->height = size.y;
-//}
-
-//void _AtlasPage_disposeTexture(AtlasPage* self){
-//	delete (Texture*)self->rendererObject;
-//}
-
-//char* _Util_readFile(const char* path, int* length){
-//	return _readFile(path, length);
-//}
-
-/**/
-
 namespace spine {
 
 	SkeletonDrawable::SkeletonDrawable(SkeletonData* skeletonData, AnimationStateData* stateData)
