@@ -6,8 +6,9 @@
 #include <regex>
 #include "state/state_plugin.h"
 #include "states/testbed_state.h"
+#include "physics/physics_plugin.h"
 
-const float TOPSPEED = 1.0f;
+const float TOPSPEED = 10.0f;
 const std::string path = "../spine_examples/REP/export/REP";
 //const std::string path = "assets/animations/REP/export/REP";
 const std::string file = "spineboy";
@@ -22,9 +23,24 @@ namespace app
 			, m_pAtlas(null)
 			, m_pSkelData(null)
 			, m_pDrawable(null)
+			, m_pGroundSensor(null)
+			, callback(b2Vec2())
 		{
 			for (int i = 0; i < EDirection::ED_COUNT; ++i)
 				m_vDirections[i] = false;
+
+			b2Fixture* pFixture = pBody->GetFixtureList();
+			while (pFixture != null)
+			{
+				if (pFixture->IsSensor())
+				{
+					m_pGroundSensor = pFixture;
+					break;
+				}
+
+				pFixture = pFixture->GetNext();
+			}
+
 		}
 
 		VIRTUAL PlayerEnt::~PlayerEnt()
@@ -46,7 +62,7 @@ namespace app
 			pRenderPlug->AddDrawable(m_pDrawable, "physics");
 
 			m_pDrawable->skeleton->setBonesToSetupPose();
-			m_pDrawable->scale(0.005f, -0.005f);
+			m_pDrawable->scale(0.004f, -0.004f);
 			m_pDrawable->state->setAnimationByName(0, "idle", true);
 			//pData = new spine::AnimationStateData();
 		//	pData->setMixByName("walk", "idle", 5.0f);
@@ -133,9 +149,26 @@ namespace app
 			if (action.m_code == sf::Keyboard::Down || action.m_code == sf::Keyboard::S)
 				m_vDirections[ED_DOWN] = true;
 
-			if (gotoWalk && m_pDrawable->state->getCurrent(0)->animation.name != "walk")
+			if (action.m_code == sf::Keyboard::Space && !m_vDirections[ED_SPACE])
 			{
-				m_pDrawable->state->setAnimationByName(0, "walk", true);
+				m_vDirections[ED_SPACE] = true;
+
+				//baka::physics::callbacks::AabbCallback callback(b2Vec2());
+				callback = baka::physics::callbacks::AabbCallback(b2Vec2());
+				m_pBody->GetWorld()->QueryAABB(&callback, m_pGroundSensor->GetAABB(0));
+
+				if (callback.m_pFixture)
+				{
+					b2Body* body = callback.m_pFixture->GetBody();
+					m_pBody->SetLinearVelocity(b2Vec2(m_pBody->GetLinearVelocity().x, 10));
+				}
+
+				//m_pDrawable->state->setAnimationByName(0, "jump", false);
+			}
+
+			if (gotoWalk && m_pDrawable->state->getCurrent(0)->animation.name != "run")
+			{
+				m_pDrawable->state->setAnimationByName(0, "run", true);
 			}
 		}
 
@@ -146,20 +179,27 @@ namespace app
 			{
 				m_vDirections[ED_RIGHT] = false;
 				gotoIdle = true;
+				m_pBody->SetLinearVelocity(b2Vec2(0, m_pBody->GetLinearVelocity().y));
 			}
 			if (action.m_code == sf::Keyboard::Left || action.m_code == sf::Keyboard::A)
 			{
 				m_vDirections[ED_LEFT] = false;
 				gotoIdle = true;
+				m_pBody->SetLinearVelocity(b2Vec2(0, m_pBody->GetLinearVelocity().y));
 			}
 			if (action.m_code == sf::Keyboard::Up || action.m_code == sf::Keyboard::W)
 				m_vDirections[ED_UP] = false;
 			if (action.m_code == sf::Keyboard::Down || action.m_code == sf::Keyboard::S)
 				m_vDirections[ED_DOWN] = false;
 
+			if (action.m_code == sf::Keyboard::Space)
+			{
+				m_vDirections[ED_SPACE] = false;
+			}
+
 			if (gotoIdle&& m_pDrawable->state->getCurrent(0)->animation.name != "idle")
 			{
-				pData->setMixByName("walk", "idle", 1.0f);
+				pData->setMixByName("run", "idle", 1.0f);
 				//m_pDrawable->state->data = pData;
 				//m_pDrawable->state->data.setMixByName("idle", "walk", 5.0f);
 				auto track = m_pDrawable->state->addAnimationByName(0, "idle", true, 0.0f);

@@ -4,6 +4,7 @@
 #include "input/input_event.h"
 #include "spinecpp/spinecpp.h"
 #include "render/spine-sfml.h"
+#include "physics/callbacks/aabb_callback.h"
 
 namespace app
 {
@@ -11,15 +12,18 @@ namespace app
 	{
 		class PlayerEnt : public baka::entity::IEntity
 		{
-			enum EDirection { ED_UP, ED_DOWN, ED_LEFT, ED_RIGHT, ED_COUNT };
+			enum EDirection { ED_UP, ED_DOWN, ED_LEFT, ED_RIGHT, ED_SPACE, ED_COUNT };
 
 		private:
 			b2Body* m_pBody;
+			b2Fixture* m_pGroundSensor;
 			bool m_vDirections[EDirection::ED_COUNT];
 
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;
 			spine::SkeletonDrawable* m_pDrawable;
+
+			baka::physics::callbacks::AabbCallback callback;
 
 		private:
 			void OnKeyDown(const baka::key_events::KeyAction& action);
