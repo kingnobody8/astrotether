@@ -10,6 +10,25 @@ namespace baka
 		{
 			__todo() //we need several types of aabb callbacks, this basic one is actually only used for the mouse joint testbed stuff
 
+			class AabbCallbackAll : public b2QueryCallback
+			{
+			public:
+				AabbCallbackAll()
+				{
+				}
+
+				bool ReportFixture(b2Fixture* fixture)
+				{
+					m_vFixtures.push_back(fixture);
+
+					// Continue the query.
+					return true;
+				}
+
+				std::vector<b2Fixture*> m_vFixtures;
+			};
+
+
 			//Callback for an aabb
 			class AabbCallback : public b2QueryCallback
 			{

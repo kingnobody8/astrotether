@@ -44,11 +44,12 @@ namespace baka
 			virtual bool Update(const sf::Time& dt);
 			virtual const std::string DebugRender(sf::RenderWindow* pRenWin);
 
-			b2dJson LoadWorld(const std::string path, const std::string file);
+			b2dJson* LoadWorld(const std::string path, const std::string file);
 			void SetRenderWinow(sf::RenderWindow* pRenWin) { this->m_pRenWin = pRenWin; }
 			sf::View& GetView() { return m_view; }
 			const std::vector<render::PhysicsDrawable*> GetDrawables() const { return m_vDrawables; }
 			void DeleteDrawables();
+			b2dJson* GetJson() { return &m_json; }
 		};
 	}
 }

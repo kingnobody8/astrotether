@@ -46,6 +46,13 @@
       "displayName" : "entity_type",
       "name" : "entity_type",
       "type" : "string"
+    },
+    
+    {
+      "class" : "body",
+      "displayName" : "is_ground",
+      "name" : "is_ground",
+      "type" : "bool"
     }
   ],
   "metaworld" : 
@@ -77,6 +84,14 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "bool" : true,
+            "name" : "is_ground"
+          }
+        ],
         "fixture" : 
         [
           
@@ -142,7 +157,6 @@
           },
           
           {
-            "density" : 1,
             "friction" : 0.2,
             "id" : 3,
             "name" : "groundSensor",
@@ -163,13 +177,13 @@
         ],
         "id" : 2,
         "linearVelocity" : 0,
-        "massData-I" : 1.895250082015991,
+        "massData-I" : 2,
         "massData-center" : 
         {
-          "x" : 2.956579425728023e-011,
-          "y" : 0.95
+          "x" : 0,
+          "y" : 1
         },
-        "massData-mass" : 2.1,
+        "massData-mass" : 2,
         "name" : "player",
         "position" : 
         {
@@ -177,6 +191,51 @@
           "y" : 1.5
         },
         "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "bool" : true,
+            "name" : "is_ground"
+          }
+        ],
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 4,
+            "name" : "fixture0",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 8, -8, -8, 8 ],
+              "y" : [ 0.49999800324440, 0.5000020265579224, -0.5, -0.5000020265579224 ]
+            }
+          }
+        ],
+        "id" : 3,
+        "linearVelocity" : 0,
+        "name" : "body0",
+        "position" : 
+        {
+          "x" : -16.0,
+          "y" : 1
+        },
+        "type" : "static"
       },
       
       {
@@ -292,8 +351,16 @@
       
       {
         "angle" : 0,
-        "angularVelocity" : 0,
+        "angularVelocity" : 3.141592741012573,
         "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "bool" : true,
+            "name" : "is_ground"
+          }
+        ],
         "fixture" : 
         [
           
@@ -311,8 +378,8 @@
             ],
             "vertices" : 
             {
-              "x" : [ 8, -8, -8, 8 ],
-              "y" : [ 0.49999800324440, 0.5000020265579224, -0.5, -0.5000020265579224 ]
+              "x" : [ 2, -2, -2, 2 ],
+              "y" : [ 0.1, 0.1, -0.1, -0.1 ]
             }
           }
         ],
@@ -321,16 +388,24 @@
         "name" : "body0",
         "position" : 
         {
-          "x" : -16.0,
-          "y" : 1
+          "x" : 0,
+          "y" : 8
         },
-        "type" : "static"
+        "type" : "kinematic"
       },
       
       {
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "bool" : true,
+            "name" : "is_ground"
+          }
+        ],
         "fixture" : 
         [
           
@@ -368,6 +443,14 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "bool" : true,
+            "name" : "is_ground"
+          }
+        ],
         "fixture" : 
         [
           

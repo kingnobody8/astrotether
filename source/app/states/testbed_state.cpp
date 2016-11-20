@@ -39,9 +39,9 @@ namespace app
 			std::string path = "assets/worlds/";
 			std::string file = "testbed.json";
 
-			b2dJson& json = m_pPhysicsPlugin->LoadWorld(path, file);
+			b2dJson* json = m_pPhysicsPlugin->LoadWorld(path, file);
 
-			b2Body* pPlayerBody = json.getBodyByName("player");
+			b2Body* pPlayerBody = json->getBodyByName("player");
 			m_pPlayer = new entity::PlayerEnt(pPlayerBody);
 			m_pPlayer->Init();
 		}
@@ -63,10 +63,10 @@ namespace app
 		{
 			m_pPlayer->Update(dt);
 
-			sf::View& view = m_pPhysicsPlugin->GetView();
-			sf::Vector2f pos = m_pPlayer->GetPosition();
-			pos.y *= -1;
-			view.setCenter(pos);
+			//sf::View& view = m_pPhysicsPlugin->GetView();
+			//sf::Vector2f pos = m_pPlayer->GetPosition();
+			//pos.y *= -1;
+			//view.setCenter(pos);
 		}
 	}
 }

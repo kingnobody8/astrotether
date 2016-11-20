@@ -47,6 +47,7 @@
     <ClInclude Include="..\..\..\source\utility\time\util_time.h" />
     <ClInclude Include="..\..\..\source\utility\types\bit_flag.h" />
     <ClInclude Include="..\..\..\source\utility\types\color.h" />
+    <ClInclude Include="..\..\..\source\utility\types\input.h" />
     <ClInclude Include="..\..\..\source\utility\types\rtti.h" />
     <ClInclude Include="..\..\..\source\utility\types\types.h" />
   </ItemGroup>

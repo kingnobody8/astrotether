@@ -146,7 +146,7 @@ namespace baka
 		}
 
 
-		b2dJson PhysicsPlugin::LoadWorld(const std::string path, const std::string file)
+		b2dJson* PhysicsPlugin::LoadWorld(const std::string path, const std::string file)
 		{
 			DeleteDrawables();
 
@@ -169,7 +169,7 @@ namespace baka
 				pRenderPlug->AddDrawable(pDrawable, "physics");
 			}
 
-			return this->m_json;
+			return &this->m_json;
 		}
 
 		void PhysicsPlugin::DeleteDrawables()

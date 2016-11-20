@@ -9,6 +9,53 @@
 			"angle" : 0,
 			"angularVelocity" : 0,
 			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"bool" : true,
+					"name" : "is_ground"
+				}
+			],
+			"fixture" : 
+			[
+				
+				{
+					"density" : 1,
+					"friction" : 0.2,
+					"name" : "fixture0",
+					"polygon" : 
+					{
+						"vertices" : 
+						{
+							"x" : [ 8, 8, -8, -8 ],
+							"y" : [ -0.5000020265579224, 0.49999800324440, 0.5000020265579224, -0.5 ]
+						}
+					}
+				}
+			],
+			"linearVelocity" : 0,
+			"name" : "body0",
+			"position" : 
+			{
+				"x" : -16.0,
+				"y" : 1
+			},
+			"type" : 0
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"bool" : true,
+					"name" : "is_ground"
+				}
+			],
 			"fixture" : 
 			[
 				
@@ -40,6 +87,14 @@
 			"angle" : 0,
 			"angularVelocity" : 0,
 			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"bool" : true,
+					"name" : "is_ground"
+				}
+			],
 			"fixture" : 
 			[
 				
@@ -69,8 +124,16 @@
 		
 		{
 			"angle" : 0,
-			"angularVelocity" : 0,
+			"angularVelocity" : 3.141592741012573,
 			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"bool" : true,
+					"name" : "is_ground"
+				}
+			],
 			"fixture" : 
 			[
 				
@@ -82,8 +145,8 @@
 					{
 						"vertices" : 
 						{
-							"x" : [ 8, 8, -8, -8 ],
-							"y" : [ -0.5000020265579224, 0.49999800324440, 0.5000020265579224, -0.5 ]
+							"x" : [ 2, 2, -2, -2 ],
+							"y" : [ -0.1, 0.1, 0.1, -0.1 ]
 						}
 					}
 				}
@@ -92,10 +155,10 @@
 			"name" : "body0",
 			"position" : 
 			{
-				"x" : -16.0,
-				"y" : 1
+				"x" : 0,
+				"y" : 8
 			},
-			"type" : 0
+			"type" : 1
 		},
 		
 		{
@@ -210,6 +273,19 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
+					"name" : "fixture1",
+					"polygon" : 
+					{
+						"vertices" : 
+						{
+							"x" : [ 0.5, 0.5, -0.5, -0.5 ],
+							"y" : [ 0.0, 2, 2, 0.0 ]
+						}
+					}
+				},
+				
+				{
+					"friction" : 0.2,
 					"name" : "groundSensor",
 					"polygon" : 
 					{
@@ -220,30 +296,16 @@
 						}
 					},
 					"sensor" : true
-				},
-				
-				{
-					"density" : 1,
-					"friction" : 0.2,
-					"name" : "fixture1",
-					"polygon" : 
-					{
-						"vertices" : 
-						{
-							"x" : [ 0.5, 0.5, -0.5, -0.5 ],
-							"y" : [ 0.0, 2, 2, 0.0 ]
-						}
-					}
 				}
 			],
 			"linearVelocity" : 0,
-			"massData-I" : 1.895250082015991,
+			"massData-I" : 2,
 			"massData-center" : 
 			{
-				"x" : 2.956579425728023e-011,
-				"y" : 0.95
+				"x" : 0,
+				"y" : 1
 			},
-			"massData-mass" : 2.1,
+			"massData-mass" : 2,
 			"name" : "player",
 			"position" : 
 			{
@@ -257,6 +319,14 @@
 			"angle" : 0,
 			"angularVelocity" : 0,
 			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"bool" : true,
+					"name" : "is_ground"
+				}
+			],
 			"fixture" : 
 			[
 				

@@ -107,6 +107,9 @@
     <ClInclude Include="..\..\..\source\utility\math\box.h">
       <Filter>math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\utility\types\input.h">
+      <Filter>types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\source\utility\types\color.def">

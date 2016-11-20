@@ -5,6 +5,7 @@
 #include "spinecpp/spinecpp.h"
 #include "render/spine-sfml.h"
 #include "physics/callbacks/aabb_callback.h"
+#include "utility/types/input.h"
 
 namespace app
 {
@@ -12,18 +13,16 @@ namespace app
 	{
 		class PlayerEnt : public baka::entity::IEntity
 		{
-			enum EDirection { ED_UP, ED_DOWN, ED_LEFT, ED_RIGHT, ED_SPACE, ED_COUNT };
+			enum EButton { EB_INVALID = -1, EB_LEFT, EB_RIGHT, EB_JUMP, EB_COUNT };
 
 		private:
 			b2Body* m_pBody;
 			b2Fixture* m_pGroundSensor;
-			bool m_vDirections[EDirection::ED_COUNT];
+			util::_Key m_vButtons[EButton::EB_COUNT];
 
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;
 			spine::SkeletonDrawable* m_pDrawable;
-
-			baka::physics::callbacks::AabbCallback callback;
 
 		private:
 			void OnKeyDown(const baka::key_events::KeyAction& action);
@@ -31,6 +30,8 @@ namespace app
 			void OnMouseDown(const baka::mouse_events::ButtonAction& action);
 			void OnMouseUp(const baka::mouse_events::ButtonAction& action);
 			void OnMouseMove(const baka::mouse_events::MotionAction& action);
+
+			bool CheckGrounded();
 
 		public:
 			PlayerEnt(b2Body* pBody);
