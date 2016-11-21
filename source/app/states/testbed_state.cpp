@@ -56,6 +56,9 @@ namespace app
 		{
 			std::string ret;
 
+			ret = m_pPlayer->GetPlayerValue().GetAsString();
+			ret += std::string("x vel:\t") + std::to_string(m_pPlayer->GetBody()->GetLinearVelocity().x);
+
 			return ret;
 		}
 

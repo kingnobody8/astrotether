@@ -78,7 +78,6 @@ namespace baka
 			m_debugDraw.Exit();
 			SafeDelete(m_pWorld);
 			m_pMouseJoint = null;
-			m_json = b2dJson();
 		}
 
 		VIRTUAL bool PhysicsPlugin::Update(const sf::Time& dt)
@@ -132,14 +131,14 @@ namespace baka
 
 			std::string ret = "----Physics----\n";
 
-			ret += std::string("Bodies: ") + std::to_string(m_pWorld->GetBodyCount()) + std::string("\n");
+			//ret += std::string("Bodies: ") + std::to_string(m_pWorld->GetBodyCount()) + std::string("\n");
 			ret += std::string("Steps: ") + std::to_string(steps) + std::string("\n");
-			ret += std::string("View: \nX:") + std::to_string(m_view.getCenter().x) +
-				std::string(" Y: ") + std::to_string(m_view.getCenter().y) + std::string("\n");
-			ret += std::string("W: ") + std::to_string(m_view.getSize().x) + std::string("\n") +
-				std::string("H: ") + std::to_string(m_view.getSize().y) + std::string("\n");
-			ret += std::string("dx: ") + std::to_string(dx) + std::string("\n") +
-				std::string("dy: ") + std::to_string(dy) + std::string("\n");
+			//ret += std::string("View: \nX:") + std::to_string(m_view.getCenter().x) +
+			//	std::string(" Y: ") + std::to_string(m_view.getCenter().y) + std::string("\n");
+			//ret += std::string("W: ") + std::to_string(m_view.getSize().x) + std::string("\n") +
+			//	std::string("H: ") + std::to_string(m_view.getSize().y) + std::string("\n");
+			//ret += std::string("dx: ") + std::to_string(dx) + std::string("\n") +
+			//	std::string("dy: ") + std::to_string(dy) + std::string("\n");
 
 
 			return ret;

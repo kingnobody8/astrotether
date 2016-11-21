@@ -8,10 +8,9 @@
 #include "states/testbed_state.h"
 #include "physics/physics_plugin.h"
 #include "physics/callbacks/raycast_callback.h"
+#include "utility/resource/json.h"
+#include "rapidjson/FileReadStream.h"
 
-const float TOPSPEED = 20.0f;
-const float AIR_ACC = 1.0f;
-const float GRND_ACC = 1.0f;
 const std::string path = "../spine_examples/REP/export/REP";
 //const std::string path = "assets/animations/REP/export/REP";
 const std::string file = "spineboy";
@@ -21,6 +20,39 @@ namespace app
 {
 	namespace entity
 	{
+		void PlayerValue::LoadValues(const std::string& file_path)
+		{
+			FILE* fp = fopen(file_path.c_str(), "rb"); // non-Windows use "r"
+			char readBuffer[65536];
+			rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
+			rapidjson::Document d;
+			d.ParseStream(is);
+			fclose(fp);
+
+			util::JSON json(d);
+
+			m_fMaxSpeed = json["max_speed"].GetDouble();
+			m_fGroundAcceleration = json["ground_acceleration"].GetDouble();
+			m_fGroundDeceleration = json["ground_deceleration"].GetDouble();
+			m_fAirAcceleration = json["air_acceleration"].GetDouble();
+			m_fAirDeceleration = json["air_deceleration"].GetDouble();
+			m_fJumpImpulse = json["jump_impulse"].GetDouble();
+		}
+
+		const std::string PlayerValue::GetAsString() const
+		{
+			std::string ret;
+
+			ret += std::string("Max Speed:\t") + std::to_string(m_fMaxSpeed) + std::string("\n");
+			ret += std::string("Grnd Accel:\t") + std::to_string(m_fGroundAcceleration) + std::string("\n");
+			ret += std::string("Grnd Decel:\t") + std::to_string(m_fGroundDeceleration) + std::string("\n");
+			ret += std::string("Air Accel:\t") + std::to_string(m_fAirAcceleration) + std::string("\n");
+			ret += std::string("Air Decel:\t") + std::to_string(m_fAirDeceleration) + std::string("\n");
+			ret += std::string("Jump Impulse:\t") + std::to_string(m_fJumpImpulse) + std::string("\n");
+			return ret;
+		}
+
+
 		PlayerEnt::PlayerEnt(b2Body* pBody)
 			: m_pBody(pBody)
 			, m_pRopeJoint(null)
@@ -49,6 +81,8 @@ namespace app
 
 		VIRTUAL void PlayerEnt::Init()
 		{
+			m_tValue.LoadValues("assets/player_values.json");
+
 			std::string file_path = std::regex_replace(path, std::regex("REP"), file);
 			m_pAtlas = spine::Atlas::createFromFile((file_path + std::string(".atlas")).c_str(), null);
 			spine::SkeletonJson json(*m_pAtlas);
@@ -107,13 +141,46 @@ namespace app
 			bool grounded = CheckGrounded();
 			if (m_vButtons[EB_JUMP].Push() && grounded)
 			{
-				m_pBody->ApplyLinearImpulse(b2Vec2(0, 30), m_pBody->GetLocalCenter(), true);
+				m_pBody->ApplyLinearImpulse(b2Vec2(0, m_tValue.m_fJumpImpulse), m_pBody->GetLocalCenter(), true);
 			}
 
 
 			m_pDrawable->update(dt.asSeconds());
 			m_pDrawable->setPosition(m_pBody->GetPosition().x, -m_pBody->GetPosition().y);
 		//	m_pDrawable->setRotation(m_pBody->GetAngle() * -RAD_DEG);
+
+			b2Vec2 vel = m_pBody->GetLinearVelocity();
+			float desiredVel = 0;
+			if (m_vButtons[EB_RIGHT].Held())
+			{
+				if (grounded)
+					desiredVel = b2Min(vel.x + m_tValue.m_fGroundAcceleration, m_tValue.m_fMaxSpeed);
+				else
+					desiredVel = b2Min(vel.x + m_tValue.m_fAirAcceleration, m_tValue.m_fMaxSpeed);
+			}
+			if (m_vButtons[EB_LEFT].Held())
+			{
+				if (grounded)
+					desiredVel = b2Max(vel.x - m_tValue.m_fGroundAcceleration, -m_tValue.m_fMaxSpeed);
+				else
+					desiredVel = b2Max(vel.x - m_tValue.m_fAirAcceleration, -m_tValue.m_fMaxSpeed);
+			}
+			if (desiredVel == 0) //apply deceleration
+			{
+				if (grounded)
+					desiredVel = vel.x * m_tValue.m_fGroundDeceleration;
+				else
+					desiredVel = vel.x * m_tValue.m_fAirDeceleration;
+			}
+			float velChange = desiredVel - vel.x;
+			float impulse = m_pBody->GetMass() * velChange; //disregard time factor
+			m_pBody->ApplyLinearImpulse(b2Vec2(impulse, 0), m_pBody->GetWorldCenter(), true);
+
+
+			if (desiredVel > 0 )
+				m_pDrawable->skeleton->flipX = false;
+			else if (desiredVel < 0)
+				m_pDrawable->skeleton->flipX = true;
 
 
 			//b2Vec2 vel = m_pBody->GetLinearVelocity();
@@ -134,25 +201,7 @@ namespace app
 			//if (force != 0)
 			//	m_pBody->ApplyForceToCenter(b2Vec2(force, 0), true);
 
-			b2Vec2 vel = m_pBody->GetLinearVelocity();
-			float desiredVel = 0;
-			if (m_vButtons[EB_RIGHT].Held())
-			{
-				//desiredVel = 10;
-				desiredVel = b2Min(vel.x + 0.1f, 10.0f);
-			}
-			if (m_vButtons[EB_LEFT].Held())
-			{
-				//desiredVel = -10;
-				desiredVel = b2Max(vel.x - 0.1f, -10.0f);
-			}
-			if (desiredVel == 0)
-			{
-				desiredVel = vel.x * 0.98f;
-			}
-			float velChange = desiredVel - vel.x;
-			float impulse = m_pBody->GetMass() * velChange; //disregard time factor
-			m_pBody->ApplyLinearImpulse(b2Vec2(impulse, 0), m_pBody->GetWorldCenter(), true);
+			
 
 
 			//b2Vec2 linVel = m_pBody->GetLinearVelocity();
@@ -302,6 +351,10 @@ namespace app
 			case sf::Keyboard::Space:
 			{
 				m_vButtons[EButton::EB_JUMP].Next(false);
+			}break;
+			case sf::Keyboard::R:
+			{
+				m_tValue.LoadValues("assets/player_values.json");
 			}break;
 			}
 

@@ -11,6 +11,28 @@ namespace app
 {
 	namespace entity
 	{
+		struct PlayerValue
+		{
+			PlayerValue()
+				: m_fMaxSpeed(0)
+				, m_fGroundAcceleration(0)
+				, m_fGroundDeceleration(0)
+				, m_fAirAcceleration(0)
+				, m_fAirDeceleration(0)
+				, m_fJumpImpulse(0)
+			{
+			}
+			void LoadValues(const std::string& file_path);
+			const std::string GetAsString() const;
+
+			float m_fMaxSpeed;
+			float m_fGroundAcceleration;
+			float m_fAirAcceleration;
+			float m_fGroundDeceleration;
+			float m_fAirDeceleration;
+			float m_fJumpImpulse;
+		};
+
 		class PlayerEnt : public baka::entity::IEntity
 		{
 			enum EButton { EB_INVALID = -1, EB_LEFT, EB_RIGHT, EB_JUMP, EB_COUNT };
@@ -20,6 +42,7 @@ namespace app
 			b2Joint* m_pRopeJoint;
 			b2Fixture* m_pGroundSensor;
 			util::_Key m_vButtons[EButton::EB_COUNT];
+			PlayerValue m_tValue;
 
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;
@@ -45,7 +68,8 @@ namespace app
 			virtual void Update(const sf::Time& dt);
 
 			sf::Vector2f GetPosition() const { return sf::Vector2f(m_pBody->GetPosition().x, m_pBody->GetPosition().y); }
-
+			const PlayerValue& GetPlayerValue() const { return m_tValue; }
+			b2Body* GetBody() const { return m_pBody; }
 		};
 	}
 }

@@ -43,16 +43,16 @@
     
     {
       "class" : "body",
-      "displayName" : "is_ground",
-      "name" : "is_ground",
-      "type" : "bool"
+      "displayName" : "entity_type",
+      "name" : "entity_type",
+      "type" : "string"
     },
     
     {
       "class" : "body",
-      "displayName" : "entity_type",
-      "name" : "entity_type",
-      "type" : "string"
+      "displayName" : "is_ground",
+      "name" : "is_ground",
+      "type" : "bool"
     }
   ],
   "metaworld" : 
@@ -838,6 +838,35 @@
           "y" : 8
         },
         "type" : "static"
+      }
+    ],
+    "metaimage" : 
+    [
+      
+      {
+        "aspectScale" : 1,
+        "body" : 11,
+        "center" : 0,
+        "file" : "../textures/logo_128.png",
+        "filter" : 1,
+        "flip" : false,
+        "id" : 1,
+        "name" : "image0",
+        "opacity" : 0.25,
+        "scale" : 1
+      },
+      
+      {
+        "aspectScale" : 1,
+        "body" : 10,
+        "center" : 0,
+        "file" : "../textures/logo_128.png",
+        "filter" : 1,
+        "flip" : false,
+        "id" : 2,
+        "name" : "image0",
+        "opacity" : 0.25,
+        "scale" : 1
       }
     ],
     "positionIterations" : 3,
