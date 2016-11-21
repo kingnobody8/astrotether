@@ -1280,7 +1280,7 @@ void b2World::DrawDebugData()
 			{
 				if (f->IsSensor())
 				{
-					DrawShape(f, xf, b2Color(0.3f, 0.5f, 0.9f));
+					DrawShape(f, xf, b2Color(1.0f, 0.5f, 0.3f));
 				}
 				else if (b->IsActive() == false)
 				{

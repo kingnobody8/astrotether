@@ -15,12 +15,16 @@ namespace baka
 				RayCastClosestCallback()
 					: m_pFixture(null)
 					, m_bHit(null)
+					, m_pIgnore(null)
 				{
 				}
 
 				float32 ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float32 fraction)
 				{
 					b2Body* body = fixture->GetBody();
+					if (body == m_pIgnore)
+						return -1.0f;
+
 					void* userData = body->GetUserData();
 					if (userData)
 					{
@@ -44,6 +48,7 @@ namespace baka
 					return fraction;
 				}
 
+				b2Body* m_pIgnore;
 				b2Fixture* m_pFixture;
 				b2Vec2 m_point;
 				b2Vec2 m_normal;

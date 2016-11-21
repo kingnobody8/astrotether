@@ -17,6 +17,7 @@ namespace app
 
 		private:
 			b2Body* m_pBody;
+			b2Joint* m_pRopeJoint;
 			b2Fixture* m_pGroundSensor;
 			util::_Key m_vButtons[EButton::EB_COUNT];
 
@@ -30,6 +31,8 @@ namespace app
 			void OnMouseDown(const baka::mouse_events::ButtonAction& action);
 			void OnMouseUp(const baka::mouse_events::ButtonAction& action);
 			void OnMouseMove(const baka::mouse_events::MotionAction& action);
+
+			void OnRopeEvent(const sf::Vector2i& screenPos);
 
 			bool CheckGrounded();
 

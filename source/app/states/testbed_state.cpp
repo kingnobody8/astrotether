@@ -63,10 +63,10 @@ namespace app
 		{
 			m_pPlayer->Update(dt);
 
-			//sf::View& view = m_pPhysicsPlugin->GetView();
-			//sf::Vector2f pos = m_pPlayer->GetPosition();
-			//pos.y *= -1;
-			//view.setCenter(pos);
+			sf::View& view = m_pPhysicsPlugin->GetView();
+			sf::Vector2f pos = m_pPlayer->GetPosition();
+			pos.y *= -1;
+			view.setCenter(pos);
 		}
 	}
 }
