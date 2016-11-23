@@ -48,7 +48,8 @@ namespace app
 			spine::SkeletonData* m_pSkelData;
 			spine::SkeletonDrawable* m_pDrawable;
 
-			std::vector<b2Contact*> m_vContacts;
+			std::vector<b2Contact*> m_vGroundContacts;
+			bool m_bGrounded;
 
 		private:
 			void OnKeyDown(const baka::key_events::KeyAction& action);
@@ -73,8 +74,7 @@ namespace app
 			sf::Vector2f GetPosition() const { return sf::Vector2f(m_pBody->GetPosition().x, m_pBody->GetPosition().y); }
 			const PlayerValue& GetPlayerValue() const { return m_tValue; }
 			b2Body* GetBody() const { return m_pBody; }
-
-			bool CheckGrounded();
+			const bool& IsGrounded() const { return m_bGrounded; }
 		};
 	}
 }

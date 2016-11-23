@@ -60,6 +60,7 @@ namespace app
 			, m_pSkelData(null)
 			, m_pDrawable(null)
 			, m_pGroundSensor(null)
+			, m_bGrounded(false)
 		{
 			b2Fixture* pFixture = pBody->GetFixtureList();
 			while (pFixture != null)
@@ -116,7 +117,6 @@ namespace app
 
 		VIRTUAL void PlayerEnt::Exit()
 		{
-
 			baka::render::RenderPlugin* renderer = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
 			if (renderer != null)
 			{
@@ -132,6 +132,8 @@ namespace app
 			m_pAtlas = null;
 			m_pSkelData = null;
 			m_pDrawable = null;
+
+			m_vGroundContacts.clear();
 		}
 
 		VIRTUAL void PlayerEnt::Update(const sf::Time& dt)
@@ -141,10 +143,25 @@ namespace app
 				m_vButtons[i].Flush(dt.asSeconds());
 			}
 
-			bool grounded = CheckGrounded();
-			if (m_vButtons[EB_JUMP].Push() && grounded)
+			if (m_vButtons[EB_JUMP].Push() && m_bGrounded)
 			{
 				m_pBody->ApplyLinearImpulse(b2Vec2(0, m_tValue.m_fJumpImpulse), m_pBody->GetLocalCenter(), true);
+
+			/*	b2Vec2 jumpImpulse(0, -m_pBody->GetMass() * 10);
+				for (int i = 0; i < m_vContacts.size(); ++i)
+				{
+					b2Fixture* pFixA = m_vContacts[i]->GetFixtureA();
+					b2Fixture* pFixB = m_vContacts[i]->GetFixtureB();
+
+					if (pFixA == m_pGroundSensor)
+					{
+						pFixB->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixB->GetBody()->GetWorldCenter(), true);
+					}
+					else
+					{
+						pFixA->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixA->GetBody()->GetWorldCenter(), true);
+					}
+				}*/
 			}
 
 
@@ -156,21 +173,21 @@ namespace app
 			float desiredVel = 0;
 			if (m_vButtons[EB_RIGHT].Held())
 			{
-				if (grounded)
+				if (m_bGrounded)
 					desiredVel = b2Min(vel.x + m_tValue.m_fGroundAcceleration, m_tValue.m_fMaxSpeed);
 				else
 					desiredVel = b2Min(vel.x + m_tValue.m_fAirAcceleration, m_tValue.m_fMaxSpeed);
 			}
 			if (m_vButtons[EB_LEFT].Held())
 			{
-				if (grounded)
+				if (m_bGrounded)
 					desiredVel = b2Max(vel.x - m_tValue.m_fGroundAcceleration, -m_tValue.m_fMaxSpeed);
 				else
 					desiredVel = b2Max(vel.x - m_tValue.m_fAirAcceleration, -m_tValue.m_fMaxSpeed);
 			}
 			if (desiredVel == 0) //apply deceleration
 			{
-				if (grounded)
+				if (m_bGrounded)
 					desiredVel = vel.x * m_tValue.m_fGroundDeceleration;
 				else
 					desiredVel = vel.x * m_tValue.m_fAirDeceleration;
@@ -184,92 +201,6 @@ namespace app
 				m_pDrawable->skeleton->flipX = false;
 			else if (desiredVel < 0)
 				m_pDrawable->skeleton->flipX = true;
-
-
-			//b2Vec2 vel = m_pBody->GetLinearVelocity();
-			//float desiredVel = 0;
-			//bool applyForce = false;
-			//if (m_vButtons[EB_RIGHT].Held())
-			//{
-			//	applyForce = !applyForce;
-			//	desiredVel = 5;
-			//}
-			//if (m_vButtons[EB_LEFT].Held())
-			//{
-			//	applyForce = !applyForce; //instead of setting it to true, i use (not) applyForce because if both left and right are being held they should cancel eachother out
-			//	desiredVel = -5;
-			//}
-			//float velChange = desiredVel - vel.x;
-			//float force = m_pBody->GetMass() * velChange / dt.asSeconds()/*(1 / 60.0)*/; //f = mv/t
-			//if (force != 0)
-			//	m_pBody->ApplyForceToCenter(b2Vec2(force, 0), true);
-
-			
-
-
-			//b2Vec2 linVel = m_pBody->GetLinearVelocity();
-			//float xForce = TOPSPEED - abs(linVel.x);
-
-			//bool applyForce = false;
-			//if (m_vButtons[EB_RIGHT].Held())
-			//{
-			//	applyForce = !applyForce;
-			//}
-			//if (m_vButtons[EB_LEFT].Held())
-			//{
-			//	applyForce = !applyForce; //instead of setting it to true, i use (not) applyForce because if both left and right are being held they should cancel eachother out
-			//	xForce *= -1;
-			//}
-
-			//if (applyForce)
-			//{
-			//	if (grounded)
-			//		xForce *= GRND_ACC;
-			//	else
-			//		xForce *= AIR_ACC;
-
-			//	m_pBody->ApplyForceToCenter(b2Vec2(xForce, 0), true);
-			//}
-			//if (xForce > 0)
-			//	m_pDrawable->skeleton->flipX = false;
-			//else if (xForce < 0)
-			//	m_pDrawable->skeleton->flipX = true;
-
-			//if (mMoveRight) {
-			//	inputXForce = (mMaxXVelocity - xVel);
-			//}
-			//if (onGround)
-			//	inputXForce *= mGroundXAcceleration;
-			//else
-			//	inputXForce *= mAirXAcceleration;
-
-
-			/*const float Xvel = 100.0f * dt.asSeconds();
-			const float Yvel = 100.0f * dt.asSeconds();
-			b2Vec2 dir;
-			dir.x = dir.y = 0;*/
-
-			/*if (m_vButtons[EB_RIGHT].Held())
-				dir.x += Xvel;
-				if (m_vButtons[EB_LEFT].Held())
-				dir.x -= Xvel;*/
-
-			/*
-		if (m_vDirections[ED_UP])
-		dir.y += Yvel;
-		if (m_vDirections[ED_DOWN])
-		dir.y -= Yvel;*/
-
-
-			/*if (abs(linVel.x) >= TOPSPEED && ((linVel.x > 0 && dir.x > 0) || (linVel.x < 0 && dir.x < 0)))
-				dir.x = 0;
-				if (abs(linVel.y) >= TOPSPEED && ((linVel.y > 0 && dir.y > 0) || (linVel.y < 0 && dir.y < 0)))
-				dir.y = 0;
-				vel.x += dir.x;*/
-
-			//m_pBody->SetLinearVelocity(vel);
-
-
 		}
 
 
@@ -294,45 +225,6 @@ namespace app
 				m_vButtons[EButton::EB_JUMP].Next(true);
 			}break;
 			}
-
-
-			//bool gotoWalk = false;
-			//if (action.m_code == sf::Keyboard::Right || action.m_code == sf::Keyboard::D)
-			//{
-			//	m_vDirections[ED_RIGHT] = true;
-			//	gotoWalk = true;
-			//}
-			//if (action.m_code == sf::Keyboard::Left || action.m_code == sf::Keyboard::A)
-			//{
-			//	m_vDirections[ED_LEFT] = true;
-			//	gotoWalk = true;
-			//}
-			//if (action.m_code == sf::Keyboard::Up || action.m_code == sf::Keyboard::W)
-			//	m_vDirections[ED_UP] = true;
-			//if (action.m_code == sf::Keyboard::Down || action.m_code == sf::Keyboard::S)
-			//	m_vDirections[ED_DOWN] = true;
-
-			//if (action.m_code == sf::Keyboard::Space && !m_vDirections[ED_SPACE])
-			//{
-			//	m_vDirections[ED_SPACE] = true;
-
-			//	//baka::physics::callbacks::AabbCallback callback(b2Vec2());
-			//	callback = baka::physics::callbacks::AabbCallback(b2Vec2());
-			//	m_pBody->GetWorld()->QueryAABB(&callback, m_pGroundSensor->GetAABB(0));
-
-			//	if (callback.m_pFixture)
-			//	{
-			//		b2Body* body = callback.m_pFixture->GetBody();
-			//		m_pBody->SetLinearVelocity(b2Vec2(m_pBody->GetLinearVelocity().x, 10));
-			//	}
-
-			//	//m_pDrawable->state->setAnimationByName(0, "jump", false);
-			//}
-
-			//if (gotoWalk && m_pDrawable->state->getCurrent(0)->animation.name != "run")
-			//{
-			//	m_pDrawable->state->setAnimationByName(0, "run", true);
-			//}
 		}
 
 		void PlayerEnt::OnKeyUp(const baka::key_events::KeyAction& action)
@@ -360,40 +252,6 @@ namespace app
 				m_tValue.LoadValues("assets/player_values.json");
 			}break;
 			}
-
-
-			//		bool gotoIdle = false;
-			//		if (action.m_code == sf::Keyboard::Right || action.m_code == sf::Keyboard::D)
-			//		{
-			//			m_vDirections[ED_RIGHT] = false;
-			//			gotoIdle = true;
-			//			m_pBody->SetLinearVelocity(b2Vec2(0, m_pBody->GetLinearVelocity().y));
-			//		}
-			//		if (action.m_code == sf::Keyboard::Left || action.m_code == sf::Keyboard::A)
-			//		{
-			//			m_vDirections[ED_LEFT] = false;
-			//			gotoIdle = true;
-			//			m_pBody->SetLinearVelocity(b2Vec2(0, m_pBody->GetLinearVelocity().y));
-			//		}
-			//		if (action.m_code == sf::Keyboard::Up || action.m_code == sf::Keyboard::W)
-			//			m_vDirections[ED_UP] = false;
-			//		if (action.m_code == sf::Keyboard::Down || action.m_code == sf::Keyboard::S)
-			//			m_vDirections[ED_DOWN] = false;
-
-			//		if (action.m_code == sf::Keyboard::Space)
-			//		{
-			//			m_vDirections[ED_SPACE] = false;
-			//		}
-
-			//		if (gotoIdle&& m_pDrawable->state->getCurrent(0)->animation.name != "idle")
-			//		{
-			//			pData->setMixByName("run", "idle", 1.0f);
-			//			//m_pDrawable->state->data = pData;
-			//			//m_pDrawable->state->data.setMixByName("idle", "walk", 5.0f);
-			//			auto track = m_pDrawable->state->addAnimationByName(0, "idle", true, 0.0f);
-			//			//track->mixTime = 5.0f;
-			////			track->mixDuration = 5.0f;
-			//		}
 		}
 
 		void PlayerEnt::OnMouseDown(const baka::mouse_events::ButtonAction& action)
@@ -454,60 +312,39 @@ namespace app
 		{
 			if (contact->GetFixtureA() != m_pGroundSensor && contact->GetFixtureB() != m_pGroundSensor)
 				return;
-			m_vContacts.push_back(contact);
-		}
+			m_vGroundContacts.push_back(contact);
 
-		void PlayerEnt::OnContactEnd(b2Contact* contact)
-		{
-			for (int i = 0; i < m_vContacts.size(); ++i)
+			m_bGrounded = false;
+			for (int i = 0; i < m_vGroundContacts.size(); ++i)
 			{
-				if (m_vContacts[i] == contact)
+				if (m_vGroundContacts[i]->IsTouching())
 				{
-					m_vContacts.erase(m_vContacts.begin() + i);
+					m_bGrounded = true;
 					return;
 				}
 			}
 		}
 
-		bool PlayerEnt::CheckGrounded()
+		void PlayerEnt::OnContactEnd(b2Contact* contact)
 		{
-			if (m_vContacts.empty())
-				return false;
-
-			for (int i = 0; i < m_vContacts.size(); ++i)
+			for (int i = 0; i < m_vGroundContacts.size(); ++i)
 			{
-				if (m_vContacts[i]->IsTouching())
+				if (m_vGroundContacts[i] == contact)
 				{
-					return true;
+					m_vGroundContacts.erase(m_vGroundContacts.begin() + i);
+					break;
 				}
 			}
 
-			return false;
-
-			baka::physics::PhysicsPlugin* pPhysicsPlug = static_cast<baka::physics::PhysicsPlugin*>(baka::IPlugin::FindPlugin(baka::physics::PhysicsPlugin::Type));
-			b2dJson* json = pPhysicsPlug->GetJson();
-			//std::vector<b2Body*> vGroundBodies;
-			//json.getBodiesByCustomBool("is_ground", true, vGroundBodies);
-			//json.custombool
-
-			baka::physics::callbacks::AabbCallbackAll callback;
-			m_pBody->GetWorld()->QueryAABB(&callback, m_pGroundSensor->GetAABB(0));
-
-
-			for (int i = 0; i < callback.m_vFixtures.size(); ++i)
+			m_bGrounded = false;
+			for (int i = 0; i < m_vGroundContacts.size(); ++i)
 			{
-				b2Body* body = callback.m_vFixtures[i]->GetBody();
-
-			//	callback.m_vFixtures[i]->
-
-				bool is_ground = json->getCustomBool(body, "is_ground", false);
-				if (is_ground)
+				if (m_vGroundContacts[i]->IsTouching())
 				{
-					return true;
+					m_bGrounded = true;
+					return;
 				}
 			}
-
-			return false;
 		}
 	}
 }
