@@ -523,17 +523,19 @@
 			[
 				
 				{
+					"circle" : 
+					{
+						"center" : 
+						{
+							"x" : -1.907349997054553e-006,
+							"y" : -0.07007271051406860
+						},
+						"radius" : 0.5
+					},
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture1",
-					"polygon" : 
-					{
-						"vertices" : 
-						{
-							"x" : [ 0.5, 0.5, -0.5, -0.5 ],
-							"y" : [ 0.0, 2, 2, 0.0 ]
-						}
-					}
+					"name" : "ground_sensor",
+					"sensor" : true
 				},
 				
 				{
@@ -552,17 +554,16 @@
 				},
 				
 				{
-					"friction" : 0.2,
-					"name" : "groundSensor",
+					"density" : 1,
+					"name" : "fixture1",
 					"polygon" : 
 					{
 						"vertices" : 
 						{
 							"x" : [ 0.5, 0.5, -0.5, -0.5 ],
-							"y" : [ -0.1, 0.0, 0.0, -0.1 ]
+							"y" : [ 0.0, 2, 2, 0.0 ]
 						}
-					},
-					"sensor" : true
+					}
 				},
 				
 				{
@@ -581,13 +582,13 @@
 				}
 			],
 			"linearVelocity" : 0,
-			"massData-I" : 3.570972919464111,
+			"massData-I" : 2.837613821029663,
 			"massData-center" : 
 			{
-				"x" : 0.0001693820668151602,
-				"y" : 1.000024676322937
+				"x" : 0.0001384995121043176,
+				"y" : 0.8070919513702393
 			},
-			"massData-mass" : 3.570796489715576,
+			"massData-mass" : 4.356194496154785,
 			"name" : "player",
 			"position" : 
 			{

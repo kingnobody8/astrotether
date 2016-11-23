@@ -57,7 +57,8 @@ namespace app
 			std::string ret;
 
 			ret = m_pPlayer->GetPlayerValue().GetAsString();
-			ret += std::string("x vel:\t") + std::to_string(m_pPlayer->GetBody()->GetLinearVelocity().x);
+			ret += std::string("x vel:\t") + std::to_string(m_pPlayer->GetBody()->GetLinearVelocity().x) + std::string("\n");
+			ret += std::string("grounded:\t") + std::to_string(m_pPlayer->CheckGrounded()) + std::string("\n");
 
 			return ret;
 		}

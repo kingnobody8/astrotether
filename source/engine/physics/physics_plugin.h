@@ -10,7 +10,13 @@ namespace baka
 {
 	namespace physics
 	{
-		class PhysicsPlugin : public IPlugin
+		struct contact_events
+		{
+			static util::Publisher<b2Contact*> s_ContactBegin;
+			static util::Publisher<b2Contact*> s_ContactEnd;
+		};
+
+		class PhysicsPlugin : public IPlugin, public b2ContactListener
 		{
 		public:
 			DECLARE_PLUGIN_TYPE_INFO(PhysicsPlugin);
@@ -50,6 +56,15 @@ namespace baka
 			const std::vector<render::PhysicsDrawable*> GetDrawables() const { return m_vDrawables; }
 			void DeleteDrawables();
 			b2dJson* GetJson() { return &m_json; }
+
+			virtual void BeginContact(b2Contact* contact);
+			virtual void EndContact(b2Contact* contact);
+			virtual void BeginContact(b2ParticleSystem* particleSystem, b2ParticleBodyContact* particleBodyContact);
+			virtual void EndContact(b2Fixture* fixture, b2ParticleSystem* particleSystem, int32 index);
+			virtual void BeginContact(b2ParticleSystem* particleSystem, b2ParticleContact* particleContact);
+			virtual void EndContact(b2ParticleSystem* particleSystem, int32 indexA, int32 indexB);
+			virtual void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
+			virtual void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
 		};
 	}
 }

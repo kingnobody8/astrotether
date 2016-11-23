@@ -1,6 +1,6 @@
 {
     "max_speed": 10.0,
-    "ground_acceleration": 0.2,
+    "ground_acceleration": 0.1,
     "air_acceleration": 0.5,
     "ground_deceleration": 0.98,
     "air_deceleration": 1.0,

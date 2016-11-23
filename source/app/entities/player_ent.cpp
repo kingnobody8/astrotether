@@ -109,6 +109,9 @@ namespace app
 			baka::mouse_events::s_InputMouseButtonUp.Subscribe(this, BIND1(this, &PlayerEnt::OnMouseUp));
 			baka::mouse_events::s_InputMouseMotion.Subscribe(this, BIND1(this, &PlayerEnt::OnMouseMove));
 
+			baka::physics::contact_events::s_ContactBegin.Subscribe(this, BIND1(this, &PlayerEnt::OnContactBegin));
+			baka::physics::contact_events::s_ContactEnd.Subscribe(this, BIND1(this, &PlayerEnt::OnContactEnd));
+
 		}
 
 		VIRTUAL void PlayerEnt::Exit()
@@ -447,9 +450,39 @@ namespace app
 			}
 		}
 
+		void PlayerEnt::OnContactBegin(b2Contact* contact)
+		{
+			if (contact->GetFixtureA() != m_pGroundSensor && contact->GetFixtureB() != m_pGroundSensor)
+				return;
+			m_vContacts.push_back(contact);
+		}
+
+		void PlayerEnt::OnContactEnd(b2Contact* contact)
+		{
+			for (int i = 0; i < m_vContacts.size(); ++i)
+			{
+				if (m_vContacts[i] == contact)
+				{
+					m_vContacts.erase(m_vContacts.begin() + i);
+					return;
+				}
+			}
+		}
+
 		bool PlayerEnt::CheckGrounded()
 		{
-			return true;
+			if (m_vContacts.empty())
+				return false;
+
+			for (int i = 0; i < m_vContacts.size(); ++i)
+			{
+				if (m_vContacts[i]->IsTouching())
+				{
+					return true;
+				}
+			}
+
+			return false;
 
 			baka::physics::PhysicsPlugin* pPhysicsPlug = static_cast<baka::physics::PhysicsPlugin*>(baka::IPlugin::FindPlugin(baka::physics::PhysicsPlugin::Type));
 			b2dJson* json = pPhysicsPlug->GetJson();
@@ -464,6 +497,8 @@ namespace app
 			for (int i = 0; i < callback.m_vFixtures.size(); ++i)
 			{
 				b2Body* body = callback.m_vFixtures[i]->GetBody();
+
+			//	callback.m_vFixtures[i]->
 
 				bool is_ground = json->getCustomBool(body, "is_ground", false);
 				if (is_ground)

@@ -43,16 +43,16 @@
     
     {
       "class" : "body",
-      "displayName" : "is_ground",
-      "name" : "is_ground",
-      "type" : "bool"
+      "displayName" : "entity_type",
+      "name" : "entity_type",
+      "type" : "string"
     },
     
     {
       "class" : "body",
-      "displayName" : "entity_type",
-      "name" : "entity_type",
-      "type" : "string"
+      "displayName" : "is_ground",
+      "name" : "is_ground",
+      "type" : "bool"
     }
   ],
   "metaworld" : 
@@ -157,23 +157,21 @@
           },
           
           {
-            "density" : 1,
             "friction" : 0.2,
             "id" : 3,
-            "name" : "ground_sensor",
+            "name" : "groundSensor",
             "sensor" : true,
             "shapes" : 
             [
               
               {
-                "radius" : 0.5,
-                "type" : "circle"
+                "type" : "polygon"
               }
             ],
             "vertices" : 
             {
-              "x" : [ -1.907349997054553e-006 ],
-              "y" : [ -0.07007271051406860 ]
+              "x" : [ -0.5, 0.5, 0.5, -0.5 ],
+              "y" : [ -0.1, -0.1, 0.0, 0.0 ]
             }
           },
           
@@ -219,13 +217,13 @@
         ],
         "id" : 2,
         "linearVelocity" : 0,
-        "massData-I" : 2.837613821029663,
+        "massData-I" : 3.570972919464111,
         "massData-center" : 
         {
-          "x" : 0.0001384995121043176,
-          "y" : 0.8070919513702393
+          "x" : 0.0001693820668151602,
+          "y" : 1.000024676322937
         },
-        "massData-mass" : 4.356194496154785,
+        "massData-mass" : 3.570796489715576,
         "name" : "player",
         "position" : 
         {

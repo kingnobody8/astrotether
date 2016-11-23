@@ -17,6 +17,10 @@ namespace baka
 		float dx;
 		float dy;
 
+		STATIC util::Publisher<b2Contact*> contact_events::s_ContactBegin;
+		STATIC util::Publisher<b2Contact*> contact_events::s_ContactEnd;
+
+
 		DEFINE_PLUGIN_TYPE_INFO(PhysicsPlugin);
 
 		PhysicsPlugin::PhysicsPlugin()
@@ -45,6 +49,7 @@ namespace baka
 			pRenderPlug->AddLayer("physics", &m_view);
 
 			m_pWorld = new b2World(b2Vec2());
+			m_pWorld->SetContactListener(this);
 
 			//m_pWorld = new b2World(GRAVITY);
 			//m_pWorld->SetAllowSleeping(true);
@@ -288,5 +293,33 @@ namespace baka
 			}
 		}
 
+
+
+		VIRTUAL void PhysicsPlugin::BeginContact(b2Contact* contact)
+		{
+			contact_events::s_ContactBegin.Publish(contact);
+		}
+		VIRTUAL void PhysicsPlugin::EndContact(b2Contact* contact)
+		{
+			contact_events::s_ContactEnd.Publish(contact);
+		}
+		VIRTUAL void PhysicsPlugin::BeginContact(b2ParticleSystem* particleSystem, b2ParticleBodyContact* particleBodyContact)
+		{
+		}
+		VIRTUAL void PhysicsPlugin::EndContact(b2Fixture* fixture, b2ParticleSystem* particleSystem, int32 index)
+		{
+		}
+		VIRTUAL void PhysicsPlugin::BeginContact(b2ParticleSystem* particleSystem, b2ParticleContact* particleContact)
+		{
+		}
+		VIRTUAL void PhysicsPlugin::EndContact(b2ParticleSystem* particleSystem, int32 indexA, int32 indexB)
+		{
+		}
+		VIRTUAL void PhysicsPlugin::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
+		{
+		}
+		VIRTUAL void PhysicsPlugin::PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
+		{
+		}
 	}
 }
