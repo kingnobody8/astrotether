@@ -22,6 +22,7 @@ namespace app
 				, m_fJumpSpeed(0)
 				, m_fJumpTime(0)
 				, m_fFlipTime(0)
+				, m_fDashImpulse(0)
 			{
 			}
 			void LoadValues(const std::string& file_path);
@@ -35,11 +36,12 @@ namespace app
 			float m_fJumpSpeed;
 			float m_fJumpTime;
 			float m_fFlipTime;
+			float m_fDashImpulse;
 		};
 
 		class PlayerEnt : public baka::entity::IEntity
 		{
-			enum EButton { EB_INVALID = -1, EB_LEFT, EB_RIGHT, EB_UP, EB_DOWN, EB_JUMP, EB_SHOOT, EB_LEFT_FLIP, EB_RIGHT_FLIP, EB_COUNT };
+			enum EButton { EB_INVALID = -1, EB_LEFT, EB_RIGHT, EB_UP, EB_DOWN, EB_JUMP, EB_SHOOT, EB_LEFT_FLIP, EB_RIGHT_FLIP, EB_DASH, EB_COUNT };
 
 		private:
 			b2Body* m_pBody;
@@ -70,6 +72,7 @@ namespace app
 
 			void OnRopeEvent(const sf::Vector2f& woorldCoords);
 			void Shoot();
+			void Dash();
 
 			void OnContactBegin(b2Contact*);
 			void OnContactEnd(b2Contact*);

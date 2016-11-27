@@ -39,6 +39,7 @@ namespace app
 			m_fJumpSpeed = json["jump_speed"].GetDouble();
 			m_fJumpTime = json["jump_time"].GetDouble();
 			m_fFlipTime = json["flip_time"].GetDouble();
+			m_fDashImpulse = json["dash_impulse"].GetDouble();
 		}
 
 		const std::string PlayerValue::GetAsString() const
@@ -53,6 +54,7 @@ namespace app
 			ret += std::string("Jump Speed:\t") + std::to_string(m_fJumpSpeed) + std::string("\n");
 			ret += std::string("Jump Time:\t") + std::to_string(m_fJumpTime) + std::string("\n");
 			ret += std::string("Flip Time:\t") + std::to_string(m_fFlipTime) + std::string("\n");
+			ret += std::string("Dash Imp:\t") + std::to_string(m_fDashImpulse) + std::string("\n");
 			return ret;
 		}
 
@@ -155,6 +157,10 @@ namespace app
 			if (m_vButtons[EB_SHOOT].Pull())
 			{
 				Shoot();
+			}
+			if (m_vButtons[EB_DASH].Pull())
+			{
+				Dash();
 			}
 
 			if (m_vButtons[EB_LEFT_FLIP].Pull())
@@ -385,6 +391,8 @@ namespace app
 				m_vButtons[EB_SHOOT].Next(true); break;
 			case 1:
 				m_vButtons[EB_JUMP].Next(true); break;
+			case 3:
+				m_vButtons[EB_DASH].Next(true); break;
 			}
 		}
 
@@ -399,12 +407,19 @@ namespace app
 				m_vButtons[EB_SHOOT].Next(false); break;
 			case 1:
 				m_vButtons[EB_JUMP].Next(false); break;
+			case 3:
+				m_vButtons[EB_DASH].Next(false); break;
 			}
 		}
 
 		void PlayerEnt::OnJoypadMove(const baka::joypad_events::AxisAction& action)
 		{
+			__todo()//fix movement between controller and keyboard overlapping eachotehr
+				//fix dpad not registering buttons
 			if (action.m_id > 1)
+				return;
+
+			if (action.m_axis != sf::Joystick::Axis::PovX && action.m_axis != sf::Joystick::Axis::PovY)
 				return;
 
 			switch (action.m_axis)
@@ -514,6 +529,16 @@ namespace app
 			pos += dir;
 
 			OnRopeEvent(sf::Vector2f(pos.x, pos.y));
+		}
+
+		void PlayerEnt::Dash()
+		{
+			b2Vec2 dir = CalcShootDirection();
+			//b2Vec2 vel = m_pBody->GetLinearVelocity();
+			//float velChange = m_tValue.m_fDashImpulse - vel.x;
+			//float impulse = m_pBody->GetMass() * velChange;
+			dir *= m_pBody->GetMass() * m_tValue.m_fDashImpulse;
+			m_pBody->ApplyLinearImpulse(dir, m_pBody->GetLocalCenter(), true);
 		}
 
 		void PlayerEnt::OnContactBegin(b2Contact* contact)
