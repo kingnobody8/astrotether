@@ -28,8 +28,8 @@ namespace baka
 			sf::Keyboard::Key	m_code;
 			bool			m_repeat;
 
-			KeyAction(const sf::Event& event, const sf::Keyboard::Key& code)
-				: IEvent(event), m_code(code), m_repeat(false)
+			KeyAction(const sf::Event& event)
+				: IEvent(event), m_code(event.key.code), m_repeat(false)
 			{
 			}
 		};
@@ -46,8 +46,8 @@ namespace baka
 			//vec2	m_delta;
 			__todo() // we may eventually want velocity in here delta_pixels / time_since last motion
 
-				MotionAction(const  sf::Event& event, const sf::Vector2i& pixel/*, const vec2& delta*/)
-				: IEvent(event), m_pixel(pixel)/*, m_delta(delta)*/
+				MotionAction(const  sf::Event& event/*, const vec2& delta*/)
+				: IEvent(event), m_pixel(sf::Vector2i(event.mouseMove.x, event.mouseMove.y))/*, m_delta(delta)*/
 			{
 			}
 		};
@@ -58,8 +58,8 @@ namespace baka
 			uchar	m_button;
 			//uchar	m_clicks;
 
-			ButtonAction(const  sf::Event& event, const sf::Vector2i& pixel, const uchar& button/*, const uchar& clicks*/)
-				: IEvent(event), m_pixel(pixel), m_button(button)//, m_clicks(clicks)
+			ButtonAction(const  sf::Event& event/*, const uchar& clicks*/)
+				: IEvent(event), m_pixel(sf::Vector2i(event.mouseButton.x, event.mouseButton.y)), m_button(event.mouseButton.button)//, m_clicks(clicks)
 			{
 			}
 		};
@@ -69,8 +69,8 @@ namespace baka
 			//vec2	m_scroll;
 			int m_delta;
 
-			WheelAction(const  sf::Event& event, const int delta)
-				: IEvent(event), m_delta(delta)
+			WheelAction(const  sf::Event& event)
+				: IEvent(event), m_delta(event.mouseWheelScroll.delta)
 			{
 			}
 		};
@@ -109,5 +109,22 @@ namespace baka
 		static util::Publisher<MotionAction> s_InputTouchMotion;
 		static util::Publisher<TouchAction> s_InputTouchDown;
 		static util::Publisher<TouchAction> s_InputTouchUp;
+	};
+
+	struct joypad_events
+	{
+		struct ButtonAction : public IEvent
+		{
+			unsigned int m_code;
+			unsigned int m_id;
+
+			ButtonAction(const sf::Event& event)
+				: IEvent(event), m_code(event.joystickButton.button), m_id(event.joystickButton.joystickId)
+			{
+			}
+		};
+
+		static util::Publisher<ButtonAction> s_InputJoypadButtonDown;
+		static util::Publisher<ButtonAction> s_InputJoypadButtonUp;
 	};
 }

@@ -19,4 +19,8 @@ namespace baka
 	STATIC util::Publisher<touch_events::MotionAction> touch_events::s_InputTouchMotion;
 	STATIC util::Publisher<touch_events::TouchAction> touch_events::s_InputTouchDown;
 	STATIC util::Publisher<touch_events::TouchAction> touch_events::s_InputTouchUp;
+
+	//joypad
+	STATIC util::Publisher<joypad_events::ButtonAction> joypad_events::s_InputJoypadButtonDown;
+	STATIC util::Publisher<joypad_events::ButtonAction> joypad_events::s_InputJoypadButtonUp;
 }

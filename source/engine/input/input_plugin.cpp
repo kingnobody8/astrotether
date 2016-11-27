@@ -39,21 +39,23 @@ namespace baka
 			case sf::Event::GainedFocus: break;
 			case sf::Event::TextEntered: break;
 			case sf::Event::KeyPressed:
-				key_events::s_InputKeyDown.Publish(key_events::KeyAction(tEvent, tEvent.key.code)); break;
+				key_events::s_InputKeyDown.Publish(key_events::KeyAction(tEvent)); break;
 			case sf::Event::KeyReleased: 
-				key_events::s_InputKeyUp.Publish(key_events::KeyAction(tEvent, tEvent.key.code)); break;
+				key_events::s_InputKeyUp.Publish(key_events::KeyAction(tEvent)); break;
 			case sf::Event::MouseWheelScrolled:
-				mouse_events::s_InputMouseScrollWheel.Publish(mouse_events::WheelAction(tEvent, tEvent.mouseWheelScroll.delta)); break;
+				mouse_events::s_InputMouseScrollWheel.Publish(mouse_events::WheelAction(tEvent)); break;
 			case sf::Event::MouseButtonPressed:
-				mouse_events::s_InputMouseButtonDown.Publish(mouse_events::ButtonAction(tEvent, sf::Vector2i(tEvent.mouseButton.x, tEvent.mouseButton.y), tEvent.mouseButton.button)); break;
+				mouse_events::s_InputMouseButtonDown.Publish(mouse_events::ButtonAction(tEvent)); break;
 			case sf::Event::MouseButtonReleased:
-				mouse_events::s_InputMouseButtonUp.Publish(mouse_events::ButtonAction(tEvent, sf::Vector2i(tEvent.mouseButton.x, tEvent.mouseButton.y), tEvent.mouseButton.button)); break;
+				mouse_events::s_InputMouseButtonUp.Publish(mouse_events::ButtonAction(tEvent)); break;
 			case sf::Event::MouseMoved:
-				mouse_events::s_InputMouseMotion.Publish(mouse_events::MotionAction(tEvent, sf::Vector2i(tEvent.mouseMove.x, tEvent.mouseMove.y))); break;
+				mouse_events::s_InputMouseMotion.Publish(mouse_events::MotionAction(tEvent)); break;
 			case sf::Event::MouseEntered: break;
 			case sf::Event::MouseLeft: break;
-			case sf::Event::JoystickButtonPressed: break;
-			case sf::Event::JoystickButtonReleased: break;
+			case sf::Event::JoystickButtonPressed:
+				joypad_events::s_InputJoypadButtonDown.Publish(joypad_events::ButtonAction(tEvent)); break;
+			case sf::Event::JoystickButtonReleased:
+				joypad_events::s_InputJoypadButtonUp.Publish(joypad_events::ButtonAction(tEvent)); break;
 			case sf::Event::JoystickMoved: break;
 			case sf::Event::JoystickConnected: break;
 			case sf::Event::JoystickDisconnected: break;
