@@ -523,38 +523,8 @@
 			[
 				
 				{
-					"circle" : 
-					{
-						"center" : 
-						{
-							"x" : -1.907349997054553e-006,
-							"y" : -0.07007271051406860
-						},
-						"radius" : 0.5
-					},
-					"density" : 1,
+					"density" : 2.295581579208374,
 					"friction" : 0.2,
-					"name" : "ground_sensor",
-					"sensor" : true
-				},
-				
-				{
-					"circle" : 
-					{
-						"center" : 
-						{
-							"x" : -1.192092895507813e-006,
-							"y" : 6.914138793945313e-006
-						},
-						"radius" : 0.5
-					},
-					"density" : 1,
-					"friction" : 0.2,
-					"name" : "fixture2"
-				},
-				
-				{
-					"density" : 1,
 					"name" : "fixture1",
 					"polygon" : 
 					{
@@ -571,24 +541,55 @@
 					{
 						"center" : 
 						{
+							"x" : -1.192092895507813e-006,
+							"y" : 6.914138793945313e-006
+						},
+						"radius" : 0.5
+					},
+					"density" : 2.295581579208374,
+					"friction" : 0.2,
+					"name" : "fixture2"
+				},
+				
+				{
+					"circle" : 
+					{
+						"center" : 
+						{
+							"x" : -1.907349997054553e-006,
+							"y" : -0.07007271051406860
+						},
+						"radius" : 0.5
+					},
+					"density" : 2.295581579208374,
+					"friction" : 0.2,
+					"name" : "ground_sensor",
+					"sensor" : true
+				},
+				
+				{
+					"circle" : 
+					{
+						"center" : 
+						{
 							"x" : 0.0007712841033935547,
 							"y" : 2.000105381011963
 						},
 						"radius" : 0.5
 					},
-					"density" : 1,
+					"density" : 2.295581579208374,
 					"friction" : 0.2,
 					"name" : "fixture2"
 				}
 			],
 			"linearVelocity" : 0,
-			"massData-I" : 2.837613821029663,
+			"massData-I" : 6.513974189758301,
 			"massData-center" : 
 			{
 				"x" : 0.0001384995121043176,
 				"y" : 0.8070919513702393
 			},
-			"massData-mass" : 4.356194496154785,
+			"massData-mass" : 10,
 			"name" : "player",
 			"position" : 
 			{
@@ -682,7 +683,7 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 6,
+			"body" : 7,
 			"center" : 0,
 			"corners" : 
 			{
@@ -701,7 +702,7 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 7,
+			"body" : 6,
 			"center" : 0,
 			"corners" : 
 			{

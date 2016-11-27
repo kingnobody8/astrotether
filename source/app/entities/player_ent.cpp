@@ -36,7 +36,8 @@ namespace app
 			m_fGroundDeceleration = json["ground_deceleration"].GetDouble();
 			m_fAirAcceleration = json["air_acceleration"].GetDouble();
 			m_fAirDeceleration = json["air_deceleration"].GetDouble();
-			m_fJumpImpulse = json["jump_impulse"].GetDouble();
+			m_fJumpSpeed = json["jump_speed"].GetDouble();
+			m_fJumpTime = json["jump_time"].GetDouble();
 		}
 
 		const std::string PlayerValue::GetAsString() const
@@ -48,7 +49,8 @@ namespace app
 			ret += std::string("Grnd Decel:\t") + std::to_string(m_fGroundDeceleration) + std::string("\n");
 			ret += std::string("Air Accel:\t") + std::to_string(m_fAirAcceleration) + std::string("\n");
 			ret += std::string("Air Decel:\t") + std::to_string(m_fAirDeceleration) + std::string("\n");
-			ret += std::string("Jump Impulse:\t") + std::to_string(m_fJumpImpulse) + std::string("\n");
+			ret += std::string("Jump Speed:\t") + std::to_string(m_fJumpSpeed) + std::string("\n");
+			ret += std::string("Jump Time:\t") + std::to_string(m_fJumpTime) + std::string("\n");
 			return ret;
 		}
 
@@ -61,6 +63,7 @@ namespace app
 			, m_pDrawable(null)
 			, m_pGroundSensor(null)
 			, m_bGrounded(false)
+			, m_fJumpTime(-1.0f)
 		{
 			b2Fixture* pFixture = pBody->GetFixtureList();
 			while (pFixture != null)
@@ -145,7 +148,8 @@ namespace app
 
 			if (m_vButtons[EB_JUMP].Push() && m_bGrounded)
 			{
-				m_pBody->ApplyLinearImpulse(b2Vec2(0, m_tValue.m_fJumpImpulse), m_pBody->GetLocalCenter(), true);
+				m_fJumpTime = m_tValue.m_fJumpTime;
+				//m_pBody->ApplyLinearImpulse(b2Vec2(0, m_tValue.m_fJumpImpulse), m_pBody->GetLocalCenter(), true);
 
 			/*	b2Vec2 jumpImpulse(0, -m_pBody->GetMass() * 10);
 				for (int i = 0; i < m_vContacts.size(); ++i)
@@ -162,6 +166,16 @@ namespace app
 						pFixA->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixA->GetBody()->GetWorldCenter(), true);
 					}
 				}*/
+			}
+			else if (m_vButtons[EB_JUMP].Pull())
+			{
+				m_fJumpTime = -1.0f;
+			}
+			if (m_vButtons[EB_JUMP].Held() && m_fJumpTime > 0.0f)
+			{
+				m_fJumpTime -= dt.asSeconds();
+				float jIpulse = m_pBody->GetMass() * m_tValue.m_fJumpSpeed;
+				m_pBody->ApplyLinearImpulse(b2Vec2(0, jIpulse), m_pBody->GetLocalCenter(), true);
 			}
 
 

@@ -19,7 +19,8 @@ namespace app
 				, m_fGroundDeceleration(0)
 				, m_fAirAcceleration(0)
 				, m_fAirDeceleration(0)
-				, m_fJumpImpulse(0)
+				, m_fJumpSpeed(0)
+				, m_fJumpTime(0)
 			{
 			}
 			void LoadValues(const std::string& file_path);
@@ -30,7 +31,8 @@ namespace app
 			float m_fAirAcceleration;
 			float m_fGroundDeceleration;
 			float m_fAirDeceleration;
-			float m_fJumpImpulse;
+			float m_fJumpSpeed;
+			float m_fJumpTime;
 		};
 
 		class PlayerEnt : public baka::entity::IEntity
@@ -50,6 +52,7 @@ namespace app
 
 			std::vector<b2Contact*> m_vGroundContacts;
 			bool m_bGrounded;
+			float m_fJumpTime;
 
 		private:
 			void OnKeyDown(const baka::key_events::KeyAction& action);
