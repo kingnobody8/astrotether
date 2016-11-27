@@ -23,6 +23,7 @@ namespace app
 				, m_fJumpTime(0)
 				, m_fFlipTime(0)
 				, m_fDashImpulse(0)
+				, m_fTetherLength(0)
 			{
 			}
 			void LoadValues(const std::string& file_path);
@@ -37,6 +38,7 @@ namespace app
 			float m_fJumpTime;
 			float m_fFlipTime;
 			float m_fDashImpulse;
+			float m_fTetherLength;
 		};
 
 		class PlayerEnt : public baka::entity::IEntity

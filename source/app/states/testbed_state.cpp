@@ -64,7 +64,7 @@ namespace app
 			b2Vec2 pos = m_pPlayer->GetBody()->GetPosition();
 			shooter[0].position = m_pPlayer->GetPosition();
 			shooter[0].position.y *= -1;
-			pos += m_pPlayer->CalcShootDirection() * 10.0f;
+			pos += m_pPlayer->CalcShootDirection() * m_pPlayer->GetPlayerValue().m_fTetherLength;
 			pos.y += 0.5f;
 			shooter[0].position.y -= 0.5f;
 
@@ -85,7 +85,7 @@ namespace app
 			sf::View& view = m_pPhysicsPlugin->GetView();
 			sf::Vector2f pos = m_pPlayer->GetPosition();
 			pos.y *= -1;
-			//view.setCenter(pos);
+			view.setCenter(pos);
 		}
 	}
 }

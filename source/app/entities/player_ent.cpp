@@ -40,6 +40,7 @@ namespace app
 			m_fJumpTime = json["jump_time"].GetDouble();
 			m_fFlipTime = json["flip_time"].GetDouble();
 			m_fDashImpulse = json["dash_impulse"].GetDouble();
+			m_fTetherLength = json["tether_length"].GetDouble();
 		}
 
 		const std::string PlayerValue::GetAsString() const
@@ -55,6 +56,7 @@ namespace app
 			ret += std::string("Jump Time:\t") + std::to_string(m_fJumpTime) + std::string("\n");
 			ret += std::string("Flip Time:\t") + std::to_string(m_fFlipTime) + std::string("\n");
 			ret += std::string("Dash Imp:\t") + std::to_string(m_fDashImpulse) + std::string("\n");
+			ret += std::string("Tether Lng:\t") + std::to_string(m_fTetherLength) + std::string("\n");
 			return ret;
 		}
 
@@ -416,8 +418,8 @@ namespace app
 		{
 			__todo()//fix movement between controller and keyboard overlapping eachotehr
 				//fix dpad not registering buttons
-			if (action.m_id > 1)
-				return;
+				if (action.m_id > 1)
+					return;
 
 			if (action.m_axis != sf::Joystick::Axis::PovX && action.m_axis != sf::Joystick::Axis::PovY)
 				return;
@@ -426,7 +428,12 @@ namespace app
 			{
 			case sf::Joystick::Axis::PovX:
 			{
-				if (action.m_pos > 0)
+				if (EPSI(action.m_pos, 0))
+				{
+					m_vButtons[EB_RIGHT].Next(false);
+					m_vButtons[EB_LEFT].Next(false);
+				}
+				else if (action.m_pos > 0)
 				{
 					m_vButtons[EB_RIGHT].Next(true);
 				}
@@ -434,15 +441,15 @@ namespace app
 				{
 					m_vButtons[EB_LEFT].Next(true);
 				}
-				else if (action.m_pos == 0)
-				{
-					m_vButtons[EB_RIGHT].Next(false);
-					m_vButtons[EB_LEFT].Next(false);
-				}
 			} break;
 			case sf::Joystick::Axis::PovY:
 			{
-				if (action.m_pos > 0)
+				if (EPSI(action.m_pos, 0))
+				{
+					m_vButtons[EB_UP].Next(false);
+					m_vButtons[EB_DOWN].Next(false);
+				}
+				else if (action.m_pos > 0)
 				{
 					m_vButtons[EB_UP].Next(true);
 				}
@@ -450,11 +457,7 @@ namespace app
 				{
 					m_vButtons[EB_DOWN].Next(true);
 				}
-				else if (action.m_pos == 0)
-				{
-					m_vButtons[EB_UP].Next(false);
-					m_vButtons[EB_DOWN].Next(false);
-				}
+
 			} break;
 			}
 		}
@@ -495,8 +498,8 @@ namespace app
 				callback.m_pIgnore = m_pBody;
 				b2Vec2 direction = pw - m_pBody->GetPosition();
 				direction.Normalize();
-				direction *= 100;
-				b2Vec2 point = m_pBody->GetPosition() + direction;
+				direction *= m_tValue.m_fTetherLength;
+				b2Vec2 point = m_pBody->GetPosition() + b2Vec2(0, 0.5) + direction;
 				m_pBody->GetWorld()->RayCast(&callback, m_pBody->GetPosition() + b2Vec2(0, 0.5), point);
 
 				if (callback.m_bHit)
@@ -523,7 +526,7 @@ namespace app
 		void PlayerEnt::Shoot()
 		{
 			b2Vec2 dir = CalcShootDirection();
-			dir *= 10;
+			dir *= m_tValue.m_fTetherLength;
 
 			b2Vec2 pos = m_pBody->GetPosition();
 			pos += dir;
