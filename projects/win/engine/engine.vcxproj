@@ -27,7 +27,6 @@
     <ClCompile Include="..\..\..\source\engine\entity\entity_plugin..cpp" />
     <ClCompile Include="..\..\..\source\engine\input\input_event.cpp" />
     <ClCompile Include="..\..\..\source\engine\input\input_plugin.cpp" />
-    <ClCompile Include="..\..\..\source\engine\input\xbox.cpp" />
     <ClCompile Include="..\..\..\source\engine\physics\debug_draw.cpp" />
     <ClCompile Include="..\..\..\source\engine\physics\physics_plugin.cpp" />
     <ClCompile Include="..\..\..\source\engine\plugin.cpp" />
@@ -72,7 +71,6 @@
     <ClInclude Include="..\..\..\source\engine\entity\entity_plugin.h" />
     <ClInclude Include="..\..\..\source\engine\input\input_event.h" />
     <ClInclude Include="..\..\..\source\engine\input\input_plugin.h" />
-    <ClInclude Include="..\..\..\source\engine\input\xbox.h" />
     <ClInclude Include="..\..\..\source\engine\physics\callbacks\aabb_callback.h" />
     <ClInclude Include="..\..\..\source\engine\physics\callbacks\raycast_callback.h" />
     <ClInclude Include="..\..\..\source\engine\physics\debug_draw.h" />

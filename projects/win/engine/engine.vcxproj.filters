@@ -167,9 +167,6 @@
     <ClCompile Include="..\..\..\source\engine\render\box2d-sfml.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\engine\input\xbox.cpp">
-      <Filter>input</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\engine\engine.h" />
@@ -353,9 +350,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\render\box2d-sfml.h">
       <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\engine\input\xbox.h">
-      <Filter>input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
