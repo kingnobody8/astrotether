@@ -38,6 +38,7 @@ namespace app
 			m_fAirDeceleration = json["air_deceleration"].GetDouble();
 			m_fJumpSpeed = json["jump_speed"].GetDouble();
 			m_fJumpTime = json["jump_time"].GetDouble();
+			m_fFlipTime = json["flip_time"].GetDouble();
 		}
 
 		const std::string PlayerValue::GetAsString() const
@@ -51,6 +52,7 @@ namespace app
 			ret += std::string("Air Decel:\t") + std::to_string(m_fAirDeceleration) + std::string("\n");
 			ret += std::string("Jump Speed:\t") + std::to_string(m_fJumpSpeed) + std::string("\n");
 			ret += std::string("Jump Time:\t") + std::to_string(m_fJumpTime) + std::string("\n");
+			ret += std::string("Flip Time:\t") + std::to_string(m_fFlipTime) + std::string("\n");
 			return ret;
 		}
 
@@ -155,6 +157,39 @@ namespace app
 				Shoot();
 			}
 
+			if (m_vButtons[EB_LEFT_FLIP].Pull())
+			{
+				m_fFlipTime = m_tValue.m_fFlipTime;
+			}
+
+			if (m_fFlipTime > 0)
+			{
+				float desiredAngle = 0;
+				m_fFlipTime -= dt.asSeconds();
+				if (m_fFlipTime <= 0)
+				{
+					float desiredAngle = 0;
+					m_pBody->SetTransform(m_pBody->GetPosition(), 0);
+					m_pBody->SetFixedRotation(true);
+				}
+				else
+				{
+					desiredAngle = 180 * DEG_RAD;// Lerp(0, 360, 1.0f - (m_fFlipTime / m_tValue.m_fFlipTime));
+
+					float bodyAngle = m_pBody->GetAngle();
+					float nextAngle = bodyAngle + m_pBody->GetAngularVelocity() / 60.0;
+					float totalRotation = desiredAngle - nextAngle;
+					while (totalRotation < -180 * DEG_RAD) totalRotation += 360 * DEG_RAD;
+					while (totalRotation > 180 * DEG_RAD) totalRotation -= 360 * DEG_RAD;
+					float desiredAngularVelocity = totalRotation * 60;
+					float change = 10 * DEG_RAD; //allow 1 degree rotation per time step
+					desiredAngularVelocity = Min(change, Max(-change, desiredAngularVelocity));
+					float impulse = m_pBody->GetInertia() * desiredAngularVelocity;
+					m_pBody->SetFixedRotation(false);
+					m_pBody->ApplyAngularImpulse(impulse, true);
+				}
+			}
+
 			if (m_vButtons[EB_JUMP].Push() && m_bGrounded)
 			{
 				m_fJumpTime = m_tValue.m_fJumpTime;
@@ -222,13 +257,10 @@ namespace app
 			float impulse = m_pBody->GetMass() * velChange; //disregard time factor
 			m_pBody->ApplyLinearImpulse(b2Vec2(impulse, 0), m_pBody->GetWorldCenter(), true);
 
-			//if (isOutsideEpsi)
-			//{
-				if (m_vButtons[EB_RIGHT].Held())
-					m_pDrawable->skeleton->flipX = false;
-				else if (m_vButtons[EB_LEFT].Held())
-					m_pDrawable->skeleton->flipX = true;
-			//}
+			if (m_vButtons[EB_RIGHT].Held())
+				m_pDrawable->skeleton->flipX = false;
+			else if (m_vButtons[EB_LEFT].Held())
+				m_pDrawable->skeleton->flipX = true;
 		}
 
 

@@ -85,7 +85,7 @@ namespace app
 			sf::View& view = m_pPhysicsPlugin->GetView();
 			sf::Vector2f pos = m_pPlayer->GetPosition();
 			pos.y *= -1;
-			view.setCenter(pos);
+			//view.setCenter(pos);
 		}
 	}
 }

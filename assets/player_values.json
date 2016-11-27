@@ -5,5 +5,5 @@
     "air_deceleration": 1.0,
     "jump_speed": 1,
     "jump_time": 0.08,
-    "flip_time":  0.5
+    "flip_time":  2.0
 }

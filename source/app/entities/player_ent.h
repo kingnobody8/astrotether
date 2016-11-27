@@ -55,6 +55,7 @@ namespace app
 			std::vector<b2Contact*> m_vGroundContacts;
 			bool m_bGrounded;
 			float m_fJumpTime;
+			float m_fFlipTime;
 
 		private:
 			void OnKeyDown(const baka::key_events::KeyAction& action);
