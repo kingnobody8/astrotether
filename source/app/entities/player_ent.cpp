@@ -113,6 +113,10 @@ namespace app
 			baka::mouse_events::s_InputMouseButtonUp.Subscribe(this, BIND1(this, &PlayerEnt::OnMouseUp));
 			baka::mouse_events::s_InputMouseMotion.Subscribe(this, BIND1(this, &PlayerEnt::OnMouseMove));
 
+			baka::joypad_events::s_InputJoypadButtonDown.Subscribe(this, BIND1(this, &PlayerEnt::OnJoypadButtonDown));
+			baka::joypad_events::s_InputJoypadButtonUp.Subscribe(this, BIND1(this, &PlayerEnt::OnJoypadButtonUp));
+			baka::joypad_events::s_InputJoypadMove.Subscribe(this, BIND1(this, &PlayerEnt::OnJoypadMove));
+
 			baka::physics::contact_events::s_ContactBegin.Subscribe(this, BIND1(this, &PlayerEnt::OnContactBegin));
 			baka::physics::contact_events::s_ContactEnd.Subscribe(this, BIND1(this, &PlayerEnt::OnContactEnd));
 
@@ -146,26 +150,31 @@ namespace app
 				m_vButtons[i].Flush(dt.asSeconds());
 			}
 
+			if (m_vButtons[EB_SHOOT].Pull())
+			{
+				Shoot();
+			}
+
 			if (m_vButtons[EB_JUMP].Push() && m_bGrounded)
 			{
 				m_fJumpTime = m_tValue.m_fJumpTime;
 				//m_pBody->ApplyLinearImpulse(b2Vec2(0, m_tValue.m_fJumpImpulse), m_pBody->GetLocalCenter(), true);
 
-			/*	b2Vec2 jumpImpulse(0, -m_pBody->GetMass() * 10);
-				for (int i = 0; i < m_vContacts.size(); ++i)
-				{
+				/*	b2Vec2 jumpImpulse(0, -m_pBody->GetMass() * 10);
+					for (int i = 0; i < m_vContacts.size(); ++i)
+					{
 					b2Fixture* pFixA = m_vContacts[i]->GetFixtureA();
 					b2Fixture* pFixB = m_vContacts[i]->GetFixtureB();
 
 					if (pFixA == m_pGroundSensor)
 					{
-						pFixB->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixB->GetBody()->GetWorldCenter(), true);
+					pFixB->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixB->GetBody()->GetWorldCenter(), true);
 					}
 					else
 					{
-						pFixA->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixA->GetBody()->GetWorldCenter(), true);
+					pFixA->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixA->GetBody()->GetWorldCenter(), true);
 					}
-				}*/
+					}*/
 			}
 			else if (m_vButtons[EB_JUMP].Pull())
 			{
@@ -181,7 +190,7 @@ namespace app
 
 			m_pDrawable->update(dt.asSeconds());
 			m_pDrawable->setPosition(m_pBody->GetPosition().x, -m_pBody->GetPosition().y);
-		//	m_pDrawable->setRotation(m_pBody->GetAngle() * -RAD_DEG);
+			//	m_pDrawable->setRotation(m_pBody->GetAngle() * -RAD_DEG);
 
 			b2Vec2 vel = m_pBody->GetLinearVelocity();
 			float desiredVel = 0;
@@ -213,11 +222,13 @@ namespace app
 			float impulse = m_pBody->GetMass() * velChange; //disregard time factor
 			m_pBody->ApplyLinearImpulse(b2Vec2(impulse, 0), m_pBody->GetWorldCenter(), true);
 
-
-			if (desiredVel > 0 )
-				m_pDrawable->skeleton->flipX = false;
-			else if (desiredVel < 0)
-				m_pDrawable->skeleton->flipX = true;
+			//if (isOutsideEpsi)
+			//{
+				if (m_vButtons[EB_RIGHT].Held())
+					m_pDrawable->skeleton->flipX = false;
+				else if (m_vButtons[EB_LEFT].Held())
+					m_pDrawable->skeleton->flipX = true;
+			//}
 		}
 
 
@@ -225,6 +236,18 @@ namespace app
 		{
 			switch (action.m_code)
 			{
+			case sf::Keyboard::Q:
+			{
+				m_vButtons[EButton::EB_LEFT_FLIP].Next(true);
+			}break;
+			case sf::Keyboard::E:
+			{
+				m_vButtons[EButton::EB_RIGHT_FLIP].Next(true);
+			}	break;
+			case sf::Keyboard::J:
+			{
+				m_vButtons[EButton::EB_SHOOT].Next(true);
+			}break;
 			case sf::Keyboard::Left:
 			case sf::Keyboard::A:
 			{
@@ -237,6 +260,14 @@ namespace app
 			}break;
 			case sf::Keyboard::Up:
 			case sf::Keyboard::W:
+			{
+				m_vButtons[EButton::EB_UP].Next(true);
+			}break;
+			case sf::Keyboard::Down:
+			case sf::Keyboard::S:
+			{
+				m_vButtons[EButton::EB_DOWN].Next(true);
+			}break;
 			case sf::Keyboard::Space:
 			{
 				m_vButtons[EButton::EB_JUMP].Next(true);
@@ -248,6 +279,18 @@ namespace app
 		{
 			switch (action.m_code)
 			{
+			case sf::Keyboard::Q:
+			{
+				m_vButtons[EButton::EB_LEFT_FLIP].Next(false);
+			}break;
+			case sf::Keyboard::E:
+			{
+				m_vButtons[EButton::EB_RIGHT_FLIP].Next(false);
+			}	break;
+			case sf::Keyboard::J:
+			{
+				m_vButtons[EButton::EB_SHOOT].Next(false);
+			}break;
 			case sf::Keyboard::Left:
 			case sf::Keyboard::A:
 			{
@@ -260,6 +303,14 @@ namespace app
 			}break;
 			case sf::Keyboard::Up:
 			case sf::Keyboard::W:
+			{
+				m_vButtons[EButton::EB_UP].Next(false);
+			}break;
+			case sf::Keyboard::Down:
+			case sf::Keyboard::S:
+			{
+				m_vButtons[EButton::EB_DOWN].Next(false);
+			}break;
 			case sf::Keyboard::Space:
 			{
 				m_vButtons[EButton::EB_JUMP].Next(false);
@@ -278,23 +329,120 @@ namespace app
 		void PlayerEnt::OnMouseUp(const baka::mouse_events::ButtonAction& action)
 		{
 			if (action.m_button == sf::Mouse::Right)
-				OnRopeEvent(action.m_pixel);
+			{
+				baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
+				baka::physics::PhysicsPlugin* pPhysicsPlug = static_cast<baka::physics::PhysicsPlugin*>(baka::IPlugin::FindPlugin(baka::physics::PhysicsPlugin::Type));
+				sf::Vector2f worldCoords = pRenderPlug->GetRenderWindow()->mapPixelToCoords(action.m_pixel, pPhysicsPlug->GetView());
+				worldCoords.y *= -1;
+				OnRopeEvent(worldCoords);
+			}
 		}
 
 		void PlayerEnt::OnMouseMove(const baka::mouse_events::MotionAction& action)
 		{
 		}
 
+		void PlayerEnt::OnJoypadButtonDown(const baka::joypad_events::ButtonAction& action)
+		{
+			if (action.m_id > 1)
+				return;
 
-		void PlayerEnt::OnRopeEvent(const sf::Vector2i& screenPos)
+			switch (action.m_code)
+			{
+			case 0:
+				m_vButtons[EB_SHOOT].Next(true); break;
+			case 1:
+				m_vButtons[EB_JUMP].Next(true); break;
+			}
+		}
+
+		void PlayerEnt::OnJoypadButtonUp(const baka::joypad_events::ButtonAction& action)
+		{
+			if (action.m_id > 1)
+				return;
+
+			switch (action.m_code)
+			{
+			case 0:
+				m_vButtons[EB_SHOOT].Next(false); break;
+			case 1:
+				m_vButtons[EB_JUMP].Next(false); break;
+			}
+		}
+
+		void PlayerEnt::OnJoypadMove(const baka::joypad_events::AxisAction& action)
+		{
+			if (action.m_id > 1)
+				return;
+
+			switch (action.m_axis)
+			{
+			case sf::Joystick::Axis::PovX:
+			{
+				if (action.m_pos > 0)
+				{
+					m_vButtons[EB_RIGHT].Next(true);
+				}
+				else if (action.m_pos < 0)
+				{
+					m_vButtons[EB_LEFT].Next(true);
+				}
+				else if (action.m_pos == 0)
+				{
+					m_vButtons[EB_RIGHT].Next(false);
+					m_vButtons[EB_LEFT].Next(false);
+				}
+			} break;
+			case sf::Joystick::Axis::PovY:
+			{
+				if (action.m_pos > 0)
+				{
+					m_vButtons[EB_UP].Next(true);
+				}
+				else if (action.m_pos < 0)
+				{
+					m_vButtons[EB_DOWN].Next(true);
+				}
+				else if (action.m_pos == 0)
+				{
+					m_vButtons[EB_UP].Next(false);
+					m_vButtons[EB_DOWN].Next(false);
+				}
+			} break;
+			}
+		}
+
+		const b2Vec2 PlayerEnt::CalcShootDirection() const
+		{
+			b2Vec2 dir(0, 0);
+
+			if (m_vButtons[EB_LEFT].Held())
+				dir.x -= 1;
+			if (m_vButtons[EB_RIGHT].Held())
+				dir.x += 1;
+			if (m_vButtons[EB_DOWN].Held())
+				dir.y -= 1;
+			if (m_vButtons[EB_UP].Held())
+				dir.y += 1;
+
+			if (dir.x == 0.0f && !m_vButtons[EB_DOWN].Held() && !m_vButtons[EB_UP].Held())
+			{
+				if (m_pDrawable->skeleton->flipX)
+					dir.x = -1;
+				else
+					dir.x = 1;
+			}
+
+			dir.Normalize();
+			return dir;
+		}
+
+
+
+		void PlayerEnt::OnRopeEvent(const sf::Vector2f& worldCoords)
 		{
 			if (m_pRopeJoint == NULL)
 			{
-				baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
-				baka::physics::PhysicsPlugin* pPhysicsPlug = static_cast<baka::physics::PhysicsPlugin*>(baka::IPlugin::FindPlugin(baka::physics::PhysicsPlugin::Type));
-				sf::Vector2f worldCoords = pRenderPlug->GetRenderWindow()->mapPixelToCoords(screenPos, pPhysicsPlug->GetView());
-				worldCoords.y *= -1;
-
 				b2Vec2 pw(worldCoords.x, worldCoords.y);
 				baka::physics::callbacks::RayCastClosestCallback callback;
 				callback.m_pIgnore = m_pBody;
@@ -302,7 +450,7 @@ namespace app
 				direction.Normalize();
 				direction *= 100;
 				b2Vec2 point = m_pBody->GetPosition() + direction;
-				m_pBody->GetWorld()->RayCast(&callback, m_pBody->GetPosition() + b2Vec2(0,0.5), point);
+				m_pBody->GetWorld()->RayCast(&callback, m_pBody->GetPosition() + b2Vec2(0, 0.5), point);
 
 				if (callback.m_bHit)
 				{
@@ -323,6 +471,17 @@ namespace app
 				m_pBody->GetWorld()->DestroyJoint(m_pRopeJoint);
 				m_pRopeJoint = NULL;
 			}
+		}
+
+		void PlayerEnt::Shoot()
+		{
+			b2Vec2 dir = CalcShootDirection();
+			dir *= 10;
+
+			b2Vec2 pos = m_pBody->GetPosition();
+			pos += dir;
+
+			OnRopeEvent(sf::Vector2f(pos.x, pos.y));
 		}
 
 		void PlayerEnt::OnContactBegin(b2Contact* contact)

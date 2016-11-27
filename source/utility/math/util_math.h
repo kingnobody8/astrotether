@@ -25,7 +25,7 @@ namespace util
 	const float EPSILON = 0.0001f;				// Roundoff error to be ignored in floating point number comparisons
 
 	// MACROS
-#define EPSI(test, goal) (test < goal + EPSILON && test > goal - EPSILON)
+#define EPSI(test, goal) (test < goal + util::EPSILON && test > goal - util::EPSILON)
 
 	const b2AABB INVALID_AABB = b2AABB(b2Vec2(1.0f, 1.0f), b2Vec2(-1.0f, -1.0f));
 

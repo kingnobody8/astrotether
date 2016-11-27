@@ -26,7 +26,7 @@ namespace baka
 		struct KeyAction : public IEvent
 		{
 			sf::Keyboard::Key	m_code;
-			bool			m_repeat;
+			bool				m_repeat;
 
 			KeyAction(const sf::Event& event)
 				: IEvent(event), m_code(event.key.code), m_repeat(false)
@@ -124,7 +124,20 @@ namespace baka
 			}
 		};
 
+		struct AxisAction : public IEvent
+		{
+			unsigned int m_axis;
+			unsigned int m_id;
+			float m_pos;
+
+			AxisAction(const sf::Event& event)
+			: IEvent(event), m_axis(event.joystickMove.axis), m_id(event.joystickMove.joystickId), m_pos(event.joystickMove.position)
+			{
+			}
+		};
+
 		static util::Publisher<ButtonAction> s_InputJoypadButtonDown;
 		static util::Publisher<ButtonAction> s_InputJoypadButtonUp;
+		static util::Publisher<AxisAction> s_InputJoypadMove;
 	};
 }

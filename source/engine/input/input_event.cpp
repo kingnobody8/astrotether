@@ -23,4 +23,6 @@ namespace baka
 	//joypad
 	STATIC util::Publisher<joypad_events::ButtonAction> joypad_events::s_InputJoypadButtonDown;
 	STATIC util::Publisher<joypad_events::ButtonAction> joypad_events::s_InputJoypadButtonUp;
+	STATIC util::Publisher<joypad_events::AxisAction> joypad_events::s_InputJoypadMove;
+
 }

@@ -60,6 +60,21 @@ namespace app
 			ret += std::string("x vel:\t") + std::to_string(m_pPlayer->GetBody()->GetLinearVelocity().x) + std::string("\n");
 			ret += std::string("grounded:\t") + std::to_string(m_pPlayer->IsGrounded()) + std::string("\n");
 
+
+			b2Vec2 pos = m_pPlayer->GetBody()->GetPosition();
+			shooter[0].position = m_pPlayer->GetPosition();
+			shooter[0].position.y *= -1;
+			pos += m_pPlayer->CalcShootDirection() * 10.0f;
+			pos.y += 0.5f;
+			shooter[0].position.y -= 0.5f;
+
+			shooter[1].position = sf::Vector2f(pos.x, -pos.y);
+
+			shooter[0].color = sf::Color::Red;
+
+			pRenWin->setView(m_pPhysicsPlugin->GetView());
+			pRenWin->draw(shooter, 2, sf::Lines);
+
 			return ret;
 		}
 

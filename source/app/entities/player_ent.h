@@ -21,6 +21,7 @@ namespace app
 				, m_fAirDeceleration(0)
 				, m_fJumpSpeed(0)
 				, m_fJumpTime(0)
+				, m_fFlipTime(0)
 			{
 			}
 			void LoadValues(const std::string& file_path);
@@ -33,11 +34,12 @@ namespace app
 			float m_fAirDeceleration;
 			float m_fJumpSpeed;
 			float m_fJumpTime;
+			float m_fFlipTime;
 		};
 
 		class PlayerEnt : public baka::entity::IEntity
 		{
-			enum EButton { EB_INVALID = -1, EB_LEFT, EB_RIGHT, EB_JUMP, EB_COUNT };
+			enum EButton { EB_INVALID = -1, EB_LEFT, EB_RIGHT, EB_UP, EB_DOWN, EB_JUMP, EB_SHOOT, EB_LEFT_FLIP, EB_RIGHT_FLIP, EB_COUNT };
 
 		private:
 			b2Body* m_pBody;
@@ -60,8 +62,13 @@ namespace app
 			void OnMouseDown(const baka::mouse_events::ButtonAction& action);
 			void OnMouseUp(const baka::mouse_events::ButtonAction& action);
 			void OnMouseMove(const baka::mouse_events::MotionAction& action);
+			void OnJoypadButtonDown(const baka::joypad_events::ButtonAction& action);
+			void OnJoypadButtonUp(const baka::joypad_events::ButtonAction& action);
+			void OnJoypadMove(const baka::joypad_events::AxisAction& action);
 
-			void OnRopeEvent(const sf::Vector2i& screenPos);
+
+			void OnRopeEvent(const sf::Vector2f& woorldCoords);
+			void Shoot();
 
 			void OnContactBegin(b2Contact*);
 			void OnContactEnd(b2Contact*);
@@ -78,6 +85,7 @@ namespace app
 			const PlayerValue& GetPlayerValue() const { return m_tValue; }
 			b2Body* GetBody() const { return m_pBody; }
 			const bool& IsGrounded() const { return m_bGrounded; }
+			const b2Vec2 CalcShootDirection() const;
 		};
 	}
 }

@@ -56,7 +56,8 @@ namespace baka
 				joypad_events::s_InputJoypadButtonDown.Publish(joypad_events::ButtonAction(tEvent)); break;
 			case sf::Event::JoystickButtonReleased:
 				joypad_events::s_InputJoypadButtonUp.Publish(joypad_events::ButtonAction(tEvent)); break;
-			case sf::Event::JoystickMoved: break;
+			case sf::Event::JoystickMoved:
+				joypad_events::s_InputJoypadMove.Publish(joypad_events::AxisAction(tEvent)); break;
 			case sf::Event::JoystickConnected: break;
 			case sf::Event::JoystickDisconnected: break;
 			case sf::Event::TouchBegan: break;

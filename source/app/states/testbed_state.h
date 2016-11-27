@@ -22,6 +22,8 @@ namespace app
 			baka::physics::PhysicsPlugin* m_pPhysicsPlugin;
 			entity::PlayerEnt* m_pPlayer;
 
+			sf::Vertex shooter[2];
+
 		public:
 			TestbedState();
 			virtual ~TestbedState();
