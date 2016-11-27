@@ -185,8 +185,10 @@ namespace app
 
 			b2Vec2 vel = m_pBody->GetLinearVelocity();
 			float desiredVel = 0;
+			bool hasInput = false;
 			if (m_vButtons[EB_RIGHT].Held())
 			{
+				hasInput = true;
 				if (m_bGrounded)
 					desiredVel = b2Min(vel.x + m_tValue.m_fGroundAcceleration, m_tValue.m_fMaxSpeed);
 				else
@@ -194,12 +196,13 @@ namespace app
 			}
 			if (m_vButtons[EB_LEFT].Held())
 			{
+				hasInput = true;
 				if (m_bGrounded)
 					desiredVel = b2Max(vel.x - m_tValue.m_fGroundAcceleration, -m_tValue.m_fMaxSpeed);
 				else
 					desiredVel = b2Max(vel.x - m_tValue.m_fAirAcceleration, -m_tValue.m_fMaxSpeed);
 			}
-			if (desiredVel == 0) //apply deceleration
+			if (!hasInput) //apply deceleration
 			{
 				if (m_bGrounded)
 					desiredVel = vel.x * m_tValue.m_fGroundDeceleration;
