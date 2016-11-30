@@ -64,7 +64,8 @@ namespace app
 			b2Vec2 pos = m_pPlayer->GetBody()->GetPosition();
 			shooter[0].position = m_pPlayer->GetPosition();
 			shooter[0].position.y *= -1;
-			pos += m_pPlayer->CalcShootDirection() * m_pPlayer->GetPlayerValue().m_fTetherLength;
+			b2Vec2 dir = m_pPlayer->CalcShootDirection();
+			pos += dir * m_pPlayer->GetPlayerValue().m_fTetherLength;
 			pos.y += 0.5f;
 			shooter[0].position.y -= 0.5f;
 
@@ -72,6 +73,30 @@ namespace app
 
 			shooter[0].color = sf::Color::Red;
 
+			pRenWin->setView(m_pPhysicsPlugin->GetView());
+			pRenWin->draw(shooter, 2, sf::Lines);
+
+			pos = m_pPlayer->GetBody()->GetPosition();
+			dir = m_pPlayer->CalcShootDirection();
+			float angle = atan2(dir.y, dir.x);
+			dir.x = cos(angle + m_pPlayer->GetPlayerValue().m_fTetherAngle * DEG_RAD);
+			dir.y = sin(angle + m_pPlayer->GetPlayerValue().m_fTetherAngle * DEG_RAD);
+			dir.Normalize();
+			pos += dir * m_pPlayer->GetPlayerValue().m_fTetherLength;
+			pos.y += 0.5f;
+			shooter[1].position = sf::Vector2f(pos.x, -pos.y);
+			pRenWin->setView(m_pPhysicsPlugin->GetView());
+			pRenWin->draw(shooter, 2, sf::Lines);
+
+			pos = m_pPlayer->GetBody()->GetPosition();
+			dir = m_pPlayer->CalcShootDirection();
+			angle = atan2(dir.y, dir.x);
+			dir.x = cos(angle - m_pPlayer->GetPlayerValue().m_fTetherAngle * DEG_RAD);
+			dir.y = sin(angle - m_pPlayer->GetPlayerValue().m_fTetherAngle * DEG_RAD);
+			dir.Normalize();
+			pos += dir * m_pPlayer->GetPlayerValue().m_fTetherLength;
+			pos.y += 0.5f;
+			shooter[1].position = sf::Vector2f(pos.x, -pos.y);
 			pRenWin->setView(m_pPhysicsPlugin->GetView());
 			pRenWin->draw(shooter, 2, sf::Lines);
 

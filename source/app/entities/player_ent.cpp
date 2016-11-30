@@ -41,6 +41,7 @@ namespace app
 			m_fFlipTime = json["flip_time"].GetDouble();
 			m_fDashImpulse = json["dash_impulse"].GetDouble();
 			m_fTetherLength = json["tether_length"].GetDouble();
+			m_fTetherAngle = json["tether_angle"].GetDouble();
 		}
 
 		const std::string PlayerValue::GetAsString() const
@@ -57,6 +58,7 @@ namespace app
 			ret += std::string("Flip Time:\t") + std::to_string(m_fFlipTime) + std::string("\n");
 			ret += std::string("Dash Imp:\t") + std::to_string(m_fDashImpulse) + std::string("\n");
 			ret += std::string("Tether Lng:\t") + std::to_string(m_fTetherLength) + std::string("\n");
+			ret += std::string("Tether Angle:\t") + std::to_string(m_fTetherAngle) + std::string("\n");
 			return ret;
 		}
 
@@ -370,6 +372,12 @@ namespace app
 		{
 			if (action.m_button == sf::Mouse::Right)
 			{
+				if (m_pRopeJoint)
+				{
+					m_pBody->GetWorld()->DestroyJoint(m_pRopeJoint);
+					m_pRopeJoint = NULL;
+					return;
+				}
 				baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
 				baka::physics::PhysicsPlugin* pPhysicsPlug = static_cast<baka::physics::PhysicsPlugin*>(baka::IPlugin::FindPlugin(baka::physics::PhysicsPlugin::Type));
 				sf::Vector2f worldCoords = pRenderPlug->GetRenderWindow()->mapPixelToCoords(action.m_pixel, pPhysicsPlug->GetView());
@@ -489,49 +497,69 @@ namespace app
 
 
 
-		void PlayerEnt::OnRopeEvent(const sf::Vector2f& worldCoords)
+		bool PlayerEnt::OnRopeEvent(const sf::Vector2f& worldCoords)
 		{
-			if (m_pRopeJoint == NULL)
-			{
-				b2Vec2 pw(worldCoords.x, worldCoords.y);
-				baka::physics::callbacks::RayCastClosestCallback callback;
-				callback.m_pIgnore = m_pBody;
-				b2Vec2 direction = pw - m_pBody->GetPosition();
-				direction.Normalize();
-				direction *= m_tValue.m_fTetherLength;
-				b2Vec2 point = m_pBody->GetPosition() + b2Vec2(0, 0.5) + direction;
-				m_pBody->GetWorld()->RayCast(&callback, m_pBody->GetPosition() + b2Vec2(0, 0.5), point);
+			b2Vec2 pw(worldCoords.x, worldCoords.y);
+			baka::physics::callbacks::RayCastClosestCallback callback;
+			callback.m_pIgnore = m_pBody;
+			b2Vec2 direction = pw - m_pBody->GetPosition();
+			direction.Normalize();
+			direction *= m_tValue.m_fTetherLength;
+			b2Vec2 point = m_pBody->GetPosition() + b2Vec2(0, 0.5) + direction;
+			m_pBody->GetWorld()->RayCast(&callback, m_pBody->GetPosition() + b2Vec2(0, 0.5), point);
 
-				if (callback.m_bHit)
-				{
-					b2Body* body = callback.m_pFixture->GetBody();
-					b2RopeJointDef md;
-					md.bodyA = m_pBody;
-					md.bodyB = body;
-					md.localAnchorA = b2Vec2(0, 0.5);// .SetZero();
-					md.localAnchorB = body->GetLocalPoint(callback.m_point);
-					md.maxLength = (callback.m_point - m_pBody->GetPosition()).Length() * 1.1f;
-					md.collideConnected = true;
-					m_pRopeJoint = (b2RopeJoint*)m_pBody->GetWorld()->CreateJoint(&md);
-					body->SetAwake(true);
-				}
-			}
-			else
+			if (callback.m_bHit)
 			{
-				m_pBody->GetWorld()->DestroyJoint(m_pRopeJoint);
-				m_pRopeJoint = NULL;
+				b2Body* body = callback.m_pFixture->GetBody();
+				b2RopeJointDef md;
+				md.bodyA = m_pBody;
+				md.bodyB = body;
+				md.localAnchorA = b2Vec2(0, 0.5);// .SetZero();
+				md.localAnchorB = body->GetLocalPoint(callback.m_point);
+				md.maxLength = (callback.m_point - m_pBody->GetPosition()).Length() * 1.1f;
+				md.collideConnected = true;
+				m_pRopeJoint = (b2RopeJoint*)m_pBody->GetWorld()->CreateJoint(&md);
+				body->SetAwake(true);
 			}
+
+			return callback.m_bHit;
 		}
 
 		void PlayerEnt::Shoot()
 		{
-			b2Vec2 dir = CalcShootDirection();
-			dir *= m_tValue.m_fTetherLength;
+			if (m_pRopeJoint)
+			{
+				m_pBody->GetWorld()->DestroyJoint(m_pRopeJoint);
+				m_pRopeJoint = NULL;
+				return;
+			}
 
-			b2Vec2 pos = m_pBody->GetPosition();
-			pos += dir;
+			const b2Vec2 dir = CalcShootDirection();
+			const b2Vec2 pos = m_pBody->GetPosition();
+			b2Vec2 endPoint = pos + dir * m_tValue.m_fTetherLength;
 
-			OnRopeEvent(sf::Vector2f(pos.x, pos.y));
+			bool hit = OnRopeEvent(sf::Vector2f(endPoint.x, endPoint.y));
+
+			if (!hit)
+			{
+				float angle = atan2(dir.y, dir.x);
+				b2Vec2 tmp;
+				tmp.x = cos(angle + m_tValue.m_fTetherAngle * DEG_RAD);
+				tmp.y = sin(angle + m_tValue.m_fTetherAngle * DEG_RAD);
+				tmp.Normalize();
+				endPoint = pos + tmp * m_tValue.m_fTetherLength;
+				hit = OnRopeEvent(sf::Vector2f(endPoint.x, endPoint.y));
+			}
+			if (!hit)
+			{
+				float angle = atan2(dir.y, dir.x);
+				b2Vec2 tmp;
+				tmp.x = cos(angle - m_tValue.m_fTetherAngle * DEG_RAD);
+				tmp.y = sin(angle - m_tValue.m_fTetherAngle * DEG_RAD);
+				tmp.Normalize();
+				endPoint = pos + tmp * m_tValue.m_fTetherLength;
+				hit = OnRopeEvent(sf::Vector2f(endPoint.x, endPoint.y));
+			}
 		}
 
 		void PlayerEnt::Dash()

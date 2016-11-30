@@ -24,6 +24,7 @@ namespace app
 				, m_fFlipTime(0)
 				, m_fDashImpulse(0)
 				, m_fTetherLength(0)
+				, m_fTetherAngle(0)
 			{
 			}
 			void LoadValues(const std::string& file_path);
@@ -39,6 +40,7 @@ namespace app
 			float m_fFlipTime;
 			float m_fDashImpulse;
 			float m_fTetherLength;
+			float m_fTetherAngle;
 		};
 
 		class PlayerEnt : public baka::entity::IEntity
@@ -72,7 +74,7 @@ namespace app
 			void OnJoypadMove(const baka::joypad_events::AxisAction& action);
 
 
-			void OnRopeEvent(const sf::Vector2f& woorldCoords);
+			bool OnRopeEvent(const sf::Vector2f& woorldCoords);
 			void Shoot();
 			void Dash();
 
