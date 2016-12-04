@@ -25,6 +25,9 @@ namespace app
 				, m_fDashImpulse(0)
 				, m_fTetherLength(0)
 				, m_fTetherAngle(0)
+				, m_fTongueTipRadius(0)
+				, m_fTongueTipDensity(0)
+				, m_fTongueTipSpeed(0)
 			{
 			}
 			void LoadValues(const std::string& file_path);
@@ -41,6 +44,9 @@ namespace app
 			float m_fDashImpulse;
 			float m_fTetherLength;
 			float m_fTetherAngle;
+			float m_fTongueTipRadius;
+			float m_fTongueTipDensity;
+			float m_fTongueTipSpeed;
 		};
 
 		class PlayerEnt : public baka::entity::IEntity
@@ -53,12 +59,15 @@ namespace app
 			b2Fixture* m_pGroundSensor;
 			util::_Key m_vButtons[EButton::EB_COUNT];
 			PlayerValue m_tValue;
+			b2Body* m_pTongueTip;
 
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;
 			spine::SkeletonDrawable* m_pDrawable;
 
 			std::vector<b2Contact*> m_vGroundContacts;
+			std::vector<b2Contact*> m_vTongueContacts;
+			b2Contact* m_pTongueContactUse;
 			bool m_bGrounded;
 			float m_fJumpTime;
 			float m_fFlipTime;
@@ -77,6 +86,7 @@ namespace app
 			bool OnRopeEvent(const sf::Vector2f& woorldCoords);
 			void Shoot();
 			void Dash();
+			void MakeRopeJoint(b2Body* pBody, b2Vec2 worldPoint);
 
 			void OnContactBegin(b2Contact*);
 			void OnContactEnd(b2Contact*);

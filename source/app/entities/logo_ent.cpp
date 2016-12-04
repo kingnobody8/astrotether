@@ -44,6 +44,7 @@ namespace app
 
 			baka::key_events::s_InputKeyDown.Subscribe(this, BIND1(this, &LogoEnt::OnKeyDown));
 			baka::mouse_events::s_InputMouseButtonDown.Subscribe(this, BIND1(this, &LogoEnt::OnMouseDown));
+			baka::joypad_events::s_InputJoypadButtonDown.Subscribe(this, BIND1(this, &LogoEnt::OnJoystickButtonDown));
 
 			m_pDrawable->skeleton->setBonesToSetupPose();
 			m_pDrawable->state->setAnimationByName(0, "animation", false);
@@ -90,6 +91,12 @@ namespace app
 		{
 			SnapToEnd();
 		}
+
+		void LogoEnt::OnJoystickButtonDown(const baka::joypad_events::ButtonAction& action)
+		{
+			SnapToEnd();
+		}
+
 
 		void LogoEnt::SnapToEnd()
 		{

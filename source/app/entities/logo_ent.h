@@ -21,6 +21,7 @@ namespace app
 
 			void OnKeyDown(const baka::key_events::KeyAction& action);
 			void OnMouseDown(const baka::mouse_events::ButtonAction& action);
+			void OnJoystickButtonDown(const baka::joypad_events::ButtonAction& action);
 			void SnapToEnd();
 			void AnimationListenerCallback(spine::AnimationState& state, int trackIndex, spine::EventType type, const spine::Event* event, int loopCount);
 			void GotoNextState();

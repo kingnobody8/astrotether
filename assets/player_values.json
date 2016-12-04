@@ -1,13 +1,16 @@
 {
     "max_speed": 10.0,
-    "ground_acceleration": 0.1,
+    "ground_acceleration": 0.5,
     "air_acceleration": 0.2,
     "ground_deceleration": 0.98,
     "air_deceleration": 1.0,
-    "jump_speed": 1,
+    "jump_speed": 3,
     "jump_time": 0.08,
     "flip_time": 2.0,
     "dash_impulse": 15.0,
     "tether_length": 15.0,
-    "tether_angle": 3.0
+    "tether_angle": 3.0,
+    "tongue_tip_radius": 0.2,
+    "tongue_tip_density": 10,
+    "tongue_tip_speed": 50
 }

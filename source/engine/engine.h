@@ -10,6 +10,7 @@ namespace baka
 	{
 	private:
 		sf::Clock				m_timer;
+		sf::Time				m_accumulate;
 		bool					m_quit;
 
 		static Engine* s_pInstance;

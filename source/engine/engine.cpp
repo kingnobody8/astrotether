@@ -4,7 +4,8 @@
 #include "helper/func.h"
 #include <assert.h>
 
-const float timeScale = 1.0f;
+const float fps = 1 / 60.0f;
+const float maxTime = 1 / 8.0f;
 
 namespace baka
 {
@@ -59,27 +60,17 @@ namespace baka
 
 		//Update the timer
 		sf::Time delta = this->m_timer.restart();
-
-		__todo() // add timescale for debuging
-		/*static sf::Time t;
-		t += delta;
-		if (t.asSeconds() < 0.01f)
-		{
+		delta = sf::seconds(Clamp(delta.asSeconds(), 0, maxTime));
+		m_accumulate += delta;
+		if (m_accumulate.asSeconds() < fps)
 			return;
-		}
-		t = sf::seconds(0);*/
-
-		if (delta.asSeconds() > 0.125f)
-		{
-			__todo() //the very first frame is getting a very long dt
-			delta = sf::seconds(0.125f); 
-		}
 
 		//Update the plugins
-		if (!IPlugin::UpdatePlugins(delta))
+		if (!IPlugin::UpdatePlugins(m_accumulate))
 		{
 			m_quit = true;
 		}
+		m_accumulate -= sf::seconds(fps);
 	}
 
 }

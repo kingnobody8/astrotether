@@ -87,14 +87,8 @@ namespace baka
 
 		VIRTUAL bool PhysicsPlugin::Update(const sf::Time& dt)
 		{
-			static sf::Time timer;
-			timer += dt;
-			if (timer.asSeconds() > SEXY_FPS)
-			{
-				timer -= sf::seconds(SEXY_FPS);
-				m_pWorld->Step(SEXY_FPS, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
-				steps++;
-			}
+			m_pWorld->Step(dt.asSeconds(), VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+			steps++;
 
 			return true;
 		}

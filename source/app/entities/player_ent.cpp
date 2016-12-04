@@ -42,29 +42,36 @@ namespace app
 			m_fDashImpulse = json["dash_impulse"].GetDouble();
 			m_fTetherLength = json["tether_length"].GetDouble();
 			m_fTetherAngle = json["tether_angle"].GetDouble();
+			m_fTongueTipRadius = json["tongue_tip_radius"].GetDouble();
+			m_fTongueTipDensity = json["tongue_tip_density"].GetDouble();
+			m_fTongueTipSpeed = json["tongue_tip_speed"].GetDouble();
 		}
 
 		const std::string PlayerValue::GetAsString() const
 		{
 			std::string ret;
 
-			ret += std::string("Max Speed:\t") + std::to_string(m_fMaxSpeed) + std::string("\n");
-			ret += std::string("Grnd Accel:\t") + std::to_string(m_fGroundAcceleration) + std::string("\n");
-			ret += std::string("Grnd Decel:\t") + std::to_string(m_fGroundDeceleration) + std::string("\n");
-			ret += std::string("Air Accel:\t") + std::to_string(m_fAirAcceleration) + std::string("\n");
-			ret += std::string("Air Decel:\t") + std::to_string(m_fAirDeceleration) + std::string("\n");
-			ret += std::string("Jump Speed:\t") + std::to_string(m_fJumpSpeed) + std::string("\n");
-			ret += std::string("Jump Time:\t") + std::to_string(m_fJumpTime) + std::string("\n");
-			ret += std::string("Flip Time:\t") + std::to_string(m_fFlipTime) + std::string("\n");
-			ret += std::string("Dash Imp:\t") + std::to_string(m_fDashImpulse) + std::string("\n");
-			ret += std::string("Tether Lng:\t") + std::to_string(m_fTetherLength) + std::string("\n");
-			ret += std::string("Tether Angle:\t") + std::to_string(m_fTetherAngle) + std::string("\n");
+			//ret += std::string("Max Speed:\t") + std::to_string(m_fMaxSpeed) + std::string("\n");
+			//ret += std::string("Grnd Accel:\t") + std::to_string(m_fGroundAcceleration) + std::string("\n");
+			//ret += std::string("Grnd Decel:\t") + std::to_string(m_fGroundDeceleration) + std::string("\n");
+			//ret += std::string("Air Accel:\t") + std::to_string(m_fAirAcceleration) + std::string("\n");
+			//ret += std::string("Air Decel:\t") + std::to_string(m_fAirDeceleration) + std::string("\n");
+			//ret += std::string("Jump Speed:\t") + std::to_string(m_fJumpSpeed) + std::string("\n");
+			//ret += std::string("Jump Time:\t") + std::to_string(m_fJumpTime) + std::string("\n");
+			//ret += std::string("Flip Time:\t") + std::to_string(m_fFlipTime) + std::string("\n");
+			//ret += std::string("Dash Imp:\t") + std::to_string(m_fDashImpulse) + std::string("\n");
+			//ret += std::string("Tether Lng:\t") + std::to_string(m_fTetherLength) + std::string("\n");
+			//ret += std::string("Tether Angle:\t") + std::to_string(m_fTetherAngle) + std::string("\n");
+			ret += std::string("Tip Radius:\t") + std::to_string(m_fTongueTipRadius) + std::string("\n");
+			ret += std::string("Tip Density:\t") + std::to_string(m_fTongueTipDensity) + std::string("\n");
+			ret += std::string("Tip Speed:\t") + std::to_string(m_fTongueTipSpeed) + std::string("\n");
 			return ret;
 		}
 
 
 		PlayerEnt::PlayerEnt(b2Body* pBody)
 			: m_pBody(pBody)
+			, m_pTongueTip(null)
 			, m_pRopeJoint(null)
 			, m_pAtlas(null)
 			, m_pSkelData(null)
@@ -72,6 +79,7 @@ namespace app
 			, m_pGroundSensor(null)
 			, m_bGrounded(false)
 			, m_fJumpTime(-1.0f)
+			, m_pTongueContactUse(null)
 		{
 			b2Fixture* pFixture = pBody->GetFixtureList();
 			while (pFixture != null)
@@ -271,6 +279,35 @@ namespace app
 				m_pDrawable->skeleton->flipX = false;
 			else if (m_vButtons[EB_LEFT].Held())
 				m_pDrawable->skeleton->flipX = true;
+
+			if (m_pTongueContactUse)
+			{
+				//b2Vec2 vel = m_pTongueTip->GetLinearVelocity();
+				//b2Vec2 pnt = m_pTongueTip->GetPosition();// +vel.Normalize() * m_tValue.m_fTongueTipRadius;
+
+				b2Vec2 pnt;
+				b2WorldManifold mani;
+				m_pTongueContactUse->GetWorldManifold(&mani);
+				b2Body* otherBody;
+				if (m_pTongueContactUse->GetFixtureA()->GetBody() == m_pTongueTip)
+				{
+					otherBody = m_pTongueContactUse->GetFixtureB()->GetBody();
+					pnt = mani.points[0];
+				}
+				else
+				{
+					otherBody = m_pTongueContactUse->GetFixtureA()->GetBody();
+					pnt = mani.points[0];
+				}
+
+				
+
+				MakeRopeJoint(otherBody, pnt);
+				m_pBody->GetWorld()->DestroyBody(m_pTongueTip);
+				m_pTongueTip = null;
+
+				m_pTongueContactUse = null;
+			}
 		}
 
 
@@ -510,19 +547,23 @@ namespace app
 
 			if (callback.m_bHit)
 			{
-				b2Body* body = callback.m_pFixture->GetBody();
-				b2RopeJointDef md;
-				md.bodyA = m_pBody;
-				md.bodyB = body;
-				md.localAnchorA = b2Vec2(0, 0.5);// .SetZero();
-				md.localAnchorB = body->GetLocalPoint(callback.m_point);
-				md.maxLength = (callback.m_point - m_pBody->GetPosition()).Length() * 1.1f;
-				md.collideConnected = true;
-				m_pRopeJoint = (b2RopeJoint*)m_pBody->GetWorld()->CreateJoint(&md);
-				body->SetAwake(true);
+				MakeRopeJoint(callback.m_pFixture->GetBody(), callback.m_point);
 			}
 
 			return callback.m_bHit;
+		}
+
+		void PlayerEnt::MakeRopeJoint(b2Body* pBody, b2Vec2 worldPoint)
+		{
+			b2RopeJointDef md;
+			md.bodyA = m_pBody;
+			md.bodyB = pBody;
+			md.localAnchorA = b2Vec2(0, 0.5);// .SetZero();
+			md.localAnchorB = pBody->GetLocalPoint(worldPoint);
+			md.maxLength = (worldPoint - m_pBody->GetPosition()).Length() * 1.01f;
+			md.collideConnected = true;
+			m_pRopeJoint = (b2RopeJoint*)m_pBody->GetWorld()->CreateJoint(&md);
+			pBody->SetAwake(true);
 		}
 
 		void PlayerEnt::Shoot()
@@ -538,28 +579,55 @@ namespace app
 			const b2Vec2 pos = m_pBody->GetPosition();
 			b2Vec2 endPoint = pos + dir * m_tValue.m_fTetherLength;
 
-			bool hit = OnRopeEvent(sf::Vector2f(endPoint.x, endPoint.y));
+			if (m_pTongueTip != null)
+			{
+				m_pTongueTip->GetWorld()->DestroyBody(m_pTongueTip);
+				m_pTongueTip = null;
+			}
+			
+			//body definition
+			b2BodyDef def;
+			def.type = b2_dynamicBody;
+			def.linearVelocity = dir * m_tValue.m_fTongueTipSpeed;
+			def.bullet = true;
+
+			//shape definition
+			b2CircleShape circleShape;
+			circleShape.m_radius = m_tValue.m_fTongueTipRadius;
+
+			//fixture definition
+			b2FixtureDef myFixtureDef;
+			myFixtureDef.shape = &circleShape;
+			myFixtureDef.density = m_tValue.m_fTongueTipDensity;
+
+			//create dynamic body
+			b2Vec2 startPoint = pos + b2Vec2(dir.x * 2, dir.y * 3);
+			def.position.Set(startPoint.x, startPoint.y);
+			m_pTongueTip = m_pBody->GetWorld()->CreateBody(&def);
+			m_pTongueTip->CreateFixture(&myFixtureDef);
+
+			/*bool hit = OnRopeEvent(sf::Vector2f(endPoint.x, endPoint.y));
 
 			if (!hit)
 			{
-				float angle = atan2(dir.y, dir.x);
-				b2Vec2 tmp;
-				tmp.x = cos(angle + m_tValue.m_fTetherAngle * DEG_RAD);
-				tmp.y = sin(angle + m_tValue.m_fTetherAngle * DEG_RAD);
-				tmp.Normalize();
-				endPoint = pos + tmp * m_tValue.m_fTetherLength;
-				hit = OnRopeEvent(sf::Vector2f(endPoint.x, endPoint.y));
+			float angle = atan2(dir.y, dir.x);
+			b2Vec2 tmp;
+			tmp.x = cos(angle + m_tValue.m_fTetherAngle * DEG_RAD);
+			tmp.y = sin(angle + m_tValue.m_fTetherAngle * DEG_RAD);
+			tmp.Normalize();
+			endPoint = pos + tmp * m_tValue.m_fTetherLength;
+			hit = OnRopeEvent(sf::Vector2f(endPoint.x, endPoint.y));
 			}
 			if (!hit)
 			{
-				float angle = atan2(dir.y, dir.x);
-				b2Vec2 tmp;
-				tmp.x = cos(angle - m_tValue.m_fTetherAngle * DEG_RAD);
-				tmp.y = sin(angle - m_tValue.m_fTetherAngle * DEG_RAD);
-				tmp.Normalize();
-				endPoint = pos + tmp * m_tValue.m_fTetherLength;
-				hit = OnRopeEvent(sf::Vector2f(endPoint.x, endPoint.y));
-			}
+			float angle = atan2(dir.y, dir.x);
+			b2Vec2 tmp;
+			tmp.x = cos(angle - m_tValue.m_fTetherAngle * DEG_RAD);
+			tmp.y = sin(angle - m_tValue.m_fTetherAngle * DEG_RAD);
+			tmp.Normalize();
+			endPoint = pos + tmp * m_tValue.m_fTetherLength;
+			hit = OnRopeEvent(sf::Vector2f(endPoint.x, endPoint.y));
+			}*/
 		}
 
 		void PlayerEnt::Dash()
@@ -574,23 +642,43 @@ namespace app
 
 		void PlayerEnt::OnContactBegin(b2Contact* contact)
 		{
-			if (contact->GetFixtureA() != m_pGroundSensor && contact->GetFixtureB() != m_pGroundSensor)
-				return;
-			m_vGroundContacts.push_back(contact);
-
-			m_bGrounded = false;
-			for (int i = 0; i < m_vGroundContacts.size(); ++i)
+			if (contact->GetFixtureA() == m_pGroundSensor || contact->GetFixtureB() == m_pGroundSensor)
 			{
-				if (m_vGroundContacts[i]->IsTouching())
+				m_vGroundContacts.push_back(contact);
+
+				m_bGrounded = false;
+				for (int i = 0; i < m_vGroundContacts.size(); ++i)
 				{
-					m_bGrounded = true;
-					return;
+					if (m_vGroundContacts[i]->IsTouching())
+					{
+						m_bGrounded = true;
+						return;
+					}
+				}
+			}
+			else if (contact->GetFixtureA()->GetBody() == m_pTongueTip || contact->GetFixtureB()->GetBody() == m_pTongueTip)
+			{
+				m_vTongueContacts.push_back(contact);
+				if (contact->IsTouching())
+				{
+					m_pTongueContactUse = contact;
+					
+					//OnRopeEvent(sf::Vector2f(pnt.x, pnt.y));
 				}
 			}
 		}
 
 		void PlayerEnt::OnContactEnd(b2Contact* contact)
 		{
+			for (int i = 0; i < m_vTongueContacts.size(); ++i)
+			{
+				if (m_vTongueContacts[i] == contact)
+				{
+					m_vTongueContacts.erase(m_vTongueContacts.begin() + i);
+					break;
+				}
+			}
+
 			for (int i = 0; i < m_vGroundContacts.size(); ++i)
 			{
 				if (m_vGroundContacts[i] == contact)
