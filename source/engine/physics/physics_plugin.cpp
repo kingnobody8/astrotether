@@ -8,8 +8,8 @@ namespace baka
 {
 	namespace physics
 	{
-		const int VELOCITY_ITERATIONS = 8;
-		const int POSITION_ITERATIONS = 3;
+		const int VELOCITY_ITERATIONS = 24;
+		const int POSITION_ITERATIONS = 24;
 		const b2Vec2 GRAVITY = b2Vec2(0.0f, 0.0f);
 		const int PARTICLES_PER_SEC = 24;
 		const float SEXY_FPS = 1 / 60.0f;
@@ -110,6 +110,9 @@ namespace baka
 
 				c.Set(0.8f, 0.8f, 0.8f);
 				m_debugDraw.DrawSegment(p1, p2, c);
+
+				m_debugDraw.DrawSolidCircle(p1, 0.1f, b2Vec2(1, 0), b2Color(0, 1, 0));
+				m_debugDraw.DrawSolidCircle(p2, 0.1f, b2Vec2(1, 0), b2Color(0, 1, 0));
 			}
 			m_debugDraw.Flush();
 

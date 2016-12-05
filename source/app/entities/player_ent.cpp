@@ -213,21 +213,21 @@ namespace app
 				m_fJumpTime = m_tValue.m_fJumpTime;
 				//m_pBody->ApplyLinearImpulse(b2Vec2(0, m_tValue.m_fJumpImpulse), m_pBody->GetLocalCenter(), true);
 
-				/*	b2Vec2 jumpImpulse(0, -m_pBody->GetMass() * 10);
-					for (int i = 0; i < m_vContacts.size(); ++i)
-					{
-					b2Fixture* pFixA = m_vContacts[i]->GetFixtureA();
-					b2Fixture* pFixB = m_vContacts[i]->GetFixtureB();
-
-					if (pFixA == m_pGroundSensor)
-					{
-					pFixB->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixB->GetBody()->GetWorldCenter(), true);
-					}
-					else
-					{
-					pFixA->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixA->GetBody()->GetWorldCenter(), true);
-					}
-					}*/
+				//b2Vec2 jumpImpulse(0, -m_pBody->GetMass() * 10);
+				//for (int i = 0; i < m_vGroundContacts.size(); ++i)
+				//{
+				//	b2Fixture* pFixA = m_vGroundContacts[i]->GetFixtureA();
+				//	b2Fixture* pFixB = m_vGroundContacts[i]->GetFixtureB();
+				//
+				//	if (pFixA == m_pGroundSensor)
+				//	{
+				//		pFixB->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixB->GetBody()->GetWorldCenter(), true);
+				//	}
+				//	else
+				//	{
+				//		pFixA->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixA->GetBody()->GetWorldCenter(), true);
+				//	}
+				//}
 			}
 			else if (m_vButtons[EB_JUMP].Pull())
 			{
@@ -292,15 +292,15 @@ namespace app
 				if (m_pTongueContactUse->GetFixtureA()->GetBody() == m_pTongueTip)
 				{
 					otherBody = m_pTongueContactUse->GetFixtureB()->GetBody();
-					pnt = mani.points[0];
+					pnt = otherBody->GetWorldPoint(m_TongueLocalCoords);// mani.points[0];
 				}
 				else
 				{
 					otherBody = m_pTongueContactUse->GetFixtureA()->GetBody();
-					pnt = mani.points[0];
+					pnt = otherBody->GetWorldPoint(m_TongueLocalCoords);// mani.points[0];
 				}
 
-				
+
 
 				MakeRopeJoint(otherBody, pnt);
 				m_pBody->GetWorld()->DestroyBody(m_pTongueTip);
@@ -409,12 +409,8 @@ namespace app
 		{
 			if (action.m_button == sf::Mouse::Right)
 			{
-				if (m_pRopeJoint)
-				{
-					m_pBody->GetWorld()->DestroyJoint(m_pRopeJoint);
-					m_pRopeJoint = NULL;
+				if (DestroyChain())
 					return;
-				}
 				baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
 				baka::physics::PhysicsPlugin* pPhysicsPlug = static_cast<baka::physics::PhysicsPlugin*>(baka::IPlugin::FindPlugin(baka::physics::PhysicsPlugin::Type));
 				sf::Vector2f worldCoords = pRenderPlug->GetRenderWindow()->mapPixelToCoords(action.m_pixel, pPhysicsPlug->GetView());
@@ -555,25 +551,93 @@ namespace app
 
 		void PlayerEnt::MakeRopeJoint(b2Body* pBody, b2Vec2 worldPoint)
 		{
+			b2Vec2 dir = m_pBody->GetPosition() - worldPoint;
+			dir.Normalize();
+			float len = (worldPoint - m_pBody->GetPosition()).Length() * 1.01f;
+			const b2Vec2 linkSize(0.1f, 0.05f);
+
+			if (len > m_tValue.m_fTetherLength)
+				return;
+
 			b2RopeJointDef md;
 			md.bodyA = m_pBody;
 			md.bodyB = pBody;
 			md.localAnchorA = b2Vec2(0, 0.5);// .SetZero();
 			md.localAnchorB = pBody->GetLocalPoint(worldPoint);
-			md.maxLength = (worldPoint - m_pBody->GetPosition()).Length() * 1.01f;
+			md.maxLength = len;
 			md.collideConnected = true;
 			m_pRopeJoint = (b2RopeJoint*)m_pBody->GetWorld()->CreateJoint(&md);
 			pBody->SetAwake(true);
+
+
+			b2RevoluteJointDef jd;
+			jd.collideConnected = false;
+			jd.enableLimit = true;
+			jd.upperAngle = (90 * RAD_DEG);
+
+			const int32 N = len / (linkSize.x * 2) - 1;
+			b2PolygonShape shape;
+			shape.SetAsBox(linkSize.x, linkSize.y);
+			b2FixtureDef fd;
+			fd.shape = &shape;
+			fd.density = 1.0f;
+			//fd.friction = 0.2f;
+			fd.filter.categoryBits = 0x0001;
+			fd.filter.maskBits = 0xFFFF & ~0x0002;
+
+
+			b2Body* prevBody = pBody;
+			for (int32 i = 0; i < N; ++i)
+			{
+				b2BodyDef bd;
+				bd.type = b2_dynamicBody;
+				b2Vec2 pos(worldPoint.x + linkSize.x * (i + 1) * 2, worldPoint.y);
+				//b2Vec2 pos(worldPoint.x + dir.x * linkSize.x * i, worldPoint.y + dir.y * linkSize.y * i);
+				//pos.x = worldPoint.x + dir.x * linkSize.x + dir.x * linkSize.x * i * 2;
+				//pos.y = worldPoint.y + dir.y * linkSize.y + dir.y * linkSize.y * i * 2;
+				bd.position.Set(pos.x, pos.y);
+				//bd.angle = atan2(dir.x, dir.y) * RAD_DEG;
+				//if (i == N - 1)
+				//{
+				//	//b2Vec2 anchor(pos.x + linkSize.x, pos.y);
+				//	jd.Initialize(prevBody, m_pBody, m_pBody->GetWorldPoint(md.localAnchorA));
+				//	m_pBody->GetWorld()->CreateJoint(&jd);
+				//
+				//	prevBody = m_pBody;
+				//	break;
+				//}
+
+				b2Body* body = m_pBody->GetWorld()->CreateBody(&bd);
+				m_vChain.push_back(body);
+
+				body->CreateFixture(&fd);
+
+				b2Vec2 anchor(pos.x - linkSize.x, pos.y);
+				jd.Initialize(prevBody, body, anchor);
+				m_pBody->GetWorld()->CreateJoint(&jd);
+
+				prevBody = body;
+			}
+		}
+
+		bool PlayerEnt::DestroyChain(void)
+		{
+			if (!m_pRopeJoint)
+				return false;
+			m_pBody->GetWorld()->DestroyJoint(m_pRopeJoint);
+			m_pRopeJoint = NULL;
+			//for (int i = 0; i < m_vChain.size(); ++i)
+			//{
+			//	m_pBody->GetWorld()->DestroyBody(m_vChain[i]);
+			//}
+			//m_vChain.clear();
+			return true;
 		}
 
 		void PlayerEnt::Shoot()
 		{
-			if (m_pRopeJoint)
-			{
-				m_pBody->GetWorld()->DestroyJoint(m_pRopeJoint);
-				m_pRopeJoint = NULL;
+			if (DestroyChain())
 				return;
-			}
 
 			const b2Vec2 dir = CalcShootDirection();
 			const b2Vec2 pos = m_pBody->GetPosition();
@@ -584,7 +648,7 @@ namespace app
 				m_pTongueTip->GetWorld()->DestroyBody(m_pTongueTip);
 				m_pTongueTip = null;
 			}
-			
+
 			//body definition
 			b2BodyDef def;
 			def.type = b2_dynamicBody;
@@ -662,7 +726,23 @@ namespace app
 				if (contact->IsTouching())
 				{
 					m_pTongueContactUse = contact;
-					
+
+					b2Vec2 pnt;
+					b2WorldManifold mani;
+					m_pTongueContactUse->GetWorldManifold(&mani);
+					b2Body* otherBody = null;
+					if (m_pTongueContactUse->GetFixtureA()->GetBody() == m_pTongueTip)
+					{
+						otherBody = m_pTongueContactUse->GetFixtureB()->GetBody();
+						//	m_TongueLocalCoords = mani.points[0];
+						m_TongueLocalCoords = otherBody->GetLocalPoint(mani.points[0]);
+					}
+					else
+					{
+						otherBody = m_pTongueContactUse->GetFixtureA()->GetBody();
+						m_TongueLocalCoords = otherBody->GetLocalPoint(mani.points[0]);
+					}
+
 					//OnRopeEvent(sf::Vector2f(pnt.x, pnt.y));
 				}
 			}

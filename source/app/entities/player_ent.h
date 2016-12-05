@@ -65,9 +65,11 @@ namespace app
 			spine::SkeletonData* m_pSkelData;
 			spine::SkeletonDrawable* m_pDrawable;
 
+			std::vector<b2Body*> m_vChain;
 			std::vector<b2Contact*> m_vGroundContacts;
 			std::vector<b2Contact*> m_vTongueContacts;
 			b2Contact* m_pTongueContactUse;
+			b2Vec2 m_TongueLocalCoords;
 			bool m_bGrounded;
 			float m_fJumpTime;
 			float m_fFlipTime;
@@ -87,6 +89,7 @@ namespace app
 			void Shoot();
 			void Dash();
 			void MakeRopeJoint(b2Body* pBody, b2Vec2 worldPoint);
+			bool DestroyChain(void);
 
 			void OnContactBegin(b2Contact*);
 			void OnContactEnd(b2Contact*);
