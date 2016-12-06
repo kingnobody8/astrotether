@@ -14,6 +14,9 @@
     <ClCompile Include="..\..\..\source\app\entities\player_ent.cpp">
       <Filter>entities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\app\entities\tether_ent.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="states">
@@ -34,6 +37,9 @@
       <Filter>entities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\app\entities\player_ent.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\app\entities\tether_ent.h">
       <Filter>entities</Filter>
     </ClInclude>
   </ItemGroup>

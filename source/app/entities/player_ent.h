@@ -11,6 +11,9 @@ namespace app
 {
 	namespace entity
 	{
+		//forward declare
+		class TetherEnt;
+
 		struct PlayerValue
 		{
 			PlayerValue()
@@ -56,6 +59,7 @@ namespace app
 		private:
 			b2Body* m_pBody;
 			b2Joint* m_pRopeJoint;
+			TetherEnt* m_pTetherEnt;
 			b2Fixture* m_pGroundSensor;
 			util::_Key m_vButtons[EButton::EB_COUNT];
 			PlayerValue m_tValue;

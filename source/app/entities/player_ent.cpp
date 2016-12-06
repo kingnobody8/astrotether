@@ -10,6 +10,7 @@
 #include "physics/callbacks/raycast_callback.h"
 #include "utility/resource/json.h"
 #include "rapidjson/FileReadStream.h"
+#include "tether_ent.h"
 
 const std::string path = "../spine_examples/REP/export/REP";
 //const std::string path = "assets/animations/REP/export/REP";
@@ -71,6 +72,7 @@ namespace app
 
 		PlayerEnt::PlayerEnt(b2Body* pBody)
 			: m_pBody(pBody)
+			, m_pTetherEnt(null)
 			, m_pTongueTip(null)
 			, m_pRopeJoint(null)
 			, m_pAtlas(null)
@@ -161,6 +163,11 @@ namespace app
 
 		VIRTUAL void PlayerEnt::Update(const sf::Time& dt)
 		{
+			if (m_pTetherEnt)
+			{
+				m_pTetherEnt->Update(dt); __todo() //i need an entity system so i don't have to manually update all the entities
+			}
+
 			for (int i = 0; i < EButton::EB_COUNT; ++i)
 			{
 				m_vButtons[i].Flush(dt.asSeconds());
@@ -551,9 +558,17 @@ namespace app
 
 		void PlayerEnt::MakeRopeJoint(b2Body* pBody, b2Vec2 worldPoint)
 		{
+			float len = (worldPoint - m_pBody->GetPosition()).Length() * 1.01f;
+			if (len > m_tValue.m_fTetherLength)
+				return;
+
+			m_pTetherEnt = new TetherEnt(m_pBody, pBody,m_pBody->GetPosition(), worldPoint);
+			m_pTetherEnt->Init();
+			return;
+
+
 			b2Vec2 dir = m_pBody->GetPosition() - worldPoint;
 			dir.Normalize();
-			float len = (worldPoint - m_pBody->GetPosition()).Length() * 1.01f;
 			const b2Vec2 linkSize(0.1f, 0.05f);
 
 			if (len > m_tValue.m_fTetherLength)
@@ -568,6 +583,8 @@ namespace app
 			md.collideConnected = true;
 			m_pRopeJoint = (b2RopeJoint*)m_pBody->GetWorld()->CreateJoint(&md);
 			pBody->SetAwake(true);
+
+			return;
 
 
 			b2RevoluteJointDef jd;
@@ -622,6 +639,16 @@ namespace app
 
 		bool PlayerEnt::DestroyChain(void)
 		{
+			if (m_pTetherEnt)
+			{
+				m_pTetherEnt->Exit();
+				delete m_pTetherEnt;
+				m_pTetherEnt = null;
+				return true;
+			}
+			return false;
+
+
 			if (!m_pRopeJoint)
 				return false;
 			m_pBody->GetWorld()->DestroyJoint(m_pRopeJoint);
