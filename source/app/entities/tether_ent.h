@@ -19,6 +19,7 @@ namespace app
 
 			b2RopeJoint* m_pRopeJoint;
 
+			sf::VertexArray m_vVertexArray;
 
 		public:
 			TetherEnt(b2Body* pPlayerBody, b2Body* pObjectBody, b2Vec2 startPoint, b2Vec2 endPoint);

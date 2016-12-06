@@ -166,8 +166,11 @@ namespace baka
 				RenderLayer& rlay = (*iter);
 				for (size_t i = 0; i < rlay.m_vDrawables.size(); ++i)
 				{
-					rlay.m_vDrawables.erase(rlay.m_vDrawables.begin() + i);
-					return;
+					if (rlay.m_vDrawables[i] == pDrawable)
+					{
+						rlay.m_vDrawables.erase(rlay.m_vDrawables.begin() + i);
+						return;
+					}
 				}
 			}
 		}
