@@ -38,18 +38,8 @@ namespace app
 			m_pRopeJoint = (b2RopeJoint*)pWorld->CreateJoint(&md);
 			m_pObjectBody->SetAwake(true);
 
-			sf::Vertex v;
-			v.color = sf::Color::Red;
-
-			v.position = sf::Vector2f(startWorldPoint.x, -startWorldPoint.y);
-			m_vVertexArray.append(v);
-
-			v.position = sf::Vector2f(endWorldPoint.x, -endWorldPoint.y);
-			m_vVertexArray.append(v);
-
 			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
-			m_vVertexArray.setPrimitiveType(sf::PrimitiveType::LinesStrip);
-			pRenderPlug->AddDrawable(&m_vVertexArray, "physics");
+			pRenderPlug->AddDrawable(&m_drawableRect, "physics");
 		}
 
 		VIRTUAL void TetherEnt::Exit()
@@ -60,13 +50,34 @@ namespace app
 				m_pRopeJoint = NULL;
 			}
 			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
-			pRenderPlug->RemDrawable(&m_vVertexArray);
+			pRenderPlug->RemDrawable(&m_drawableRect);
 		}
 
 		VIRTUAL void TetherEnt::Update(const sf::Time& dt)
 		{
-			m_vVertexArray[0].position = sf::Vector2f(m_pRopeJoint->GetAnchorA().x, -m_pRopeJoint->GetAnchorA().y);
-			m_vVertexArray[1].position = sf::Vector2f(m_pRopeJoint->GetAnchorB().x, -m_pRopeJoint->GetAnchorB().y);
+			//m_vVertexArray[0].position = sf::Vector2f(m_pRopeJoint->GetAnchorA().x, -m_pRopeJoint->GetAnchorA().y);
+			//m_vVertexArray[1].position = sf::Vector2f(m_pRopeJoint->GetAnchorB().x, -m_pRopeJoint->GetAnchorB().y);
+
+			CreateRect();
 		}
+
+		void TetherEnt::CreateRect()
+		{
+			b2Vec2 swp = m_pPlayerBody->GetWorldPoint(m_startLocalPoint);
+			b2Vec2 ewp = m_pObjectBody->GetWorldPoint(m_endLocalPoint);
+			swp.y *= -1;
+			ewp.y *= -1;
+
+			float len = (ewp - swp).Length();
+			b2Vec2 dir = (ewp - swp);
+			dir.Normalize();
+			sf::Vector2f pos = sf::Vector2f(swp.x, swp.y);
+			float angle = atan2(dir.x, dir.y) * -RAD_DEG;
+
+			m_drawableRect.setSize(sf::Vector2f(len, 0.05));
+			m_drawableRect.setPosition(pos);
+			m_drawableRect.setRotation(angle + 90); __todo() //why do i need to add 90 degrees to make it look right?
+		}
+
 	}
 }

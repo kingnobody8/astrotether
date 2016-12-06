@@ -18,8 +18,9 @@ namespace app
 			b2Vec2 m_endLocalPoint;
 
 			b2RopeJoint* m_pRopeJoint;
+			sf::RectangleShape m_drawableRect;
 
-			sf::VertexArray m_vVertexArray;
+			void CreateRect();
 
 		public:
 			TetherEnt(b2Body* pPlayerBody, b2Body* pObjectBody, b2Vec2 startPoint, b2Vec2 endPoint);
