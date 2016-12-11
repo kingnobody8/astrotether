@@ -20,6 +20,8 @@ namespace app
 			b2Vec2 m_prevStart;
 			b2Vec2 m_prevEnd;
 			float m_fMaxAngle;
+
+			std::vector<b2Contact*> m_vContacts;
 		};
 
 		class TetherEnt : public baka::entity::IEntity
@@ -36,6 +38,9 @@ namespace app
 
 			void CreateTether(b2Body* pBodyA, b2Body* pBodyB, b2Vec2 localPointA, b2Vec2 localPointB);
 			void CheckSegment(int& index, RopeSegment& alpha);
+
+			void OnContactBegin(b2Contact*);
+			void OnContactEnd(b2Contact*);
 
 		public:
 			TetherEnt(b2Body* pPlayerBody, b2Body* pObjectBody, b2Vec2 startPoint, b2Vec2 endPoint);

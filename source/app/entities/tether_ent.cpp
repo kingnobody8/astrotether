@@ -23,7 +23,7 @@ namespace app
 			{
 				baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
 				if (!pRenderPlug) return; __todo() //this is a hack because we don't use an object plugin system yet
-				pRenderPlug->RemDrawable(m_pDrawable);
+					pRenderPlug->RemDrawable(m_pDrawable);
 				delete m_pDrawable;
 				m_pDrawable = null;
 			}
@@ -41,7 +41,7 @@ namespace app
 			//update the sensor position/rotation
 			float angle = -atan2(dir.x, dir.y);
 			angle += 90 * DEG_RAD; __todo() //why do i need to add 90 degrees to make it look right?
-			m_pSensor->SetTransform(swp + dir * len * 0.5f, angle);
+				m_pSensor->SetTransform(swp + dir * len * 0.5f, angle);
 
 			//stupid rendering system
 			swp.y *= -1;
@@ -53,7 +53,7 @@ namespace app
 
 			m_pDrawable->setSize(sf::Vector2f(len, 0.05));
 			m_pDrawable->setPosition(pos);
-			m_pDrawable->setRotation(angle); 
+			m_pDrawable->setRotation(angle);
 		}
 
 		TetherEnt::TetherEnt(b2Body* pPlayerBody, b2Body* pObjectBody, b2Vec2 startPoint, b2Vec2 endPoint)
@@ -72,6 +72,10 @@ namespace app
 		VIRTUAL void TetherEnt::Init()
 		{
 			CreateTether(m_pPlayerBody, m_pObjectBody, m_startLocalPoint, m_endLocalPoint);
+
+
+			baka::physics::contact_events::s_ContactBegin.Subscribe(this, BIND1(this, &TetherEnt::OnContactBegin));
+			baka::physics::contact_events::s_ContactEnd.Subscribe(this, BIND1(this, &TetherEnt::OnContactEnd));
 
 			//b2World* pWorld = m_pPlayerBody->GetWorld();
 			//
@@ -161,7 +165,7 @@ namespace app
 
 			//body definition
 			b2BodyDef def;
-			def.type = b2_kinematicBody;
+			def.type = b2_dynamicBody;
 
 			//shape definition
 			b2PolygonShape shape;
@@ -186,7 +190,7 @@ namespace app
 			b2Vec2 currStart = alpha.m_pRopeJoint->GetAnchorA();
 			b2Vec2 currEnd = alpha.m_pRopeJoint->GetAnchorB();
 
-			b2PolygonShape shape;
+			/*b2PolygonShape shape;
 			shape.SetAsBox(1, 1);
 
 			shape.m_vertices[0] = alpha.m_prevStart;
@@ -198,30 +202,84 @@ namespace app
 			transform.SetIdentity();
 
 			baka::physics::callbacks::AabbCallbackAll callback;
-			pWorld->QueryShapeAABB(&callback, shape, transform);
+			pWorld->QueryShapeAABB(&callback, shape, transform);*/
+
+			for (int i = 0; i < alpha.m_vContacts.size(); ++i)
+			{
+				b2Contact* contact = alpha.m_vContacts[i];
+
+				b2Fixture* otherFixture = null;
+				if (contact->GetFixtureA()->GetBody() == alpha.m_pSensor)
+					otherFixture = contact->GetFixtureB();
+				else
+					otherFixture = contact->GetFixtureA();
+
+				if (contact->IsTouching())
+				{
+					int x = 0;
+					x++;
+				}
+			}
 
 			/*for (int i = 0; i < callback.m_vFixtures.size(); ++i)
 			{
-				if (callback.m_vFixtures[i]->GetBody() == m_pPlayerBody ||
-					callback.m_vFixtures[i]->GetBody() == m_pObjectBody ||
-					callback.m_vFixtures[i]->GetBody()->GetType() != b2BodyType::b2_staticBody)
-				{
-					callback.m_vFixtures.erase(callback.m_vFixtures.begin() + i);
-					--i;
-					continue;
-				}
+			if (callback.m_vFixtures[i]->GetBody() == m_pPlayerBody ||
+			callback.m_vFixtures[i]->GetBody() == m_pObjectBody ||
+			callback.m_vFixtures[i]->GetBody()->GetType() != b2BodyType::b2_staticBody)
+			{
+			callback.m_vFixtures.erase(callback.m_vFixtures.begin() + i);
+			--i;
+			continue;
+			}
 			}
 
 			if (!callback.m_vFixtures.empty())
 			{
-				b2Shape* pShape = callback.m_vFixtures[0]->GetShape();
-				b2Transform tran = callback.m_vFixtures[0]->GetBody()->GetTransform();
-				b2Manifold mani;
+			b2Shape* pShape = callback.m_vFixtures[0]->GetShape();
+			b2Transform tran = callback.m_vFixtures[0]->GetBody()->GetTransform();
+			b2Manifold mani;
 
-				b2CollidePolygons(&mani, (b2PolygonShape*)pShape, tran, &shape, transform);
+			b2CollidePolygons(&mani, (b2PolygonShape*)pShape, tran, &shape, transform);
 
-				pWorld->DestroyBody(callback.m_vFixtures[0]->GetBody());
+			pWorld->DestroyBody(callback.m_vFixtures[0]->GetBody());
 			}*/
+		}
+
+		void TetherEnt::OnContactBegin(b2Contact* contact)
+		{
+			int x = 0;
+			x++;
+
+			if (contact->GetFixtureA()->GetBody() != m_pPlayerBody &&
+				contact->GetFixtureA()->GetBody() != m_pObjectBody &&
+				contact->GetFixtureB()->GetBody() != m_pPlayerBody &&
+				contact->GetFixtureB()->GetBody() != m_pObjectBody)
+			{
+				for (int i = 0; i < m_vRopeSegments.size(); ++i)
+				{
+					if (m_vRopeSegments[i].m_pSensor == contact->GetFixtureA()->GetBody() ||
+						m_vRopeSegments[i].m_pSensor == contact->GetFixtureB()->GetBody())
+					{
+						m_vRopeSegments[i].m_vContacts.push_back(contact);
+						break;
+					}
+				}
+			}
+		}
+
+		void TetherEnt::OnContactEnd(b2Contact* contact)
+		{
+			for (int i = 0; i < m_vRopeSegments.size(); ++i)
+			{
+				for (int j = 0; j < m_vRopeSegments[i].m_vContacts.size(); ++j)
+				{
+					if (m_vRopeSegments[i].m_vContacts[j] == contact)
+					{
+						m_vRopeSegments[i].m_vContacts.erase(m_vRopeSegments[i].m_vContacts.begin() + j);
+						return;
+					}
+				}
+			}
 		}
 	}
 }
