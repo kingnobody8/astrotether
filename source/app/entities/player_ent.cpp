@@ -159,6 +159,8 @@ namespace app
 			m_pDrawable = null;
 
 			m_vGroundContacts.clear();
+
+			DestroyChain();
 		}
 
 		VIRTUAL void PlayerEnt::Update(const sf::Time& dt)
