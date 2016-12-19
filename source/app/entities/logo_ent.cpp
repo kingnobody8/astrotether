@@ -16,6 +16,7 @@ namespace app
 		const std::string file = "logo";
 		const float time_delay = 2.0f;
 
+		DEFINE_ENTITY_TYPE_INFO(LogoEnt);
 
 		LogoEnt::LogoEnt()
 			: m_pAtlas(null)

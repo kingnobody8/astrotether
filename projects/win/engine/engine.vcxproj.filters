@@ -167,6 +167,9 @@
     <ClCompile Include="..\..\..\source\engine\render\box2d-sfml.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\entity\entity.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\engine\engine.h" />

@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\..\source\engine\b2djson\b2dJsonImage_OpenGL.cpp" />
     <ClCompile Include="..\..\..\source\engine\b2djson\jsoncpp.cpp" />
     <ClCompile Include="..\..\..\source\engine\engine.cpp" />
+    <ClCompile Include="..\..\..\source\engine\entity\entity.cpp" />
     <ClCompile Include="..\..\..\source\engine\entity\entity_plugin..cpp" />
     <ClCompile Include="..\..\..\source\engine\input\input_event.cpp" />
     <ClCompile Include="..\..\..\source\engine\input\input_plugin.cpp" />

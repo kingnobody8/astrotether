@@ -12,6 +12,8 @@ namespace app
 {
 	namespace entity
 	{
+		DEFINE_ENTITY_TYPE_INFO(TetherEnt);
+
 		void RopeSegment::Destroy()
 		{
 			if (m_pRopeJoint)

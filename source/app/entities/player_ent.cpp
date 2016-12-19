@@ -21,6 +21,9 @@ namespace app
 {
 	namespace entity
 	{
+		DEFINE_ENTITY_TYPE_INFO(PlayerEnt);
+
+
 		void PlayerValue::LoadValues(const std::string& file_path)
 		{
 			FILE* fp = fopen(file_path.c_str(), "rb"); // non-Windows use "r"

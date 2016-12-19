@@ -54,6 +54,9 @@ namespace app
 
 		class PlayerEnt : public baka::entity::IEntity
 		{
+		public:
+			DECLARE_ENTITY_TYPE_INFO(PlayerEnt);
+
 			enum EButton { EB_INVALID = -1, EB_LEFT, EB_RIGHT, EB_UP, EB_DOWN, EB_JUMP, EB_SHOOT, EB_LEFT_FLIP, EB_RIGHT_FLIP, EB_DASH, EB_COUNT };
 
 		private:

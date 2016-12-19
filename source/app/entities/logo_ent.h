@@ -11,6 +11,9 @@ namespace app
 	{
 		class LogoEnt : public baka::entity::IEntity
 		{
+		public:
+			DECLARE_ENTITY_TYPE_INFO(LogoEnt);
+
 		private:
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;

@@ -23,6 +23,10 @@ namespace app
 
 		class TetherEnt : public baka::entity::IEntity
 		{
+		public:
+			DECLARE_ENTITY_TYPE_INFO(TetherEnt);
+
+
 		private:
 			b2Body* m_pPlayerBody;
 			b2Body* m_pObjectBody;
