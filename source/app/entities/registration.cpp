@@ -2,6 +2,7 @@
 #include "logo_ent.h"
 #include "player_ent.h"
 #include "tether_ent.h"
+#include "spawner_ent.h"
 
 
 namespace app
@@ -17,6 +18,7 @@ namespace app
 			REGISTER_ENTITY(LogoEnt);
 			REGISTER_ENTITY(PlayerEnt);
 			REGISTER_ENTITY(TetherEnt);
+			REGISTER_ENTITY(SpawnerEnt);
 		}
 	}
 }

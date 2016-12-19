@@ -50,9 +50,9 @@
     
     {
       "class" : "body",
-      "displayName" : "is_ground",
-      "name" : "is_ground",
-      "type" : "bool"
+      "displayName" : "intData1",
+      "name" : "intData1",
+      "type" : "int"
     }
   ],
   "metaworld" : 
@@ -84,14 +84,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -245,14 +237,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -567,6 +551,19 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "int" : 0,
+            "name" : "intData1"
+          },
+          
+          {
+            "name" : "entity_type",
+            "string" : "SpawnerEnt"
+          }
+        ],
         "fixture" : 
         [
           
@@ -591,15 +588,13 @@
         ],
         "id" : 11,
         "linearVelocity" : 0,
-        "massData-I" : 0.1666666716337204,
-        "massData-mass" : 1,
         "name" : "body2",
         "position" : 
         {
-          "x" : -2.95987081527710,
-          "y" : 10.95536613464356
+          "x" : -19.88597488403320,
+          "y" : 9.992092132568359
         },
-        "type" : "dynamic"
+        "type" : "static"
       },
       
       {
@@ -812,14 +807,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -957,14 +944,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1002,14 +981,6 @@
         "angle" : 0,
         "angularVelocity" : 3.141592741012573,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1047,14 +1018,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1092,14 +1055,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1137,14 +1092,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1182,14 +1129,6 @@
         "angle" : 0,
         "angularVelocity" : -3.141592741012573,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1227,14 +1166,6 @@
         "angle" : 0,
         "angularVelocity" : 3.141592741012573,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1272,14 +1203,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1317,14 +1240,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1368,14 +1283,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1419,14 +1326,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1464,14 +1363,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1509,14 +1400,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1554,14 +1437,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
@@ -1599,14 +1474,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "bool" : true,
-            "name" : "is_ground"
-          }
-        ],
         "fixture" : 
         [
           
