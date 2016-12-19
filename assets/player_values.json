@@ -1,7 +1,7 @@
 {
     "max_speed": 10.0,
     "ground_acceleration": 0.5,
-    "air_acceleration": 0.2,
+    "air_acceleration": 0.6,
     "ground_deceleration": 0.98,
     "air_deceleration": 1.0,
     "jump_speed": 3,

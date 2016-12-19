@@ -434,8 +434,8 @@ namespace app
 
 		void PlayerEnt::OnJoypadButtonDown(const baka::joypad_events::ButtonAction& action)
 		{
-			if (action.m_id > 1)
-				return;
+			//if (action.m_id > 1)
+			//	return;
 
 			switch (action.m_code)
 			{
@@ -450,8 +450,8 @@ namespace app
 
 		void PlayerEnt::OnJoypadButtonUp(const baka::joypad_events::ButtonAction& action)
 		{
-			if (action.m_id > 1)
-				return;
+			//if (action.m_id > 1)
+			//	return;
 
 			switch (action.m_code)
 			{
@@ -468,8 +468,8 @@ namespace app
 		{
 			__todo()//fix movement between controller and keyboard overlapping eachotehr
 				//fix dpad not registering buttons
-				if (action.m_id > 1)
-					return;
+			//	if (action.m_id > 1)
+			//		return;
 
 			if (action.m_axis != sf::Joystick::Axis::PovX && action.m_axis != sf::Joystick::Axis::PovY)
 				return;
@@ -543,7 +543,7 @@ namespace app
 		{
 			b2Vec2 pw(worldCoords.x, worldCoords.y);
 			baka::physics::callbacks::RayCastClosestCallback callback;
-			callback.m_pIgnore = m_pBody;
+			callback.m_vIgnore.push_back(m_pBody);
 			b2Vec2 direction = pw - m_pBody->GetPosition();
 			direction.Normalize();
 			direction *= m_tValue.m_fTetherLength;

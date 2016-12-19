@@ -16,12 +16,9 @@ namespace app
 
 			sf::RectangleShape* m_pDrawable;
 			b2RopeJoint* m_pRopeJoint;
-			b2Body* m_pSensor;
 			b2Vec2 m_prevStart;
 			b2Vec2 m_prevEnd;
 			float m_fMaxAngle;
-
-			std::vector<b2Contact*> m_vContacts;
 		};
 
 		class TetherEnt : public baka::entity::IEntity
@@ -34,13 +31,10 @@ namespace app
 
 			//b2RopeJoint* m_pRopeJoint;
 			//sf::RectangleShape m_drawableRect;
-			std::vector<RopeSegment> m_vRopeSegments;
+			std::vector<RopeSegment*> m_vRopeSegments;
 
 			void CreateTether(b2Body* pBodyA, b2Body* pBodyB, b2Vec2 localPointA, b2Vec2 localPointB);
-			void CheckSegment(int& index, RopeSegment& alpha);
-
-			void OnContactBegin(b2Contact*);
-			void OnContactEnd(b2Contact*);
+			void CheckSegment(int& index, RopeSegment* alpha);
 
 		public:
 			TetherEnt(b2Body* pPlayerBody, b2Body* pObjectBody, b2Vec2 startPoint, b2Vec2 endPoint);
