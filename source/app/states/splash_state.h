@@ -14,18 +14,11 @@ namespace app
 	{
 		class SplashState : public baka::state::IBaseState
 		{
-		private:
-			entity::LogoEnt* m_logoEnt;
-
 		public:
 			SplashState();
-			virtual ~SplashState();
 
 			virtual void Init();
 			virtual void Exit();
-			virtual void Update(const sf::Time& dt);
-
-			virtual const std::string DebugRender(sf::RenderWindow* pRenWin);
 		};
 	}
 }

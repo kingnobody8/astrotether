@@ -22,6 +22,7 @@ namespace baka
 		private:
 			std::map<std::string, EntFunctor> m_vNameMap;
 			std::map<EntTypeKey, EntFunctor> m_vKeyMap;
+			std::list<IEntity*> m_vPending;
 			std::list<IEntity*> m_vEnts;
 
 		public:
@@ -35,6 +36,8 @@ namespace baka
 
 			IEntity* CreateEntity(const std::string& type);
 			IEntity* CreateEntity(const int type);
+			void DestroyEntity(IEntity* pEnt);
+			void DestroyAllEntities();
 			void CreatePhysicsEntities(b2dJson* json);
 		};
 	}
