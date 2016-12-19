@@ -93,7 +93,7 @@ namespace app
 		{
 		}
 
-		void PlayerEnt::Setup(b2Body* pBody)
+		VIRTUAL void PlayerEnt::Setup(b2Body* pBody, b2dJson* pJson)
 		{
 			assert(pBody);
 			m_pBody = pBody;

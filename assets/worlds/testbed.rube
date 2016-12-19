@@ -43,16 +43,16 @@
     
     {
       "class" : "body",
-      "displayName" : "is_ground",
-      "name" : "is_ground",
-      "type" : "bool"
+      "displayName" : "entity_type",
+      "name" : "entity_type",
+      "type" : "string"
     },
     
     {
       "class" : "body",
-      "displayName" : "entity_type",
-      "name" : "entity_type",
-      "type" : "string"
+      "displayName" : "is_ground",
+      "name" : "is_ground",
+      "type" : "bool"
     }
   ],
   "metaworld" : 
@@ -136,7 +136,7 @@
           
           {
             "name" : "entity_type",
-            "string" : "player"
+            "string" : "PlayerEnt"
           }
         ],
         "fixedRotation" : true,
@@ -228,7 +228,7 @@
         "massData-I" : 6.513974189758301,
         "massData-center" : 
         {
-          "x" : 0.0001384995266562328,
+          "x" : 0.0001384995121043176,
           "y" : 0.8070919513702393
         },
         "massData-mass" : 10,
@@ -606,14 +606,6 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "name" : "entity_type",
-            "string" : "player"
-          }
-        ],
         "fixedRotation" : true,
         "fixture" : 
         [
@@ -703,7 +695,7 @@
         "massData-I" : 6.513974189758301,
         "massData-center" : 
         {
-          "x" : 0.0001384995266562328,
+          "x" : 0.0001384995121043176,
           "y" : 0.8070919513702393
         },
         "massData-mass" : 10,

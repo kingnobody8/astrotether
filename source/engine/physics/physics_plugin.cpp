@@ -3,6 +3,7 @@
 #include "render/render_plugin.h"
 #include "input/input_event.h"
 #include "callbacks/aabb_callback.h"
+#include "entity/entity_plugin.h"
 
 namespace baka
 {
@@ -169,6 +170,9 @@ namespace baka
 				m_vDrawables.push_back(pDrawable);
 				pRenderPlug->AddDrawable(pDrawable, "physics");
 			}
+
+			baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
+			pEntPlug->CreatePhysicsEntities(&m_json);
 
 			return &this->m_json;
 		}

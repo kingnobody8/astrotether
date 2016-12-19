@@ -360,5 +360,8 @@
     <ClInclude Include="..\..\..\source\engine\entity\registration.h">
       <Filter>entity</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\entity\physics_ent.h">
+      <Filter>entity</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

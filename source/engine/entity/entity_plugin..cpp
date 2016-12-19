@@ -1,5 +1,6 @@
 #include "entity_plugin.h"
 #include "entity.h"
+#include "physics_ent.h"
 
 namespace baka
 {
@@ -104,7 +105,10 @@ namespace baka
 				b2Body* pBody = vBodies[i];
 				if (json->hasCustomString(pBody, "entity_type"))
 				{
+					std::string szEntType = json->getCustomString(pBody, "entity_type");
 
+					IPhysicsEnt* pEnt = static_cast<IPhysicsEnt*>(CreateEntity(szEntType));
+					pEnt->Setup(pBody, json);
 				}
 			}
 		}

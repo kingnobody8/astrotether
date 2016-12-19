@@ -6,6 +6,7 @@
 #include "render/spine-sfml.h"
 #include "physics/callbacks/aabb_callback.h"
 #include "utility/types/input.h"
+#include "entity/physics_ent.h"
 
 namespace app
 {
@@ -52,7 +53,7 @@ namespace app
 			float m_fTongueTipSpeed;
 		};
 
-		class PlayerEnt : public baka::entity::IEntity
+		class PlayerEnt : public baka::entity::IPhysicsEnt
 		{
 		public:
 			DECLARE_ENTITY_TYPE_INFO(PlayerEnt);
@@ -105,7 +106,7 @@ namespace app
 			PlayerEnt();
 			virtual ~PlayerEnt();
 
-			void Setup(b2Body* pBody);
+			virtual void Setup(b2Body* pBody, b2dJson* pJson);
 
 			virtual void Init();
 			virtual void Exit();

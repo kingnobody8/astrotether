@@ -43,9 +43,9 @@ namespace app
 			b2dJson* json = m_pPhysicsPlugin->LoadWorld(path, file);
 
 			baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
-			b2Body* pPlayerBody = json->getBodyByName("player");
-			m_pPlayer = CreateEntityMacro(pEntPlug, entity::PlayerEnt);
-			m_pPlayer->Setup(pPlayerBody);
+			//b2Body* pPlayerBody = json->getBodyByName("player");
+		//	m_pPlayer = CreateEntityMacro(pEntPlug, entity::PlayerEnt);
+			//m_pPlayer->Setup(pPlayerBody);
 		}
 
 		VIRTUAL void TestbedState::Exit()
@@ -59,7 +59,7 @@ namespace app
 		{
 			std::string ret;
 
-			ret = m_pPlayer->GetPlayerValue().GetAsString();
+			/*ret = m_pPlayer->GetPlayerValue().GetAsString();
 			ret += std::string("x vel:\t") + std::to_string(m_pPlayer->GetBody()->GetLinearVelocity().x) + std::string("\n");
 			ret += std::string("grounded:\t") + std::to_string(m_pPlayer->IsGrounded()) + std::string("\n");
 
@@ -101,7 +101,7 @@ namespace app
 			pos.y += 0.5f;
 			shooter[1].position = sf::Vector2f(pos.x, -pos.y);
 			pRenWin->setView(m_pPhysicsPlugin->GetView());
-			pRenWin->draw(shooter, 2, sf::Lines);
+			pRenWin->draw(shooter, 2, sf::Lines);*/
 
 			return ret;
 		}
@@ -109,8 +109,8 @@ namespace app
 		VIRTUAL void TestbedState::Update(const sf::Time& dt)
 		{
 			sf::View& view = m_pPhysicsPlugin->GetView();
-			sf::Vector2f pos = m_pPlayer->GetPosition();
-			pos.y *= -1;
+			//sf::Vector2f pos = m_pPlayer->GetPosition();
+			//pos.y *= -1;
 			//view.setCenter(pos);
 		}
 	}
