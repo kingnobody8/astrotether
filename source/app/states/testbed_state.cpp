@@ -3,6 +3,7 @@
 #include "input/input_plugin.h"
 #include "render/render_plugin.h"
 #include "state/state_plugin.h"
+#include "entity/entity_plugin.h"
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -41,15 +42,17 @@ namespace app
 
 			b2dJson* json = m_pPhysicsPlugin->LoadWorld(path, file);
 
+			baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
 			b2Body* pPlayerBody = json->getBodyByName("player");
-			m_pPlayer = new entity::PlayerEnt(pPlayerBody);
-			m_pPlayer->Init();
+			m_pPlayer = CreateEntityMacro(pEntPlug, entity::PlayerEnt);
+			m_pPlayer->Setup(pPlayerBody);
 		}
 
 		VIRTUAL void TestbedState::Exit()
 		{
-			m_pPlayer->Exit();
-			delete m_pPlayer;
+			baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
+			if (pEntPlug)
+				pEntPlug->DestroyAllEntities();
 		}
 
 		VIRTUAL const std::string TestbedState::DebugRender(sf::RenderWindow* pRenWin)
@@ -105,8 +108,6 @@ namespace app
 
 		VIRTUAL void TestbedState::Update(const sf::Time& dt)
 		{
-			m_pPlayer->Update(dt);
-
 			sf::View& view = m_pPhysicsPlugin->GetView();
 			sf::Vector2f pos = m_pPlayer->GetPosition();
 			pos.y *= -1;

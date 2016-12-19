@@ -41,7 +41,8 @@ namespace app
 		VIRTUAL void SplashState::Exit()
 		{
 			baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
-			pEntPlug->DestroyAllEntities();
+			if (pEntPlug)
+				pEntPlug->DestroyAllEntities();
 		}
 
 	}

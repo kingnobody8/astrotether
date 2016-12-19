@@ -11,6 +11,7 @@
 #include "utility/resource/json.h"
 #include "rapidjson/FileReadStream.h"
 #include "tether_ent.h"
+#include "entity/entity_plugin.h"
 
 const std::string path = "../spine_examples/REP/export/REP";
 //const std::string path = "assets/animations/REP/export/REP";
@@ -73,8 +74,8 @@ namespace app
 		}
 
 
-		PlayerEnt::PlayerEnt(b2Body* pBody)
-			: m_pBody(pBody)
+		PlayerEnt::PlayerEnt()
+			: m_pBody(null)
 			, m_pTetherEnt(null)
 			, m_pTongueTip(null)
 			, m_pRopeJoint(null)
@@ -86,6 +87,17 @@ namespace app
 			, m_fJumpTime(-1.0f)
 			, m_pTongueContactUse(null)
 		{
+		}
+
+		VIRTUAL PlayerEnt::~PlayerEnt()
+		{
+		}
+
+		void PlayerEnt::Setup(b2Body* pBody)
+		{
+			assert(pBody);
+			m_pBody = pBody;
+
 			b2Fixture* pFixture = pBody->GetFixtureList();
 			while (pFixture != null)
 			{
@@ -98,10 +110,7 @@ namespace app
 				pFixture = pFixture->GetNext();
 			}
 
-		}
-
-		VIRTUAL PlayerEnt::~PlayerEnt()
-		{
+			assert(pFixture);
 		}
 
 		VIRTUAL void PlayerEnt::Init()
@@ -168,11 +177,6 @@ namespace app
 
 		VIRTUAL void PlayerEnt::Update(const sf::Time& dt)
 		{
-			if (m_pTetherEnt)
-			{
-				m_pTetherEnt->Update(dt); __todo() //i need an entity system so i don't have to manually update all the entities
-			}
-
 			for (int i = 0; i < EButton::EB_COUNT; ++i)
 			{
 				m_vButtons[i].Flush(dt.asSeconds());
@@ -471,11 +475,11 @@ namespace app
 		{
 			__todo()//fix movement between controller and keyboard overlapping eachotehr
 				//fix dpad not registering buttons
-			//	if (action.m_id > 1)
-			//		return;
+				//	if (action.m_id > 1)
+				//		return;
 
-			if (action.m_axis != sf::Joystick::Axis::PovX && action.m_axis != sf::Joystick::Axis::PovY)
-				return;
+				if (action.m_axis != sf::Joystick::Axis::PovX && action.m_axis != sf::Joystick::Axis::PovY)
+					return;
 
 			switch (action.m_axis)
 			{
@@ -567,8 +571,9 @@ namespace app
 			if (len > m_tValue.m_fTetherLength)
 				return;
 
-			m_pTetherEnt = new TetherEnt(m_pBody, pBody,m_pBody->GetPosition(), worldPoint);
-			m_pTetherEnt->Init();
+			baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
+			m_pTetherEnt = CreateEntityMacro(pEntPlug, entity::TetherEnt);
+			m_pTetherEnt->Setup(m_pBody, pBody, m_pBody->GetPosition(), worldPoint);
 			return;
 
 
@@ -646,10 +651,13 @@ namespace app
 		{
 			if (m_pTetherEnt)
 			{
-				m_pTetherEnt->Exit();
-				delete m_pTetherEnt;
-				m_pTetherEnt = null;
-				return true;
+				baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
+				if (pEntPlug)
+				{
+					pEntPlug->DestroyEntity(m_pTetherEnt);
+					m_pTetherEnt = null;
+					return true;
+				}
 			}
 			return false;
 

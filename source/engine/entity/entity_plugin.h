@@ -13,6 +13,8 @@ namespace baka
 		typedef ulonglong							EntTypeKey;
 		typedef std::function<IEntity*(void)>		EntFunctor;
 
+#define CreateEntityMacro(ENT_PLUG, ENT_TYPE) static_cast<ENT_TYPE*>(ENT_PLUG->CreateEntity(ENT_TYPE::Type));
+
 		class EntityPlugin : public IPlugin
 		{
 		public:

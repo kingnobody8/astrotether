@@ -56,17 +56,22 @@ namespace app
 			m_pDrawable->setRotation(angle);
 		}
 
-		TetherEnt::TetherEnt(b2Body* pPlayerBody, b2Body* pObjectBody, b2Vec2 startPoint, b2Vec2 endPoint)
-			: m_pPlayerBody(pPlayerBody)
-			, m_pObjectBody(pObjectBody)
-			, m_startLocalPoint(pPlayerBody->GetLocalPoint(startPoint))
-			, m_endLocalPoint(m_pObjectBody->GetLocalPoint(endPoint))
+		TetherEnt::TetherEnt()
+			: m_pPlayerBody(null)
+			, m_pObjectBody(null)
 		{
-
 		}
 
 		VIRTUAL TetherEnt::~TetherEnt()
 		{
+		}
+
+		void TetherEnt::Setup(b2Body* pPlayerBody, b2Body* pObjectBody, b2Vec2 startPoint, b2Vec2 endPoint)
+		{
+			m_pPlayerBody = pPlayerBody;
+			m_pObjectBody = pObjectBody;
+			m_startLocalPoint = pPlayerBody->GetLocalPoint(startPoint);
+			m_endLocalPoint = m_pObjectBody->GetLocalPoint(endPoint);
 		}
 
 		VIRTUAL void TetherEnt::Init()

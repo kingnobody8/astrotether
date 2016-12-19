@@ -102,8 +102,10 @@ namespace app
 			void OnContactEnd(b2Contact*);
 
 		public:
-			PlayerEnt(b2Body* pBody);
+			PlayerEnt();
 			virtual ~PlayerEnt();
+
+			void Setup(b2Body* pBody);
 
 			virtual void Init();
 			virtual void Exit();

@@ -41,8 +41,10 @@ namespace app
 			void CheckSegment(int& index, RopeSegment* alpha);
 
 		public:
-			TetherEnt(b2Body* pPlayerBody, b2Body* pObjectBody, b2Vec2 startPoint, b2Vec2 endPoint);
+			TetherEnt();
 			virtual ~TetherEnt();
+
+			void Setup(b2Body* pPlayerBody, b2Body* pObjectBody, b2Vec2 startPoint, b2Vec2 endPoint);
 
 			virtual void Init();
 			virtual void Exit();
