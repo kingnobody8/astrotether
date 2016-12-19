@@ -1,5 +1,7 @@
 #pragma once
 #include "engine/plugin.h"
+#include "b2djson/b2dJson.h"
+#include "utility/helper/func.h"
 
 namespace baka
 {
@@ -8,14 +10,19 @@ namespace baka
 		//forward declare
 		class IEntity;
 
+		typedef ulonglong							EntTypeKey;
+		typedef std::function<IEntity*(void)>		EntFunctor;
+
 		class EntityPlugin : public IPlugin
 		{
 		public:
 			DECLARE_PLUGIN_TYPE_INFO(EntityPlugin);
+			void RegisterEntity(const std::string& typeName, const EntTypeKey& key, const EntFunctor func);
 
 		private:
+			std::map<std::string, EntFunctor> m_vNameMap;
+			std::map<EntTypeKey, EntFunctor> m_vKeyMap;
 			std::list<IEntity*> m_vEnts;
-
 
 		public:
 			EntityPlugin();
@@ -25,6 +32,10 @@ namespace baka
 			virtual void Init();
 			virtual void Exit();
 			virtual bool Update(const sf::Time& dt);
+
+			IEntity* CreateEntity(const std::string& type);
+			IEntity* CreateEntity(const int type);
+			void CreatePhysicsEntities(b2dJson* json);
 		};
 	}
 }

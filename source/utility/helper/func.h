@@ -65,4 +65,15 @@ namespace util
 		} bint = { 0x01020304 };
 		return bint.c[0] == 1;
 	}
+
+	//Functor CNewType - returns a new instance of the defined type
+	template<typename type>
+	class CNewType
+	{
+	public:
+		type* operator () (void)
+		{
+			return new type();
+		}
+	};
 }

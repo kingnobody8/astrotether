@@ -15,7 +15,7 @@ namespace app
 		class SplashState : public baka::state::IBaseState
 		{
 		private:
-			entity::LogoEnt m_logoEnt;
+			entity::LogoEnt* m_logoEnt;
 
 		public:
 			SplashState();

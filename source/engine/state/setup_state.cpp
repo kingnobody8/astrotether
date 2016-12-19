@@ -3,6 +3,8 @@
 #include "input/input_plugin.h"
 #include "render/render_plugin.h"
 #include "state/state_plugin.h"
+#include "entity/entity_plugin.h"
+#include "entity/registration.h"
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -38,6 +40,11 @@ namespace baka
 			InputPlugin* pInputPlugin = new InputPlugin();
 			pInputPlugin->SetSFMLWin(pRenderPlugin->GetRenderWindow());
 			IPlugin::AddPlugin(pInputPlugin);
+
+			//Setup entities
+			entity::EntityPlugin* pEntPlugin = new entity::EntityPlugin();
+			entity::RegisterEngineEntities(pEntPlugin);
+			IPlugin::AddPlugin(pEntPlugin);
 
 			//Setup first state
 			state::StatePlugin* pStatePlugin = static_cast<state::StatePlugin*>(IPlugin::FindPlugin(state::StatePlugin::Type));

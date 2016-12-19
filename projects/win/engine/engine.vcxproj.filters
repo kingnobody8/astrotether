@@ -170,6 +170,9 @@
     <ClCompile Include="..\..\..\source\engine\entity\entity.cpp">
       <Filter>entity</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\entity\registration.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\engine\engine.h" />
@@ -353,6 +356,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\engine\render\box2d-sfml.h">
       <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\engine\entity\registration.h">
+      <Filter>entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
