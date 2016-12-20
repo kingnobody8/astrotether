@@ -1604,6 +1604,19 @@
 			"angle" : 0,
 			"angularVelocity" : 0,
 			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"int" : 2,
+					"name" : "intData1"
+				},
+				
+				{
+					"name" : "entity_type",
+					"string" : "PlayerEnt"
+				}
+			],
 			"fixedRotation" : true,
 			"fixture" : 
 			[
@@ -1987,6 +2000,11 @@
 			[
 				
 				{
+					"int" : 1,
+					"name" : "intData1"
+				},
+				
+				{
 					"name" : "entity_type",
 					"string" : "PlayerEnt"
 				}
@@ -2154,7 +2172,7 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 43,
+			"body" : 44,
 			"center" : 0,
 			"corners" : 
 			{
@@ -2173,7 +2191,7 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 44,
+			"body" : 43,
 			"center" : 0,
 			"corners" : 
 			{

@@ -68,6 +68,7 @@ namespace app
 			util::_Key m_vButtons[EButton::EB_COUNT];
 			PlayerValue m_tValue;
 			b2Body* m_pTongueTip;
+			int m_nPlayerId;
 
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;

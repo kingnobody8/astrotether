@@ -43,16 +43,16 @@
     
     {
       "class" : "body",
-      "displayName" : "entity_type",
-      "name" : "entity_type",
-      "type" : "string"
+      "displayName" : "intData1",
+      "name" : "intData1",
+      "type" : "int"
     },
     
     {
       "class" : "body",
-      "displayName" : "intData1",
-      "name" : "intData1",
-      "type" : "int"
+      "displayName" : "entity_type",
+      "name" : "entity_type",
+      "type" : "string"
     }
   ],
   "metaworld" : 
@@ -125,6 +125,11 @@
         "awake" : true,
         "customProperties" : 
         [
+          
+          {
+            "int" : 1,
+            "name" : "intData1"
+          },
           
           {
             "name" : "entity_type",
@@ -601,6 +606,19 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "int" : 2,
+            "name" : "intData1"
+          },
+          
+          {
+            "name" : "entity_type",
+            "string" : "PlayerEnt"
+          }
+        ],
         "fixedRotation" : true,
         "fixture" : 
         [

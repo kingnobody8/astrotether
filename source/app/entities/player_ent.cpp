@@ -86,6 +86,7 @@ namespace app
 			, m_bGrounded(false)
 			, m_fJumpTime(-1.0f)
 			, m_pTongueContactUse(null)
+			, m_nPlayerId(-1)
 		{
 		}
 
@@ -109,6 +110,8 @@ namespace app
 
 				pFixture = pFixture->GetNext();
 			}
+
+			m_nPlayerId = pJson->getCustomInt(pBody, "intData1", -1);
 
 			assert(pFixture);
 		}
@@ -329,6 +332,10 @@ namespace app
 
 		void PlayerEnt::OnKeyDown(const baka::key_events::KeyAction& action)
 		{
+			//only player 1 gets keyboard control
+			if (m_nPlayerId != 1)
+				return;
+
 			switch (action.m_code)
 			{
 			case sf::Keyboard::Q:
@@ -372,6 +379,10 @@ namespace app
 
 		void PlayerEnt::OnKeyUp(const baka::key_events::KeyAction& action)
 		{
+			//only player 1 gets keyboard control
+			if (m_nPlayerId != 1)
+				return;
+
 			switch (action.m_code)
 			{
 			case sf::Keyboard::Q:
@@ -423,6 +434,10 @@ namespace app
 
 		void PlayerEnt::OnMouseUp(const baka::mouse_events::ButtonAction& action)
 		{
+			//only player 1 gets keyboard control
+			if (m_nPlayerId != 1)
+				return;
+
 			if (action.m_button == sf::Mouse::Right)
 			{
 				if (DestroyChain())
@@ -441,8 +456,8 @@ namespace app
 
 		void PlayerEnt::OnJoypadButtonDown(const baka::joypad_events::ButtonAction& action)
 		{
-			//if (action.m_id > 1)
-			//	return;
+			if (m_nPlayerId != action.m_id)
+				return;
 
 			switch (action.m_code)
 			{
@@ -457,8 +472,8 @@ namespace app
 
 		void PlayerEnt::OnJoypadButtonUp(const baka::joypad_events::ButtonAction& action)
 		{
-			//if (action.m_id > 1)
-			//	return;
+			if (m_nPlayerId != action.m_id)
+				return;
 
 			switch (action.m_code)
 			{
@@ -473,6 +488,9 @@ namespace app
 
 		void PlayerEnt::OnJoypadMove(const baka::joypad_events::AxisAction& action)
 		{
+			if (m_nPlayerId != action.m_id)
+				return;
+
 			__todo()//fix movement between controller and keyboard overlapping eachotehr
 				//fix dpad not registering buttons
 				//	if (action.m_id > 1)
