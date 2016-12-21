@@ -16,7 +16,6 @@
 const std::string path = "../spine_examples/REP/export/REP";
 //const std::string path = "assets/animations/REP/export/REP";
 const std::string file = "spineboy";
-spine::AnimationStateData* pData = null;
 
 namespace app
 {
@@ -81,6 +80,7 @@ namespace app
 			, m_pRopeJoint(null)
 			, m_pAtlas(null)
 			, m_pSkelData(null)
+			, m_pStateData(null)
 			, m_pDrawable(null)
 			, m_pGroundSensor(null)
 			, m_bGrounded(false)
@@ -124,8 +124,8 @@ namespace app
 			m_pAtlas = spine::Atlas::createFromFile((file_path + std::string(".atlas")).c_str(), null);
 			spine::SkeletonJson json(*m_pAtlas);
 			m_pSkelData = json.readSkeletonDataFile((file_path + std::string(".json")).c_str());
-			pData = new spine::AnimationStateData(*m_pSkelData);
-			m_pDrawable = new spine::SkeletonDrawable(m_pSkelData, pData);
+			m_pStateData = new spine::AnimationStateData(*m_pSkelData);
+			m_pDrawable = new spine::SkeletonDrawable(m_pSkelData, m_pStateData);
 
 			//m_pDrawable->state->listener = BIND5(this, &LogoEnt::AnimationListenerCallback);
 
@@ -164,17 +164,16 @@ namespace app
 				m_pDrawable->state->clearTracks();
 				delete m_pDrawable;
 			}
-
 			delete m_pAtlas;
 			delete m_pSkelData;
-			delete pData;
+			delete m_pStateData;
 
+			m_pDrawable = null;
 			m_pAtlas = null;
 			m_pSkelData = null;
-			m_pDrawable = null;
+			m_pStateData = null;
 
 			m_vGroundContacts.clear();
-
 			DestroyChain();
 		}
 

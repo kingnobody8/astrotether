@@ -61,7 +61,8 @@ namespace spine {
 		skeleton = new Skeleton(*skeletonData);
 
 		ownsAnimationStateData = stateData == 0;
-		if (ownsAnimationStateData) stateData = new AnimationStateData(*skeletonData);
+		if (ownsAnimationStateData) 
+			stateData = new AnimationStateData(*skeletonData);
 
 		state = new AnimationState(*stateData);
 	}
@@ -69,7 +70,8 @@ namespace spine {
 	SkeletonDrawable::~SkeletonDrawable() {
 		delete vertexArray;
 		delete []worldVertices;
-		if (ownsAnimationStateData) delete (&state->data);
+		if (ownsAnimationStateData) 
+			delete (&state->data);
 		delete state;
 		delete skeleton;
 	}

@@ -73,6 +73,7 @@ namespace app
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;
 			spine::SkeletonDrawable* m_pDrawable;
+			spine::AnimationStateData* m_pStateData;
 
 			std::vector<b2Body*> m_vChain;
 			std::vector<b2Contact*> m_vGroundContacts;
