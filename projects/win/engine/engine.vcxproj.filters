@@ -173,6 +173,9 @@
     <ClCompile Include="..\..\..\source\engine\entity\registration.cpp">
       <Filter>entity</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\engine\entity\physics_ent.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\engine\engine.h" />

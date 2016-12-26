@@ -26,6 +26,12 @@
     <ClCompile Include="..\..\..\source\app\entities\liquid_ent.cpp">
       <Filter>entities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\app\entities\goal_ent.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\app\entities\ball_ent.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="states">
@@ -58,6 +64,12 @@
       <Filter>entities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\app\entities\liquid_ent.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\app\entities\goal_ent.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\app\entities\ball_ent.h">
       <Filter>entities</Filter>
     </ClInclude>
   </ItemGroup>

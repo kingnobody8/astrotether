@@ -37,6 +37,10 @@ namespace app
 			m_pPhysicsPlugin->SetRenderWinow(pRenderPlug->GetRenderWindow());
 			baka::IPlugin::AddPlugin(m_pPhysicsPlugin);
 
+			sf::View& view = m_pPhysicsPlugin->GetView();
+			view.zoom(1.55);
+			view.setCenter(0, -24);
+
 			std::string path = "assets/worlds/";
 			std::string file = "testbed.json";
 

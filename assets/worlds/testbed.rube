@@ -232,8 +232,8 @@
         "name" : "player",
         "position" : 
         {
-          "x" : -20.85289955139160,
-          "y" : 2.604619979858398
+          "x" : -20.0,
+          "y" : 1
         },
         "type" : "dynamic"
       },
@@ -259,8 +259,8 @@
             ],
             "vertices" : 
             {
-              "x" : [ 8, -8, -8, 12.0 ],
-              "y" : [ 0.49999800324440, 0.5000020265579224, -0.5, -0.5000020265579224 ]
+              "x" : [ 8, -8, -12.0, 12.0 ],
+              "y" : [ 0.49999800324440, 0.5000020265579224, -0.5, -0.5 ]
             }
           }
         ],
@@ -269,456 +269,10 @@
         "name" : "body0",
         "position" : 
         {
-          "x" : -16.0,
+          "x" : 0,
           "y" : 1
         },
         "type" : "static"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 7,
-            "name" : "fixture3",
-            "shapes" : 
-            [
-              
-              {
-                "radius" : 0.5,
-                "type" : "circle"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 0.0 ],
-              "y" : [ 0.0 ]
-            }
-          }
-        ],
-        "id" : 4,
-        "linearVelocity" : 0,
-        "massData-I" : 0.09817477315664291,
-        "massData-mass" : 0.7853981852531433,
-        "name" : "body1",
-        "position" : 
-        {
-          "x" : -8.110816001892090,
-          "y" : 7.611096858978272
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 8,
-            "name" : "fixture3",
-            "shapes" : 
-            [
-              
-              {
-                "radius" : 0.5,
-                "type" : "circle"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 0.0 ],
-              "y" : [ 0.0 ]
-            }
-          }
-        ],
-        "id" : 5,
-        "linearVelocity" : 0,
-        "massData-I" : 0.09817477315664291,
-        "massData-mass" : 0.7853981852531433,
-        "name" : "body1",
-        "position" : 
-        {
-          "x" : -5.765983104705811,
-          "y" : 6.842299461364746
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 9,
-            "name" : "fixture3",
-            "shapes" : 
-            [
-              
-              {
-                "radius" : 0.5,
-                "type" : "circle"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 0.0 ],
-              "y" : [ 0.0 ]
-            }
-          }
-        ],
-        "id" : 6,
-        "linearVelocity" : 0,
-        "massData-I" : 0.09817477315664291,
-        "massData-mass" : 0.7853981852531433,
-        "name" : "body1",
-        "position" : 
-        {
-          "x" : -7.726417541503906,
-          "y" : 9.225571632385254
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 10,
-            "name" : "fixture3",
-            "shapes" : 
-            [
-              
-              {
-                "radius" : 0.5,
-                "type" : "circle"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 0.0 ],
-              "y" : [ 0.0 ]
-            }
-          }
-        ],
-        "id" : 7,
-        "linearVelocity" : 0,
-        "massData-I" : 0.09817477315664291,
-        "massData-mass" : 0.7853981852531433,
-        "name" : "body1",
-        "position" : 
-        {
-          "x" : -5.996622562408447,
-          "y" : 8.687413215637207
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 11,
-            "name" : "fixture4",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -0.5, 0.5, 0.5, -0.5 ],
-              "y" : [ -0.5, -0.5, 0.5, 0.5 ]
-            }
-          }
-        ],
-        "id" : 8,
-        "linearVelocity" : 0,
-        "massData-I" : 0.1666666716337204,
-        "massData-mass" : 1,
-        "name" : "body2",
-        "position" : 
-        {
-          "x" : -0.4612785875797272,
-          "y" : 11.33976554870606
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 12,
-            "name" : "fixture4",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -0.5, 0.5, 0.5, -0.5 ],
-              "y" : [ -0.5, -0.5, 0.5, 0.5 ]
-            }
-          }
-        ],
-        "id" : 9,
-        "linearVelocity" : 0,
-        "massData-I" : 0.1666666716337204,
-        "massData-mass" : 1,
-        "name" : "body2",
-        "position" : 
-        {
-          "x" : 5.458463668823242,
-          "y" : 8.456773757934570
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 13,
-            "name" : "fixture4",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -0.5, 0.5, 0.5, -0.5 ],
-              "y" : [ -0.5, -0.5, 0.5, 0.5 ]
-            }
-          }
-        ],
-        "id" : 10,
-        "linearVelocity" : 0,
-        "massData-I" : 0.1666666716337204,
-        "massData-mass" : 1,
-        "name" : "body2",
-        "position" : 
-        {
-          "x" : 4.574346542358398,
-          "y" : 9.264011383056641
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "int" : 0,
-            "name" : "intData1"
-          },
-          
-          {
-            "name" : "entity_type",
-            "string" : "SpawnerEnt"
-          }
-        ],
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 15,
-            "name" : "fixture4",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -0.5, 0.5, 0.5, -0.5 ],
-              "y" : [ -0.5, -0.5, 0.5, 0.5 ]
-            }
-          }
-        ],
-        "id" : 11,
-        "linearVelocity" : 0,
-        "name" : "body2",
-        "position" : 
-        {
-          "x" : -19.88597488403320,
-          "y" : 9.992092132568359
-        },
-        "type" : "static"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "int" : 2,
-            "name" : "intData1"
-          },
-          
-          {
-            "name" : "entity_type",
-            "string" : "PlayerEnt"
-          }
-        ],
-        "fixedRotation" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 2.295581579208374,
-            "friction" : 0.2,
-            "id" : 18,
-            "name" : "fixture1",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -0.5, 0.5, 0.5, -0.5 ],
-              "y" : [ 0.0, 0.0, 2, 2 ]
-            }
-          },
-          
-          {
-            "density" : 2.295581579208374,
-            "friction" : 0.2,
-            "id" : 21,
-            "name" : "ground_sensor",
-            "sensor" : true,
-            "shapes" : 
-            [
-              
-              {
-                "radius" : 0.5,
-                "type" : "circle"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 0.8600729703903198 ],
-              "y" : [ -0.07007270306348801 ]
-            }
-          },
-          
-          {
-            "density" : 2.295581579208374,
-            "friction" : 0.2,
-            "id" : 23,
-            "name" : "fixture2",
-            "shapes" : 
-            [
-              
-              {
-                "radius" : 0.5,
-                "type" : "circle"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -1.192090053336870e-006 ],
-              "y" : [ 6.914140158187365e-006 ]
-            }
-          },
-          
-          {
-            "density" : 2.295581579208374,
-            "friction" : 0.2,
-            "id" : 24,
-            "name" : "fixture2",
-            "shapes" : 
-            [
-              
-              {
-                "radius" : 0.5,
-                "type" : "circle"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 0.0007712839869782329 ],
-              "y" : [ 2.000109910964966 ]
-            }
-          }
-        ],
-        "id" : 12,
-        "linearVelocity" : 0,
-        "massData-I" : 6.754874706268311,
-        "massData-center" : 
-        {
-          "x" : 0.1552053242921829,
-          "y" : 0.8070927858352661
-        },
-        "massData-mass" : 10,
-        "name" : "asdf",
-        "position" : 
-        {
-          "x" : 20.34668350219727,
-          "y" : 9.981561660766602
-        },
-        "type" : "dynamic"
       },
       
       {
@@ -952,8 +506,8 @@
         "name" : "body0",
         "position" : 
         {
-          "x" : 20.0,
-          "y" : 8
+          "x" : 23.02400016784668,
+          "y" : 15.26729965209961
         },
         "type" : "static"
       },
@@ -1005,63 +559,6 @@
           {
             "density" : 1,
             "friction" : 0.2,
-            "id" : 20,
-            "name" : "fixture0",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : 
-              [
-                8,
-                6.91101074218750,
-                7.022634506225586,
-                -15.11582374572754,
-                -15.00420093536377,
-                -16.50671005249023,
-                -16.42769241333008,
-                8
-              ],
-              "y" : 
-              [
-                0.49999800324440,
-                0.4999980926513672,
-                0.01630082726478577,
-                0.1279248893260956,
-                0.5,
-                0.5,
-                -0.5,
-                -0.5000020265579224
-              ]
-            }
-          }
-        ],
-        "id" : 20,
-        "linearVelocity" : 0,
-        "name" : "body0",
-        "position" : 
-        {
-          "x" : 15.62430191040039,
-          "y" : 1.079094409942627
-        },
-        "type" : "static"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
             "id" : 28,
             "name" : "fixture0",
             "shapes" : 
@@ -1083,8 +580,8 @@
         "name" : "body0",
         "position" : 
         {
-          "x" : -20.0,
-          "y" : 8
+          "x" : -27.38733100891113,
+          "y" : 15.87637901306152
         },
         "type" : "static"
       },
@@ -1120,8 +617,8 @@
         "name" : "body0",
         "position" : 
         {
-          "x" : 20.0,
-          "y" : 8
+          "x" : 23.02398872375488,
+          "y" : 15.26732635498047
         },
         "type" : "static"
       },
@@ -1198,86 +695,6 @@
           "y" : 16.0
         },
         "type" : "kinematic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 31,
-            "name" : "fixture0",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 4, -4, -4, 4 ],
-              "y" : [ 0.49999800324440, 0.5000020265579224, -0.5, -0.5000020265579224 ]
-            }
-          }
-        ],
-        "id" : 25,
-        "linearVelocity" : 0,
-        "name" : "body0",
-        "position" : 
-        {
-          "x" : -43.67518615722656,
-          "y" : 8
-        },
-        "type" : "static"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 32,
-            "name" : "fixture0",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 4, -4, -20.10849380493164, 4 ],
-              "y" : 
-              [
-                6.280068874359131,
-                6.280128955841065,
-                -6.164453983306885,
-                -6.280120849609375
-              ]
-            }
-          }
-        ],
-        "id" : 26,
-        "linearVelocity" : 0,
-        "name" : "body0",
-        "position" : 
-        {
-          "x" : 43.94709396362305,
-          "y" : 6.664453983306885
-        },
-        "type" : "static"
       },
       
       {
@@ -2454,8 +1871,13 @@
         [
           
           {
+            "int" : 1,
+            "name" : "intData1"
+          },
+          
+          {
             "name" : "entity_type",
-            "string" : "LiquidEnt"
+            "string" : "GoalEnt"
           }
         ],
         "fixture" : 
@@ -2464,8 +1886,8 @@
           {
             "density" : 1,
             "friction" : 0.2,
-            "id" : 61,
-            "name" : "fixture0",
+            "id" : 65,
+            "name" : "fixture4",
             "shapes" : 
             [
               
@@ -2475,49 +1897,277 @@
             ],
             "vertices" : 
             {
-              "x" : [ 4, -4, -4, 4 ],
-              "y" : [ 0.49999800324440, 0.5000020265579224, -0.5, -0.5000020265579224 ]
+              "x" : [ -4, 4, 4, 3, 3, -3, -3, -4 ],
+              "y" : [ -0.5, -0.5, 2, 2, 0.25, 0.25, 2, 2 ]
+            }
+          },
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 66,
+            "name" : "fixture3",
+            "sensor" : true,
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -3, 3, 3, -3 ],
+              "y" : [ 0.25, 0.25, 1, 1 ]
             }
           }
         ],
-        "id" : 55,
+        "id" : 56,
         "linearVelocity" : 0,
         "name" : "body0",
         "position" : 
         {
-          "x" : 11.38007164001465,
-          "y" : 3.103980779647827
+          "x" : -44.0,
+          "y" : 1
         },
         "type" : "static"
-      }
-    ],
-    "metaimage" : 
-    [
-      
-      {
-        "aspectScale" : 1,
-        "body" : 11,
-        "center" : 0,
-        "file" : "../textures/logo_128.png",
-        "filter" : 1,
-        "flip" : false,
-        "id" : 1,
-        "name" : "image0",
-        "opacity" : 0.25,
-        "scale" : 1
       },
       
       {
-        "aspectScale" : 1,
-        "body" : 10,
-        "center" : 0,
-        "file" : "../textures/logo_128.png",
-        "filter" : 1,
-        "flip" : false,
-        "id" : 2,
-        "name" : "image0",
-        "opacity" : 0.25,
-        "scale" : 1
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "int" : 2,
+            "name" : "intData1"
+          },
+          
+          {
+            "name" : "entity_type",
+            "string" : "PlayerEnt"
+          }
+        ],
+        "fixedRotation" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 2.295581579208374,
+            "friction" : 0.2,
+            "id" : 68,
+            "name" : "fixture1",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -0.5, 0.5, 0.5, -0.5 ],
+              "y" : [ 0.0, 0.0, 2, 2 ]
+            }
+          },
+          
+          {
+            "density" : 2.295581579208374,
+            "friction" : 0.2,
+            "id" : 69,
+            "name" : "ground_sensor",
+            "sensor" : true,
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 0.5,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -1.907349997054553e-006 ],
+              "y" : [ -0.07007271051406860 ]
+            }
+          },
+          
+          {
+            "density" : 2.295581579208374,
+            "friction" : 0.2,
+            "id" : 70,
+            "name" : "fixture2",
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 0.5,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -1.192092895507813e-006 ],
+              "y" : [ 6.914138793945313e-006 ]
+            }
+          },
+          
+          {
+            "density" : 2.295581579208374,
+            "friction" : 0.2,
+            "id" : 71,
+            "name" : "fixture2",
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 0.5,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 0.0007712841033935547 ],
+              "y" : [ 2.000105381011963 ]
+            }
+          }
+        ],
+        "id" : 59,
+        "linearVelocity" : 0,
+        "massData-I" : 6.513974189758301,
+        "massData-center" : 
+        {
+          "x" : 0.0001384995121043176,
+          "y" : 0.8070919513702393
+        },
+        "massData-mass" : 10,
+        "name" : "player",
+        "position" : 
+        {
+          "x" : 20.0,
+          "y" : 1
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "int" : 2,
+            "name" : "intData1"
+          },
+          
+          {
+            "name" : "entity_type",
+            "string" : "GoalEnt"
+          }
+        ],
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 72,
+            "name" : "fixture4",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -4, 4, 4, 3, 3, -3, -3, -4 ],
+              "y" : [ -0.5, -0.5, 2, 2, 0.25, 0.25, 2, 2 ]
+            }
+          },
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 73,
+            "name" : "fixture3",
+            "sensor" : true,
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -3, 3, 3, -3 ],
+              "y" : [ 0.25, 0.25, 1, 1 ]
+            }
+          }
+        ],
+        "id" : 60,
+        "linearVelocity" : 0,
+        "name" : "body0",
+        "position" : 
+        {
+          "x" : 44.0,
+          "y" : 1
+        },
+        "type" : "static"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "name" : "entity_type",
+            "string" : "BallEnt"
+          }
+        ],
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 74,
+            "name" : "fixture5",
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 0.5,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 0.0 ],
+              "y" : [ 0.0 ]
+            }
+          }
+        ],
+        "id" : 61,
+        "linearVelocity" : 0,
+        "massData-I" : 0.09817477315664291,
+        "massData-mass" : 0.7853981852531433,
+        "name" : "body1",
+        "position" : 
+        {
+          "x" : 0,
+          "y" : 5
+        },
+        "type" : "dynamic"
       }
     ],
     "metajoint" : 

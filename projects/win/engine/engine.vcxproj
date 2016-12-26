@@ -26,6 +26,7 @@
     <ClCompile Include="..\..\..\source\engine\engine.cpp" />
     <ClCompile Include="..\..\..\source\engine\entity\entity.cpp" />
     <ClCompile Include="..\..\..\source\engine\entity\entity_plugin..cpp" />
+    <ClCompile Include="..\..\..\source\engine\entity\physics_ent.cpp" />
     <ClCompile Include="..\..\..\source\engine\entity\registration.cpp" />
     <ClCompile Include="..\..\..\source\engine\input\input_event.cpp" />
     <ClCompile Include="..\..\..\source\engine\input\input_plugin.cpp" />

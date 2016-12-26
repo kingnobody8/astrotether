@@ -787,6 +787,9 @@ namespace app
 			}
 			else if (contact->GetFixtureA()->GetBody() == m_pTongueTip || contact->GetFixtureB()->GetBody() == m_pTongueTip)
 			{
+				if (contact->GetFixtureA()->IsSensor() || contact->GetFixtureB()->IsSensor())
+					return;
+
 				m_vTongueContacts.push_back(contact);
 				if (contact->IsTouching())
 				{

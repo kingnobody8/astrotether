@@ -109,6 +109,7 @@ namespace baka
 
 					IPhysicsEnt* pEnt = static_cast<IPhysicsEnt*>(CreateEntity(szEntType));
 					pEnt->Setup(pBody, json);
+					pBody->SetUserData(pEnt);
 				}
 			}
 		}

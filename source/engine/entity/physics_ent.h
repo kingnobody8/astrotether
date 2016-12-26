@@ -12,6 +12,9 @@ namespace baka
 		class IPhysicsEnt : public IEntity
 		{
 		public:
+			DECLARE_ENTITY_TYPE_INFO(IPhysicsEnt);
+
+		public:
 			IPhysicsEnt() {}
 			virtual void Setup(b2Body* pBody, b2dJson* pJson) {}
 		};

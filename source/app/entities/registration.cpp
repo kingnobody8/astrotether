@@ -4,7 +4,8 @@
 #include "tether_ent.h"
 #include "spawner_ent.h"
 #include "liquid_ent.h"
-
+#include "goal_ent.h"
+#include "ball_ent.h"
 
 namespace app
 {
@@ -21,6 +22,8 @@ namespace app
 			REGISTER_ENTITY(TetherEnt);
 			REGISTER_ENTITY(SpawnerEnt);
 			REGISTER_ENTITY(LiquidEnt);
+			REGISTER_ENTITY(GoalEnt);
+			REGISTER_ENTITY(BallEnt);
 		}
 	}
 }
