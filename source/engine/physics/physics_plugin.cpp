@@ -11,6 +11,7 @@ namespace baka
 	{
 		const int VELOCITY_ITERATIONS = 24;
 		const int POSITION_ITERATIONS = 24;
+		const int PARTICLE_ITERATIONS = 1;
 		const b2Vec2 GRAVITY = b2Vec2(0.0f, 0.0f);
 		const int PARTICLES_PER_SEC = 24;
 		const float SEXY_FPS = 1 / 60.0f;
@@ -20,7 +21,8 @@ namespace baka
 
 		STATIC util::Publisher<b2Contact*> contact_events::s_ContactBegin;
 		STATIC util::Publisher<b2Contact*> contact_events::s_ContactEnd;
-
+		STATIC util::Publisher<ParticleBeginContactData*> contact_events::s_ParticleContactBegin;
+		STATIC util::Publisher<ParticleEndContactData*> contact_events::s_ParticleContactEnd;
 
 		DEFINE_PLUGIN_TYPE_INFO(PhysicsPlugin);
 
@@ -88,7 +90,7 @@ namespace baka
 
 		VIRTUAL bool PhysicsPlugin::Update(const sf::Time& dt)
 		{
-			m_pWorld->Step(dt.asSeconds(), VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+			m_pWorld->Step(dt.asSeconds(), VELOCITY_ITERATIONS, POSITION_ITERATIONS, PARTICLE_ITERATIONS);
 			steps++;
 
 			return true;
@@ -306,9 +308,13 @@ namespace baka
 		}
 		VIRTUAL void PhysicsPlugin::BeginContact(b2ParticleSystem* particleSystem, b2ParticleBodyContact* particleBodyContact)
 		{
+			ParticleBeginContactData data(particleSystem, particleBodyContact);
+			contact_events::s_ParticleContactBegin.Publish(&data);
 		}
 		VIRTUAL void PhysicsPlugin::EndContact(b2Fixture* fixture, b2ParticleSystem* particleSystem, int32 index)
 		{
+			ParticleEndContactData data(particleSystem, fixture, index);
+			contact_events::s_ParticleContactEnd.Publish(&data);
 		}
 		VIRTUAL void PhysicsPlugin::BeginContact(b2ParticleSystem* particleSystem, b2ParticleContact* particleContact)
 		{

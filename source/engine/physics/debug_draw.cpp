@@ -164,8 +164,8 @@ namespace baka
 			b2Vec2 r1(cosInc, sinInc);
 			b2Vec2 v1 = center + radius * r1;
 			float32 len = velocities[i].Length();
-			float32 mod = len;
-			sf::Color fillColor(0.5f * color.r * mod, 0.5f * color.g * mod, 0.5f * color.b * mod, 0.5f);
+			float32 mod = len * 255;
+			sf::Color fillColor(0.5f * color.r * mod, 0.5f * color.g * mod, 0.5f * color.b * mod, 127);
 			for (int32 i = 0; i < k_segments; ++i)
 			{
 				// Perform rotation to avoid additional trigonometry.

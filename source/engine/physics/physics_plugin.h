@@ -10,10 +10,29 @@ namespace baka
 {
 	namespace physics
 	{
+		struct ParticleBeginContactData
+		{
+			ParticleBeginContactData(b2ParticleSystem* pSys, b2ParticleBodyContact* pCon)
+				: pSystem(pSys), pContact(pCon) {}
+			b2ParticleSystem* pSystem;
+			b2ParticleBodyContact* pContact;
+		};
+
+		struct ParticleEndContactData
+		{
+			ParticleEndContactData(b2ParticleSystem* pSys, b2Fixture* pFix, int32 i)
+				: pSystem(pSys), pFixture(pFix), index(i) {}
+			b2Fixture* pFixture;
+			b2ParticleSystem* pSystem;
+			int32 index;
+		};
+
 		struct contact_events
 		{
 			static util::Publisher<b2Contact*> s_ContactBegin;
 			static util::Publisher<b2Contact*> s_ContactEnd;
+			static util::Publisher<ParticleBeginContactData*> s_ParticleContactBegin;
+			static util::Publisher<ParticleEndContactData*> s_ParticleContactEnd;
 		};
 
 		class PhysicsPlugin : public IPlugin, public b2ContactListener

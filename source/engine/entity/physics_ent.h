@@ -6,7 +6,7 @@ namespace baka
 {
 	namespace entity
 	{
-		__todo()// maybe change the loading of 'physics ent' to the physics plugin not the entity plugin
+		//__todo()// maybe change the loading of 'physics ent' to the physics plugin not the entity plugin
 			//also maybe we should just make loader -> object functions for non physics objects
 
 		class IPhysicsEnt : public IEntity

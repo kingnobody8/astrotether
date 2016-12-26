@@ -7,6 +7,7 @@
 #include "physics/callbacks/aabb_callback.h"
 #include "utility/types/input.h"
 #include "entity/physics_ent.h"
+#include "physics/physics_plugin.h"
 
 namespace app
 {
@@ -77,6 +78,7 @@ namespace app
 
 			std::vector<b2Body*> m_vChain;
 			std::vector<b2Contact*> m_vGroundContacts;
+			std::vector<b2ParticleBodyContact*> m_vParticleContacts;
 			std::vector<b2Contact*> m_vTongueContacts;
 			b2Contact* m_pTongueContactUse;
 			b2Vec2 m_TongueLocalCoords;
@@ -103,6 +105,8 @@ namespace app
 
 			void OnContactBegin(b2Contact*);
 			void OnContactEnd(b2Contact*);
+			void OnParticleContactBegin(baka::physics::ParticleBeginContactData*);
+			void OnParticleContactEnd(baka::physics::ParticleEndContactData*);
 
 		public:
 			PlayerEnt();

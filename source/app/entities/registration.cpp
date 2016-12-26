@@ -3,6 +3,7 @@
 #include "player_ent.h"
 #include "tether_ent.h"
 #include "spawner_ent.h"
+#include "liquid_ent.h"
 
 
 namespace app
@@ -19,6 +20,7 @@ namespace app
 			REGISTER_ENTITY(PlayerEnt);
 			REGISTER_ENTITY(TetherEnt);
 			REGISTER_ENTITY(SpawnerEnt);
+			REGISTER_ENTITY(LiquidEnt);
 		}
 	}
 }

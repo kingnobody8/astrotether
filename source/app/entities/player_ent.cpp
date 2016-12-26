@@ -152,6 +152,8 @@ namespace app
 
 			baka::physics::contact_events::s_ContactBegin.Subscribe(this, BIND1(this, &PlayerEnt::OnContactBegin));
 			baka::physics::contact_events::s_ContactEnd.Subscribe(this, BIND1(this, &PlayerEnt::OnContactEnd));
+			baka::physics::contact_events::s_ParticleContactBegin.Subscribe(this, BIND1(this, &PlayerEnt::OnParticleContactBegin));
+			baka::physics::contact_events::s_ParticleContactEnd.Subscribe(this, BIND1(this, &PlayerEnt::OnParticleContactEnd));
 
 		}
 
@@ -388,6 +390,12 @@ namespace app
 			{
 				m_vButtons[EButton::EB_LEFT_FLIP].Next(false);
 			}break;
+			case sf::Keyboard::K:
+			{
+				float imp = 250;
+				b2Vec2 dir = imp * CalcShootDirection();
+				m_pBody->ApplyLinearImpulse(dir, m_pBody->GetLocalCenter(), true);
+			}break;
 			case sf::Keyboard::E:
 			{
 				m_vButtons[EButton::EB_RIGHT_FLIP].Next(false);
@@ -545,9 +553,9 @@ namespace app
 			if (m_vButtons[EB_RIGHT].Held())
 				dir.x += 1;
 			if (m_vButtons[EB_DOWN].Held())
-				dir.y -= 1;
+				dir.y -= 2;
 			if (m_vButtons[EB_UP].Held())
-				dir.y += 1;
+				dir.y += 2;
 
 			if (dir.x == 0.0f && !m_vButtons[EB_DOWN].Held() && !m_vButtons[EB_UP].Held())
 			{
@@ -831,6 +839,29 @@ namespace app
 				if (m_vGroundContacts[i]->IsTouching())
 				{
 					m_bGrounded = true;
+					return;
+				}
+			}
+		}
+
+		void PlayerEnt::OnParticleContactBegin(baka::physics::ParticleBeginContactData* pData)
+		{
+			if (pData->pContact->fixture->GetBody() != m_pBody)
+				return;
+			if (pData->pContact->fixture == m_pGroundSensor)
+			{
+				m_vParticleContacts.push_back(pData->pContact);
+				m_bGrounded = true;
+			}
+		}
+
+		void PlayerEnt::OnParticleContactEnd(baka::physics::ParticleEndContactData* pData)
+		{
+			for (int i = 0; i < m_vParticleContacts.size(); ++i)
+			{
+				if (m_vParticleContacts[i]->index == pData->index)
+				{
+					m_vParticleContacts.erase(m_vParticleContacts.begin() + i);
 					return;
 				}
 			}
