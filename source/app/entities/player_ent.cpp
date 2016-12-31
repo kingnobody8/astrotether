@@ -392,7 +392,7 @@ namespace app
 			}break;
 			case sf::Keyboard::K:
 			{
-				float imp = 250;
+				float imp = m_tValue.m_fDashImpulse;
 				b2Vec2 dir = imp * CalcShootDirection();
 				m_pBody->ApplyLinearImpulse(dir, m_pBody->GetLocalCenter(), true);
 			}break;

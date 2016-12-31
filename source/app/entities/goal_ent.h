@@ -10,9 +10,11 @@ namespace app
 		{
 		public:
 			DECLARE_ENTITY_TYPE_INFO(GoalEnt);
+			static util::Publisher<int> s_ScoreGoal;
 
 		private:
 			bool m_bScored;
+			int m_nGoalId;
 			b2Body* m_pBody;
 			b2Fixture* m_pSensor;
 

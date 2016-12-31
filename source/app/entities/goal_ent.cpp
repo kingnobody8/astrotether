@@ -10,9 +10,13 @@ namespace app
 	{
 		DEFINE_ENTITY_TYPE_INFO(GoalEnt);
 
+		STATIC util::Publisher<int> GoalEnt::s_ScoreGoal;
+
+
 		GoalEnt::GoalEnt()
 			: m_pBody(null)
 			, m_bScored(false)
+			, m_nGoalId(-1)
 		{
 		}
 
@@ -31,6 +35,8 @@ namespace app
 
 				pFixture = pFixture->GetNext();
 			}
+
+			m_nGoalId = pJson->getCustomInt(pBody, "intData1", -1);
 		}
 
 		VIRTUAL void GoalEnt::Init()
@@ -62,6 +68,7 @@ namespace app
 			if (data && data->GetType() == BallEnt::Type)
 			{
 				m_bScored = true;
+				s_ScoreGoal.Publish(m_nGoalId);
 			}
 		}
 

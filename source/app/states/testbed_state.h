@@ -24,6 +24,8 @@ namespace app
 
 			sf::Vertex shooter[2];
 
+			int goal;
+
 		public:
 			TestbedState();
 			virtual ~TestbedState();
@@ -33,6 +35,8 @@ namespace app
 			virtual void Update(const sf::Time& dt);
 
 			virtual const std::string DebugRender(sf::RenderWindow* pRenWin);
+
+			void GoalScoredCallback(int);
 		};
 	}
 }

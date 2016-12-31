@@ -14,6 +14,7 @@
 #include "input/input_event.h"
 #include "engine/b2djson/b2dJsonImage.h"
 #include "render/box2d-sfml.h"
+#include "entities/goal_ent.h"
 
 namespace app
 {
@@ -50,6 +51,8 @@ namespace app
 			//b2Body* pPlayerBody = json->getBodyByName("player");
 		//	m_pPlayer = CreateEntityMacro(pEntPlug, entity::PlayerEnt);
 			//m_pPlayer->Setup(pPlayerBody);
+
+			entity::GoalEnt::s_ScoreGoal.Subscribe(&sub, BIND1(this, &TestbedState::GoalScoredCallback));
 		}
 
 		VIRTUAL void TestbedState::Exit()
@@ -107,6 +110,11 @@ namespace app
 			pRenWin->setView(m_pPhysicsPlugin->GetView());
 			pRenWin->draw(shooter, 2, sf::Lines);*/
 
+			if (goal > 0)
+			{
+				ret += "Goal scored: " + std::to_string(goal);
+			}
+
 			return ret;
 		}
 
@@ -117,5 +125,11 @@ namespace app
 			//pos.y *= -1;
 			//view.setCenter(pos);
 		}
+
+		void TestbedState::GoalScoredCallback(int n)
+		{
+			goal = n;
+		}
+
 	}
 }

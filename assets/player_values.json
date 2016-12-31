@@ -7,7 +7,7 @@
     "jump_speed": 3,
     "jump_time": 0.08,
     "flip_time": 2.0,
-    "dash_impulse": 15.0,
+    "dash_impulse": 100.0,
     "tether_length": 15.0,
     "tether_angle": 3.0,
     "tongue_tip_radius": 0.2,
