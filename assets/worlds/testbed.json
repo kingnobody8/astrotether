@@ -568,6 +568,7 @@
 			"angle" : 0,
 			"angularVelocity" : 0,
 			"awake" : true,
+			"bullet" : true,
 			"customProperties" : 
 			[
 				
@@ -788,7 +789,7 @@
 		},
 		
 		{
-			"angle" : 0,
+			"angle" : -1.047197580337524,
 			"angularVelocity" : 0,
 			"awake" : true,
 			"customProperties" : 
@@ -865,13 +866,20 @@
 				}
 			],
 			"linearVelocity" : 0,
+			"massData-I" : 96.33332824707031,
+			"massData-center" : 
+			{
+				"x" : -5.321843521421954e-010,
+				"y" : 0.4285714328289032
+			},
+			"massData-mass" : 14.0,
 			"name" : "body0",
 			"position" : 
 			{
-				"x" : -44.0,
-				"y" : 1
+				"x" : -44.97283935546875,
+				"y" : 4.435039520263672
 			},
-			"type" : 0
+			"type" : 2
 		},
 		
 		{

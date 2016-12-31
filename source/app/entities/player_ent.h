@@ -24,7 +24,8 @@ namespace app
 				, m_fGroundDeceleration(0)
 				, m_fAirAcceleration(0)
 				, m_fAirDeceleration(0)
-				, m_fJumpSpeed(0)
+				, m_fInitialJumpSpeed(0)
+				, m_fTerminalJumpSpeed(0)
 				, m_fJumpTime(0)
 				, m_fFlipTime(0)
 				, m_fDashImpulse(0)
@@ -43,7 +44,8 @@ namespace app
 			float m_fAirAcceleration;
 			float m_fGroundDeceleration;
 			float m_fAirDeceleration;
-			float m_fJumpSpeed;
+			float m_fInitialJumpSpeed;
+			float m_fTerminalJumpSpeed;
 			float m_fJumpTime;
 			float m_fFlipTime;
 			float m_fDashImpulse;

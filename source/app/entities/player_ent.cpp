@@ -40,7 +40,8 @@ namespace app
 			m_fGroundDeceleration = json["ground_deceleration"].GetDouble();
 			m_fAirAcceleration = json["air_acceleration"].GetDouble();
 			m_fAirDeceleration = json["air_deceleration"].GetDouble();
-			m_fJumpSpeed = json["jump_speed"].GetDouble();
+			m_fInitialJumpSpeed = json["initial_jump_speed"].GetDouble();
+			m_fTerminalJumpSpeed = json["terminal_jump_speed"].GetDouble();
 			m_fJumpTime = json["jump_time"].GetDouble();
 			m_fFlipTime = json["flip_time"].GetDouble();
 			m_fDashImpulse = json["dash_impulse"].GetDouble();
@@ -233,6 +234,9 @@ namespace app
 				m_fJumpTime = m_tValue.m_fJumpTime;
 				//m_pBody->ApplyLinearImpulse(b2Vec2(0, m_tValue.m_fJumpImpulse), m_pBody->GetLocalCenter(), true);
 
+				float jIpulse = m_pBody->GetMass() * m_tValue.m_fInitialJumpSpeed;
+				m_pBody->ApplyLinearImpulse(b2Vec2(0, jIpulse), m_pBody->GetLocalCenter(), true);
+
 				//b2Vec2 jumpImpulse(0, -m_pBody->GetMass() * 10);
 				//for (int i = 0; i < m_vGroundContacts.size(); ++i)
 				//{
@@ -256,7 +260,7 @@ namespace app
 			if (m_vButtons[EB_JUMP].Held() && m_fJumpTime > 0.0f)
 			{
 				m_fJumpTime -= dt.asSeconds();
-				float jIpulse = m_pBody->GetMass() * m_tValue.m_fJumpSpeed;
+				float jIpulse = m_pBody->GetMass() * m_tValue.m_fTerminalJumpSpeed;
 				m_pBody->ApplyLinearImpulse(b2Vec2(0, jIpulse), m_pBody->GetLocalCenter(), true);
 			}
 

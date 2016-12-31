@@ -52,6 +52,10 @@ namespace app
 
 		VIRTUAL void GoalEnt::Update(const sf::Time& dt)
 		{
+			if (m_bScored && m_pBody->GetType() != b2BodyType::b2_staticBody)
+			{
+				m_pBody->SetType(b2BodyType::b2_staticBody);
+			}
 		}
 
 		void GoalEnt::OnContactBegin(b2Contact* contact)
