@@ -72,6 +72,7 @@ namespace app
 			PlayerValue m_tValue;
 			b2Body* m_pTongueTip;
 			int m_nPlayerId;
+			b2Vec2 m_spawnPos;
 
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;
@@ -87,6 +88,8 @@ namespace app
 			bool m_bGrounded;
 			float m_fJumpTime;
 			float m_fFlipTime;
+
+			bool m_bRespawn;
 
 		private:
 			void OnKeyDown(const baka::key_events::KeyAction& action);
@@ -125,6 +128,7 @@ namespace app
 			b2Body* GetBody() const { return m_pBody; }
 			const bool& IsGrounded() const { return m_bGrounded; }
 			const b2Vec2 CalcShootDirection() const;
+			void Respawn() { m_bRespawn = true; }
 		};
 	}
 }

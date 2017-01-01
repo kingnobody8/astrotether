@@ -64,7 +64,7 @@ namespace baka
 			m_pWorld->SetDebugDraw(&m_debugDraw);
 			uint32 flags = 0;
 			flags += true * b2Draw::e_shapeBit;
-			flags += true * b2Draw::e_jointBit;
+			flags += false * b2Draw::e_jointBit;
 			flags += false * b2Draw::e_aabbBit;
 			flags += false * b2Draw::e_centerOfMassBit;
 			flags += true * b2Draw::e_particleBit;

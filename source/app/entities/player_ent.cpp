@@ -88,6 +88,7 @@ namespace app
 			, m_fJumpTime(-1.0f)
 			, m_pTongueContactUse(null)
 			, m_nPlayerId(-1)
+			, m_bRespawn(false)
 		{
 		}
 
@@ -113,6 +114,8 @@ namespace app
 			}
 
 			m_nPlayerId = pJson->getCustomInt(pBody, "intData1", -1);
+
+			m_spawnPos = m_pBody->GetPosition();
 
 			assert(pFixture);
 		}
@@ -182,6 +185,13 @@ namespace app
 
 		VIRTUAL void PlayerEnt::Update(const sf::Time& dt)
 		{
+			if (m_bRespawn)
+			{
+				m_bRespawn = false;
+				DestroyChain();
+				m_pBody->SetTransform(m_spawnPos, 0);
+			}
+
 			for (int i = 0; i < EButton::EB_COUNT; ++i)
 			{
 				m_vButtons[i].Flush(dt.asSeconds());
@@ -237,21 +247,21 @@ namespace app
 				float jIpulse = m_pBody->GetMass() * m_tValue.m_fInitialJumpSpeed;
 				m_pBody->ApplyLinearImpulse(b2Vec2(0, jIpulse), m_pBody->GetLocalCenter(), true);
 
-				//b2Vec2 jumpImpulse(0, -m_pBody->GetMass() * 10);
-				//for (int i = 0; i < m_vGroundContacts.size(); ++i)
-				//{
-				//	b2Fixture* pFixA = m_vGroundContacts[i]->GetFixtureA();
-				//	b2Fixture* pFixB = m_vGroundContacts[i]->GetFixtureB();
-				//
-				//	if (pFixA == m_pGroundSensor)
-				//	{
-				//		pFixB->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixB->GetBody()->GetWorldCenter(), true);
-				//	}
-				//	else
-				//	{
-				//		pFixA->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixA->GetBody()->GetWorldCenter(), true);
-				//	}
-				//}
+				b2Vec2 jumpImpulse(0, -jIpulse * 0.5f);
+				for (int i = 0; i < m_vGroundContacts.size(); ++i)
+				{
+					b2Fixture* pFixA = m_vGroundContacts[i]->GetFixtureA();
+					b2Fixture* pFixB = m_vGroundContacts[i]->GetFixtureB();
+				
+					if (pFixA == m_pGroundSensor)
+					{
+						pFixB->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixB->GetBody()->GetWorldCenter(), true);
+					}
+					else
+					{
+						pFixA->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixA->GetBody()->GetWorldCenter(), true);
+					}
+				}
 			}
 			else if (m_vButtons[EB_JUMP].Pull())
 			{
