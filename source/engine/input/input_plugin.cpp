@@ -8,7 +8,7 @@ namespace baka
 	InputPlugin::InputPlugin()
 		: m_pRenWin(null)
 	{
-		m_bDebugDraw = true;
+		m_bDebugDraw = false;
 	}
 
 	VIRTUAL InputPlugin::~InputPlugin()

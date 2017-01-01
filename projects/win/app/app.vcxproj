@@ -197,6 +197,7 @@
     <ClCompile Include="..\..\..\source\app\entities\spawner_ent.cpp" />
     <ClCompile Include="..\..\..\source\app\entities\tether_ent.cpp" />
     <ClCompile Include="..\..\..\source\app\main.cpp" />
+    <ClCompile Include="..\..\..\source\app\states\knock_off_state.cpp" />
     <ClCompile Include="..\..\..\source\app\states\splash_state.cpp" />
     <ClCompile Include="..\..\..\source\app\states\testbed_state.cpp" />
   </ItemGroup>
@@ -210,6 +211,7 @@
     <ClInclude Include="..\..\..\source\app\entities\registration.h" />
     <ClInclude Include="..\..\..\source\app\entities\spawner_ent.h" />
     <ClInclude Include="..\..\..\source\app\entities\tether_ent.h" />
+    <ClInclude Include="..\..\..\source\app\states\knock_off_state.h" />
     <ClInclude Include="..\..\..\source\app\states\splash_state.h" />
     <ClInclude Include="..\..\..\source\app\states\testbed_state.h" />
   </ItemGroup>

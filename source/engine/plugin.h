@@ -62,5 +62,8 @@ namespace baka
 			virtual inline int GetType() const { return Type; }			
 #define DEFINE_PLUGIN_TYPE_INFO(CLASS)									\
 			const int CLASS::Type = ++IPlugin::s_nextPluginTypeId;			
+
+#define FIND_PLUGIN(CLASS)												\
+			static_cast<CLASS*>(baka::IPlugin::FindPlugin(CLASS::Type));
 	};
 }

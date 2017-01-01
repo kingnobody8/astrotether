@@ -137,7 +137,7 @@ namespace baka
 			std::string ret = "----Physics----\n";
 
 			//ret += std::string("Bodies: ") + std::to_string(m_pWorld->GetBodyCount()) + std::string("\n");
-			ret += std::string("Steps: ") + std::to_string(steps) + std::string("\n");
+			ret += std::string("Steps: ") + std::to_string(steps);
 			//ret += std::string("View: \nX:") + std::to_string(m_view.getCenter().x) +
 			//	std::string(" Y: ") + std::to_string(m_view.getCenter().y) + std::string("\n");
 			//ret += std::string("W: ") + std::to_string(m_view.getSize().x) + std::string("\n") +

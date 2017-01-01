@@ -13,7 +13,7 @@
 #include "resource/json.h"
 
 #include "input/input_event.h"
-#include "testbed_state.h"
+#include "physics/physics_plugin.h"
 
 namespace app
 {
@@ -36,6 +36,11 @@ namespace app
 			baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
 			entity::RegisterAppEntities(pEntPlug);
 			pEntPlug->CreateEntity("LogoEnt");
+
+			//Setup physics - we won't use in this state, but in the next one
+			baka::physics::PhysicsPlugin* pPhysicsPlugin = new baka::physics::PhysicsPlugin();
+			pPhysicsPlugin->SetRenderWinow(pRenderPlug->GetRenderWindow());
+			baka::IPlugin::AddPlugin(pPhysicsPlugin);
 		}
 
 		VIRTUAL void SplashState::Exit()

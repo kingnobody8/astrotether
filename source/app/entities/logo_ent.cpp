@@ -5,7 +5,7 @@
 #include <string>
 #include <regex>
 #include "state/state_plugin.h"
-#include "states/testbed_state.h"
+#include "states/knock_off_state.h"
 
 namespace app
 {
@@ -113,7 +113,7 @@ namespace app
 		void LogoEnt::GotoNextState()
 		{
 			baka::state::StatePlugin* pStatePlug = static_cast<baka::state::StatePlugin*>(baka::IPlugin::FindPlugin(baka::state::StatePlugin::Type));
-			pStatePlug->TransitionState(new state::TestbedState());
+			pStatePlug->TransitionState(new state::KnockOffState());
 		}
 
 	}
