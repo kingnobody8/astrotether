@@ -4,7 +4,7 @@
     "air_acceleration": 0.6,
     "ground_deceleration": 0.98,
     "air_deceleration": 1.0,
-    "initial_jump_speed": 8,
+    "initial_jump_speed": 5,
     "terminal_jump_speed": 2,
     "jump_time": 0.08,
     "flip_time": 2.0,

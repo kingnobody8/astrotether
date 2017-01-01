@@ -31,8 +31,9 @@ namespace app
 			m_pPhysicsPlugin = FIND_PLUGIN(baka::physics::PhysicsPlugin)
 
 			sf::View& view = m_pPhysicsPlugin->GetView();
-			view.zoom(1.55);
-			view.setCenter(0, -24);
+			float scale = 30.0f;
+			view.setSize(1280/scale, 720/scale);
+			//view.zoom(1.25);
 
 			std::string path = "assets/worlds/";
 			std::string file = "testbed.json";

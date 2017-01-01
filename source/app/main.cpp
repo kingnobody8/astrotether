@@ -2,13 +2,14 @@
 #include "engine/state/setup_state.h"
 #include "utility/types/types.h"
 #include "states/testbed_state.h"
+#include "states/splash_state.h"
 #include <vld.h>
 
 
 int main()
 {
 	baka::state::SetupState* pSetupState = new baka::state::SetupState();
-	pSetupState->SetTransitionState(new app::state::TestbedState());
+	pSetupState->SetTransitionState(new app::state::SplashState());
 
 	baka::Engine* pEngine = baka::Engine::Get();
 

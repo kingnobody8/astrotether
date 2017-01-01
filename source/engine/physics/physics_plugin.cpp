@@ -63,7 +63,7 @@ namespace baka
 			m_debugDraw.Init();
 			m_pWorld->SetDebugDraw(&m_debugDraw);
 			uint32 flags = 0;
-			flags += true * b2Draw::e_shapeBit;
+			flags += false * b2Draw::e_shapeBit;
 			flags += false * b2Draw::e_jointBit;
 			flags += false * b2Draw::e_aabbBit;
 			flags += false * b2Draw::e_centerOfMassBit;
@@ -138,12 +138,12 @@ namespace baka
 
 			//ret += std::string("Bodies: ") + std::to_string(m_pWorld->GetBodyCount()) + std::string("\n");
 			ret += std::string("Steps: ") + std::to_string(steps);
-			//ret += std::string("View: \nX:") + std::to_string(m_view.getCenter().x) +
-			//	std::string(" Y: ") + std::to_string(m_view.getCenter().y) + std::string("\n");
-			//ret += std::string("W: ") + std::to_string(m_view.getSize().x) + std::string("\n") +
-			//	std::string("H: ") + std::to_string(m_view.getSize().y) + std::string("\n");
-			//ret += std::string("dx: ") + std::to_string(dx) + std::string("\n") +
-			//	std::string("dy: ") + std::to_string(dy) + std::string("\n");
+			ret += std::string("View: \nX:") + std::to_string(m_view.getCenter().x) +
+				std::string(" Y: ") + std::to_string(m_view.getCenter().y) + std::string("\n");
+			ret += std::string("W: ") + std::to_string(m_view.getSize().x) + std::string("\n") +
+				std::string("H: ") + std::to_string(m_view.getSize().y) + std::string("\n");
+			ret += std::string("dx: ") + std::to_string(dx) + std::string("\n") +
+				std::string("dy: ") + std::to_string(dy) + std::string("\n");
 
 
 			return ret;
@@ -160,7 +160,7 @@ namespace baka
 
 			__todo() //figure out how to parse the world settings from the json and set them here
 				//although it seems odd to me that the read from file doesn't just set them already
-				m_pWorld->SetGravity(b2Vec2(0, -30));
+				m_pWorld->SetGravity(b2Vec2(0, -20));
 
 			std::vector<b2dJsonImage*> m_vImages;
 			int result = m_json.getAllImages(m_vImages);

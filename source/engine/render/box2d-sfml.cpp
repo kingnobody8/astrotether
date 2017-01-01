@@ -34,6 +34,11 @@ namespace baka
 
 				vert.texCoords.x = jImage.uvCoords[index * 2] * m_pTexture->getSize().x;
 				vert.texCoords.y = jImage.uvCoords[index * 2 + 1] * m_pTexture->getSize().y;
+
+				vert.color.r = jImage.colorTint[0];
+				vert.color.g = jImage.colorTint[1];
+				vert.color.b = jImage.colorTint[2];
+				vert.color.a = jImage.colorTint[3];
 			}
 		}
 
@@ -51,6 +56,11 @@ namespace baka
 			{
 				bodyTransform.translate(m_pBody->GetPosition().x, -m_pBody->GetPosition().y);
 				bodyTransform.rotate(m_pBody->GetAngle() * -RAD_DEG);
+			}
+			else
+			{
+				bodyTransform.translate(m_jImage.center.x, -m_jImage.center.y);
+				bodyTransform.rotate(m_jImage.angle);
 			}
 
 			states.transform *= bodyTransform * m_offsetTransform;
