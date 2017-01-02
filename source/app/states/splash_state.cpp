@@ -14,6 +14,7 @@
 
 #include "input/input_event.h"
 #include "physics/physics_plugin.h"
+#include "states/knock_off_state.h"
 
 namespace app
 {
@@ -27,12 +28,7 @@ namespace app
 		VIRTUAL void SplashState::Init()
 		{
 			baka::render::RenderPlugin* pRenderPlug = static_cast<baka::render::RenderPlugin*>(baka::IPlugin::FindPlugin(baka::render::RenderPlugin::Type));
-			sf::View* view = new sf::View(pRenderPlug->GetRenderWindow()->getDefaultView());
-			view->setCenter(sf::Vector2f());
-			view->setSize(view->getSize().x, -view->getSize().y);
-			pRenderPlug->AddLayer("main", view, true);
-
-
+			
 			baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
 			entity::RegisterAppEntities(pEntPlug);
 			pEntPlug->CreateEntity("LogoEnt");
@@ -41,13 +37,21 @@ namespace app
 			baka::physics::PhysicsPlugin* pPhysicsPlugin = new baka::physics::PhysicsPlugin();
 			pPhysicsPlugin->SetRenderWinow(pRenderPlug->GetRenderWindow());
 			baka::IPlugin::AddPlugin(pPhysicsPlugin);
+
+			baka::state::StatePlugin* pStatePlug = static_cast<baka::state::StatePlugin*>(baka::IPlugin::FindPlugin(baka::state::StatePlugin::Type));
+			pStatePlug->TransitionState(new state::KnockOffState());
+
+			sf::View* view = new sf::View(pRenderPlug->GetRenderWindow()->getDefaultView());
+			view->setCenter(sf::Vector2f());
+			view->setSize(view->getSize().x, -view->getSize().y);
+			pRenderPlug->AddLayer("main", view, true);
 		}
 
 		VIRTUAL void SplashState::Exit()
 		{
-			baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
-			if (pEntPlug)
-				pEntPlug->DestroyAllEntities();
+			//baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
+			//if (pEntPlug)
+			//	pEntPlug->DestroyAllEntities();
 		}
 
 	}

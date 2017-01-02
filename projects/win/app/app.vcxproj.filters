@@ -38,6 +38,9 @@
     <ClCompile Include="..\..\..\source\app\states\knock_off_state.cpp">
       <Filter>states</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\app\entities\rain_ent.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="states">
@@ -83,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\app\states\knock_off_state.h">
       <Filter>states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\app\entities\rain_ent.h">
+      <Filter>entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

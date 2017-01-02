@@ -7,6 +7,7 @@
 #include "goal_ent.h"
 #include "ball_ent.h"
 #include "kill_zone_ent.h"
+#include "rain_ent.h"
 
 namespace app
 {
@@ -26,6 +27,7 @@ namespace app
 			REGISTER_ENTITY(GoalEnt);
 			REGISTER_ENTITY(BallEnt);
 			REGISTER_ENTITY(KillZoneEnt);
+			REGISTER_ENTITY(RainEnt);
 		}
 	}
 }

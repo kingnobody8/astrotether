@@ -4,12 +4,13 @@
 #include "input/input_event.h"
 #include "spinecpp/spinecpp.h"
 #include "render/spine-sfml.h"
+#include "entity/physics_ent.h"
 
 namespace app
 {
 	namespace entity
 	{
-		class LogoEnt : public baka::entity::IEntity
+		class LogoEnt : public baka::entity::IPhysicsEnt
 		{
 		public:
 			DECLARE_ENTITY_TYPE_INFO(LogoEnt);
@@ -21,6 +22,9 @@ namespace app
 
 			sf::Time m_timer;
 			bool m_bIsAnimOver;
+			bool m_bFaded;
+			sf::Vector2f position;
+			float scale;
 
 			void OnKeyDown(const baka::key_events::KeyAction& action);
 			void OnMouseDown(const baka::mouse_events::ButtonAction& action);
@@ -36,6 +40,8 @@ namespace app
 			virtual void Init();
 			virtual void Exit();
 			virtual void Update(const sf::Time& dt);
+
+			virtual void Setup(b2Body* pBody, b2dJson* pJson);
 
 		};
 	}

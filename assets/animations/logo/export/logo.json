@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "PaXsyd7YSoN/2XNMMH4oEU/ZugU", "spine": "3.4.02", "width": 320, "height": 320, "images": "" },
+"skeleton": { "hash": "mf6PusvHKkngqJACfTJry5ZMyPE", "spine": "3.5.46", "width": 320, "height": 320, "images": "" },
 "bones": [
 	{ "name": "root", "scaleX": 5, "scaleY": 5 },
 	{ "name": "bone_center", "parent": "root", "length": 16 },
@@ -67,6 +67,34 @@
 					{ "time": 0, "angle": 225, "curve": "stepped" },
 					{ "time": 1, "angle": 225 },
 					{ "time": 2, "angle": 0 }
+				]
+			}
+		}
+	},
+	"fade_out": {
+		"slots": {
+			"images/L0": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" },
+					{ "time": 1.5, "color": "ffffff00" }
+				]
+			},
+			"images/L1": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" },
+					{ "time": 1.5, "color": "ffffff00" }
+				]
+			},
+			"images/L3": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" },
+					{ "time": 1.5, "color": "ffffff00" }
+				]
+			},
+			"images/L4": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" },
+					{ "time": 1.5, "color": "ffffff00" }
 				]
 			}
 		}

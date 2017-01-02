@@ -33,6 +33,7 @@ namespace app
 			sf::View& view = m_pPhysicsPlugin->GetView();
 			float scale = 30.0f;
 			view.setSize(1280/scale, 720/scale);
+			view.setCenter(0, -32);
 			//view.zoom(1.25);
 
 			std::string path = "assets/worlds/";

@@ -23,6 +23,8 @@ namespace app
 			, m_pSkelData(null)
 			, m_pDrawable(null)
 			, m_bIsAnimOver(false)
+			, m_bFaded(false)
+			, scale(1.0f)
 		{
 		}
 
@@ -49,6 +51,8 @@ namespace app
 
 			m_pDrawable->skeleton->setBonesToSetupPose();
 			m_pDrawable->state->setAnimationByName(0, "animation", false);
+			m_pDrawable->setPosition(position);
+			m_pDrawable->setScale(scale, scale);
 		}
 
 		VIRTUAL void LogoEnt::Exit()
@@ -83,6 +87,13 @@ namespace app
 		}
 
 
+		VIRTUAL void LogoEnt::Setup(b2Body* pBody, b2dJson* pJson)
+		{
+			position = sf::Vector2f(pBody->GetPosition().x, pBody->GetPosition().y);
+			scale = 1 / 5.0f;
+		}
+
+
 		void LogoEnt::OnKeyDown(const baka::key_events::KeyAction& action)
 		{
 			SnapToEnd();
@@ -101,19 +112,24 @@ namespace app
 
 		void LogoEnt::SnapToEnd()
 		{
-			GotoNextState();
+			//GotoNextState();
 		}
 
 		void LogoEnt::AnimationListenerCallback(spine::AnimationState& state, int trackIndex, spine::EventType type, const spine::Event* event, int loopCount)
 		{
-			if (type == spine::EventType::Anim_End)
+			if (type == spine::EventType::Anim_End && m_bFaded == false)
+			{
 				m_bIsAnimOver = true;
+			}
 		}
 
 		void LogoEnt::GotoNextState()
 		{
-			baka::state::StatePlugin* pStatePlug = static_cast<baka::state::StatePlugin*>(baka::IPlugin::FindPlugin(baka::state::StatePlugin::Type));
-			pStatePlug->TransitionState(new state::KnockOffState());
+			//baka::state::StatePlugin* pStatePlug = static_cast<baka::state::StatePlugin*>(baka::IPlugin::FindPlugin(baka::state::StatePlugin::Type));
+			//pStatePlug->TransitionState(new state::KnockOffState());
+			m_pDrawable->state->setAnimationByName(0, "fade_out", false);
+			m_bIsAnimOver = false;
+			m_bFaded = true;
 		}
 
 	}

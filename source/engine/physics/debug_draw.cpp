@@ -1,5 +1,6 @@
 
 #include "debug_draw.h"
+#include "utility/helper/func.h"
 
 namespace baka
 {
@@ -43,7 +44,7 @@ namespace baka
 		b2Color tmpFillColor(0.5f * c.r, 0.5f * c.g, 0.5f * c.b, 0.5f);
 		sf::Color clr = B2ColorConvert(c);
 		sf::Color fillClr = B2ColorConvert(tmpFillColor);
-		
+
 		for (int32 i = 1; i < vertexCount - 1; ++i)
 		{
 			b2Vec2 a = vertices[0];
@@ -59,7 +60,7 @@ namespace baka
 		for (int32 i = 0; i < vertexCount; ++i)
 		{
 			b2Vec2 p2 = vertices[i];
-			m_lines.Vertex(sf::Vector2f(p1.x ,p1.y), clr);
+			m_lines.Vertex(sf::Vector2f(p1.x, p1.y), clr);
 			m_lines.Vertex(sf::Vector2f(p2.x, p2.y), clr);
 			p1 = p2;
 		}
@@ -148,14 +149,14 @@ namespace baka
 		for (int i = 0; i < count; ++i)
 		{
 			b2Vec2 center = centers[i];
-			b2Color color = b2Color(colors[i].r / 255.0f, colors[i].g / 255.0f, colors[i].b / 255.0f);
-		
+			b2Color color = b2Color(colors[i].r / 255.0f, colors[i].g / 255.0f, colors[i].b / 255.0f, colors[i].a / 255.0f);
+
 			/*b2Vec2 vel = velocities[i];
 			vel.Normalize();
-		
+
 			m_lines->Vertex(center - vel, color);
 			m_lines->Vertex(center, color);*/
-		
+
 			const float32 k_segments = 16.0f;
 			const float32 k_increment = 2.0f * b2_pi / k_segments;
 			float32 sinInc = sinf(k_increment);
@@ -164,8 +165,9 @@ namespace baka
 			b2Vec2 r1(cosInc, sinInc);
 			b2Vec2 v1 = center + radius * r1;
 			float32 len = velocities[i].Length();
-			float32 mod = len * 255;
-			sf::Color fillColor(0.5f * color.r * mod, 0.5f * color.g * mod, 0.5f * color.b * mod, 127);
+			float32 mod = 255;// len * 255;
+			float32 half = 1.0f;
+			sf::Color fillColor(half * color.r * mod, half * color.g * mod, half * color.b * mod, color.a * 255);
 			for (int32 i = 0; i < k_segments; ++i)
 			{
 				// Perform rotation to avoid additional trigonometry.
@@ -178,6 +180,25 @@ namespace baka
 				m_triangles.Vertex(sf::Vector2f(v2.x, v2.y), fillColor);
 				r1 = r2;
 				v1 = v2;
+			}
+
+			{
+				b2Vec2 vel = velocities[i];
+				//vel.Normalize();
+				//center -= vel * (1/60.0f);
+
+				const float cs = cos(90);
+				const float sn = sin(90);
+				b2Vec2 dir;
+				dir.x = vel.x * cs - vel.y * sn;
+				dir.y = vel.x * sn + vel.y * cs;
+				dir.Normalize();
+				dir *= radius;
+				b2Vec2 prev = center - vel * 1 / 10.0f;
+
+				m_triangles.Vertex(sf::Vector2f(prev.x, prev.y), fillColor);
+				m_triangles.Vertex(sf::Vector2f(center.x + dir.x, center.y + dir.y), fillColor);
+				m_triangles.Vertex(sf::Vector2f(center.x - dir.x, center.y - dir.y), fillColor);
 			}
 		}
 	}
@@ -212,16 +233,16 @@ namespace baka
 		sf::Vector2f p2(aabb->upperBound.x, aabb->lowerBound.y);
 		sf::Vector2f p3(aabb->upperBound.x, aabb->upperBound.y);
 		sf::Vector2f p4(aabb->lowerBound.x, aabb->upperBound.y);
-		
+
 		m_lines.Vertex(p1, clr);
 		m_lines.Vertex(p2, clr);
-		
+
 		m_lines.Vertex(p2, clr);
 		m_lines.Vertex(p3, clr);
-		
+
 		m_lines.Vertex(p3, clr);
 		m_lines.Vertex(p4, clr);
-		
+
 		m_lines.Vertex(p4, clr);
 		m_lines.Vertex(p1, clr);
 	}
