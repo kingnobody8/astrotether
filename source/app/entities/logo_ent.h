@@ -43,6 +43,8 @@ namespace app
 
 			virtual void Setup(b2Body* pBody, b2dJson* pJson);
 
+			bool GetFinishedAnim() const { return m_bFaded; }
+
 		};
 	}
 }

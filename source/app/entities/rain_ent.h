@@ -29,6 +29,8 @@ namespace app
 			virtual void Update(const sf::Time& dt);
 
 			virtual void Setup(b2Body* pBody, b2dJson* pJson);
+
+			void SetPosY(const float f) { altY = f; }
 		};
 	}
 }

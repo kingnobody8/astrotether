@@ -18,7 +18,7 @@ namespace baka
 			: m_pCurrState(null)
 			, m_pNextState(pFirstState)
 		{
-			m_bDebugDraw = true;
+			m_bDebugDraw = false;
 		}
 
 		VIRTUAL StatePlugin::~StatePlugin()

@@ -41,6 +41,8 @@ namespace baka
 			void DestroyEntity(IEntity* pEnt);
 			void DestroyAllEntities();
 			void CreatePhysicsEntities(b2dJson* json);
+
+			std::vector<IEntity*> FindEntities(const std::string& type);
 		};
 	}
 }

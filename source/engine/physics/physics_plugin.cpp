@@ -134,16 +134,16 @@ namespace baka
 			m_pRenWin->draw(x_axis, 2, sf::Lines);
 			m_pRenWin->draw(y_axis, 2, sf::Lines);
 
-			std::string ret = "----Physics----\n";
+			std::string ret; //= "----Physics----\n";
 
-			//ret += std::string("Bodies: ") + std::to_string(m_pWorld->GetBodyCount()) + std::string("\n");
-			ret += std::string("Steps: ") + std::to_string(steps);
-			ret += std::string("View: \nX:") + std::to_string(m_view.getCenter().x) +
-				std::string(" Y: ") + std::to_string(m_view.getCenter().y) + std::string("\n");
-			ret += std::string("W: ") + std::to_string(m_view.getSize().x) + std::string("\n") +
-				std::string("H: ") + std::to_string(m_view.getSize().y) + std::string("\n");
-			ret += std::string("dx: ") + std::to_string(dx) + std::string("\n") +
-				std::string("dy: ") + std::to_string(dy) + std::string("\n");
+			////ret += std::string("Bodies: ") + std::to_string(m_pWorld->GetBodyCount()) + std::string("\n");
+			//ret += std::string("Steps: ") + std::to_string(steps);
+			//ret += std::string("View: \nX:") + std::to_string(m_view.getCenter().x) +
+			//	std::string(" Y: ") + std::to_string(m_view.getCenter().y) + std::string("\n");
+			//ret += std::string("W: ") + std::to_string(m_view.getSize().x) + std::string("\n") +
+			//	std::string("H: ") + std::to_string(m_view.getSize().y) + std::string("\n");
+			//ret += std::string("dx: ") + std::to_string(dx) + std::string("\n") +
+			//	std::string("dy: ") + std::to_string(dy) + std::string("\n");
 
 
 			return ret;

@@ -25,6 +25,9 @@ namespace baka
 			virtual void Exit() {}
 			virtual void Update(const sf::Time& dt) {}
 
+			virtual inline int GetType() const { return -1; }
+			virtual const char* GetTypeName() const { return "error"; }
+
 
 
 #define DECLARE_ENTITY_TYPE_INFO(CLASS)									\

@@ -114,5 +114,26 @@ namespace baka
 			}
 		}
 
+		std::vector<IEntity*> EntityPlugin::FindEntities(const std::string& type)
+		{
+			std::vector<IEntity*> ret;
+			for (auto iter = m_vPending.begin(); iter != m_vPending.end(); ++iter)
+			{
+				if ((*iter)->GetTypeName() == type)
+				{
+					ret.push_back((*iter));
+				}
+			}
+			for (auto iter = m_vEnts.begin(); iter != m_vEnts.end(); ++iter)
+			{
+				if ((*iter)->GetTypeName() == type)
+				{
+					ret.push_back((*iter));
+				}
+			}
+			return ret;
+		}
+
+
 	}
 }

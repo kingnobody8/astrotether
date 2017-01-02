@@ -30,7 +30,7 @@ Purpose:	These are commonly used utility functions and macros
 #define Damp(val, delta)			((val > delta) ? (val -= delta) : (val = 0))	//Pushes a value towards 0 by the delta specified, stops when it reaches 0
 #endif
 #ifndef Lerp
-#define Lerp(alpha, omega, lerp)	(alpha + (omega - alpha) * lerp)			//performs a linear interpolation
+#define Lerp(alpha, omega, lerp)	(alpha + (omega - alpha) * (lerp))			//performs a linear interpolation
 #endif
 #ifndef Odd
 #define Odd(num)					(num % 2 != 0)

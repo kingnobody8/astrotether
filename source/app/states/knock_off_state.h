@@ -9,6 +9,8 @@
 
 #include "physics/physics_plugin.h"
 #include "entities/player_ent.h"
+#include "entities/logo_ent.h"
+#include "entities/rain_ent.h"
 
 
 namespace app
@@ -21,6 +23,12 @@ namespace app
 			util::Subscriber sub;
 			baka::physics::PhysicsPlugin* m_pPhysicsPlugin;
 			entity::PlayerEnt* m_vPlayer[2];
+
+			sf::Time m_timer;
+			entity::LogoEnt* m_pLogo;
+			entity::RainEnt* m_pRain;
+
+			void BeginPan();
 
 		public:
 			KnockOffState();
