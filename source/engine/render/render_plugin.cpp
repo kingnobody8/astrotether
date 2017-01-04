@@ -47,7 +47,6 @@ namespace baka
 				assert(false);
 			}
 			m_debugText.setFont(m_debugFont);
-			m_debugText.setString("hello \n woot");
 
 			m_debugText.setCharacterSize(32); // in pixels, not points!
 			m_debugText.setColor(sf::Color::White);
@@ -112,7 +111,7 @@ namespace baka
 				{
 					temp += (*iter) + std::string("\n");
 				}
-				m_debugText.setString(temp);
+				//m_debugText.setString(temp);
 				m_pRenWin->setView(m_pRenWin->getDefaultView());
 				m_pRenWin->draw(m_debugText);
 
