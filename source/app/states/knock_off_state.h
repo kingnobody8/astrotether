@@ -32,6 +32,7 @@ namespace app
 			sf::Sound m_sound;
 			sf::SoundBuffer m_soundBufferWin;
 			sf::Music m_rain;
+			sf::Music m_loop;
 
 			sf::Time m_timer;
 			sf::Time m_startDelay;

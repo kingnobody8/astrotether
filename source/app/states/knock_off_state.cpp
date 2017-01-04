@@ -36,6 +36,9 @@ namespace app
 			m_rain.openFromFile("assets/sfx/rain.wav");
 			m_rain.play();
 			m_rain.setLoop(true);
+			m_loop.openFromFile("assets/sfx/loop.wav");
+			m_loop.play();
+			m_loop.setLoop(true);
 
 			m_pPhysicsPlugin = FIND_PLUGIN(baka::physics::PhysicsPlugin);
 			baka::render::RenderPlugin* pRendPlug = FIND_PLUGIN(baka::render::RenderPlugin);
