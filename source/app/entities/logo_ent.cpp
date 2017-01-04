@@ -23,6 +23,7 @@ namespace app
 			, m_pSkelData(null)
 			, m_pDrawable(null)
 			, m_bIsAnimOver(false)
+			, m_bFinished(false)
 			, m_bFaded(false)
 			, scale(1.0f)
 		{
@@ -118,9 +119,13 @@ namespace app
 
 		void LogoEnt::AnimationListenerCallback(spine::AnimationState& state, int trackIndex, spine::EventType type, const spine::Event* event, int loopCount)
 		{
-			if (type == spine::EventType::Anim_End && m_bFaded == false)
+			if (type == spine::EventType::Anim_Complete && m_bFaded == false)
 			{
 				m_bIsAnimOver = true;
+			}
+			else if (event)
+			{
+				m_bFinished = true;
 			}
 		}
 

@@ -296,7 +296,18 @@ namespace baka
 			}
 		}
 
-
+		std::vector<render::PhysicsDrawable*> PhysicsPlugin::FindImagesByBody(b2Body* pBody)
+		{
+			std::vector<render::PhysicsDrawable*> ret;
+			for (int i = 0; i < m_vDrawables.size(); ++i)
+			{
+				if (m_vDrawables[i]->GetBody() == pBody)
+				{
+					ret.push_back(m_vDrawables[i]);
+				}
+			}
+			return ret;
+		}
 
 		VIRTUAL void PhysicsPlugin::BeginContact(b2Contact* contact)
 		{

@@ -41,6 +41,9 @@
     <ClCompile Include="..\..\..\source\app\entities\rain_ent.cpp">
       <Filter>entities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\app\entities\block_ent.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="states">
@@ -88,6 +91,9 @@
       <Filter>states</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\app\entities\rain_ent.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\app\entities\block_ent.h">
       <Filter>entities</Filter>
     </ClInclude>
   </ItemGroup>

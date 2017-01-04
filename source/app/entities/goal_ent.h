@@ -14,12 +14,14 @@ namespace app
 
 		private:
 			bool m_bScored;
-			int m_nGoalId;
 			b2Body* m_pBody;
 			b2Fixture* m_pSensor;
+			std::vector<b2Contact*> m_vContacts;
 
 			void OnContactBegin(b2Contact*);
 			void OnContactEnd(b2Contact*);
+
+			void CheckBlocks();
 
 		public:
 			GoalEnt();
@@ -30,6 +32,7 @@ namespace app
 
 			virtual void Setup(b2Body* pBody, b2dJson* pJson);
 
+			void SetScored(bool b) { m_bScored = false; }
 		};
 	}
 }

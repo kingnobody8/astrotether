@@ -16,6 +16,10 @@ namespace baka
 			~PhysicsDrawable();
 
 			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+			void SetColor(sf::Color c);
+			b2Body* GetBody() { return m_pBody; }
+			std::string GetPath() { return m_jImage.file; }
 		private:
 			b2dJsonImage m_jImage;
 			std::string m_path;

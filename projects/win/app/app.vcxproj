@@ -188,6 +188,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\app\entities\ball_ent.cpp" />
+    <ClCompile Include="..\..\..\source\app\entities\block_ent.cpp" />
     <ClCompile Include="..\..\..\source\app\entities\goal_ent.cpp" />
     <ClCompile Include="..\..\..\source\app\entities\kill_zone_ent.cpp" />
     <ClCompile Include="..\..\..\source\app\entities\liquid_ent.cpp" />
@@ -204,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\app\entities\ball_ent.h" />
+    <ClInclude Include="..\..\..\source\app\entities\block_ent.h" />
     <ClInclude Include="..\..\..\source\app\entities\goal_ent.h" />
     <ClInclude Include="..\..\..\source\app\entities\kill_zone_ent.h" />
     <ClInclude Include="..\..\..\source\app\entities\liquid_ent.h" />

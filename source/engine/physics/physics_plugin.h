@@ -75,6 +75,7 @@ namespace baka
 			const std::vector<render::PhysicsDrawable*> GetDrawables() const { return m_vDrawables; }
 			void DeleteDrawables();
 			b2dJson* GetJson() { return &m_json; }
+			std::vector<render::PhysicsDrawable*> FindImagesByBody(b2Body* pBody);
 
 			virtual void BeginContact(b2Contact* contact);
 			virtual void EndContact(b2Contact* contact);

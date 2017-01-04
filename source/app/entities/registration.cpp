@@ -8,6 +8,7 @@
 #include "ball_ent.h"
 #include "kill_zone_ent.h"
 #include "rain_ent.h"
+#include "block_ent.h"
 
 namespace app
 {
@@ -28,6 +29,7 @@ namespace app
 			REGISTER_ENTITY(BallEnt);
 			REGISTER_ENTITY(KillZoneEnt);
 			REGISTER_ENTITY(RainEnt);
+			REGISTER_ENTITY(BlockEnt);
 		}
 	}
 }

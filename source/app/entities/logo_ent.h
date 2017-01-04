@@ -22,6 +22,7 @@ namespace app
 
 			sf::Time m_timer;
 			bool m_bIsAnimOver;
+			bool m_bFinished;
 			bool m_bFaded;
 			sf::Vector2f position;
 			float scale;
@@ -43,7 +44,7 @@ namespace app
 
 			virtual void Setup(b2Body* pBody, b2dJson* pJson);
 
-			bool GetFinishedAnim() const { return m_bFaded; }
+			bool GetFinishedAnim() const { return m_bFinished; }
 
 		};
 	}

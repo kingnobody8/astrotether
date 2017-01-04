@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "e0D19QiDsb8LpWJD9icmU/Zt5IU", "spine": "3.5.46", "width": 371.35, "height": 645.17, "images": "" },
+"skeleton": { "hash": "rpoRD4tgdYxiqe4TBG0jHE8ChJo", "spine": "3.5.46", "width": 371.35, "height": 645.17, "images": "" },
 "bones": [
 	{ "name": "root", "scaleX": 5, "scaleY": 5 },
 	{ "name": "bone_center", "parent": "root", "length": 16 },
@@ -35,6 +35,9 @@
 			"images/Lightning_0": { "y": 60, "scaleX": 0.148, "scaleY": 0.148, "width": 93, "height": 640 }
 		}
 	}
+},
+"events": {
+	"lightning": {}
 },
 "animations": {
 	"animation": {
@@ -175,7 +178,10 @@
 					{ "time": 6, "x": 2.057, "y": 2.057 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 6.1667, "name": "lightning" }
+		]
 	}
 }
 }

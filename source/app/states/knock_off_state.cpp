@@ -48,6 +48,14 @@ namespace app
 			baka::entity::EntityPlugin* pEntPlug = FIND_PLUGIN(baka::entity::EntityPlugin)
 				m_pLogo = static_cast<entity::LogoEnt*>(pEntPlug->FindEntities("LogoEnt")[0]);
 			m_pRain = static_cast<entity::RainEnt*>(pEntPlug->FindEntities("RainEnt")[0]);
+			m_pGoal = static_cast<entity::GoalEnt*>(pEntPlug->FindEntities("GoalEnt")[0]);
+
+			
+			auto blocks = pEntPlug->FindEntities("BlockEnt");
+			for (int i = 0; i < blocks.size(); ++i)
+			{
+				m_vBlocks.push_back(static_cast<entity::BlockEnt*>(blocks[i]));
+			}
 
 			std::vector<baka::entity::IEntity*> vEnts = pEntPlug->FindEntities("PlayerEnt");
 			entity::PlayerEnt *pTmp1, *pTmp2;
@@ -66,9 +74,6 @@ namespace app
 			}
 
 			FindControllers();
-
-
-
 
 			BeginPan();
 
@@ -95,8 +100,7 @@ namespace app
 
 		VIRTUAL void KnockOffState::Update(const sf::Time& dt)
 		{
-
-
+			static bool once = false;
 			if (m_timer.asSeconds() > 0)
 			{
 				m_timer -= dt;
@@ -110,9 +114,23 @@ namespace app
 
 				m_pRain->SetPosY(Lerp(posRain, 16, 1.0f - amt));
 			}
-			else if (m_pLogo->GetFinishedAnim())
+			else if (m_pLogo->GetFinishedAnim() && !once)
 			{
-				//BeginPan();
+				once = true;
+				for (int i = 0; i < m_vBlocks.size(); ++i)
+				{
+					m_vBlocks[i]->Explode(b2Vec2());
+				}
+				m_startDelay = sf::seconds(3);
+			}
+
+			if (m_startDelay.asSeconds() > 0)
+			{
+				m_startDelay -= dt;
+				if (m_startDelay.asSeconds() <= 0)
+				{
+					m_pGoal->SetScored(false);
+				}
 			}
 		}
 

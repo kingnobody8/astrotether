@@ -68,5 +68,15 @@ namespace baka
 			target.draw(*m_vVertexArray, states);
 		}
 
+
+		void PhysicsDrawable::SetColor(sf::Color c)
+		{
+			//create verticies
+			for (int i = 0; i < m_vVertexArray->getVertexCount(); ++i)
+			{
+				sf::Vertex& vert = m_vVertexArray->operator[](i);
+				vert.color = c;
+			}
+		}
 	}
 }

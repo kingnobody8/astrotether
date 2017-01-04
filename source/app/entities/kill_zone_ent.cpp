@@ -3,6 +3,7 @@
 #include "utility/helper/func.h"
 #include "physics/physics_plugin.h"
 #include "player_ent.h"
+#include "block_ent.h"
 
 namespace app
 {
@@ -65,6 +66,11 @@ namespace app
 				PlayerEnt* pPlayer = static_cast<PlayerEnt*>(data);
 				s_OutOfBounds.Publish(pPlayer);
 				pPlayer->Respawn();
+			}
+			else if (data && data->GetType() == BlockEnt::Type)
+			{
+				BlockEnt* pBlock = static_cast<BlockEnt*>(data);
+				pBlock->Respawn();
 			}
 		}
 
