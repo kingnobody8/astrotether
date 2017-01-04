@@ -5,6 +5,7 @@
 #include "spinecpp/spinecpp.h"
 #include "render/spine-sfml.h"
 #include "entity/physics_ent.h"
+#include "SFML/Audio.hpp"
 
 namespace app
 {
@@ -19,6 +20,9 @@ namespace app
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;
 			spine::SkeletonDrawable* m_pDrawable;
+
+			sf::Sound m_sound;
+			sf::SoundBuffer m_soundBufferThunder;
 
 			sf::Time m_timer;
 			bool m_bIsAnimOver;

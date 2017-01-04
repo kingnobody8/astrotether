@@ -35,6 +35,8 @@ namespace app
 
 		VIRTUAL void LogoEnt::Init()
 		{
+			m_soundBufferThunder.loadFromFile("assets/sfx/thunder.wav");
+
 			std::string file_path = std::regex_replace(path, std::regex("REP"), file);
 			m_pAtlas = spine::Atlas::createFromFile((file_path + std::string(".atlas")).c_str(), null);
 			spine::SkeletonJson json(*m_pAtlas);
@@ -125,7 +127,15 @@ namespace app
 			}
 			else if (event)
 			{
-				m_bFinished = true;
+				if (event->data.name == "first_strike")
+				{
+					m_sound.setBuffer(m_soundBufferThunder);
+					m_sound.play();
+				}
+				else
+				{
+					m_bFinished = true;
+				}
 			}
 		}
 

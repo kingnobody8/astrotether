@@ -29,6 +29,9 @@ namespace app
 			baka::render::PhysicsDrawable* m_pBGLights;
 			baka::render::PhysicsDrawable* m_pNMLights;
 
+			sf::Sound m_sound;
+			sf::SoundBuffer m_soundBufferWin;
+			sf::Music m_rain;
 
 			sf::Time m_timer;
 			sf::Time m_startDelay;

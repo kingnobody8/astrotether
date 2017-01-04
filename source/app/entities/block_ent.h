@@ -2,6 +2,7 @@
 #include "engine/entity/entity.h"
 #include "entity/physics_ent.h"
 #include "render/box2d-sfml.h"
+#include "SFML/Audio.hpp"
 
 namespace app
 {
@@ -20,6 +21,9 @@ namespace app
 			bool m_bRespawn;
 			bool m_bInGoal;
 			bool m_bIsGreen;
+
+			sf::SoundBuffer m_soundBufferSettled;
+			sf::Sound m_sound;
 
 			void SetToGreen(bool b);
 

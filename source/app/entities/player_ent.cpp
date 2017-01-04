@@ -132,6 +132,11 @@ namespace app
 
 		VIRTUAL void PlayerEnt::Init()
 		{
+			m_soundBufferJump.loadFromFile("assets/sfx/jump.wav");
+			m_soundBufferShoot.loadFromFile("assets/sfx/shoot.wav");
+			m_soundBufferTag.loadFromFile("assets/sfx/tag.wav");
+
+
 			m_tValue.LoadValues("assets/player_values.json");
 			m_pCircleDraw->setRadius(m_tValue.m_fTongueTipRadius);
 
@@ -252,6 +257,8 @@ namespace app
 			{
 				m_fJumpTime = m_tValue.m_fJumpTime;
 				//m_pBody->ApplyLinearImpulse(b2Vec2(0, m_tValue.m_fJumpImpulse), m_pBody->GetLocalCenter(), true);
+				m_sound.setBuffer(m_soundBufferJump);
+				m_sound.play();
 
 				m_pDrawable->state->setAnimationByName(0, "jump", false);
 
@@ -695,6 +702,9 @@ namespace app
 			if (len > m_tValue.m_fTetherLength)
 				return;
 
+			m_sound.setBuffer(m_soundBufferTag);
+			m_sound.play();
+
 			baka::render::RenderPlugin* pRenderPlug = FIND_PLUGIN(baka::render::RenderPlugin);
 			pRenderPlug->RemDrawable(m_pCircleDraw);
 
@@ -810,6 +820,9 @@ namespace app
 			if (DestroyChain())
 				return;
 
+			m_sound.setBuffer(m_soundBufferShoot);
+			m_sound.play();
+
 			const b2Vec2 dir = CalcShootDirection();
 			b2Vec2 pos = m_pBody->GetPosition();
 			b2Vec2 endPoint = pos + dir * m_tValue.m_fTetherLength;
@@ -894,7 +907,9 @@ namespace app
 					if (m_vGroundContacts[i]->IsTouching())
 					{
 						if (!prevGrounded)
+						{
 							m_pDrawable->state->setAnimationByName(0, "idle", false);
+						}
 						m_bGrounded = true;
 						return;
 					}

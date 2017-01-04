@@ -32,6 +32,11 @@ namespace app
 
 		VIRTUAL void KnockOffState::Init()
 		{
+			m_soundBufferWin.loadFromFile("assets/sfx/win.wav");
+			m_rain.openFromFile("assets/sfx/rain.wav");
+			m_rain.play();
+			m_rain.setLoop(true);
+
 			m_pPhysicsPlugin = FIND_PLUGIN(baka::physics::PhysicsPlugin);
 			baka::render::RenderPlugin* pRendPlug = FIND_PLUGIN(baka::render::RenderPlugin);
 
@@ -223,6 +228,9 @@ namespace app
 			baka::render::RenderPlugin* pRendPlug = FIND_PLUGIN(baka::render::RenderPlugin);
 			pRendPlug->AddDrawable(m_pBGLights, "physics-1");
 			pRendPlug->RemDrawable(m_pNMLights);
+
+			m_sound.setBuffer(m_soundBufferWin);
+			m_sound.play();
 		}
 	}
 }

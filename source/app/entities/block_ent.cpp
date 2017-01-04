@@ -53,6 +53,7 @@ namespace app
 			baka::render::RenderPlugin* pPlug = FIND_PLUGIN(baka::render::RenderPlugin);
 			pPlug->RemDrawable(m_pDrawableR);
 			pPlug->RemDrawable(m_pDrawableG);
+			m_soundBufferSettled.loadFromFile("assets/sfx/settled.wav");
 		}
 
 		VIRTUAL void BlockEnt::Exit()
@@ -92,6 +93,8 @@ namespace app
 				return;
 			m_bIsGreen = b;
 
+			m_sound.setBuffer(m_soundBufferSettled);
+			m_sound.play();
 
 			baka::render::RenderPlugin* pPlug = FIND_PLUGIN(baka::render::RenderPlugin);
 			if (b)

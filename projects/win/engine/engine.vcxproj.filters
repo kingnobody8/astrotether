@@ -55,6 +55,9 @@
     <Filter Include="entity">
       <UniqueIdentifier>{1508ac44-bf04-4d98-a6c0-44325f23257c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SFML">
+      <UniqueIdentifier>{f0508b71-fe9a-49ca-ba90-ed14e1958002}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\engine\engine.cpp" />
@@ -366,5 +369,316 @@
     <ClInclude Include="..\..\..\source\engine\entity\physics_ent.h">
       <Filter>entity</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Config.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Main.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\OpenGL.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\AlResource.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\Export.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\InputSoundFile.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\Listener.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\Music.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\OutputSoundFile.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\Sound.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\SoundBuffer.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\SoundBufferRecorder.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\SoundFileFactory.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\SoundFileReader.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\SoundFileWriter.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\SoundRecorder.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\SoundSource.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\SoundStream.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\BlendMode.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\CircleShape.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Color.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\ConvexShape.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Drawable.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Export.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Font.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Glsl.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Glyph.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Image.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\PrimitiveType.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Rect.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\RectangleShape.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\RenderStates.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\RenderTarget.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\RenderTexture.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\RenderWindow.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Shader.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Shape.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Sprite.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Text.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Texture.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Transform.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Transformable.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Vertex.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\VertexArray.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\View.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\Export.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\Ftp.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\Http.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\IpAddress.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\Packet.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\Socket.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\SocketHandle.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\SocketSelector.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\TcpListener.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\TcpSocket.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Network\UdpSocket.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Clock.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Err.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Export.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\FileInputStream.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\InputStream.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Lock.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\MemoryInputStream.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Mutex.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\NativeActivity.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\NonCopyable.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Sleep.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\String.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Thread.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\ThreadLocal.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\ThreadLocalPtr.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Time.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Utf.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Vector2.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Vector3.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\Context.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\ContextSettings.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\Event.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\Export.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\GlResource.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\Joystick.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\Keyboard.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\Mouse.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\Sensor.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\Touch.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\VideoMode.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\Window.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\WindowHandle.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\SFML-2.3.2\include\SFML\Window\WindowStyle.hpp">
+      <Filter>SFML</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\libs\SFML-2.3.2\include\SFML\Audio\SoundFileFactory.inl">
+      <Filter>SFML</Filter>
+    </None>
+    <None Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Glsl.inl">
+      <Filter>SFML</Filter>
+    </None>
+    <None Include="..\..\..\libs\SFML-2.3.2\include\SFML\Graphics\Rect.inl">
+      <Filter>SFML</Filter>
+    </None>
+    <None Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\String.inl">
+      <Filter>SFML</Filter>
+    </None>
+    <None Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Thread.inl">
+      <Filter>SFML</Filter>
+    </None>
+    <None Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\ThreadLocalPtr.inl">
+      <Filter>SFML</Filter>
+    </None>
+    <None Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Utf.inl">
+      <Filter>SFML</Filter>
+    </None>
+    <None Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Vector2.inl">
+      <Filter>SFML</Filter>
+    </None>
+    <None Include="..\..\..\libs\SFML-2.3.2\include\SFML\System\Vector3.inl">
+      <Filter>SFML</Filter>
+    </None>
   </ItemGroup>
 </Project>

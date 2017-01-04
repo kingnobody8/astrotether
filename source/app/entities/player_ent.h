@@ -9,6 +9,8 @@
 #include "entity/physics_ent.h"
 #include "physics/physics_plugin.h"
 
+#include "SFML/Audio.hpp"
+
 namespace app
 {
 	namespace entity
@@ -76,6 +78,12 @@ namespace app
 			b2Vec2 m_spawnPos;
 			sf::CircleShape* m_pCircleDraw;
 			sf::RectangleShape* m_pRectDraw;
+
+			sf::Sound m_sound;
+			sf::SoundBuffer m_soundBufferJump;
+			sf::SoundBuffer m_soundBufferShoot;
+			sf::SoundBuffer m_soundBufferTag;
+
 
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;
