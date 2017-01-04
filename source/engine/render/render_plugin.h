@@ -20,10 +20,10 @@ namespace baka
 					delete m_pView;
 				}
 
-				for (int i = 0; i < m_vDrawables.size(); ++i)
-				{
-					delete m_vDrawables[i];
-				}
+				//for (int i = 0; i < m_vDrawables.size(); ++i)
+				//{
+				//	delete m_vDrawables[i];
+				//}
 				m_vDrawables.clear();
 			}
 

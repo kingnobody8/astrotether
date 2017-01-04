@@ -74,6 +74,8 @@ namespace app
 			int m_nPlayerId;
 			int m_nJoypadId;
 			b2Vec2 m_spawnPos;
+			sf::CircleShape* m_pCircleDraw;
+			sf::RectangleShape* m_pRectDraw;
 
 			spine::Atlas* m_pAtlas;
 			spine::SkeletonData* m_pSkelData;

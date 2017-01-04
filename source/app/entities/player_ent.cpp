@@ -13,9 +13,14 @@
 #include "tether_ent.h"
 #include "entity/entity_plugin.h"
 
-const std::string path = "../spine_examples/REP/export/REP";
+const std::string path = "assets/animations//REP/export/REP";
 //const std::string path = "assets/animations/REP/export/REP";
 const std::string file = "spineboy";
+
+const float aimX = 0;
+const float aimY = 1.0;
+const float aimLenX = 1.4;
+const float aimLenY = 2.2;
 
 namespace app
 {
@@ -90,7 +95,11 @@ namespace app
 			, m_nPlayerId(-1)
 			, m_nJoypadId(-1)
 			, m_bRespawn(false)
+			, m_pRectDraw(null)
+			, m_pCircleDraw(null)
 		{
+			m_pCircleDraw = new sf::CircleShape();
+			m_pCircleDraw->setRadius(0.2f);
 		}
 
 		VIRTUAL PlayerEnt::~PlayerEnt()
@@ -124,6 +133,7 @@ namespace app
 		VIRTUAL void PlayerEnt::Init()
 		{
 			m_tValue.LoadValues("assets/player_values.json");
+			m_pCircleDraw->setRadius(m_tValue.m_fTongueTipRadius);
 
 			std::string file_path = std::regex_replace(path, std::regex("REP"), file);
 			m_pAtlas = spine::Atlas::createFromFile((file_path + std::string(".atlas")).c_str(), null);
@@ -159,6 +169,9 @@ namespace app
 			baka::physics::contact_events::s_ContactEnd.Subscribe(this, BIND1(this, &PlayerEnt::OnContactEnd));
 			baka::physics::contact_events::s_ParticleContactBegin.Subscribe(this, BIND1(this, &PlayerEnt::OnParticleContactBegin));
 			baka::physics::contact_events::s_ParticleContactEnd.Subscribe(this, BIND1(this, &PlayerEnt::OnParticleContactEnd));
+
+			pRenderPlug->AddDrawable(m_pCircleDraw, "physics");
+			//pRenderPlug->AddDrawable(m_pRectDraw, "physics");
 
 		}
 
@@ -240,6 +253,8 @@ namespace app
 				m_fJumpTime = m_tValue.m_fJumpTime;
 				//m_pBody->ApplyLinearImpulse(b2Vec2(0, m_tValue.m_fJumpImpulse), m_pBody->GetLocalCenter(), true);
 
+				m_pDrawable->state->setAnimationByName(0, "jump", false);
+
 				float jIpulse = m_pBody->GetMass() * m_tValue.m_fInitialJumpSpeed;
 				m_pBody->ApplyLinearImpulse(b2Vec2(0, jIpulse), m_pBody->GetLocalCenter(), true);
 
@@ -248,7 +263,7 @@ namespace app
 				{
 					b2Fixture* pFixA = m_vGroundContacts[i]->GetFixtureA();
 					b2Fixture* pFixB = m_vGroundContacts[i]->GetFixtureB();
-				
+
 					if (pFixA == m_pGroundSensor)
 					{
 						pFixB->GetBody()->ApplyLinearImpulse(jumpImpulse, pFixB->GetBody()->GetWorldCenter(), true);
@@ -310,6 +325,24 @@ namespace app
 			else if (m_vButtons[EB_LEFT].Held())
 				m_pDrawable->skeleton->flipX = true;
 
+			//do animation state changes
+			if (m_bGrounded)
+			{
+				if ((m_vButtons[EB_RIGHT].Push() && !m_vButtons[EB_LEFT].Held()) ||
+					(m_vButtons[EB_LEFT].Push() && !m_vButtons[EB_RIGHT].Held()))
+				{
+					//m_pStateData->setMixByName("idle", "run", 0.25);
+					m_pDrawable->state->setAnimationByName(0, "run", true);
+				}
+				if ((m_vButtons[EB_RIGHT].Pull() && !m_vButtons[EB_LEFT].Held()) ||
+					(m_vButtons[EB_LEFT].Pull() && !m_vButtons[EB_RIGHT].Held()))
+				{
+					//m_pStateData->setMixByName("run", "idle", 0.25);
+					m_pDrawable->state->setAnimationByName(0, "idle", true);
+				}
+			}
+
+
 			if (m_pTongueContactUse)
 			{
 				//b2Vec2 vel = m_pTongueTip->GetLinearVelocity();
@@ -338,6 +371,28 @@ namespace app
 
 				m_pTongueContactUse = null;
 			}
+
+			if (m_pTongueTip && (m_pTongueTip->GetPosition() - m_pBody->GetPosition()).Length() > m_tValue.m_fTetherLength)
+			{
+				m_pTongueTip->GetWorld()->DestroyBody(m_pTongueTip);
+				m_pTongueTip = null;
+			}
+
+
+			b2Vec2 dir = CalcShootDirection();
+			b2Vec2 pos = m_pBody->GetPosition() + b2Vec2(aimX, aimY) + b2Vec2(dir.x * aimLenX, dir.y * aimLenY);
+			if (dir.x < 0)
+				pos = m_pBody->GetPosition() + b2Vec2(-aimX, aimY) + b2Vec2(dir.x * aimLenX, dir.y * aimLenY);
+			if (m_pTongueTip)
+			{
+				pos = m_pTongueTip->GetPosition();
+				pos.x -= m_pCircleDraw->getRadius();
+				pos.y += m_pCircleDraw->getRadius();
+			}
+
+			pos.y *= -1;
+			m_pCircleDraw->setPosition(pos.x, pos.y);
+
 		}
 
 
@@ -388,12 +443,12 @@ namespace app
 
 			switch (action.m_code)
 			{
-			/*case sf::Keyboard::K:
-			{
+				/*case sf::Keyboard::K:
+				{
 				float imp = m_tValue.m_fDashImpulse;
 				b2Vec2 dir = imp * CalcShootDirection();
 				m_pBody->ApplyLinearImpulse(dir, m_pBody->GetLocalCenter(), true);
-			}break;*/
+				}break;*/
 			case sf::Keyboard::J:
 			{
 				m_vButtons[EButton::EB_SHOOT].Next(false);
@@ -640,9 +695,12 @@ namespace app
 			if (len > m_tValue.m_fTetherLength)
 				return;
 
+			baka::render::RenderPlugin* pRenderPlug = FIND_PLUGIN(baka::render::RenderPlugin);
+			pRenderPlug->RemDrawable(m_pCircleDraw);
+
 			baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
 			m_pTetherEnt = CreateEntityMacro(pEntPlug, entity::TetherEnt);
-			m_pTetherEnt->Setup(m_pBody, pBody, m_pBody->GetPosition(), worldPoint);
+			m_pTetherEnt->Setup(m_pBody, pBody, m_pBody->GetPosition() + b2Vec2(0, aimY), worldPoint);
 			return;
 
 
@@ -720,6 +778,10 @@ namespace app
 		{
 			if (m_pTetherEnt)
 			{
+				baka::render::RenderPlugin* pRenderPlug = FIND_PLUGIN(baka::render::RenderPlugin);
+				if (pRenderPlug)
+					pRenderPlug->AddDrawable(m_pCircleDraw, "physics");
+
 				baka::entity::EntityPlugin* pEntPlug = static_cast<baka::entity::EntityPlugin*>(baka::IPlugin::FindPlugin(baka::entity::EntityPlugin::Type));
 				if (pEntPlug)
 				{
@@ -774,11 +836,15 @@ namespace app
 			myFixtureDef.density = m_tValue.m_fTongueTipDensity;
 
 			//create dynamic body
-			pos.y += 1.0f;
-			b2Vec2 startPoint = pos + b2Vec2(dir.x * 2, dir.y * 3);
+
+			b2Vec2 startPoint = pos + b2Vec2(aimX, aimY) + b2Vec2(dir.x * aimLenX, dir.y * aimLenY);
+			if (dir.x < 0)
+				startPoint = pos + b2Vec2(-aimX, aimY) + b2Vec2(dir.x * aimLenX, dir.y * aimLenY);
 			def.position.Set(startPoint.x, startPoint.y);
 			m_pTongueTip = m_pBody->GetWorld()->CreateBody(&def);
 			m_pTongueTip->CreateFixture(&myFixtureDef);
+
+
 
 			/*bool hit = OnRopeEvent(sf::Vector2f(endPoint.x, endPoint.y));
 
@@ -816,6 +882,8 @@ namespace app
 
 		void PlayerEnt::OnContactBegin(b2Contact* contact)
 		{
+			bool prevGrounded = m_bGrounded;
+
 			if (contact->GetFixtureA() == m_pGroundSensor || contact->GetFixtureB() == m_pGroundSensor)
 			{
 				m_vGroundContacts.push_back(contact);
@@ -825,6 +893,8 @@ namespace app
 				{
 					if (m_vGroundContacts[i]->IsTouching())
 					{
+						if (!prevGrounded)
+							m_pDrawable->state->setAnimationByName(0, "idle", false);
 						m_bGrounded = true;
 						return;
 					}
