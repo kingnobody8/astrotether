@@ -88,6 +88,7 @@ namespace app
 			, m_fJumpTime(-1.0f)
 			, m_pTongueContactUse(null)
 			, m_nPlayerId(-1)
+			, m_nJoypadId(-1)
 			, m_bRespawn(false)
 		{
 		}
@@ -146,9 +147,9 @@ namespace app
 			baka::key_events::s_InputKeyDown.Subscribe(this, BIND1(this, &PlayerEnt::OnKeyDown));
 			baka::key_events::s_InputKeyUp.Subscribe(this, BIND1(this, &PlayerEnt::OnKeyUp));
 
-			baka::mouse_events::s_InputMouseButtonDown.Subscribe(this, BIND1(this, &PlayerEnt::OnMouseDown));
-			baka::mouse_events::s_InputMouseButtonUp.Subscribe(this, BIND1(this, &PlayerEnt::OnMouseUp));
-			baka::mouse_events::s_InputMouseMotion.Subscribe(this, BIND1(this, &PlayerEnt::OnMouseMove));
+			//baka::mouse_events::s_InputMouseButtonDown.Subscribe(this, BIND1(this, &PlayerEnt::OnMouseDown));
+			//baka::mouse_events::s_InputMouseButtonUp.Subscribe(this, BIND1(this, &PlayerEnt::OnMouseUp));
+			//baka::mouse_events::s_InputMouseMotion.Subscribe(this, BIND1(this, &PlayerEnt::OnMouseMove));
 
 			baka::joypad_events::s_InputJoypadButtonDown.Subscribe(this, BIND1(this, &PlayerEnt::OnJoypadButtonDown));
 			baka::joypad_events::s_InputJoypadButtonUp.Subscribe(this, BIND1(this, &PlayerEnt::OnJoypadButtonUp));
@@ -204,11 +205,6 @@ namespace app
 			if (m_vButtons[EB_DASH].Pull())
 			{
 				Dash();
-			}
-
-			if (m_vButtons[EB_LEFT_FLIP].Pull())
-			{
-				m_fFlipTime = m_tValue.m_fFlipTime;
 			}
 
 			if (m_fFlipTime > 0)
@@ -347,20 +343,12 @@ namespace app
 
 		void PlayerEnt::OnKeyDown(const baka::key_events::KeyAction& action)
 		{
-			//only player 1 gets keyboard control
-			if (m_nPlayerId != 1)
+			//only player 0 gets keyboard control
+			if (m_nPlayerId != 0)
 				return;
 
 			switch (action.m_code)
 			{
-			case sf::Keyboard::Q:
-			{
-				m_vButtons[EButton::EB_LEFT_FLIP].Next(true);
-			}break;
-			case sf::Keyboard::E:
-			{
-				m_vButtons[EButton::EB_RIGHT_FLIP].Next(true);
-			}	break;
 			case sf::Keyboard::J:
 			{
 				m_vButtons[EButton::EB_SHOOT].Next(true);
@@ -394,26 +382,18 @@ namespace app
 
 		void PlayerEnt::OnKeyUp(const baka::key_events::KeyAction& action)
 		{
-			//only player 1 gets keyboard control
-			if (m_nPlayerId != 1)
+			//only player 0 gets keyboard control
+			if (m_nPlayerId != 0)
 				return;
 
 			switch (action.m_code)
 			{
-			case sf::Keyboard::Q:
-			{
-				m_vButtons[EButton::EB_LEFT_FLIP].Next(false);
-			}break;
-			case sf::Keyboard::K:
+			/*case sf::Keyboard::K:
 			{
 				float imp = m_tValue.m_fDashImpulse;
 				b2Vec2 dir = imp * CalcShootDirection();
 				m_pBody->ApplyLinearImpulse(dir, m_pBody->GetLocalCenter(), true);
-			}break;
-			case sf::Keyboard::E:
-			{
-				m_vButtons[EButton::EB_RIGHT_FLIP].Next(false);
-			}	break;
+			}break;*/
 			case sf::Keyboard::J:
 			{
 				m_vButtons[EButton::EB_SHOOT].Next(false);
@@ -455,8 +435,8 @@ namespace app
 
 		void PlayerEnt::OnMouseUp(const baka::mouse_events::ButtonAction& action)
 		{
-			//only player 1 gets keyboard control
-			if (m_nPlayerId != 1)
+			//only player 0 gets keyboard control
+			if (m_nPlayerId != 0)
 				return;
 
 			if (action.m_button == sf::Mouse::Right)
@@ -477,39 +457,79 @@ namespace app
 
 		void PlayerEnt::OnJoypadButtonDown(const baka::joypad_events::ButtonAction& action)
 		{
-			if (m_nPlayerId != action.m_id)
+			if (m_nJoypadId != action.m_id)
 				return;
 
-			switch (action.m_code)
+			sf::Joystick::Identification ident = sf::Joystick::getIdentification(action.m_id);
+			std::string name = ident.name;
+			std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+			int result = name.find("xbox");
+
+			if (result == -1)
 			{
-			case 0:
-				m_vButtons[EB_SHOOT].Next(true); break;
-			case 1:
-				m_vButtons[EB_JUMP].Next(true); break;
-			case 3:
-				m_vButtons[EB_DASH].Next(true); break;
+				switch (action.m_code)
+				{
+				case 0:
+					m_vButtons[EB_SHOOT].Next(true); break;
+				case 1:
+					m_vButtons[EB_JUMP].Next(true); break;
+				case 3:
+					m_vButtons[EB_DASH].Next(true); break;
+				}
+			}
+			else
+			{
+				switch (action.m_code)
+				{
+				case 2:
+					m_vButtons[EB_SHOOT].Next(true); break;
+				case 0:
+					m_vButtons[EB_JUMP].Next(true); break;
+				case 3:
+					m_vButtons[EB_DASH].Next(true); break;
+				}
 			}
 		}
 
 		void PlayerEnt::OnJoypadButtonUp(const baka::joypad_events::ButtonAction& action)
 		{
-			if (m_nPlayerId != action.m_id)
+			if (m_nJoypadId != action.m_id)
 				return;
 
-			switch (action.m_code)
+			sf::Joystick::Identification ident = sf::Joystick::getIdentification(action.m_id);
+			std::string name = ident.name;
+			std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+			int result = name.find("xbox");
+
+			if (result == -1)
 			{
-			case 0:
-				m_vButtons[EB_SHOOT].Next(false); break;
-			case 1:
-				m_vButtons[EB_JUMP].Next(false); break;
-			case 3:
-				m_vButtons[EB_DASH].Next(false); break;
+				switch (action.m_code)
+				{
+				case 0:
+					m_vButtons[EB_SHOOT].Next(false); break;
+				case 1:
+					m_vButtons[EB_JUMP].Next(false); break;
+				case 3:
+					m_vButtons[EB_DASH].Next(false); break;
+				}
+			}
+			else
+			{
+				switch (action.m_code)
+				{
+				case 2:
+					m_vButtons[EB_SHOOT].Next(false); break;
+				case 0:
+					m_vButtons[EB_JUMP].Next(false); break;
+				case 3:
+					m_vButtons[EB_DASH].Next(false); break;
+				}
 			}
 		}
 
 		void PlayerEnt::OnJoypadMove(const baka::joypad_events::AxisAction& action)
 		{
-			if (m_nPlayerId != action.m_id)
+			if (m_nJoypadId != action.m_id)
 				return;
 
 			__todo()//fix movement between controller and keyboard overlapping eachotehr
@@ -583,6 +603,16 @@ namespace app
 			return dir;
 		}
 
+		int PlayerEnt::HowManyJoysticksConnected()
+		{
+			int ret = 0;
+			for (int i = 0; i < 4; ++i)
+			{
+				if (sf::Joystick::isConnected(i))
+					ret++;
+			}
+			return ret;
+		}
 
 
 		bool PlayerEnt::OnRopeEvent(const sf::Vector2f& worldCoords)
@@ -719,7 +749,7 @@ namespace app
 				return;
 
 			const b2Vec2 dir = CalcShootDirection();
-			const b2Vec2 pos = m_pBody->GetPosition();
+			b2Vec2 pos = m_pBody->GetPosition();
 			b2Vec2 endPoint = pos + dir * m_tValue.m_fTetherLength;
 
 			if (m_pTongueTip != null)
@@ -744,6 +774,7 @@ namespace app
 			myFixtureDef.density = m_tValue.m_fTongueTipDensity;
 
 			//create dynamic body
+			pos.y += 1.0f;
 			b2Vec2 startPoint = pos + b2Vec2(dir.x * 2, dir.y * 3);
 			def.position.Set(startPoint.x, startPoint.y);
 			m_pTongueTip = m_pBody->GetWorld()->CreateBody(&def);

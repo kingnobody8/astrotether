@@ -139,5 +139,7 @@ namespace baka
 		static util::Publisher<ButtonAction> s_InputJoypadButtonDown;
 		static util::Publisher<ButtonAction> s_InputJoypadButtonUp;
 		static util::Publisher<AxisAction> s_InputJoypadMove;
+		static util::Publisher<int> s_InputJoypadConnected;
+		static util::Publisher<int> s_InputJoypadDisconnected;
 	};
 }

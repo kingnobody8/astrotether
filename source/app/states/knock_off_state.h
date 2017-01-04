@@ -30,6 +30,12 @@ namespace app
 
 			void BeginPan();
 
+			void OnJoystickConnected(const int id);
+			void OnJoystickDisconnected(const int id);
+			void OnKeyUp(const baka::key_events::KeyAction& action);
+
+			void FindControllers();
+
 		public:
 			KnockOffState();
 

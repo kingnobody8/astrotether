@@ -61,7 +61,7 @@ namespace app
 		public:
 			DECLARE_ENTITY_TYPE_INFO(PlayerEnt);
 
-			enum EButton { EB_INVALID = -1, EB_LEFT, EB_RIGHT, EB_UP, EB_DOWN, EB_JUMP, EB_SHOOT, EB_LEFT_FLIP, EB_RIGHT_FLIP, EB_DASH, EB_COUNT };
+			enum EButton { EB_INVALID = -1, EB_LEFT, EB_RIGHT, EB_UP, EB_DOWN, EB_JUMP, EB_SHOOT, EB_DASH, EB_COUNT };
 
 		private:
 			b2Body* m_pBody;
@@ -72,6 +72,7 @@ namespace app
 			PlayerValue m_tValue;
 			b2Body* m_pTongueTip;
 			int m_nPlayerId;
+			int m_nJoypadId;
 			b2Vec2 m_spawnPos;
 
 			spine::Atlas* m_pAtlas;
@@ -108,6 +109,8 @@ namespace app
 			void MakeRopeJoint(b2Body* pBody, b2Vec2 worldPoint);
 			bool DestroyChain(void);
 
+			int HowManyJoysticksConnected();
+
 			void OnContactBegin(b2Contact*);
 			void OnContactEnd(b2Contact*);
 			void OnParticleContactBegin(baka::physics::ParticleBeginContactData*);
@@ -126,6 +129,9 @@ namespace app
 			sf::Vector2f GetPosition() const { return sf::Vector2f(m_pBody->GetPosition().x, m_pBody->GetPosition().y); }
 			const PlayerValue& GetPlayerValue() const { return m_tValue; }
 			b2Body* GetBody() const { return m_pBody; }
+			const int GetPlayerId() { return m_nPlayerId; }
+			const int GetJoystickId() { return m_nJoypadId; }
+			void SetJoystickId(const int n) { m_nJoypadId = n; }
 			const bool& IsGrounded() const { return m_bGrounded; }
 			const b2Vec2 CalcShootDirection() const;
 			void Respawn() { m_bRespawn = true; }

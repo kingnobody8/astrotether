@@ -34,9 +34,9 @@ namespace app
 		{
 			m_pPhysicsPlugin = FIND_PLUGIN(baka::physics::PhysicsPlugin)
 
-			sf::View& view = m_pPhysicsPlugin->GetView();
+				sf::View& view = m_pPhysicsPlugin->GetView();
 			float scale = 30.0f;
-			view.setSize(1280/scale, 720/scale);
+			view.setSize(1280 / scale, 720 / scale);
 			view.setCenter(0, startPosY);
 			//view.zoom(1.25);
 
@@ -46,14 +46,37 @@ namespace app
 			b2dJson* json = m_pPhysicsPlugin->LoadWorld(path, file);
 
 			baka::entity::EntityPlugin* pEntPlug = FIND_PLUGIN(baka::entity::EntityPlugin)
-			m_pLogo = static_cast<entity::LogoEnt*>( pEntPlug->FindEntities("LogoEnt")[0]);
+				m_pLogo = static_cast<entity::LogoEnt*>(pEntPlug->FindEntities("LogoEnt")[0]);
 			m_pRain = static_cast<entity::RainEnt*>(pEntPlug->FindEntities("RainEnt")[0]);
+
+			std::vector<baka::entity::IEntity*> vEnts = pEntPlug->FindEntities("PlayerEnt");
+			entity::PlayerEnt *pTmp1, *pTmp2;
+			pTmp1 = static_cast<entity::PlayerEnt*>(vEnts[0]);
+			pTmp2 = static_cast<entity::PlayerEnt*>(vEnts[1]);
+
+			if (pTmp1->GetPlayerId() == 0)
+			{
+				m_vPlayer[0] = pTmp1;
+				m_vPlayer[1] = pTmp2;
+			}
+			else
+			{
+				m_vPlayer[0] = pTmp2;
+				m_vPlayer[1] = pTmp1;
+			}
+
+			FindControllers();
+
+
 
 
 			BeginPan();
 
+			baka::joypad_events::s_InputJoypadConnected.Subscribe(&sub, BIND1(this, &KnockOffState::OnJoystickConnected));
+			baka::joypad_events::s_InputJoypadDisconnected.Subscribe(&sub, BIND1(this, &KnockOffState::OnJoystickDisconnected));
+
 			//b2Body* pPlayerBody = json->getBodyByName("player");
-		//	m_pPlayer = CreateEntityMacro(pEntPlug, entity::PlayerEnt);
+			//	m_pPlayer = CreateEntityMacro(pEntPlug, entity::PlayerEnt);
 			//m_pPlayer->Setup(pPlayerBody);
 		}
 
@@ -72,7 +95,7 @@ namespace app
 
 		VIRTUAL void KnockOffState::Update(const sf::Time& dt)
 		{
-			
+
 
 			if (m_timer.asSeconds() > 0)
 			{
@@ -80,7 +103,7 @@ namespace app
 
 				m_pPhysicsPlugin = FIND_PLUGIN(baka::physics::PhysicsPlugin)
 
-				sf::View& view = m_pPhysicsPlugin->GetView();
+					sf::View& view = m_pPhysicsPlugin->GetView();
 				float amt = m_timer.asSeconds() / transTime;
 				float posY = Lerp(startPosY, 0, 1.0f - amt);
 				view.setCenter(0, posY);
@@ -96,6 +119,71 @@ namespace app
 		void KnockOffState::BeginPan()
 		{
 			m_timer = sf::seconds(transTime);
+		}
+
+		void KnockOffState::FindControllers()
+		{
+			int num = 0;
+			for (int i = 0; i < 4; ++i)
+			{
+				if (sf::Joystick::isConnected(i))
+				{
+					num++;
+				}
+			}
+
+			m_vPlayer[0]->SetJoystickId(-1);
+			m_vPlayer[1]->SetJoystickId(-1);
+
+			for (int i = 0; i < 4; ++i)
+			{
+				if (sf::Joystick::isConnected(i))
+				{
+					if (num <= 1)
+					{
+						for (int j = 1; j >= 0; --j)
+						{
+							if (m_vPlayer[j]->GetJoystickId() == -1)
+							{
+								m_vPlayer[j]->SetJoystickId(i);
+								break;
+							}
+						}
+					}
+					else
+					{
+						for (int j = 0; j < 2; ++j)
+						{
+							if (m_vPlayer[j]->GetJoystickId() == -1)
+							{
+								m_vPlayer[j]->SetJoystickId(i);
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		void KnockOffState::OnJoystickConnected(const int id)
+		{
+			FindControllers();
+		}
+
+		void KnockOffState::OnJoystickDisconnected(const int id)
+		{
+			FindControllers();
+		}
+
+		void KnockOffState::OnKeyUp(const baka::key_events::KeyAction& action)
+		{
+			switch (action.m_code)
+			{
+			case sf::Keyboard::C:
+			{
+				FindControllers();
+			} break;
+			}
 		}
 	}
 }

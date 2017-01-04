@@ -38,6 +38,7 @@ namespace app
 			m_pAtlas = spine::Atlas::createFromFile((file_path + std::string(".atlas")).c_str(), null);
 			spine::SkeletonJson json(*m_pAtlas);
 			m_pSkelData = json.readSkeletonDataFile((file_path + std::string(".json")).c_str());
+			std::string error = json.getError();
 			m_pDrawable = new spine::SkeletonDrawable(m_pSkelData);
 
 			m_pDrawable->state->listener = BIND5(this, &LogoEnt::AnimationListenerCallback);
@@ -127,7 +128,7 @@ namespace app
 		{
 			//baka::state::StatePlugin* pStatePlug = static_cast<baka::state::StatePlugin*>(baka::IPlugin::FindPlugin(baka::state::StatePlugin::Type));
 			//pStatePlug->TransitionState(new state::KnockOffState());
-			m_pDrawable->state->setAnimationByName(0, "fade_out", false);
+			m_pDrawable->state->setAnimationByName(0, "shrink", false);
 			m_bIsAnimOver = false;
 			m_bFaded = true;
 		}
