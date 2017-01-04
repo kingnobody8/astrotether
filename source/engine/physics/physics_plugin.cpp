@@ -49,6 +49,7 @@ namespace baka
 			m_view = pRenderPlug->GetRenderWindow()->getDefaultView();
 			m_view.setCenter(sf::Vector2f());
 			m_view.setSize(m_view.getSize().x * viewRatio, m_view.getSize().y * viewRatio);
+			pRenderPlug->AddLayer("physics-1", &m_view);
 			pRenderPlug->AddLayer("physics", &m_view);
 
 			m_pWorld = new b2World(b2Vec2());

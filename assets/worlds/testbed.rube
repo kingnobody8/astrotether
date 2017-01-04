@@ -53,6 +53,13 @@
       "displayName" : "entity_type",
       "name" : "entity_type",
       "type" : "string"
+    },
+    
+    {
+      "class" : "image",
+      "displayName" : "handle",
+      "name" : "handle",
+      "type" : "string"
     }
   ],
   "metaworld" : 
@@ -605,7 +612,7 @@
             "vertices" : 
             {
               "x" : [ -1.907349997054553e-006 ],
-              "y" : [ 0.4251709580421448 ]
+              "y" : [ 0.4251709878444672 ]
             }
           },
           
@@ -624,8 +631,8 @@
             ],
             "vertices" : 
             {
-              "x" : [ -1.192092895507813e-006 ],
-              "y" : [ 0.4952505826950073 ]
+              "x" : [ -1.192090053336870e-006 ],
+              "y" : [ 0.4952509999275208 ]
             }
           },
           
@@ -651,11 +658,11 @@
         ],
         "id" : 10,
         "linearVelocity" : 0,
-        "massData-I" : 16.96074676513672,
+        "massData-I" : 16.96074867248535,
         "massData-center" : 
         {
           "x" : 0.0001384979113936424,
-          "y" : 1.302334904670715
+          "y" : 1.302335023880005
         },
         "massData-mass" : 9.999990463256836,
         "name" : "player",
@@ -665,6 +672,61 @@
           "y" : -7
         },
         "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "id" : 11,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "body3",
+        "position" : 
+        {
+          "x" : 78.85732269287109,
+          "y" : 20.30173301696777
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 17,
+            "name" : "fixture4",
+            "sensor" : true,
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 0.5,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 0.0 ],
+              "y" : [ 0.0 ]
+            }
+          }
+        ],
+        "id" : 12,
+        "linearVelocity" : 0,
+        "name" : "body4",
+        "position" : 
+        {
+          "x" : 0,
+          "y" : 20.0
+        },
+        "type" : "static"
       },
       
       {
@@ -718,6 +780,45 @@
           "y" : 4.5
         },
         "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 18,
+            "name" : "fixture5",
+            "sensor" : true,
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 0.5,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 0.0 ],
+              "y" : [ 0.0 ]
+            }
+          }
+        ],
+        "id" : 14,
+        "linearVelocity" : 0,
+        "name" : "body5",
+        "position" : 
+        {
+          "x" : 0,
+          "y" : 20.0
+        },
+        "type" : "static"
       },
       
       {
@@ -1866,6 +1967,28 @@
       
       {
         "aspectScale" : 1,
+        "body" : 14,
+        "center" : 0,
+        "customProperties" : 
+        [
+          
+          {
+            "name" : "handle",
+            "string" : "lights_bg"
+          }
+        ],
+        "file" : "../textures/bg_lights.png",
+        "filter" : 1,
+        "flip" : false,
+        "id" : 1,
+        "name" : "image0",
+        "opacity" : 0.25,
+        "renderOrder" : -1,
+        "scale" : 72.0
+      },
+      
+      {
+        "aspectScale" : 1,
         "body" : 86,
         "center" : 0,
         "file" : "../textures/bridge.png",
@@ -2195,11 +2318,16 @@
       
       {
         "aspectScale" : 1,
-        "center" : 
-        {
-          "x" : 0,
-          "y" : 20.0
-        },
+        "body" : 12,
+        "center" : 0,
+        "customProperties" : 
+        [
+          
+          {
+            "name" : "handle",
+            "string" : "nm_lights"
+          }
+        ],
         "file" : "../textures/background.png",
         "filter" : 1,
         "flip" : false,

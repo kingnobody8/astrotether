@@ -32,9 +32,10 @@ namespace app
 
 		VIRTUAL void KnockOffState::Init()
 		{
-			m_pPhysicsPlugin = FIND_PLUGIN(baka::physics::PhysicsPlugin)
+			m_pPhysicsPlugin = FIND_PLUGIN(baka::physics::PhysicsPlugin);
+			baka::render::RenderPlugin* pRendPlug = FIND_PLUGIN(baka::render::RenderPlugin);
 
-				sf::View& view = m_pPhysicsPlugin->GetView();
+			sf::View& view = m_pPhysicsPlugin->GetView();
 			float scale = 30.0f;
 			view.setSize(1280 / scale, 720 / scale);
 			view.setCenter(0, startPosY);
@@ -45,12 +46,19 @@ namespace app
 
 			b2dJson* json = m_pPhysicsPlugin->LoadWorld(path, file);
 
+			b2dJsonImage* pImage = json->getImageByCustomString("handle", "lights_bg");
+			auto imgs = m_pPhysicsPlugin->FindImagesByBody(pImage->body);
+			m_pBGLights = imgs[0];
+			pImage = json->getImageByCustomString("handle", "nm_lights");
+			imgs = m_pPhysicsPlugin->FindImagesByBody(pImage->body);
+			m_pNMLights = imgs[0];
+			pRendPlug->RemDrawable(m_pNMLights);
+
 			baka::entity::EntityPlugin* pEntPlug = FIND_PLUGIN(baka::entity::EntityPlugin)
 				m_pLogo = static_cast<entity::LogoEnt*>(pEntPlug->FindEntities("LogoEnt")[0]);
 			m_pRain = static_cast<entity::RainEnt*>(pEntPlug->FindEntities("RainEnt")[0]);
 			m_pGoal = static_cast<entity::GoalEnt*>(pEntPlug->FindEntities("GoalEnt")[0]);
 
-			
 			auto blocks = pEntPlug->FindEntities("BlockEnt");
 			for (int i = 0; i < blocks.size(); ++i)
 			{
@@ -76,9 +84,12 @@ namespace app
 			FindControllers();
 
 			BeginPan();
+			baka::key_events::s_InputKeyUp.Subscribe(&sub, BIND1(this, &KnockOffState::OnKeyUp));
 
 			baka::joypad_events::s_InputJoypadConnected.Subscribe(&sub, BIND1(this, &KnockOffState::OnJoystickConnected));
 			baka::joypad_events::s_InputJoypadDisconnected.Subscribe(&sub, BIND1(this, &KnockOffState::OnJoystickDisconnected));
+
+			entity::GoalEnt::s_ScoreGoal.Subscribe(&sub, BIND1(this, &KnockOffState::OnGoal));
 
 			//b2Body* pPlayerBody = json->getBodyByName("player");
 			//	m_pPlayer = CreateEntityMacro(pEntPlug, entity::PlayerEnt);
@@ -121,6 +132,9 @@ namespace app
 				{
 					m_vBlocks[i]->Explode(b2Vec2());
 				}
+				baka::render::RenderPlugin* pRendPlug = FIND_PLUGIN(baka::render::RenderPlugin);
+				pRendPlug->AddDrawable(m_pNMLights, "physics-1");
+				pRendPlug->RemDrawable(m_pBGLights);
 				m_startDelay = sf::seconds(3);
 			}
 
@@ -202,6 +216,13 @@ namespace app
 				FindControllers();
 			} break;
 			}
+		}
+
+		void KnockOffState::OnGoal(int i)
+		{
+			baka::render::RenderPlugin* pRendPlug = FIND_PLUGIN(baka::render::RenderPlugin);
+			pRendPlug->AddDrawable(m_pBGLights, "physics-1");
+			pRendPlug->RemDrawable(m_pNMLights);
 		}
 	}
 }

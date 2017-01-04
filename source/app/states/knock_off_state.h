@@ -26,6 +26,9 @@ namespace app
 			entity::PlayerEnt* m_vPlayer[2];
 			std::vector<entity::BlockEnt*> m_vBlocks;
 			entity::GoalEnt* m_pGoal;
+			baka::render::PhysicsDrawable* m_pBGLights;
+			baka::render::PhysicsDrawable* m_pNMLights;
+
 
 			sf::Time m_timer;
 			sf::Time m_startDelay;
@@ -37,6 +40,7 @@ namespace app
 			void OnJoystickConnected(const int id);
 			void OnJoystickDisconnected(const int id);
 			void OnKeyUp(const baka::key_events::KeyAction& action);
+			void OnGoal(int i);
 
 			void FindControllers();
 
