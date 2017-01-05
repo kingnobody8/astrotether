@@ -218,6 +218,13 @@
     <ClInclude Include="..\..\..\source\app\states\knock_off_state.h" />
     <ClInclude Include="..\..\..\source\app\states\splash_state.h" />
     <ClInclude Include="..\..\..\source\app\states\testbed_state.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\assets\textures\box_green.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -96,5 +96,12 @@
     <ClInclude Include="..\..\..\source\app\entities\block_ent.h">
       <Filter>entities</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\assets\textures\box_green.ico" />
   </ItemGroup>
 </Project>

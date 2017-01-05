@@ -55,6 +55,9 @@ namespace baka
 			sf::ContextSettings settings;
 			m_pRenWin = new sf::RenderWindow(sf::VideoMode(screenSize.x, screenSize.y), appName.c_str(), sf::Style::Default, settings);
 
+			sf::Image Icon;
+			Icon.loadFromFile("assets/textures/box_green.png");
+			m_pRenWin->setIcon(Icon.getSize().x, Icon.getSize().y, Icon.getPixelsPtr());
 
 			// Create the camera, origin at center
 			/*const float vw = screenSize.x * viewRatio;
