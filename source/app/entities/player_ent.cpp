@@ -316,6 +316,7 @@ namespace app
 				else
 					desiredVel = b2Max(vel.x - m_tValue.m_fAirAcceleration, -m_tValue.m_fMaxSpeed);
 			}
+			bool skip = false;
 			if (!hasInput) //apply deceleration
 			{
 				if (m_bGrounded)
@@ -323,9 +324,17 @@ namespace app
 				else
 					desiredVel = vel.x * m_tValue.m_fAirDeceleration;
 			}
-			float velChange = desiredVel - vel.x;
-			float impulse = m_pBody->GetMass() * velChange; //disregard time factor
-			m_pBody->ApplyLinearImpulse(b2Vec2(impulse, 0), m_pBody->GetWorldCenter(), true);
+			else if((m_vButtons[EB_LEFT].Held() && vel.x < -m_tValue.m_fMaxSpeed) ||
+				(m_vButtons[EB_RIGHT].Held() && vel.x > m_tValue.m_fMaxSpeed))
+			{
+				skip = true;
+			}
+			if (!skip)
+			{
+				float velChange = desiredVel - vel.x;
+				float impulse = m_pBody->GetMass() * velChange; //disregard time factor
+				m_pBody->ApplyLinearImpulse(b2Vec2(impulse, 0), m_pBody->GetWorldCenter(), true);
+			}
 
 			if (m_vButtons[EB_RIGHT].Held())
 				m_pDrawable->skeleton->flipX = false;
